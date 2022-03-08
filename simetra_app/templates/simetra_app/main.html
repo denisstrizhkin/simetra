@@ -363,86 +363,16 @@
             </h2>
             <h3 class="team__subtitle">Авторы</h3>
             <ul class="team__list">
+              {% for employee in employees_list %}
               <li class="team__item employee">
                 <img
                   class="employee__image"
-                  src="https://static.tildacdn.com/tild3137-3635-4262-a138-653833653139/photo.jpg"
+                  src="{{ employee.image.url }}"
                 />
-                <p class="employee__initials">Владимир Швецов</p>
-                <h3 class="employee__position">Генеральный директор</h3>
+                <p class="employee__initials">{{ employee.name }}</p>
+                <h3 class="employee__position">{{ employee.position }}</h3>
               </li>
-              <li class="team__item employee">
-                <img
-                  class="employee__image"
-                  src="https://static.tildacdn.com/tild3063-6562-4632-b961-363539363665/photo.jpg"
-                />
-                <p class="employee__initials">Владимир Валдин</p>
-                <h3 class="employee__position">
-                  Директор по решениям в области общественного транспорта
-                </h3>
-              </li>
-              <li class="team__item employee">
-                <img
-                  class="employee__image"
-                  src="https://static.tildacdn.com/tild3462-3962-4464-b063-353831353465/photo.jpg"
-                />
-                <p class="employee__initials">Юрий Сурнин</p>
-                <h3 class="employee__position">
-                  Руководитель группы планирования общественного транспорта
-                </h3>
-              </li>
-              <li class="team__item employee">
-                <img
-                  class="employee__image"
-                  src="https://static.tildacdn.com/tild3966-3463-4538-a362-633661653433/daw.jpg"
-                />
-                <p class="employee__initials">Всеволод Морозов</p>
-                <h3 class="employee__position">
-                  Руководитель группы системного анализа мобильности, к. э. н.
-                </h3>
-              </li>
-              <li class="team__item employee">
-                <img
-                  class="employee__image"
-                  src="https://static.tildacdn.com/tild6362-6635-4735-b031-663931613264/5.jpg"
-                />
-                <p class="employee__initials">Вадим Вангородский</p>
-                <h3 class="employee__position">Системный аналитик, к. э. н.</h3>
-              </li>
-              <li class="team__item employee">
-                <img
-                  class="employee__image"
-                  src="https://static.tildacdn.com/tild3261-6237-4765-b937-386132363637/photo.jpg"
-                />
-                <p class="employee__initials">Владислав Безукладников</p>
-                <h3 class="employee__position">Транспортный инженер</h3>
-              </li>
-              <li class="team__item employee">
-                <img
-                  class="employee__image"
-                  src="https://static.tildacdn.com/tild6630-3433-4163-b432-653462383762/photo.jpg"
-                />
-                <p class="employee__initials">Юлия Коваль</p>
-                <h3 class="employee__position">Транспортный инженер</h3>
-              </li>
-              <li class="team__item employee">
-                <img
-                  class="employee__image"
-                  src="https://static.tildacdn.com/tild6639-3630-4431-b933-663863373837/photo.jpg"
-                />
-                <p class="employee__initials">Павел Плохов</p>
-                <h3 class="employee__position">
-                  Руководитель группы визуальных коммуникаций
-                </h3>
-              </li>
-              <li class="team__item employee">
-                <img
-                  class="employee__image"
-                  src="https://static.tildacdn.com/tild3734-3136-4562-b333-653666656134/photo.jpg"
-                />
-                <p class="employee__initials">Алиса Быкова</p>
-                <h3 class="employee__position">Специалист по визуализации</h3>
-              </li>
+              {% endfor %}
             </ul>
           </div>
         </section>
