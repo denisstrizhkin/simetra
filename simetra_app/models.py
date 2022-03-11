@@ -10,6 +10,9 @@ def get_uuid4_filename(filename):
 
 
 class Boss(models.Model):
+    class Meta:
+        verbose_name_plural = 'Bosses'
+
     def __str__(self):
         return self.name
 
@@ -20,7 +23,7 @@ class Boss(models.Model):
     position = models.CharField(max_length=200)
     quote = models.TextField()
     image = models.ImageField(
-        default='default-boss.jpg',
+        default='main_page/bosses/default-avatar.jpg',
         upload_to=get_upload_path
     )
 
@@ -35,7 +38,7 @@ class Employee(models.Model):
     name = models.CharField(max_length=100)
     position = models.CharField(max_length=200)
     image = models.ImageField(
-        default='default-employee.jpg',
+        default='main_page/employees/default-avatar.jpg',
         upload_to=get_upload_path
     )
 

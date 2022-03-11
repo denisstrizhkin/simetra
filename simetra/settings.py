@@ -128,10 +128,10 @@ STATIC_URL = 'static/'
 MEDIA_URL = 'media/'
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-MEDIA_ROOT = BASE_DIR / 'mediafiles'
+MEDIA_ROOT = BASE_DIR / 'simetra_app/media'
 
 STATICFILES_DIRS = [
-    (BASE_DIR / 'simetra_app/static')
+    (BASE_DIR / 'simetra_app/static'),
 ]
 
 
