@@ -90,25 +90,7 @@
     <div class="wrapper">
       <header class="header">
         <div class="header__container _container">
-          <nav class="header__menu menu">
-            <ul class="menu__list">
-              <li class="menu__item">
-                <a href="#" class="menu__link _link">География</a>
-              </li>
-              <li class="menu__item">
-                <a href="#" class="menu__link _link">База данных</a>
-              </li>
-              <li class="menu__item">
-                <a href="#" class="menu__link _link">Аналитика</a>
-              </li>
-              <li class="menu__item">
-                <a href="{% url 'simetra_app:methodology' %}" class="menu__link _link">Методология</a>
-              </li>
-              <li class="menu__item">
-                <a href="#" class="menu__link _link">О проекте</a>
-              </li>
-            </ul>
-          </nav>
+          {% include 'simetra_app/navbar.html' %}
         </div>
       </header>
 

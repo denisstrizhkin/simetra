@@ -11,6 +11,8 @@ app_name = 'simetra_app'
 urlpatterns = [
     path('', views.main_page, name='main'),
     path('methodogoly/', views.methodology_page, name='methodology'),
+    path('analytics/', views.analytics_page, name='analytics'),
+    path('data_base/', views.data_base_page, name='data_base'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -13,3 +13,11 @@ def main_page(request):
 
 def methodology_page(request):
     return render(request, 'simetra_app/methodology.html')
+
+
+def analytics_page(request):
+    return render(request, 'simetra_app/analytics.html')
+
+
+def data_base_page(request):
+    return render(request, 'simetra_app/data_base.html')
