@@ -14,14 +14,15 @@ class Boss(models.Model):
         return self.name
 
     def get_upload_path(self, filename):
-        return Path('bosses', get_uuid4_filename(filename))
+        return Path('main_page/bosses', get_uuid4_filename(filename))
 
     name = models.CharField(max_length=100)
     position = models.CharField(max_length=200)
     quote = models.TextField()
     image = models.ImageField(
         default='default-boss.jpg',
-        upload_to=get_upload_path)
+        upload_to=get_upload_path
+    )
 
 
 class Employee(models.Model):
@@ -29,13 +30,14 @@ class Employee(models.Model):
         return self.name
 
     def get_upload_path(self, filename):
-        return Path('employees', get_uuid4_filename(filename))
+        return Path('main_page/employees', get_uuid4_filename(filename))
 
     name = models.CharField(max_length=100)
     position = models.CharField(max_length=200)
     image = models.ImageField(
         default='default-employee.jpg',
-        upload_to=get_upload_path)
+        upload_to=get_upload_path
+    )
 
 
 class City(models.Model):
