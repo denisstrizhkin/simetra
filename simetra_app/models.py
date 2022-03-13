@@ -44,6 +44,9 @@ class Employee(models.Model):
 
 
 class City(models.Model):
+    class Meta:
+        verbose_name_plural = 'Cities'
+
     def __str__(self):
         return self.name
 

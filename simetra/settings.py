@@ -20,8 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = \
-    'django-insecure-$74d0g0+h8!mq9#vai=kxf%$4#z+5fq!*=qbxn4m54u#=e(ok#'
+SECRET_KEY = 'django-insecure-$74d0g0+h8!mq9#vai=kxf%$4#z+5fq!*=qbxn4m54u#=e(ok#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -139,3 +138,7 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Additional data
+MAPBOX_ACCESS_TOKEN = 'pk.eyJ1IjoicmF0aW5nLW9mLWNpdGllcyIsImEiOiJjbDBwMzVxYmEweXV0M2tudG5iNTVoOWEwIn0.-TuXo1E4722kHkQswNZh2A'
