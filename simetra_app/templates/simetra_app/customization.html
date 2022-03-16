@@ -22,6 +22,8 @@
       </li>
       {% endfor %}
     </ul>
-    Общее количество городов: {{ number_of_cities }}
+    <p>Общее количество городов: {{ number_of_cities }}</p> 
+
+    <a href="{% url 'simetra_app:staff-logout' %}">Выход</a>
   </body>
 </html>

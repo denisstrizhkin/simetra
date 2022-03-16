@@ -16,6 +16,8 @@ urlpatterns = [
     path('data-base/', views.data_base_page, name='data-base'),
 
     # Customization Pages
+    path('staff-login/', views.staff_login_page, name='staff-login'),
+    path('staff-logout/', views.staff_logout, name='staff-logout'),
     path('customization/', views.customization, name='customization'),
     path('create-city/', views.create_city, name='create-city'),
     path('update-city/<str:city_id>/', views.update_city, name='update-city'),

@@ -1,10 +1,17 @@
-from operator import truediv
+from django.contrib import messages
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
 from simetra.settings import MAPBOX_KEY
 from .models import Boss, Employee, City
 from .forms import LocationOfCityForm, CityForm
+
+
+def staff_logout(request):
+    logout(request)
+    return redirect('simetra_app:staff-login')
 
 
 def main_page(request):
@@ -35,6 +42,26 @@ def data_base_page(request):
     return render(request, 'simetra_app/data-base.html')
 
 
+def staff_login_page(request):
+    if request.user.is_authenticated:
+        return redirect('simetra_app:customization')
+
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('simetra_app:customization')
+        else:
+            messages.info(request, 'Секретное имя ИЛИ секретный ключ некорректны!')
+            
+    return render(request, 'simetra_app/staff-login.html')
+
+
+@login_required(login_url='simetra_app:staff-login')
 def customization(request):
     context = {
         'list_of_cities': City.objects.all(),
@@ -44,6 +71,7 @@ def customization(request):
     return render(request, 'simetra_app/customization.html', context)
 
 
+@login_required(login_url='simetra_app:staff-login')
 def create_city(request):
     city_form = CityForm()
     location_of_city_form = LocationOfCityForm()
@@ -66,6 +94,7 @@ def create_city(request):
     return render(request, 'simetra_app/create-or-update-city.html', context)
 
 
+@login_required(login_url='simetra_app:staff-login')
 def update_city(request, city_id):
     city = get_object_or_404(City, pk=city_id)
     city_form = CityForm(instance=city)
@@ -87,6 +116,7 @@ def update_city(request, city_id):
     return render(request, 'simetra_app/create-or-update-city.html', context)
 
 
+@login_required(login_url='simetra_app:staff-login')
 def delete_city(request, city_id):
     city = get_object_or_404(City, pk=city_id)
     city.delete()
