@@ -18,8 +18,8 @@ urlpatterns = [
     # Customization Pages
     path('customization/', views.customization, name='customization'),
     path('create-city/', views.create_city, name='create-city'),
-    path('cities-list/', views.cities_list, name='cities-list'),
     path('update-city/<str:city_id>/', views.update_city, name='update-city'),
+    path('delete-city/<str:city_id>/', views.delete_city, name='delete-city'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

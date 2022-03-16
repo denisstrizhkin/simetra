@@ -9,7 +9,7 @@ class LocationOfCityForm(forms.ModelForm):
         fields = '__all__'
 
 
-class CreateCityForm(forms.ModelForm):
+class CityForm(forms.ModelForm):
     class Meta:
         model = City
 

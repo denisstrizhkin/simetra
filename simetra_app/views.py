@@ -1,8 +1,8 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
 
 from simetra.settings import MAPBOX_KEY
 from .models import Boss, Employee, City
-from .forms import LocationOfCityForm, CreateCityForm
+from .forms import LocationOfCityForm, CityForm
 
 
 def main_page(request):
@@ -34,11 +34,16 @@ def data_base_page(request):
 
 
 def customization(request):
-    return render(request, 'simetra_app/customization.html')
+    context = {
+        'list_of_cities': City.objects.all(),
+        'number_of_cities': City.objects.all().count(),
+    }
+    
+    return render(request, 'simetra_app/customization.html', context)
 
 
 def create_city(request):
-    city_form = CreateCityForm()
+    city_form = CityForm()
     location_of_city_form = LocationOfCityForm()
     
     context = {
@@ -49,7 +54,7 @@ def create_city(request):
 
     if request.method == 'POST':
         print(request.POST)
-        city_form = CreateCityForm(request.POST)
+        city_form = CityForm(request.POST)
          
         if city_form.is_valid():
             city_form.save()
@@ -57,18 +62,9 @@ def create_city(request):
     return render(request, 'simetra_app/create-or-update-city.html', context)
 
 
-def cities_list(request):
-    context = {
-        'list_of_cities': City.objects.all(),
-        'number_of_cities': City.objects.all().count(),
-    }
-    
-    return render(request, 'simetra_app/cities-list.html', context)
-
-
 def update_city(request, city_id):
     city = get_object_or_404(City, pk=city_id)
-    city_form = CreateCityForm(instance=city)
+    city_form = CityForm(instance=city)
     location_of_city_form = LocationOfCityForm()
 
     context = {
@@ -79,9 +75,15 @@ def update_city(request, city_id):
 
     if request.method == 'POST':
         print(request.POST)
-        city_form = CreateCityForm(request.POST, instance=city)
+        city_form = CityForm(request.POST, instance=city)
          
         if city_form.is_valid():
             city_form.save()
 
     return render(request, 'simetra_app/create-or-update-city.html', context)
+
+
+def delete_city(request, city_id):
+    city = get_object_or_404(City, pk=city_id)
+    city.delete()
+    return redirect('simetra_app:customization')

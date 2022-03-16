@@ -10,7 +10,11 @@
     <h2>Список городов</h2>
     <ul>
       {% for city in list_of_cities %}
-      <li><a href="{% url 'simetra_app:update-city' city.id %}">{{ city.name }}</a></li>
+        <li>
+          {{ city.name }} 
+          <a href="{% url 'simetra_app:update-city' city.id %}">Изменить</a>  
+          <a href="{% url 'simetra_app:delete-city' city.id %}">Удалить</a>
+        </li>
       {% endfor %}
     </ul>
     Общее количество городов: {{ number_of_cities }}

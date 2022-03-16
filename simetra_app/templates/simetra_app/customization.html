@@ -1,19 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Настройка</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Настройка</h1>
 
     <h2>Город</h2>
+    <p><a href="{% url 'simetra_app:create-city' %}">Добавить новый город</a></p>
+
+    Список существующих городов:
     <ul>
-        <li><a href="{% url 'simetra_app:create-city' %}">Добавить новый город</a></li>
-        <li><a href="{% url 'simetra_app:cities-list' %}">Изменить существующий город</a></li>
-        <li><a href="#">Удалить существующий город</a></li>
+      {% for city in list_of_cities %}
+      <li>
+        {{ city.name }}
+        <a href="{% url 'simetra_app:update-city' city.id %}">Изменить</a>
+        <a href="{% url 'simetra_app:delete-city' city.id %}">Удалить</a>
+      </li>
+      {% endfor %}
     </ul>
-</body>
+    Общее количество городов: {{ number_of_cities }}
+  </body>
 </html>
