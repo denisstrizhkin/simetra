@@ -120,49 +120,95 @@ class City(models.Model):
     num_wndd_n_dead_per_people = models.FloatField(default=0.0)
 
     """ ПОДВИЖНОЙ СОСТАВ """
-
-    # 1 . Количество трамвайных вагонов
-    # 2 . Количество троллейбусных машин
-    # 3 . Количество электробусов
-    # 4 . Количество автобусов (*по данным о парках городских перевозчиков)
-    # 5 . Количество вагонов метрополитена
-    # 6 . Количество исправных трамвайных вагонов
-    # 7 . Количество исправных троллейбусных машин
-    # 8 . Количество исправных электробусов
-    # 9 . Количество исправных автобусов
-    # 10. Количество исправных вагонов метрополитена
-    # 11. Процент исправных трамвайных вагонов
-    # 12. Процент исправных троллейбусных машин
-    # 13. Процент исправных электробусов
-    # 14. Процент исправных автобусов
-    # 15. Процент исправных вагонов метрополитена
-    # Количество автобусов по Реестру:
-    # из них особо большого класса
-    # из них большого класса
-    # из них малого класса
-    # Количество троллейбусов и электробусов по Реестру:
-    # из них большого класса
-    # из них особо большого класса
-    # Количество трамваев по Реестру:
-    # из них большого класса
-    # из них особо большого класса
-    # Средний возраст трамвайных вагонов
-    # Средний возраст троллейбусных машин
-    # Средний возраст автобусов(*по данным о парках городских перевозчиков)
-    # Средний возраст электробусов
-    # Средний возраст вагонов метро
-    # Количество низкопольных трамвайных вагонов
-    # Количество низкопольных троллейбусных машин
-    # Количество низкопольных автобусов(*по данным о парках городских перевозчиков)
-    # Количество низкопольных электробусов
-    # Обновленный подвижной состав ГЭТ(*с учетом нормативных сроков эксплуатации)
-    # Обновленный подвижной состав автобусов(*с учетом нормативных сроков эксплуатации)
-    # Доля ТС с низкопольными площадками
-    # Доля ТС большой вместимости
-    # Доля электротранспорта в парке ТС НОТ
-    # Доля рабочего ПС в парке ТС
-    # Участие в программах обновления подвижного состава – булев атрибут,
-    # вместо галочки может быть логотип БКАД
+    #  1. Количество трамвайных вагонов (ед.)
+    num_tramway_cars = models.IntegerField(default=0)
+    #  2. Количество троллейбусных машин (ед.)
+    num_trollebuses = models.IntegerField(default=0)
+    #  3. Количество электробусов (ед.)
+    num_electrobuses = models.IntegerField(default=0)
+    # 4. Количество автобусов (*по данным о парках городских перевозчиков)
+    # (ед.)
+    num_buses = models.IntegerField(default=0)
+    #  5. Количество вагонов метрополитена (ед.)
+    num_metro_cars = models.IntegerField(default=0)
+    #  6. Количество исправных трамвайных вагонов (ед.)
+    num_working_tramway_cars = models.IntegerField(default=0)
+    #  7. Количество исправных троллейбусных машин (ед.)
+    num_working_trollebuses = models.IntegerField(default=0)
+    #  8. Количество исправных электробусов (ед.)
+    num_working_electrobuses = models.IntegerField(default=0)
+    #  9. Количество исправных автобусов (ед.)
+    num_working_buses = models.IntegerField(default=0)
+    # 10. Количество исправных вагонов метрополитена (ед.)
+    num_working_metro_cars = models.IntegerField(default=0)
+    # 11. Процент исправных трамвайных вагонов (%)
+    percent_working_tramway_cars = models.FloatField(default=0.0)
+    # 12. Процент исправных троллейбусных машин (%)
+    percent_working_trollebuses = models.FloatField(default=0.0)
+    # 13. Процент исправных электробусов (%)
+    percent_working_electrobuses = models.FloatField(default=0.0)
+    # 14. Процент исправных автобусов (%)
+    percent_working_buses = models.FloatField(default=0.0)
+    # 15. Процент исправных вагонов метрополитена (%)
+    percent_working_metro_cars = models.FloatField(default=0.0)
+    # 16. Количество автобусов по Реестру: (ед.)
+    num_buses_registry = models.IntegerField(default=0)
+    # 17. из них особо большого класса (ед.)
+    num_very_big_buses_registry = models.IntegerField(default=0)
+    # 18. из них большого класса (ед.)
+    num_big_buses_registry = models.IntegerField(default=0)
+    # 19. из них среднего класса (ед.)
+    num_medium_buses_registry = models.IntegerField(default=0)
+    # 20. из них малого класса (ед.)
+    num_small_buses_registry = models.IntegerField(default=0)
+    # 21. Количество троллейбусов и электробусов по Реестру: (ед.)
+    num_trollebuses_registry = models.IntegerField(default=0)
+    # 22. из них большого класса (ед.)
+    num_big_trollebuses_registry = models.IntegerField(default=0)
+    # 23. из них особо большого класса (ед.)
+    num_very_big_trollebuses_registry = models.IntegerField(default=0)
+    # 24. Количество трамваев по Реестру: (ед.)
+    num_tramway_cars_registry = models.IntegerField(default=0)
+    # 25. из них большого класса (ед.)
+    num_big_tramway_cars_registry = models.IntegerField(default=0)
+    # 26. из них особо большого класса (ед.)
+    num_very_big_tramway_cars_registry = models.IntegerField(default=0)
+    # 27. Средний возраст трамвайных вагонов (лет)
+    avrg_age_tramway_car = models.FloatField(default=0.0)
+    # 28. Средний возраст троллейбусных машин (лет)
+    avrg_age_trolleybus = models.FloatField(default=0.0)
+    # 29. Средний возраст автобусов(*по данным о парках городских
+    # перевозчиков) (лет)
+    avrg_age_bus = models.FloatField(default=0.0)
+    # 30. Средний возраст электробусов (лет)
+    avrg_age_electrobus = models.FloatField(default=0.0)
+    # 31. Средний возраст вагонов метро (лет)
+    avrg_age_metro_car = models.FloatField(default=0.0)
+    # 32. Количество низкопольных трамвайных вагонов (ед.)
+    num_low_profile_tramway_cars = models.IntegerField(default=0)
+    # 33. Количество низкопольных троллейбусных машин (ед.)
+    num_low_profile_trolleybuses = models.IntegerField(default=0)
+    # 34. Количество низкопольных автобусов(*по данным о парках городских
+    # перевозчиков) (ед.)
+    num_low_profile_buses = models.IntegerField(default=0)
+    # 35. Количество низкопольных электробусов
+    num_low_profile_electrobuses = models.IntegerField(default=0)
+    # 36. Обновленный подвижной состав ГЭТ(*с учетом нормативных сроков
+    # эксплуатации) (ед.)
+    num_new_GET = models.IntegerField(default=0)
+    # 37. Обновленный подвижной состав автобусов(*с учетом нормативных сроков
+    # эксплуатации) (ед.)
+    num_new_buses = models.IntegerField(default=0)
+    # 38. Доля ТС с низкопольными площадками
+    percent_low_profile_transport = models.FloatField(default=0.0)
+    # 39. Доля ТС большой вместимости
+    percent_big_capacity_transport = models.FloatField(default=0.0)
+    # 40. Доля электротранспорта в парке ТС НОТ
+    percent_elctro_transport = models.FloatField(default=0.0)
+    # 41. Доля рабочего ПС в парке ТС
+    percent_working_transport = models.FloatField(default=0.0)
+    # 42. Участие в программах обновления подвижного состава – булев атрибут,
+    percent_renew_program = models.FloatField(default=0.0)
 
     """ МАРШРУТЫ """
     #  1. Количество действующих трамвайных маршрутов
