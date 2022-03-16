@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Настройка</title>
+</head>
+<body>
+    <h1>Настройка</h1>
+
+    <h2>Город</h2>
+    <ul>
+        <li><a href="{% url 'simetra_app:create-city' %}">Добавить новый город</a></li>
+        <li><a href="{% url 'simetra_app:cities-list' %}">Изменить существующий город</a></li>
+        <li><a href="#">Удалить существующий город</a></li>
+    </ul>
+</body>
+</html>

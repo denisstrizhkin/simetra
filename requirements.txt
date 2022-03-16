@@ -2,6 +2,7 @@ asgiref==3.5.0
 autopep8==1.6.0
 Django==4.0.3
 django-cleanup==6.0.0
+django-mapbox-location-field==2.0.0
 Pillow==9.0.1
 pycodestyle==2.8.0
 sqlparse==0.4.2

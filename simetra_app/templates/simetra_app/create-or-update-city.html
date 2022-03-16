@@ -1,0 +1,37 @@
+{% load static %} 
+{% load mapbox_location_field_tags %} 
+{% location_field_includes %} 
+{% include_jquery %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Настройка</title>
+  </head>
+
+  <body>
+    <main>
+      <h2>{{ title }}</h2>
+      {{ location_of_city_form.media }}
+      <form method="POST">
+        {% csrf_token %} 
+        {{ location_of_city_form }} 
+        <p>Город: {{ city_form.name }}</p>
+        <p>Широта (longitude): {{ city_form.longitude }}</p>
+        <p>Долгота (latitude): {{ city_form.latitude }}</p>
+        <input type="submit" value="Submit" />
+      </form>
+
+      Заполнить поля автоматически:
+      <button name="sumbit-new-city">Заполнить</button>
+
+      <p>
+        <a href="{% url 'simetra_app:customization' %}">Вернуть на главную</a>
+      </p>
+    </main>
+    <script src="{% static 'simetra_app/customization_page/scripts/fill_name_field.js' %}"></script>
+  </body>
+</html>

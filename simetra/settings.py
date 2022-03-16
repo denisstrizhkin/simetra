@@ -31,16 +31,17 @@ ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 # Application definition
 
 INSTALLED_APPS = [
-    'simetra_app.apps.SimetraAppConfig',
-
-    'django_cleanup.apps.CleanupConfig',
-
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'simetra_app.apps.SimetraAppConfig',
+    'django_cleanup.apps.CleanupConfig',
+
+    'mapbox_location_field',
 ]
 
 MIDDLEWARE = [
@@ -141,4 +142,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # Additional data
-MAPBOX_ACCESS_TOKEN = 'pk.eyJ1IjoicmF0aW5nLW9mLWNpdGllcyIsImEiOiJjbDBwMzVxYmEweXV0M2tudG5iNTVoOWEwIn0.-TuXo1E4722kHkQswNZh2A'
+MAPBOX_KEY = 'pk.eyJ1IjoicmF0aW5nLW9mLWNpdGllcyIsImEiOiJjbDBwMzVxYmEweXV0M2tudG5iNTVoOWEwIn0.-TuXo1E4722kHkQswNZh2A'

@@ -9,10 +9,17 @@ from django.conf.urls.static import static
 app_name = 'simetra_app'
 
 urlpatterns = [
+    # Main Pages
     path('', views.main_page, name='main'),
     path('methodogoly/', views.methodology_page, name='methodology'),
     path('analytics/', views.analytics_page, name='analytics'),
-    path('data_base/', views.data_base_page, name='data_base'),
+    path('data-base/', views.data_base_page, name='data-base'),
+
+    # Customization Pages
+    path('customization/', views.customization, name='customization'),
+    path('create-city/', views.create_city, name='create-city'),
+    path('cities-list/', views.cities_list, name='cities-list'),
+    path('update-city/<str:city_id>/', views.update_city, name='update-city'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
