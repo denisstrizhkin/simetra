@@ -1,3 +1,5 @@
+from operator import truediv
+from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 
 from simetra.settings import MAPBOX_KEY
@@ -53,7 +55,9 @@ def create_city(request):
     }
 
     if request.method == 'POST':
-        print(request.POST)
+        if does_city_already_exist(request.POST):
+            return HttpResponse('Такой город уже существует! Создайте новый город или обновите существующий.')
+
         city_form = CityForm(request.POST)
          
         if city_form.is_valid():
@@ -87,3 +91,13 @@ def delete_city(request, city_id):
     city = get_object_or_404(City, pk=city_id)
     city.delete()
     return redirect('simetra_app:customization')
+
+
+def does_city_already_exist(requestPOST):
+    new_city_name = requestPOST['name']
+
+    for city in City.objects.all():
+        if city.name == new_city_name:
+            return True
+    
+    return False
