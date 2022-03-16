@@ -49,115 +49,93 @@ class City(models.Model):
 
     """ КАЧЕСТВЕННЫЕ ГРУППЫ (рейтинг 0.0 - 100.0) """
     # 1. Безопасность и устойчивое развитие
-    rating_security_n_development = models.FloatField(
-        default=0.0, blank=False, null=False)
+    rating_security_n_development = models.FloatField(default=0.0)
     # 2. Комфорт и удобство
-    rating_comfort_n_convenience = models.FloatField(
-        default=0.0, blank=False, null=False)
+    rating_comfort_n_convenience = models.FloatField(default=0.0)
     # 3. Эффективность маршрутной сети
-    rating_route_network_efficiency = models.FloatField(
-        default=0.0, blank=False, null=False)
+    rating_route_network_efficiency = models.FloatField(default=0.0)
     # 4. Ценовая доступность
-    rating_affordability = models.FloatField(
-        default=0.0, blank=False, null=False)
+    rating_affordability = models.FloatField(default=0.0)
     # 5. Физическая доступность
-    rating_physical_availability = models.FloatField(
-        default=0.0, blank=False, null=False)
+    rating_physical_availability = models.FloatField(default=0.0)
 
     """ ПРОСТРАНСТВЕННЫЕ ХАРАКТЕРИСТИКИ """
     #  1. Численность населения (млн чел.)
-    num_population = models.FloatField(default=0.0, blank=False, null=False)
+    num_population = models.FloatField(default=0.0)
     #  2. Протяженность УДС первой/второй категории (км)
-    length_UDS = models.FloatField(default=0.0, blank=False, null=False)
+    length_UDS = models.FloatField(default=0.0)
     #  3. Площадь активной зоны города (кв. км)
-    area_active_zone = models.FloatField(default=0.0, blank=False, null=False)
+    area_active_zone = models.FloatField(default=0.0)
     #  4. Пассажиропоток наземного общественного транспорта (год) (млн чел.)
-    traffic_transport = models.FloatField(default=0.0, blank=False, null=False)
+    traffic_transport = models.FloatField(default=0.0)
     #  5. Пассажиропоток метрополитена (год) (млн чел.)
-    traffic_metro = models.FloatField(default=0.0, blank=False, null=False)
+    traffic_metro = models.FloatField(default=0.0)
     #  6. Количество действующих остановочных пунктов (ед.)
-    num_working_stops_overall = models.IntegerField(
-        default=0, blank=False, null=False)
+    num_working_stops_overall = models.IntegerField(default=0)
     #  7. Количество остановочных пунктов в черте активной зоны города (ед.)
-    num_working_stops_active_zone = models.IntegerField(
-        default=0, blank=False, null=False)
+    num_working_stops_active_zone = models.IntegerField(default=0)
     #  8. Кол-во многоквартирных домов (ед.)
-    num_of_apartments = models.IntegerField(default=0, blank=False, null=False)
+    num_of_apartments = models.IntegerField(default=0)
     #  9. Доля домов в зоне покрытия
     # ??? (не могу найти)
     # 10. Доля населения в зоне покрытия (%)
-    percent_people_transport_zone = models.FloatField(
-        default=0.0, blank=False, null=False)
+    # ??? (не могу найти)
     # 11. Площадь покрытия активной зоны города пунктами остановок:
-    area_stops_coverage_active_zone = models.FloatField(
-        default=0.0, blank=False, null=False)
+    area_stops_coverage_active_zone = models.FloatField(default=0.0)
     # 12. Доля домов в зоне покрытия метрополитеном
     # ??? (не могу найти)
     # 13. Доля населения в зоне покрытия метрополитеном (%)
-    percent_people_metro_zone = models.FloatField(
-        default=0.0, blank=False, null=False)
+    # ??? (не могу найти)
     # 14. Площадь покрытия станциями метрополитена
-    area_metro_coverage = models.FloatField(
-        default=0.0, blank=False, null=False)
+    area_metro_coverage = models.FloatField(default=0.0)
     # 15. Плотность остановок распределения остановочных пунктов по территории
     # активной зоны города (ед./кв.км)
-    density_stops_active_zone = models.FloatField(
-        default=0.0, blank=False, null=False)
+    density_stops_active_zone = models.FloatField(default=0.0)
     # 16. Процент покрытой территории (700 м) (%)
-    percent_transport_covered_area = models.FloatField(
-        default=0.0, blank=False, null=False)
+    percent_transport_covered_area = models.FloatField(default=0.0)
     # 17. Процент покрытой территории от станций метрополитена (1000 м) (%)
-    percent_metro_covered_area = models.FloatField(
-        default=0.0, blank=False, null=False)
+    percent_metro_covered_area = models.FloatField(default=0.0)
     # 18. Население с доступом к метрополитену
-    num_people_metro_access = models.IntegerField(
-        default=0, blank=False, null=False)
+    num_people_metro_access = models.IntegerField(default=0)
     # 19. Доля населения с доступом к метрополитену
-    percent_people_metro_access = models.FloatField(
-        default=0.0, blank=False, null=False)
+    percent_people_metro_access = models.FloatField(default=0.0)
     # 20. Население с доступом к общественному транспорту
-    num_people_transport_access = models.IntegerField(
-        default=0, blank=False, null=False)
+    num_people_transport_access = models.IntegerField(default=0)
     # 21. Доля населения с доступом к общественному транспорту
-    percent_people_transport_access = models.FloatField(
-        default=0.0, blank=False, null=False)
+    percent_people_transport_access = models.FloatField(default=0.0)
     # 22. Средневзвешенное расстояние между остановками (м)
-    length_avrg_between_stops = models.FloatField(
-        default=0.0, blank=False, null=False)
+    length_avrg_between_stops = models.FloatField(default=0.0)
     # 23. Число погибших на ОТ (чел.)
-    num_death_toll = models.IntegerField(default=0, blank=False, null=False)
+    num_death_toll = models.IntegerField(default=0)
     # 24. Число раненых на ОТ (чел.)
-    num_wounded = models.IntegerField(default=0, blank=False, null=False)
+    num_wounded = models.IntegerField(default=0)
     # 25. Число ДТП с участием ОТ (ед.)
-    num_accidents = models.IntegerField(default=0, blank=False, null=False)
+    num_accidents = models.IntegerField(default=0)
     # 26. Число ДТП в расчете на единицу подвижного состава (ед./TC)
-    num_accidents_per_unit = models.FloatField(
-        default=0.0, blank=False, null=False)
+    num_accidents_per_unit = models.FloatField(default=0.0)
     # 27. Число раненых и погибших в расчете на 1 ДТП (чел./ед.)
-    num_wounded_per_accident = models.FloatField(
-        default=0.0, blank=False, null=False)
+    num_wounded_per_accident = models.FloatField(default=0.0)
     # 28. Количество раненых и погибших в расчете на млн пассажиров
     # (чел./млн.чел.)
-    num_wndd_n_dead_per_people = models.FloatField(
-        default=0.0, blank=False, null=False)
+    num_wndd_n_dead_per_people = models.FloatField(default=0.0)
 
     """ ПОДВИЖНОЙ СОСТАВ """
 
-    # Количество трамвайных вагонов
-    # Количество троллейбусных машин
-    # Количество электробусов
-    # Количество автобусов (*по данным о парках городских перевозчиков)
-    # Количество вагонов метрополитена
-    # Количество исправных трамвайных вагонов
-    # Количество исправных троллейбусных машин
-    # Количество исправных электробусов
-    # Количество исправных автобусов
-    # Количество исправных вагонов метрополитена
-    # Процент исправных трамвайных вагонов
-    # Процент исправных троллейбусных машин
-    # Процент исправных электробусов
-    # Процент исправных автобусов
-    # Процент исправных вагонов метрополитена
+    # 1 . Количество трамвайных вагонов
+    # 2 . Количество троллейбусных машин
+    # 3 . Количество электробусов
+    # 4 . Количество автобусов (*по данным о парках городских перевозчиков)
+    # 5 . Количество вагонов метрополитена
+    # 6 . Количество исправных трамвайных вагонов
+    # 7 . Количество исправных троллейбусных машин
+    # 8 . Количество исправных электробусов
+    # 9 . Количество исправных автобусов
+    # 10. Количество исправных вагонов метрополитена
+    # 11. Процент исправных трамвайных вагонов
+    # 12. Процент исправных троллейбусных машин
+    # 13. Процент исправных электробусов
+    # 14. Процент исправных автобусов
+    # 15. Процент исправных вагонов метрополитена
     # Количество автобусов по Реестру:
     # из них особо большого класса
     # из них большого класса
