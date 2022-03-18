@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Настройка</title>
+  </head>
+  <body>
+    <h2>{{ heading }}</h2>
+    {% with 'simetra_app:create-'|add:object_name as creation_link %}
+      <p><a href="{% url creation_link %}">Добавить новый экземпляр модели</a></p>
+    {% endwith %}
+
+    Список существующих моделей:
+    <ul>
+      {% for object in list_of_objects %}
+      <li>
+        {{ object.name }}
+
+        {% with 'simetra_app:update-'|add:object_name as updating_link %}
+          <a href="{% url updating_link object.id %}">Изменить</a>
+        {% endwith %}
+
+        {% with 'simetra_app:delete-'|add:object_name as deleting_link %}
+          <a href="{% url deleting_link object.id %}">Удалить</a>
+        {% endwith %}
+      </li>
+      {% endfor %}
+    </ul>
+    <p>Общее количество моделей: {{ number_of_objects }}</p>
+
+    <p><a href="{% url 'simetra_app:customization' %}">На главную</a></p>
+
+    <p><a href="{% url 'simetra_app:staff-logout' %}">Выход</a></p>
+  </body>
+</html>

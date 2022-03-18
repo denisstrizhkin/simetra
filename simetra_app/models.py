@@ -1,6 +1,9 @@
-from django.db import models
-from pathlib import Path
 import uuid
+
+from django.db import models
+
+from pathlib import Path
+from mapbox_location_field.models import LocationField
 
 
 def get_uuid4_filename(filename):
@@ -10,6 +13,9 @@ def get_uuid4_filename(filename):
 
 
 class Boss(models.Model):
+    class Meta:
+        verbose_name_plural = 'Bosses'
+
     def __str__(self):
         return self.name
 
@@ -20,8 +26,8 @@ class Boss(models.Model):
     position = models.CharField(max_length=200)
     quote = models.TextField()
     image = models.ImageField(
-        default='default-boss.jpg',
-        upload_to=get_upload_path
+        default='main_page/bosses/default-avatar.jpg',
+        upload_to=get_upload_path,
     )
 
 
@@ -35,17 +41,26 @@ class Employee(models.Model):
     name = models.CharField(max_length=100)
     position = models.CharField(max_length=200)
     image = models.ImageField(
-        default='default-employee.jpg',
-        upload_to=get_upload_path
+        default='main_page/employees/default-avatar.jpg',
+        upload_to=get_upload_path,
     )
 
 
 class City(models.Model):
+    class Meta:
+        verbose_name_plural = 'Cities'
+
     def __str__(self):
         return self.name
 
-    # Имя города
+    # In Mapbox longtitude always goes first and latitude goes second
+    # (by the time of 13.03.22)
+    # To find coorinates, open 'Response' -> 'features' -> '0' -> 'center'
+    # From the page https://docs.mapbox.com/playground/geocoding/
     name = models.CharField(max_length=100)
+    longitude = models.DecimalField(
+        max_digits=15, decimal_places=12, default=0)
+    latitude = models.DecimalField(max_digits=15, decimal_places=12, default=0)
 
     """ КАЧЕСТВЕННЫЕ ГРУППЫ (рейтинг 0.0 - 100.0) """
     # 1. Безопасность и устойчивое развитие
@@ -314,3 +329,8 @@ class City(models.Model):
     bool_day_tariff = models.BooleanField(default=False)
     # 16. Наличие проездных билетов на длительный срок
     bool_long_time_tariff = models.BooleanField(default=False)
+
+
+# Outer API
+class LocationOfCity(models.Model):
+    location = LocationField()

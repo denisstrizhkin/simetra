@@ -1,4 +1,7 @@
 {% load static %}
+{% load mapbox_location_field_tags %} 
+{% location_field_includes %}
+{% include_jquery %}
 
 <!DOCTYPE html>
 <html lang="ru">
@@ -6,7 +9,10 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{% static 'simetra_app/main_page/styles/style.css' %}" />
+    <link
+      rel="stylesheet"
+      href="{% static 'simetra_app/main_page/styles/style.css' %}"
+    />
     <title>Rating</title>
     <link
       rel="apple-touch-icon"
@@ -77,38 +83,27 @@
       sizes="16x16"
       href="{% static 'simetra_app/main_page/assets/favicon/favicon-16x16.png' %}"
     />
-    <link rel="manifest" href="{% static 'simetra_app/main_page/assets/favicon/manifest.json' %}" />
+    <link
+      rel="manifest"
+      href="{% static 'simetra_app/main_page/assets/favicon/manifest.json' %}"
+    />
     <meta name="msapplication-TileColor" content="#ffffff" />
     <meta
       name="msapplication-TileImage"
       content="{% static 'simetra_app/main_page/assets/favicon/ms-icon-144x144.png' %}"
     />
     <meta name="theme-color" content="#ffffff" />
+
+    <!-- Include Map -->
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
   </head>
 
   <body>
     <div class="wrapper">
       <header class="header">
         <div class="header__container _container">
-          <nav class="header__menu menu">
-            <ul class="menu__list">
-              <li class="menu__item">
-                <a href="#" class="menu__link _link">География</a>
-              </li>
-              <li class="menu__item">
-                <a href="#" class="menu__link _link">База данных</a>
-              </li>
-              <li class="menu__item">
-                <a href="#" class="menu__link _link">Аналитика</a>
-              </li>
-              <li class="menu__item">
-                <a href="{% url 'simetra_app:methodology' %}" class="menu__link _link">Методология</a>
-              </li>
-              <li class="menu__item">
-                <a href="#" class="menu__link _link">О проекте</a>
-              </li>
-            </ul>
-          </nav>
+          {% include 'simetra_app/navbar.html' %}
         </div>
       </header>
 
@@ -117,11 +112,10 @@
           <div class="home__container _container">
             <div class="home__body">
               <h1 class="home__title">
-                Рейтинг городов России
-                <span class="_highlight">по качеству общественного транспорта 2021 г.</span>
+                Рейтинг городов России <span class="_highlight">по качеству общественного транспорта 2021 г.</span>
               </h1>
               <div class="home__text">
-                Сравнение 76 российских городов по 51 показателю
+                Сравнение {{ number_of_cities }} российских городов по 51 показателю
               </div>
               <button class="home__button _button" type="button">
                 Посмотреть аналитику
@@ -140,18 +134,11 @@
           <div class="comments__container _container">
             {% for boss in bosses_list %}
             <div class="comments__content">
-              <img
-                class="comments__image"
-                src="{{ boss.image.url }}"
-              />
+              <img class="comments__image" src="{{ boss.image.url }}" />
               <div class="comments__text-image">
                 <h3 class="comments__initials"><b>{{ boss.name }}</b></h3>
-                <h4 class="comments__position">
-                  {{ boss.position }}
-                </h4>
-                <p class="comments__paragraph">
-                  — {{ boss.quote }}
-                </p>
+                <h4 class="comments__position">{{ boss.position }}</h4>
+                <p class="comments__paragraph">— {{ boss.quote }}</p>
               </div>
             </div>
             {% endfor %}
@@ -258,16 +245,12 @@
             <h2 class="analysis__title _main-title">
               <span class="_highlight">ГЕОГРАФИЯ</span> ИССЛЕДОВАНИЯ В 2021 ГОДУ
             </h2>
-            <ul class="analysis__list">
-              <li class="analysis__item employee"></li>
-              <li class="analysis__item employee"></li>
-              <li class="analysis__item employee"></li>
-              <li class="analysis__item employee"></li>
-              <li class="analysis__item employee"></li>
-              <li class="analysis__item employee"></li>
-              <li class="analysis__item employee"></li>
-              <li class="analysis__item employee"></li>
-            </ul>
+
+            <div id='map' style='height: 80vh;'></div>
+            <!-- The secure way to give a key without any leak -->
+            {{ mapbox_access_token|json_script:"mapbox-access-token" }}
+            {{ cities_list_json|json_script:"cities-list-json" }}
+            <script src="{% static 'simetra_app/main_page/scripts/map.js' id="mapbox-access-token" type="application/json" %}"></script>
           </div>
         </section>
 
@@ -365,10 +348,7 @@
             <ul class="team__list">
               {% for employee in employees_list %}
               <li class="team__item employee">
-                <img
-                  class="employee__image"
-                  src="{{ employee.image.url }}"
-                />
+                <img class="employee__image" src="{{ employee.image.url }}" />
                 <p class="employee__initials">{{ employee.name }}</p>
                 <h3 class="employee__position">{{ employee.position }}</h3>
               </li>
