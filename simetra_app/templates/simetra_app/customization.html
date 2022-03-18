@@ -9,21 +9,10 @@
   <body>
     <h1>Настройка</h1>
 
-    <h2>Город</h2>
-    <p><a href="{% url 'simetra_app:create-city' %}">Добавить новый город</a></p>
-
-    Список существующих городов:
     <ul>
-      {% for city in list_of_cities %}
-      <li>
-        {{ city.name }}
-        <a href="{% url 'simetra_app:update-city' city.id %}">Изменить</a>
-        <a href="{% url 'simetra_app:delete-city' city.id %}">Удалить</a>
-      </li>
-      {% endfor %}
+      <li><a href="{% url 'simetra_app:change-boss-model' %}">Модели боссов</a></li>
+      <li><a href="{% url 'simetra_app:change-city-model' %}">Модели городов</a></li>
+      <li><a href="{% url 'simetra_app:change-employee-model' %}">Модели сотрудников</a></li>
     </ul>
-    <p>Общее количество городов: {{ number_of_cities }}</p> 
-
-    <a href="{% url 'simetra_app:staff-logout' %}">Выход</a>
   </body>
 </html>

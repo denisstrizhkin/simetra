@@ -22,15 +22,13 @@
         <p>Город: {{ city_form.name }}</p>
         <p>Широта (longitude): {{ city_form.longitude }}</p>
         <p>Долгота (latitude): {{ city_form.latitude }}</p>
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Сохранить" />
       </form>
 
       Заполнить поля автоматически:
       <button name="sumbit-new-city">Заполнить</button>
 
-      <p>
-        <a href="{% url 'simetra_app:customization' %}">Вернуть на главную</a>
-      </p>
+      <p><a href="{% url 'simetra_app:customization' %}">Вернуть на главную</a></p>
     </main>
     <script src="{% static 'simetra_app/customization_page/scripts/fill_name_field.js' %}"></script>
   </body>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Настройка</title>
+  </head>
+
+  <body>
+    <h2>{{ title }}</h2>
+    <form method="POST">
+      {% csrf_token %}
+      <p>Полное имя: {{ employee_form.name }}</p>
+      <p>Позиция: {{ employee_form.position }}</p>
+      <p>Аватар: {{ employee_form.image }}</p>
+      <input type="submit" value="Сохранить" />
+    </form>
+    <p><a href="{% url 'simetra_app:customization' %}">Вернуть на главную</a></p>
+  </body>
+</html>

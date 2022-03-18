@@ -27,7 +27,7 @@ class Boss(models.Model):
     quote = models.TextField()
     image = models.ImageField(
         default='main_page/bosses/default-avatar.jpg',
-        upload_to=get_upload_path
+        upload_to=get_upload_path,
     )
 
 
@@ -42,7 +42,7 @@ class Employee(models.Model):
     position = models.CharField(max_length=200)
     image = models.ImageField(
         default='main_page/employees/default-avatar.jpg',
-        upload_to=get_upload_path
+        upload_to=get_upload_path,
     )
 
 

@@ -9,7 +9,7 @@ from django.core.serializers.json import DjangoJSONEncoder
 
 from simetra.settings import MAPBOX_KEY
 from .models import Boss, Employee, City
-from .forms import LocationOfCityForm, CityForm
+from .forms import BossForm, EmployeeForm, LocationOfCityForm, CityForm
 
 
 def staff_logout(request):
@@ -89,13 +89,72 @@ def staff_login_page(request):
 
 
 @login_required(login_url='simetra_app:staff-login')
-def customization(request):
+def customization_page(request):
+    return render(request, 'simetra_app/customization.html')
+
+
+@login_required(login_url='simetra_app:staff-login')
+def change_boss_model(request):
+    context = {
+        'list_of_bosses': Boss.objects.all(),
+        'number_of_bosses': Boss.objects.all().count(),
+    }
+    
+    return render(request, 'simetra_app/change-boss-model.html', context)
+
+
+@login_required(login_url='simetra_app:staff-login')
+def create_boss(request):
+    boss_form = BossForm()
+
+    context = {
+        'boss_form': boss_form,
+        'title': 'Добавить Нового Босса',
+    }
+
+    if request.method == 'POST':
+        boss_form = BossForm(request.POST)
+
+        if boss_form.is_valid():
+            boss_form.save()
+
+    return render(request, 'simetra_app/create-or-update-boss.html', context)
+
+
+@login_required(login_url='simetra_app:staff-login')
+def update_boss(request, boss_id):
+    boss = get_object_or_404(Boss, pk=boss_id)
+    boss_form = BossForm(instance=boss)
+
+    context = {
+        'boss_form': boss_form,
+        'title': 'Изменить Существующего Босса',
+    }
+
+    if request.method == 'POST':
+        boss_form = BossForm(request.POST, instance=boss)
+
+        if boss_form.is_valid():
+            boss_form.save()
+    
+    return render(request, 'simetra_app/create-or-update-boss.html', context)
+
+
+@login_required(login_url='simetra_app:staff-login')
+def delete_boss(request, boss_id):
+    boss = get_object_or_404(Boss, pk=boss_id)
+    boss.delete()
+    return redirect('simetra_app:change-boss-model')
+
+
+@login_required(login_url='simetra_app:staff-login')
+def change_city_model(request):
     context = {
         'list_of_cities': City.objects.all(),
         'number_of_cities': City.objects.all().count(),
     }
-    
-    return render(request, 'simetra_app/customization.html', context)
+
+    return render(request, 'simetra_app/change-city-model.html', context)
 
 
 @login_required(login_url='simetra_app:staff-login')
@@ -146,7 +205,61 @@ def update_city(request, city_id):
 def delete_city(request, city_id):
     city = get_object_or_404(City, pk=city_id)
     city.delete()
-    return redirect('simetra_app:customization')
+    return redirect('simetra_app:change-city-model')
+
+
+@login_required(login_url='simetra_app:staff-login')
+def change_employee_model(request):
+    context = {
+        'list_of_employees': Employee.objects.all(),
+        'number_of_employees': Employee.objects.all().count(),
+    }
+
+    return render(request, 'simetra_app/change-employee-model.html', context)
+
+
+@login_required(login_url='simetra_app:staff-login')
+def create_employee(request):
+    employee_form = EmployeeForm()
+
+    context = {
+        'employee_form': employee_form,
+        'title': 'Добавить Нового Сотрудника'
+    }
+
+    if request.method == 'POST':
+        employee_form = EmployeeForm(request.POST)
+
+        if employee_form.is_valid():
+            employee_form.save()
+
+    return render(request, 'simetra_app/create-or-update-employee.html', context)
+
+
+@login_required(login_url='simetra_app:staff-login')
+def update_employee(request, employee_id):
+    employee = get_object_or_404(Employee, pk=employee_id)
+    employee_form = EmployeeForm(instance=employee)
+
+    context = {
+        'employee_form': employee_form,
+        'title': 'Изменить Существующего Сотрудника',
+    }
+
+    if request.method == 'POST':
+        employee_form = EmployeeForm(request.POST, instance=employee)
+
+        if employee_form.is_valid():
+            employee_form.save()
+
+    return render(request, 'simetra_app/create-or-update-employee.html', context)
+
+
+@login_required(login_url='simetra_app:staff-login')
+def delete_employee(request, employee_id):
+    employee = get_object_or_404(Employee, pk=employee_id)
+    employee.delete()
+    return redirect('simetra_app:change-employee-model')
 
 
 def does_city_already_exist(requestPOST):
