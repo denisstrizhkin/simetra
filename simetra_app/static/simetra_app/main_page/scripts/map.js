@@ -7,7 +7,7 @@ const moscowLatitude = 37.617780000000;
 
 mapboxgl.accessToken = mapboxAccessToken;
 
-var map = new mapboxgl.Map({
+const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
     center: [moscowLatitude, moscowLongitude],
@@ -21,21 +21,38 @@ citiesUnparsed.forEach(cityUnparsed => {
     const longitudeParsed = city['longitude'];
     const latitudeParsed = city['latitude'];
 
-    const markerParameters = {
+    const popupSettings = {
+        closeButton: false,
+        closeOnClick: false,
+        offset: [0, -35],
+    }
+
+    const popup = new mapboxgl.Popup(popupSettings);
+
+    const markerSettings = {
         color: 'red',
     }
 
-    // TODO: Is there a way to make a prompt open when you hover on a city marker but not to click it? 
-    const popup = new mapboxgl.Popup({ offset: 25 }).setText(name);
-
-    const marker = new mapboxgl.Marker(markerParameters)
+    const marker = new mapboxgl.Marker(markerSettings)
         .setLngLat([latitudeParsed, longitudeParsed])
-        .setPopup(popup)
         .addTo(map);
 
     console.log(marker._element);
 
-    marker._element.addEventListener('click', event => {
+    marker._element.addEventListener('mouseenter', () => {
+        marker._element.style.cursor = 'pointer';
+
+        popup.setLngLat([latitudeParsed, longitudeParsed])
+            .setText(name)
+            .addTo(map);
+    });
+
+    marker._element.addEventListener('mouseleave', () => {
+        map.getCanvas().style.cursor = '';
+        popup.remove();
+    });
+
+    marker._element.addEventListener('click', () => {
         window.location.href = name;
     });
 });
