@@ -29,7 +29,8 @@ def main_page(request):
             'longitude': city.longitude,
             'latitude': city.latitude,
         }
-        city_dictionary_json = json.dumps(city_dictionary, cls=DjangoJSONEncoder)
+        city_dictionary_json = json.dumps(
+            city_dictionary, cls=DjangoJSONEncoder)
         cities_list_json.append(city_dictionary_json)
 
     context = {
@@ -59,7 +60,7 @@ def data_base_page(request):
 def city_page(request, city_name):
     print(city_name)
     city = get_object_or_404(City, name=city_name)
-    
+
     context = {
         'name': city.name,
         'longitude': city.longitude,
@@ -83,8 +84,9 @@ def staff_login_page(request):
             login(request, user)
             return redirect('simetra_app:customization')
         else:
-            messages.info(request, 'Секретное имя ИЛИ секретный ключ некорректны!')
-            
+            messages.info(
+                request, 'Секретное имя ИЛИ секретный ключ некорректны!')
+
     return render(request, 'simetra_app/staff-login.html')
 
 
@@ -134,7 +136,7 @@ def update_boss(request, boss_id):
 
         if boss_form.is_valid():
             boss_form.save()
-    
+
     return render(request, 'simetra_app/create-or-update-boss.html', context)
 
 
@@ -157,7 +159,7 @@ def change_city_model(request):
 def create_city(request):
     city_form = CityForm()
     location_of_city_form = LocationOfCityForm()
-    
+
     context = {
         'city_form': city_form,
         'location_of_city_form': location_of_city_form,
@@ -166,10 +168,11 @@ def create_city(request):
 
     if request.method == 'POST':
         if does_city_already_exist(request.POST):
-            return HttpResponse('Такой город уже существует! Создайте новый город или обновите существующий.')
+            return HttpResponse(
+                'Такой город уже существует! Создайте новый город или обновите существующий.')
 
         city_form = CityForm(request.POST)
-         
+
         if city_form.is_valid():
             city_form.save()
 
@@ -190,7 +193,7 @@ def update_city(request, city_id):
 
     if request.method == 'POST':
         city_form = CityForm(request.POST, instance=city)
-         
+
         if city_form.is_valid():
             city_form.save()
 
@@ -227,7 +230,10 @@ def create_employee(request):
         if employee_form.is_valid():
             employee_form.save()
 
-    return render(request, 'simetra_app/create-or-update-employee.html', context)
+    return render(
+        request,
+        'simetra_app/create-or-update-employee.html',
+        context)
 
 
 @login_required(login_url='simetra_app:staff-login')
@@ -246,7 +252,10 @@ def update_employee(request, employee_id):
         if employee_form.is_valid():
             employee_form.save()
 
-    return render(request, 'simetra_app/create-or-update-employee.html', context)
+    return render(
+        request,
+        'simetra_app/create-or-update-employee.html',
+        context)
 
 
 @login_required(login_url='simetra_app:staff-login')
@@ -262,7 +271,7 @@ def does_city_already_exist(requestPOST):
     for city in City.objects.all():
         if city.name == new_city_name:
             return True
-    
+
     return False
 
 
