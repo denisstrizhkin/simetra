@@ -275,41 +275,42 @@ class City(models.Model):
 
     """ ТАРИФНАЯ СИСТЕМА """
 
-    #  1. Средняя заработная плата по региону
-
-    #  2. Среднедушевые взвешенные доходы населения по региону
-
-    #  3. Стоимость(месячного) проездного билета
-
+    #  1. Средняя заработная плата по региону (руб.)
+    salary_avrg = models.IntegerField(default=0)
+    #  2. Среднедушевые взвешенные доходы населения по региону (руб.)
+    income_avrg = models.IntegerField(default=0)
+    #  3. Стоимость(месячного) проездного билета (руб.)
+    salary_avrg = models.IntegerField(default=0)
     # 4. Отношение стоимость проездного билета к среднедушевым доходам
-    # населения
-
+    # населения (%)
+    ratio_ticket_cost_income = models.FloatField(default=0)
     # 5. Количество маршрутов на которых доступен проездной
     # билет(предусмотреть возможность агрегации данных на основе атрибута
-    # маршрутов)
-
+    # маршрутов) (ед)
+    num_routes_with_ticket = models.IntegerField(default=0)
     # 6. Количество маршрутов на которых доступен пересадочный
     # билет(предусмотреть возможность агрегации данных на основе атрибута
-    # маршрутов)
-
+    # маршрутов) (ед.)
+    num_routes_with_transfer_ticket = models.IntegerField(default=0)
     #  7. Социально - ориентированный тариф
-
-    #  8. Стоимость разового билета на проезд
-
+    # (???)
+    #  8. Стоимость разового билета на проезд (руб.)
+    cost_one_travel_ticket = models.IntegerField(default=0)
     #  9. Стоимость проезда с учетом максимальной скидки
-
-    # 10. Стоимость пересадочного тарифа
-
+    # (???)
+    # 10. Стоимость пересадочного тарифа (руб.)
+    cost_transfer_ticket = models.IntegerField(default=0)
     # 11. Наличие универсальной транспортной карты – булев атрибут
-
+    bool_universal_transport_card = models.BooleanField(default=False)
     # 12. Возможность дистанционного пополнения баланса и / или записи билетов
     # на транспортную карту – булев атрибут
-
+    bool_online_payment = models.BooleanField(default=False)
     # 13. Возможность оплаты проезда внутри ТС с помощью мобильных устройств
     # или банковских карты
-
+    bool_nfc_payment = models.BooleanField(default=False)
     # 14. Наличие пересадочного тарифа
-
+    bool_transfer_tariff = models.BooleanField(default=False)
     # 15. Наличие тарифа на сутки и более
-
+    bool_day_tariff = models.BooleanField(default=False)
     # 16. Наличие проездных билетов на длительный срок
+    bool_long_time_tariff = models.BooleanField(default=False)
