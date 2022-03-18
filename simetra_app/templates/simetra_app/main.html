@@ -249,6 +249,7 @@
             <div id='map' style='height: 80vh;'></div>
             <!-- The secure way to give a key without any leak -->
             {{ mapbox_access_token|json_script:"mapbox-access-token" }}
+            {{ cities_list_json|json_script:"cities-list-json" }}
             <script src="{% static 'simetra_app/main_page/scripts/map.js' id="mapbox-access-token" type="application/json" %}"></script>
           </div>
         </section>

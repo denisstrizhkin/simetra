@@ -1,8 +1,11 @@
+import json
+
 from django.contrib import messages
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.core.serializers.json import DjangoJSONEncoder
 
 from simetra.settings import MAPBOX_KEY
 from .models import Boss, Employee, City
@@ -16,14 +19,25 @@ def staff_logout(request):
 
 def main_page(request):
     mapbox_access_token = MAPBOX_KEY
-
+    
     form = LocationOfCityForm()
+
+    cities_list_json = []
+    for city in City.objects.all():
+        city_dictionary = {
+            'name': city.name,
+            'longitude': city.longitude,
+            'latitude': city.latitude,
+        }
+        city_dictionary_json = json.dumps(city_dictionary, cls=DjangoJSONEncoder)
+        cities_list_json.append(city_dictionary_json)
 
     context = {
         'bosses_list': Boss.objects.all(),
         'employees_list': Employee.objects.all(),
         'number_of_cities': City.objects.all().count(),
         'mapbox_access_token': mapbox_access_token,
+        'cities_list_json': cities_list_json,
         'form': form,
     }
 
@@ -107,7 +121,6 @@ def update_city(request, city_id):
     }
 
     if request.method == 'POST':
-        print(request.POST)
         city_form = CityForm(request.POST, instance=city)
          
         if city_form.is_valid():
