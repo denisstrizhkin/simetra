@@ -95,12 +95,10 @@ def customization_page(request):
 
 @login_required(login_url='simetra_app:staff-login')
 def change_boss_model(request):
-    context = {
-        'list_of_bosses': Boss.objects.all(),
-        'number_of_bosses': Boss.objects.all().count(),
-    }
-    
-    return render(request, 'simetra_app/change-boss-model.html', context)
+    context = get_context_to_change_model(Boss)
+    context['heading'] = 'Боссы'
+    context['object_name'] = 'boss'
+    return render(request, 'simetra_app/change-model.html', context)
 
 
 @login_required(login_url='simetra_app:staff-login')
@@ -149,12 +147,10 @@ def delete_boss(request, boss_id):
 
 @login_required(login_url='simetra_app:staff-login')
 def change_city_model(request):
-    context = {
-        'list_of_cities': City.objects.all(),
-        'number_of_cities': City.objects.all().count(),
-    }
-
-    return render(request, 'simetra_app/change-city-model.html', context)
+    context = get_context_to_change_model(City)
+    context['heading'] = 'Города'
+    context['object_name'] = 'city'
+    return render(request, 'simetra_app/change-model.html', context)
 
 
 @login_required(login_url='simetra_app:staff-login')
@@ -210,12 +206,10 @@ def delete_city(request, city_id):
 
 @login_required(login_url='simetra_app:staff-login')
 def change_employee_model(request):
-    context = {
-        'list_of_employees': Employee.objects.all(),
-        'number_of_employees': Employee.objects.all().count(),
-    }
-
-    return render(request, 'simetra_app/change-employee-model.html', context)
+    context = get_context_to_change_model(Employee)
+    context['heading'] = 'Сотрудники'
+    context['object_name'] = 'employee'
+    return render(request, 'simetra_app/change-model.html', context)
 
 
 @login_required(login_url='simetra_app:staff-login')
@@ -270,3 +264,12 @@ def does_city_already_exist(requestPOST):
             return True
     
     return False
+
+
+def get_context_to_change_model(Object):
+    context = {
+        'list_of_objects': Object.objects.all(),
+        'number_of_objects': Object.objects.all().count(),
+    }
+
+    return context
