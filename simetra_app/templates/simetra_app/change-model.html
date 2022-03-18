@@ -8,30 +8,27 @@
   </head>
   <body>
     <h2>{{ heading }}</h2>
-    <!-- <p><a href="{% url 'simetra_app:create-employee' %}"></a></p>  -->
     {% with 'simetra_app:create-'|add:object_name as creation_link %}
       <p><a href="{% url creation_link %}">Добавить новый экземпляр модели</a></p>
     {% endwith %}
 
-    Список существующих сотрудников:
+    Список существующих моделей:
     <ul>
       {% for object in list_of_objects %}
       <li>
         {{ object.name }}
 
-        <!-- <a href="{% url 'simetra_app:update-employee' object.id %}">Изменить</a> -->
         {% with 'simetra_app:update-'|add:object_name as updating_link %}
           <a href="{% url updating_link object.id %}">Изменить</a>
         {% endwith %}
 
-        <!-- <a href="{% url 'simetra_app:delete-employee' object.id %}">Удалить</a> -->
         {% with 'simetra_app:delete-'|add:object_name as deleting_link %}
           <a href="{% url deleting_link object.id %}">Удалить</a>
         {% endwith %}
       </li>
       {% endfor %}
     </ul>
-    <p>Общее количество сотрудников: {{ number_of_objects }}</p>
+    <p>Общее количество моделей: {{ number_of_objects }}</p>
 
     <p><a href="{% url 'simetra_app:customization' %}">На главную</a></p>
 
