@@ -25,10 +25,17 @@ citiesUnparsed.forEach(cityUnparsed => {
         color: 'red',
     }
 
+    // TODO: Is there a way to make a prompt open when you hover on a city marker but not to click it? 
     const popup = new mapboxgl.Popup({ offset: 25 }).setText(name);
 
-    new mapboxgl.Marker(markerParameters)
+    const marker = new mapboxgl.Marker(markerParameters)
         .setLngLat([latitudeParsed, longitudeParsed])
         .setPopup(popup)
         .addTo(map);
+
+    console.log(marker._element);
+
+    marker._element.addEventListener('click', event => {
+        window.location.href = name;
+    });
 });

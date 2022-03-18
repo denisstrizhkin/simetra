@@ -22,6 +22,7 @@ urlpatterns = [
     path('create-city/', views.create_city, name='create-city'),
     path('update-city/<str:city_id>/', views.update_city, name='update-city'),
     path('delete-city/<str:city_id>/', views.delete_city, name='delete-city'),
+    path('<str:city_name>/', views.city_page, name='city-page')
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
