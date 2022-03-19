@@ -291,36 +291,79 @@ def get_context_to_change_model(Object):
     return context
 
 
-class UploadFileForm(forms.Form):
-    file = forms.FileField()
-
-
 def upload_cities_excel(request):
+    class UploadFileForm(forms.Form):
+        file = forms.FileField()
+
     if request.method == "POST":
         form = UploadFileForm(request.POST, request.FILES)
 
         if form.is_valid():
-            request.FILES["file"].save_book_to_database(
-                models=[City],
-                initializers=[None],
-                mapdicts=[
-                    {
-                        "Question": "question",
-                        "Choice": "choice_text",
-                        "Votes": "votes"},
-                ],
-            )
-            request.FILES["file"].sh
+            excel_book = request.FILES["file"].get_book()
+
+            sheet_names = [
+                'КАЧЕСТВЕННЫЕ ГРУППЫ',
+                'ПРОСТРАНСТВЕННЫЕ_ХАРАКТЕРИСТИКИ',
+                'ПОДВИЖНОЙ СОСТАВ',
+                'МАРШРУТЫ',
+                'ТАРИФНАЯ СИСТЕМА'
+            ]
+
+            def check_sheet_existance(book, sheet_name):
+                try:
+                    _ = book[sheet_name]
+                    return True
+                except BaseException:
+                    return False
+
+            error_message = ''
+            for sheet_name in sheet_names:
+                if not check_sheet_existance(excel_book, sheet_name):
+                    error_message = 'Документ не содержит следующего листа: \
+                            "{}"'.format(sheet_name)
+
+            if error_message != '':
+                return render(request, "simetra_app/upload_cities_excel.html",
+                              {"form": form, "error_message": error_message})
+
+            def write_quality_groups_column(column_index):
+                sheet = excel_book['КАЧЕСТВЕННЫЕ ГРУППЫ']
+
+                del sheet.column[1, 2]
+                sheet[0, 0] = 'name'
+                sheet.name_rows_by_column(0)
+                for row in sheet.named_rows():
+                    print(row)
+                # 1. Безопасность и устойчивое развитие
+                # rating_security_n_development = models.FloatField(
+                #    verbose_name='Безопасность и устойчивое развитие', default=0.0)
+                # 2. Комфорт и удобство
+                # rating_comfort_n_convenience = models.FloatField(
+                #    verbose_name='Комфорт и удобство', default=0.0)
+                # 3. Эффективность маршрутной сети
+                # rating_route_network_efficiency = models.FloatField(
+                #    verbose_name='Эффективность маршрутной сети', default=0.0)
+                # 4. Ценовая доступность
+                # rating_affordability = models.FloatField(
+                #    verbose_name='Ценовая доступность', default=0.0)
+                # 5. Физическая доступность
+                # rating_physical_availability = models.FloatField(
+                #    verbose_name='Физическая доступность', default=0.0)
+
+                return ''
+
+            write_quality_groups_column(3)
+
         else:
             return HttpResponseBadRequest()
     else:
         form = UploadFileForm()
+
     return render(
         request,
         "simetra_app/upload_cities_excel.html",
         {
             "form": form,
-            "title": "Import excel data into database example",
-            "header": "Please upload sample-data.xls:",
+            "error_message": '',
         },
     )

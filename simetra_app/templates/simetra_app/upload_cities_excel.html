@@ -1,15 +1,11 @@
 <html>
 <head>
-    <title>{{title}}</title>
+    <title> Загрузка .xlsx файла </title>
 </head>
 <body>
-    <h1>{{header}}</h1>
+    <h1> Загрузка .xlsx файла </h1>
 
-    {% if form.errors %}
-        <p style="color: red;">
-            Please correct the error{{ form.errors|pluralize }} below.
-        </p>
-    {% endif %}
+    <p style="color: red;"> {{ error_message }}  </p>
 
     <form action="" enctype="multipart/form-data"  method="post">
         <table>
