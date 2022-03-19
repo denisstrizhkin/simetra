@@ -64,15 +64,20 @@ class City(models.Model):
 
     """ КАЧЕСТВЕННЫЕ ГРУППЫ (рейтинг 0.0 - 100.0) """
     # 1. Безопасность и устойчивое развитие
-    rating_security_n_development = models.FloatField(default=0.0)
+    rating_security_n_development = models.FloatField(
+        verbose_name='Безопасность и устойчивое развитие', default=0.0)
     # 2. Комфорт и удобство
-    rating_comfort_n_convenience = models.FloatField(default=0.0)
+    rating_comfort_n_convenience = models.FloatField(
+        verbose_name='Комфорт и удобство', default=0.0)
     # 3. Эффективность маршрутной сети
-    rating_route_network_efficiency = models.FloatField(default=0.0)
+    rating_route_network_efficiency = models.FloatField(
+        verbose_name='Эффективность маршрутной сети', default=0.0)
     # 4. Ценовая доступность
-    rating_affordability = models.FloatField(default=0.0)
+    rating_affordability = models.FloatField(
+        verbose_name='Ценовая доступность', default=0.0)
     # 5. Физическая доступность
-    rating_physical_availability = models.FloatField(default=0.0)
+    rating_physical_availability = models.FloatField(
+        verbose_name='Физическая доступность', default=0.0)
 
     """ ПРОСТРАНСТВЕННЫЕ ХАРАКТЕРИСТИКИ """
     #  1. Численность населения (млн чел.)
