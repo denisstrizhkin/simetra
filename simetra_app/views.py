@@ -1,3 +1,6 @@
+from django.contrib.contenttypes.models import ContentType
+from django.http import HttpResponseBadRequest
+from django import forms
 import json
 
 from django.contrib import messages
@@ -281,4 +284,43 @@ def get_context_to_change_model(Object):
         'number_of_objects': Object.objects.all().count(),
     }
 
+    if ContentType.objects.get_for_model(
+            Object) == ContentType.objects.get_for_model(City):
+        context["is_city"] = True
+
     return context
+
+
+class UploadFileForm(forms.Form):
+    file = forms.FileField()
+
+
+def upload_cities_excel(request):
+    if request.method == "POST":
+        form = UploadFileForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            request.FILES["file"].save_book_to_database(
+                models=[City],
+                initializers=[None],
+                mapdicts=[
+                    {
+                        "Question": "question",
+                        "Choice": "choice_text",
+                        "Votes": "votes"},
+                ],
+            )
+            request.FILES["file"].sh
+        else:
+            return HttpResponseBadRequest()
+    else:
+        form = UploadFileForm()
+    return render(
+        request,
+        "simetra_app/upload_cities_excel.html",
+        {
+            "form": form,
+            "title": "Import excel data into database example",
+            "header": "Please upload sample-data.xls:",
+        },
+    )
