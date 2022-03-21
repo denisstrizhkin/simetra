@@ -1,3 +1,6 @@
+from django.contrib.contenttypes.models import ContentType
+from django.http import HttpResponseBadRequest
+from django import forms
 import json
 
 from django.contrib import messages
@@ -29,7 +32,8 @@ def main_page(request):
             'longitude': city.longitude,
             'latitude': city.latitude,
         }
-        city_dictionary_json = json.dumps(city_dictionary, cls=DjangoJSONEncoder)
+        city_dictionary_json = json.dumps(
+            city_dictionary, cls=DjangoJSONEncoder)
         cities_list_json.append(city_dictionary_json)
 
     context = {
@@ -59,7 +63,7 @@ def data_base_page(request):
 def city_page(request, city_name):
     print(city_name)
     city = get_object_or_404(City, name=city_name)
-    
+
     context = {
         'name': city.name,
         'longitude': city.longitude,
@@ -83,8 +87,9 @@ def staff_login_page(request):
             login(request, user)
             return redirect('simetra_app:customization')
         else:
-            messages.info(request, 'Секретное имя ИЛИ секретный ключ некорректны!')
-            
+            messages.info(
+                request, 'Секретное имя ИЛИ секретный ключ некорректны!')
+
     return render(request, 'simetra_app/staff-login.html')
 
 
@@ -134,7 +139,7 @@ def update_boss(request, boss_id):
 
         if boss_form.is_valid():
             boss_form.save()
-    
+
     return render(request, 'simetra_app/create-or-update-boss.html', context)
 
 
@@ -157,7 +162,7 @@ def change_city_model(request):
 def create_city(request):
     city_form = CityForm()
     location_of_city_form = LocationOfCityForm()
-    
+
     context = {
         'city_form': city_form,
         'location_of_city_form': location_of_city_form,
@@ -166,10 +171,11 @@ def create_city(request):
 
     if request.method == 'POST':
         if does_city_already_exist(request.POST):
-            return HttpResponse('Такой город уже существует! Создайте новый город или обновите существующий.')
+            return HttpResponse(
+                'Такой город уже существует! Создайте новый город или обновите существующий.')
 
         city_form = CityForm(request.POST)
-         
+
         if city_form.is_valid():
             city_form.save()
 
@@ -190,7 +196,7 @@ def update_city(request, city_id):
 
     if request.method == 'POST':
         city_form = CityForm(request.POST, instance=city)
-         
+
         if city_form.is_valid():
             city_form.save()
 
@@ -227,7 +233,10 @@ def create_employee(request):
         if employee_form.is_valid():
             employee_form.save()
 
-    return render(request, 'simetra_app/create-or-update-employee.html', context)
+    return render(
+        request,
+        'simetra_app/create-or-update-employee.html',
+        context)
 
 
 @login_required(login_url='simetra_app:staff-login')
@@ -246,7 +255,10 @@ def update_employee(request, employee_id):
         if employee_form.is_valid():
             employee_form.save()
 
-    return render(request, 'simetra_app/create-or-update-employee.html', context)
+    return render(
+        request,
+        'simetra_app/create-or-update-employee.html',
+        context)
 
 
 @login_required(login_url='simetra_app:staff-login')
@@ -262,7 +274,7 @@ def does_city_already_exist(requestPOST):
     for city in City.objects.all():
         if city.name == new_city_name:
             return True
-    
+
     return False
 
 
@@ -272,4 +284,86 @@ def get_context_to_change_model(Object):
         'number_of_objects': Object.objects.all().count(),
     }
 
+    if ContentType.objects.get_for_model(
+            Object) == ContentType.objects.get_for_model(City):
+        context["is_city"] = True
+
     return context
+
+
+def upload_cities_excel(request):
+    class UploadFileForm(forms.Form):
+        file = forms.FileField()
+
+    if request.method == "POST":
+        form = UploadFileForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            excel_book = request.FILES["file"].get_book()
+
+            sheet_names = [
+                'КАЧЕСТВЕННЫЕ ГРУППЫ',
+                'ПРОСТРАНСТВЕННЫЕ_ХАРАКТЕРИСТИКИ',
+                'ПОДВИЖНОЙ СОСТАВ',
+                'МАРШРУТЫ',
+                'ТАРИФНАЯ СИСТЕМА'
+            ]
+
+            def check_sheet_existance(book, sheet_name):
+                try:
+                    _ = book[sheet_name]
+                    return True
+                except BaseException:
+                    return False
+
+            error_message = ''
+            for sheet_name in sheet_names:
+                if not check_sheet_existance(excel_book, sheet_name):
+                    error_message = 'Документ не содержит следующего листа: \
+                            "{}"'.format(sheet_name)
+
+            if error_message != '':
+                return render(request, "simetra_app/upload_cities_excel.html",
+                              {"form": form, "error_message": error_message})
+
+            def write_quality_groups_column(column_index):
+                sheet = excel_book['КАЧЕСТВЕННЫЕ ГРУППЫ']
+
+                del sheet.column[1, 2]
+                sheet[0, 0] = 'name'
+                sheet.name_rows_by_column(0)
+                for row in sheet.named_rows():
+                    print(row)
+                # 1. Безопасность и устойчивое развитие
+                # rating_security_n_development = models.FloatField(
+                #    verbose_name='Безопасность и устойчивое развитие', default=0.0)
+                # 2. Комфорт и удобство
+                # rating_comfort_n_convenience = models.FloatField(
+                #    verbose_name='Комфорт и удобство', default=0.0)
+                # 3. Эффективность маршрутной сети
+                # rating_route_network_efficiency = models.FloatField(
+                #    verbose_name='Эффективность маршрутной сети', default=0.0)
+                # 4. Ценовая доступность
+                # rating_affordability = models.FloatField(
+                #    verbose_name='Ценовая доступность', default=0.0)
+                # 5. Физическая доступность
+                # rating_physical_availability = models.FloatField(
+                #    verbose_name='Физическая доступность', default=0.0)
+
+                return ''
+
+            write_quality_groups_column(3)
+
+        else:
+            return HttpResponseBadRequest()
+    else:
+        form = UploadFileForm()
+
+    return render(
+        request,
+        "simetra_app/upload_cities_excel.html",
+        {
+            "form": form,
+            "error_message": '',
+        },
+    )

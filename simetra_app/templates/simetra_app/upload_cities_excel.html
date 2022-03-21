@@ -1,0 +1,18 @@
+<html>
+<head>
+    <title> Загрузка .xlsx файла </title>
+</head>
+<body>
+    <h1> Загрузка .xlsx файла </h1>
+
+    <p style="color: red;"> {{ error_message }}  </p>
+
+    <form action="" enctype="multipart/form-data"  method="post">
+        <table>
+            {{ form.as_table }}
+        </table>
+        {% csrf_token %}
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
