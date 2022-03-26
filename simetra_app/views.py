@@ -295,21 +295,49 @@ def upload_cities_excel(request):
     class UploadFileForm(forms.Form):
         file = forms.FileField()
 
+    def write_field(city: City, sheet, field_name: str, i: int) -> None:
+        setattr(city, field_name, sheet[City._meta.get_field(
+                field_name).verbose_name, i])
+
+    def write_quality_groups(city: City, sheet, i: int) -> None:
+        write_field(
+            city, sheet, 'rating_security_n_development', i)
+        write_field(
+            city, sheet, 'rating_comfort_n_convenience', i)
+        write_field(
+            city, sheet, 'rating_physical_availability', i)
+        write_field(
+            city, sheet, 'rating_affordability', i)
+        write_field(
+            city, sheet, 'rating_route_network_efficiency', i)
+
+    def write_spatial_characteristics(city: City, sheet, i: int) -> None:
+        pass
+
+    def write_routes(city: City, sheet, i: int) -> None:
+        pass
+
+    def write_podviznoy_sostav(city: City, sheet, i: int) -> None:
+        pass
+
+    def write_tariff_system(city: City, sheet, i: int) -> None:
+        pass
+
     if request.method == "POST":
         form = UploadFileForm(request.POST, request.FILES)
 
         if form.is_valid():
             excel_book = request.FILES["file"].get_book()
 
-            sheet_names = [
-                'КАЧЕСТВЕННЫЕ ГРУППЫ',
-                'ПРОСТРАНСТВЕННЫЕ_ХАРАКТЕРИСТИКИ',
-                'ПОДВИЖНОЙ СОСТАВ',
-                'МАРШРУТЫ',
-                'ТАРИФНАЯ СИСТЕМА'
-            ]
+            sheet_names = {
+                'КАЧЕСТВЕННЫЕ ГРУППЫ': write_quality_groups,
+                'ПРОСТРАНСТВЕННЫЕ_ХАРАКТЕРИСТИКИ': write_spatial_characteristics,
+                'ПОДВИЖНОЙ СОСТАВ': write_podviznoy_sostav,
+                'МАРШРУТЫ': write_routes,
+                'ТАРИФНАЯ СИСТЕМА': write_tariff_system,
+            }
 
-            def check_sheet_existance(book, sheet_name):
+            def check_sheet_existance(book, sheet_name) -> bool:
                 try:
                     _ = book[sheet_name]
                     return True
@@ -326,33 +354,24 @@ def upload_cities_excel(request):
                 return render(request, "simetra_app/upload_cities_excel.html",
                               {"form": form, "error_message": error_message})
 
-            def write_quality_groups_column(column_index):
-                sheet = excel_book['КАЧЕСТВЕННЫЕ ГРУППЫ']
+            def write_sheet(sheet_name, write_function) -> None:
+                sheet = excel_book[sheet_name]
 
-                del sheet.column[1, 2]
-                sheet[0, 0] = 'name'
                 sheet.name_rows_by_column(0)
-                for row in sheet.named_rows():
-                    print(row)
-                # 1. Безопасность и устойчивое развитие
-                # rating_security_n_development = models.FloatField(
-                #    verbose_name='Безопасность и устойчивое развитие', default=0.0)
-                # 2. Комфорт и удобство
-                # rating_comfort_n_convenience = models.FloatField(
-                #    verbose_name='Комфорт и удобство', default=0.0)
-                # 3. Эффективность маршрутной сети
-                # rating_route_network_efficiency = models.FloatField(
-                #    verbose_name='Эффективность маршрутной сети', default=0.0)
-                # 4. Ценовая доступность
-                # rating_affordability = models.FloatField(
-                #    verbose_name='Ценовая доступность', default=0.0)
-                # 5. Физическая доступность
-                # rating_physical_availability = models.FloatField(
-                #    verbose_name='Физическая доступность', default=0.0)
+                for i in range(0, sheet.number_of_columns()):
+                    name = sheet['Город', i]
 
-                return ''
+                    city = None
+                    if City.objects.filter(name=name).exists():
+                        city = City.objects.get(name=name)
+                    else:
+                        city = City(name=name)
 
-            write_quality_groups_column(3)
+                    write_function(city, sheet, i)
+                    city.save()
+
+            for key in sheet_names:
+                write_sheet(key, sheet_names[key])
 
         else:
             return HttpResponseBadRequest()
