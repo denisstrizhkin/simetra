@@ -1,0 +1,181 @@
+@import "_nullstyle";
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Merriweather:wght@400;700&display=swap");
+
+/*-------------------------------------------------------------*/
+/*-----Variable declaration------------------------------------*/
+/*-------------------------------------------------------------*/
+$blue-color: #6f80ff;
+$white-color: #ffffff;
+$black-color: #000000;
+
+/*-------------------------------------------------------------*/
+/*-----The Foundation------------------------------------------*/
+/*-------------------------------------------------------------*/
+
+body {
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+  background-color: $blue-color;
+}
+
+.wrapper {
+  min-height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/*-------------------------------------------------------------*/
+/*-----Technical classes---------------------------------------*/
+/*-------------------------------------------------------------*/
+
+._container {
+  max-width: 1400px;
+  margin: 0px auto;
+  padding: 0px 10px;
+}
+
+/*-------------------------------------------------------------*/
+/*-----HEADER--------------------------------------------------*/
+/*-------------------------------------------------------------*/
+
+.header {
+  position: absolute;
+  border-bottom: 4px solid white;
+  background-color: #ffb259;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  &__container {
+    display: flex;
+    min-height: 60px;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.menu {
+  width: 100%;
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 20px 30px;
+  }
+  &__link {
+    font-size: 24px;
+    color: #2433a6;
+    transition: 0.3s;
+    &:hover {
+      color: rgb(255, 255, 255);
+    }
+  }
+}
+
+/*-------------------------------------------------------------*/
+/*-----Home----------------------------------------------------*/
+/*-------------------------------------------------------------*/
+
+.page {
+  flex: 1 1 auto;
+}
+
+.home {
+  color: $white-color;
+  padding: 150px 0px 300px 0px;
+  text-align: center;
+  &__title {
+    font-weight: bold;
+    font-size: 50px;
+    line-height: 130%;
+    margin-bottom: 40px;
+  }
+}
+
+.models__item {
+  font-size: 40px;
+  line-height: 150%;
+}
+
+.models__boss {
+  &::before {
+    content: "";
+    background: url("../assets/img/boss.png") no-repeat;
+    font-size: 40px;
+    padding-left: 60px;
+    background-size: contain;
+  }
+}
+.models__city {
+  &::before {
+    content: "";
+    background: url("../assets/img/city.png") no-repeat;
+    font-size: 40px;
+    padding-left: 60px;
+    background-size: contain;
+  }
+}
+.models__employee {
+  &::before {
+    content: "";
+    background: url("../assets/img/employee.png") no-repeat;
+    font-size: 40px;
+    padding-right: 60px;
+    background-size: contain;
+  }
+}
+.models__item:not(:last-child) {
+  margin-bottom: 35px;
+}
+
+.models__link {
+  color: inherit;
+  display: inline-block;
+  transition: 0.3s;
+  padding: 10px 0px;
+  &:hover {
+    color: #ffb259;
+    font-size: 45px;
+  }
+}
+
+/*-------------------------------------------------------------*/
+/*-----FOOTER--------------------------------------------------*/
+/*-------------------------------------------------------------*/
+
+.footer {
+  background-color: $black-color;
+  color: $white-color;
+  &__list {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px 0px 30px 0px;
+  }
+  &__logo {
+    max-width: 300px;
+  }
+
+  &__social {
+    margin-bottom: 40px;
+  }
+  &__text {
+    max-width: 700px;
+    text-align: center;
+    line-height: 150%;
+  }
+}
+
+.social {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px 20px;
+
+  .social__item svg {
+    width: 40px;
+    height: 40px;
+  }
+}
