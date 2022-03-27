@@ -16,8 +16,16 @@ body {
   font-family: "Inter", sans-serif;
   font-size: 18px;
   background-color: $blue-color;
+  color: $white-color;
 }
 
+section {
+  padding: 10px 0px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 0px black;
+  padding: 20px 15px;
+  margin-bottom: 30px;
+}
 .wrapper {
   min-height: 100%;
   overflow: hidden;
@@ -37,6 +45,12 @@ body {
   &:hover {
     color: #ffb259;
   }
+}
+
+._subtitle {
+  font-size: 30px;
+  margin-bottom: 20px;
+  font-weight: bold;
 }
 
 /*-------------------------------------------------------------*/
@@ -87,16 +101,13 @@ body {
 
 .page {
   flex: 1 1 auto;
+  &__container {
+    padding: 100px 0px 80px 50px;
+    max-width: 1000px;
+  }
 }
 
 .home {
-  color: $white-color;
-  padding: 100px 0px 0px 0px;
-
-  &__container {
-    padding: 0px 0px 100px 50px;
-    max-width: 1000px;
-  }
   &__title {
     font-weight: bold;
     font-size: 50px;
@@ -104,46 +115,9 @@ body {
     margin-bottom: 30px;
   }
 
-  &__add {
-    font-size: 30px;
-    margin-bottom: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px 0px black;
-    padding: 20px 15px;
-    &::before {
-      content: "";
-      background: url("../assets/img/add.png") no-repeat;
-      font-size: 25px;
-      padding-left: 40px;
-      background-size: contain;
-    }
-  }
-
-  &__subtitle {
-    font-size: 30px;
-    margin-bottom: 20px;
-    font-weight: bold;
-  }
-  &__paragraph {
+  &__parameter {
     font-size: 25px;
     margin-bottom: 20px;
-  }
-  &__block {
-    padding: 10px 0px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px 0px black;
-    padding: 20px 15px;
-    margin-bottom: 30px;
-  }
-
-  &__item {
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: space-between;
-  }
-
-  &__item:last-child {
-    margin-bottom: 30px;
   }
 
   &__submit {
