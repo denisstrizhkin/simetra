@@ -1,21 +1,84 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Настройка</title>
-  </head>
+<html lang="ru">
 
-  <body>
-    <h2>{{ title }}</h2>
-    <form method="POST">
-      {% csrf_token %}
-      <p>Полное имя: {{ employee_form.name }}</p>
-      <p>Позиция: {{ employee_form.position }}</p>
-      <p>Аватар: {{ employee_form.image }}</p>
-      <input type="submit" value="Сохранить" />
-    </form>
-    <p><a href="{% url 'simetra_app:customization' %}">Вернуть на главную</a></p>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Настройка</title>
+  <!--INCLUDE-->
+  <link rel="stylesheet"
+    href="{% static 'simetra_app/customization_page/create-or-update-employee/styles/style.css' %}" />
+  <!--INCLUDE-->
+  <link rel="apple-touch-icon" sizes="57x57"
+    href="{% static 'simetra_app/customization_page/create-or-update-employee/assets/favicon/apple-icon-57x57.png' %}" />
+  <link rel="apple-touch-icon" sizes="60x60"
+    href="{% static 'simetra_app/customization_page/create-or-update-employee/assets/favicon/apple-icon-60x60.png' %}" />
+  <link rel="apple-touch-icon" sizes="72x72"
+    href="{% static 'simetra_app/customization_page/create-or-update-employee/assets/favicon/apple-icon-72x72.png' %}" />
+  <link rel="apple-touch-icon" sizes="76x76"
+    href="{% static 'simetra_app/customization_page/create-or-update-employee/assets/favicon/apple-icon-76x76.png' %}" />
+  <link rel="apple-touch-icon" sizes="114x114"
+    href="{% static 'simetra_app/customization_page/create-or-update-employee/assets/favicon/apple-icon-114x114.png' %}" />
+  <link rel="apple-touch-icon" sizes="120x120"
+    href="{% static 'simetra_app/customization_page/create-or-update-employee/assets/favicon/apple-icon-120x120.png' %}" />
+  <link rel="apple-touch-icon" sizes="144x144"
+    href="{% static 'simetra_app/customization_page/create-or-update-employee/assets/favicon/apple-icon-144x144.png' %}" />
+  <link rel="apple-touch-icon" sizes="152x152"
+    href="{% static 'simetra_app/customization_page/create-or-update-employee/assets/favicon/apple-icon-152x152.png' %}" />
+  <link rel="apple-touch-icon" sizes="180x180"
+    href="{% static 'simetra_app/customization_page/create-or-update-employee/assets/favicon/apple-icon-180x180.png' %}" />
+  <link rel="icon" type="image/png" sizes="192x192"
+    href="{% static 'simetra_app/customization_page/create-or-update-employee/assets/favicon/android-icon-192x192.png' %}" />
+  <link rel="icon" type="image/png" sizes="32x32"
+    href="{% static 'simetra_app/customization_page/create-or-update-employee/assets/favicon/favicon-32x32.png' %}" />
+  <link rel="icon" type="image/png" sizes="96x96"
+    href="{% static 'simetra_app/customization_page/create-or-update-employee/assets/favicon/favicon-96x96.png' %}" />
+  <link rel="icon" type="image/png" sizes="16x16"
+    href="{% static 'simetra_app/customization_page/create-or-update-employee/assets/favicon/favicon-16x16.png' %}" />
+  <link rel="manifest"
+    href="{% static 'simetra_app/customization_page/create-or-update-employee/assets/favicon/manifest.json' %}" />
+  <meta name="msapplication-TileColor" content="#ffffff" />
+  <meta name="msapplication-TileImage"
+    content="{% static 'simetra_app/customization_page/create-or-update-employee/assets/favicon/ms-icon-144x144.png' %}" />
+  <meta name="theme-color" content="#ffffff" />
+</head>
+
+<body>
+  <div class="wrapper">
+    <header class="header">
+      <div class="header__container">
+        <nav class="header__menu menu">
+          <ul class="menu__list">
+            <li class="menu__item">
+              <a href="{% url 'simetra_app:customization' %}" class="menu__link _link">На главную</a>
+            </li>
+            <li class="menu__item">
+              <a href="{% url 'simetra_app:staff-logout' %}" class="menu__link _link">Выход</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="page">
+      <section class="page__home home">
+        <div class="home__container">
+          <h1 class="home__title">{{ title }}</h1>
+          <div class="home__block">
+            <form method="POST">
+              {% csrf_token %}
+              <p class="home__paragraph">Полное имя: {{ employee_form.name }}</p>
+              <p class="home__paragraph">Позиция: {{ employee_form.position }}</p>
+              <p class="home__paragraph">Аватар: {{ employee_form.image }}</p>
+              <input class="home__submit" type="submit" value="Сохранить" />
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+
 </html>
