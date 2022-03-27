@@ -1,0 +1,124 @@
+@import "_nullstyle";
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Merriweather:wght@400;700&display=swap");
+
+/*-------------------------------------------------------------*/
+/*-----Variable declaration------------------------------------*/
+/*-------------------------------------------------------------*/
+$blue-color: #6f80ff;
+$white-color: #ffffff;
+$black-color: #000000;
+
+/*-------------------------------------------------------------*/
+/*-----The Foundation------------------------------------------*/
+/*-------------------------------------------------------------*/
+
+body {
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+  background-color: $blue-color;
+}
+
+.wrapper {
+  min-height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/*-------------------------------------------------------------*/
+/*-----Home----------------------------------------------------*/
+/*-------------------------------------------------------------*/
+
+.page {
+  flex: 1 1 auto;
+}
+
+.home {
+  color: $white-color;
+  padding: 100px 0px 0px 0px;
+
+  &__container {
+    padding: 0px 10px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  &__title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 50px;
+    line-height: 130%;
+    margin-bottom: 40px;
+  }
+
+  &__block {
+    max-width: 570px;
+    padding: 40px;
+    background: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    margin-bottom: 30px;
+  }
+
+  &__submit {
+    display: block;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 0 0 0 auto;
+    font-size: 25px;
+    transition: 0.4s;
+    background-color: #ffb259;
+    &:hover {
+      color: white;
+    }
+  }
+
+  &__field {
+    min-width: 200px;
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
+  }
+
+  &__input {
+    padding: 10px 10px;
+    border-radius: 5px;
+  }
+}
+
+.home__login {
+}
+
+.home__login .home__box-input {
+  position: relative;
+}
+
+.home__login .home__box-input input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 18px;
+  color: #fff;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
+}
+
+.home__login .home__box-input label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 18px;
+  color: #fff;
+  pointer-events: none;
+  transition: 0.5s;
+}
+
+.home__login .home__box-input input:focus ~ label,
+.home__login .home__box-input input:valid ~ label {
+  top: -20px;
+  left: 0;
+  color: #03e9f4;
+  font-size: 14px;
+}
