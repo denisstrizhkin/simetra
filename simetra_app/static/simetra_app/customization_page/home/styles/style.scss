@@ -61,10 +61,11 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-end;
+    padding: 0px 20px;
     gap: 20px 30px;
   }
   &__link {
-    font-size: 24px;
+    font-size: 25px;
     color: #2433a6;
     transition: 0.3s;
     &:hover {
