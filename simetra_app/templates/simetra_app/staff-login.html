@@ -49,36 +49,24 @@
     <main class="page">
       <section class="page__home home">
         <div class="home__container">
-          <div class="home__block home__login">
-            <h1 class="home__title">Введите данные для авторизации</h2>
-              <form method="POST">
-                {% csrf_token %}
+          <h1 class="home__title">Введите данные для авторизации</h2>
+            <form method="POST">
+              {% csrf_token %}
+              <div class="home__box-input">
+                <input type="text" name="username" required>
+                <label>Секретный логин</label>
+              </div>
+              <div class="home__box-input">
+                <input type="text" name="password" required>
+                <label>Секретный пароль</label>
+              </div>
 
-                <div class="home__box-input">
-                  <input type="text" name="username" required>
-                  <label>Секретный логин</label>
-                </div>
-                <div class="home__box-input">
-                  <input type="text" name="password" required>
-                  <label>Секретный пароль</label>
-                </div>
+              <input class="home__submit" type="submit" value="Принять" />
+            </form>
 
-                <input class="home__submit" type="submit" value="Принять" />
-
-
-                <!-- <p class="home__field">Секретный логин:</p> <input class="home__input" type="text" name="username"
-                  placeholder="Введите логин" required />
-                <p class="home__field">Секретный пароль: <input class="home__input" type="text" name="password"
-                    placeholder="Введите пароль" required /></p> -->
-
-              </form>
-
-              {% for message in messages %}
-              <p id="messages">{{ message }}</p>
-              {% endfor %}
-
-
-          </div>
+            {% for message in messages %}
+            <p id="messages">{{ message }}</p>
+            {% endfor %}
         </div>
       </section>
     </main>

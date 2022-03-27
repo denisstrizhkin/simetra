@@ -129,9 +129,14 @@ body {
 }
 
 .home__container {
-  padding: 0px 10px;
-  max-width: 600px;
   margin: 0 auto;
+  max-width: 570px;
+  padding: 40px;
+  background: rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+          box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+  margin-bottom: 30px;
 }
 
 .home__title {
@@ -140,16 +145,6 @@ body {
   font-size: 50px;
   line-height: 130%;
   margin-bottom: 40px;
-}
-
-.home__block {
-  max-width: 570px;
-  padding: 40px;
-  background: rgba(0, 0, 0, 0.5);
-  -webkit-box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
-          box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
-  border-radius: 10px;
-  margin-bottom: 30px;
 }
 
 .home__submit {
@@ -167,24 +162,11 @@ body {
   color: white;
 }
 
-.home__field {
-  min-width: 200px;
-}
-
-.home__field:not(:last-child) {
-  margin-bottom: 20px;
-}
-
-.home__input {
-  padding: 10px 10px;
-  border-radius: 5px;
-}
-
-.home__login .home__box-input {
+.home__box-input {
   position: relative;
 }
 
-.home__login .home__box-input input {
+.home__box-input input {
   width: 100%;
   padding: 10px 0;
   font-size: 18px;
@@ -196,7 +178,7 @@ body {
   background: transparent;
 }
 
-.home__login .home__box-input label {
+.home__box-input label {
   position: absolute;
   top: 0;
   left: 0;
@@ -208,8 +190,8 @@ body {
   transition: 0.5s;
 }
 
-.home__login .home__box-input input:focus ~ label,
-.home__login .home__box-input input:valid ~ label {
+.home__box-input input:focus ~ label,
+.home__box-input input:valid ~ label {
   top: -20px;
   left: 0;
   color: #03e9f4;
