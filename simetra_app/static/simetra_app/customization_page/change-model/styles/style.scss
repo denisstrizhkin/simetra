@@ -96,6 +96,9 @@ body {
   &__container {
     padding: 0px 10px 0px 50px;
     max-width: 680px;
+    @media (max-width: 720px) {
+      padding: 0px 10px 0px 10px;
+    }
   }
   &__title {
     font-weight: bold;
@@ -106,6 +109,7 @@ body {
 
   &__add {
     font-size: 30px;
+    line-height: 120%;
     margin-bottom: 20px;
     border-radius: 10px;
     box-shadow: 0px 0px 10px 0px black;
@@ -136,6 +140,9 @@ body {
     margin-bottom: 10px;
     display: flex;
     justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 10px 40px;
   }
 
   &__item:last-child {
@@ -145,7 +152,6 @@ body {
   &__change {
     color: inherit;
     display: inline;
-    margin-right: 30px;
     &::before {
       content: "";
       background: url("../assets/img/change.png") no-repeat;
@@ -167,7 +173,7 @@ body {
       background-size: contain;
     }
   }
-  &__load{
+  &__load {
     margin-bottom: 15px;
     &::before {
       content: "";
@@ -178,4 +184,3 @@ body {
     }
   }
 }
-

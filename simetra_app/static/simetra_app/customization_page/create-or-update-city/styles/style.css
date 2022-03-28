@@ -134,6 +134,11 @@ section {
   border-radius: 5px;
 }
 
+input[type="text"],
+input[type="number"] {
+  margin: 15px 0px;
+}
+
 input[type="checkbox"]:checked,
 input[type="checkbox"]:not(:checked) {
   cursor: pointer;
@@ -147,7 +152,8 @@ button[name="sumbit-new-city"] {
   font-size: inherit;
   -webkit-transition: 0.4s;
   transition: 0.4s;
-  background-color: #37407F;
+  margin: 15px 0px;
+  background-color: #37407f;
   color: white;
 }
 
@@ -174,6 +180,12 @@ button[name="sumbit-new-city"]:hover {
   font-size: 30px;
   margin-bottom: 20px;
   font-weight: bold;
+}
+
+@media (max-width: 370px) {
+  ._subtitle {
+    font-size: 24px;
+  }
 }
 
 /*-------------------------------------------------------------*/
@@ -247,6 +259,12 @@ button[name="sumbit-new-city"]:hover {
   max-width: 1000px;
 }
 
+@media (max-width: 1050px) {
+  .page__container {
+    padding: 100px 20px 40px 20px;
+  }
+}
+
 .home__title {
   font-weight: bold;
   font-size: 50px;
@@ -275,5 +293,10 @@ button[name="sumbit-new-city"]:hover {
 
 .home__submit:hover {
   color: white;
+}
+
+.home__fill {
+  margin: 15px 0px;
+  line-height: 130%;
 }
 /*# sourceMappingURL=style.css.map */

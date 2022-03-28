@@ -197,12 +197,17 @@ body {
 
 .home {
   color: #ffffff;
-  padding: 100px 0px 0px 0px;
 }
 
 .home__container {
-  padding: 0px 10px 0px 50px;
+  padding: 100px 10px 0px 50px;
   max-width: 850px;
+}
+
+@media (max-width: 890px) {
+  .home__container {
+    padding: 100px 10px 0px 10px;
+  }
 }
 
 .home__title {
@@ -210,23 +215,6 @@ body {
   font-size: 50px;
   line-height: 130%;
   margin-bottom: 30px;
-}
-
-.home__add {
-  font-size: 30px;
-  margin-bottom: 20px;
-  border-radius: 10px;
-  -webkit-box-shadow: 0px 0px 10px 0px black;
-          box-shadow: 0px 0px 10px 0px black;
-  padding: 20px 15px;
-}
-
-.home__add::before {
-  content: "";
-  background: url("../assets/img/add.png") no-repeat;
-  font-size: 25px;
-  padding-left: 40px;
-  background-size: contain;
 }
 
 .home__block {
@@ -252,6 +240,7 @@ body {
 .home__descr {
   display: inline-block;
   min-width: 170px;
+  margin-bottom: 15px;
 }
 
 .home__submit {

@@ -125,13 +125,19 @@ body {
 
 .home {
   color: #ffffff;
-  padding: 100px 0px 0px 0px;
+  padding: 100px 0 0 0;
+}
+
+@media (max-width: 384px) {
+  .home {
+    padding: 20px 0 0 0;
+  }
 }
 
 .home__container {
   margin: 0 auto;
   max-width: 570px;
-  padding: 40px;
+  padding: 100px 30px 30px 30px;
   background: rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
           box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
@@ -139,12 +145,24 @@ body {
   margin-bottom: 30px;
 }
 
+@media (max-width: 384px) {
+  .home__container {
+    padding: 40px 30px 30px 30px;
+  }
+}
+
 .home__title {
   text-align: center;
   font-weight: bold;
   font-size: 50px;
-  line-height: 130%;
+  line-height: 120%;
   margin-bottom: 40px;
+}
+
+@media (max-width: 384px) {
+  .home__title {
+    font-size: 35px;
+  }
 }
 
 .home__submit {

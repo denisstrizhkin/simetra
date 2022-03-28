@@ -205,6 +205,12 @@ body {
   max-width: 680px;
 }
 
+@media (max-width: 720px) {
+  .home__container {
+    padding: 0px 10px 0px 10px;
+  }
+}
+
 .home__title {
   font-weight: bold;
   font-size: 50px;
@@ -214,6 +220,7 @@ body {
 
 .home__add {
   font-size: 30px;
+  line-height: 120%;
   margin-bottom: 20px;
   border-radius: 10px;
   -webkit-box-shadow: 0px 0px 10px 0px black;
@@ -251,6 +258,12 @@ body {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 10px 40px;
 }
 
 .home__item:last-child {
@@ -260,7 +273,6 @@ body {
 .home__change {
   color: inherit;
   display: inline;
-  margin-right: 30px;
 }
 
 .home__change::before {

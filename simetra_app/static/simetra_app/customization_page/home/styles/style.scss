@@ -8,6 +8,14 @@ $blue-color: #6f80ff;
 $white-color: #ffffff;
 $black-color: #000000;
 
+$maxWidth: 1400;
+@mixin adaptiv-font($pcSize, $mobSize) {
+  $addSize: $pcSize - $mobSize;
+  $maxWidth: $maxWidth - 320;
+  font-size: calc(
+    #{$mobSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth})
+  );
+}
 /*-------------------------------------------------------------*/
 /*-----The Foundation------------------------------------------*/
 /*-------------------------------------------------------------*/
@@ -88,58 +96,74 @@ body {
   text-align: center;
   &__title {
     font-weight: bold;
-    font-size: 50px;
     line-height: 130%;
     margin-bottom: 40px;
+    @include adaptiv-font(50, 28);
   }
 }
 
-.models__item {
-  font-size: 40px;
+.models__item:not(:last-child) {
+  margin-bottom: 35px;
+}
+
+.models__link {
+  display: inline-block;
   line-height: 150%;
+  @include adaptiv-font(40, 24);
+  color: inherit;
+  transition: 0.3s;
+  &:hover {
+    transform: scale(1.2);
+  }
 }
 
 .models__boss {
   &::before {
     content: "";
     background: url("../assets/img/boss.png") no-repeat;
-    font-size: 40px;
-    padding-left: 60px;
     background-size: contain;
+    margin-right: 5px;
+    padding: 0px 30px;
+    @media (max-width: 1000px) {
+      padding: 0px 20px;
+    }
+    &:hover {
+      transform: scale(1.2);
+    }
   }
 }
+
 .models__city {
   &::before {
     content: "";
     background: url("../assets/img/city.png") no-repeat;
-    font-size: 40px;
-    padding-left: 60px;
     background-size: contain;
+    margin-right: 5px;
+    padding: 0px 30px;
+    @media (max-width: 1000px) {
+      padding: 0px 20px;
+    }
+    &:hover {
+      transform: scale(1.2);
+    }
   }
 }
 .models__employee {
   &::before {
     content: "";
     background: url("../assets/img/employee.png") no-repeat;
-    font-size: 40px;
-    padding-right: 60px;
     background-size: contain;
+    margin-right: 5px;
+    padding: 0px 30px;
+    @media (max-width: 1000px) {
+      padding: 0px 20px;
+    }
+    &:hover {
+      transform: scale(1.2);
+    }
   }
-}
-.models__item:not(:last-child) {
-  margin-bottom: 35px;
 }
 
-.models__link {
-  color: inherit;
-  display: inline-block;
-  transition: 0.3s;
-  padding: 10px 0px;
-  &:hover {
-    color: #ffb259;
-    font-size: 45px;
-  }
-}
 
 /*-------------------------------------------------------------*/
 /*-----FOOTER--------------------------------------------------*/
@@ -178,9 +202,9 @@ body {
   .social__item svg {
     width: 40px;
     height: 40px;
-    &:hover{
-      transform: scale(1.2); 
+    transition: 0.3s;
+    &:hover {
+      transform: scale(1.2);
     }
   }
-
 }

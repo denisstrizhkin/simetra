@@ -125,24 +125,24 @@
               Настройка моделей, использующиеся на сайте:
             </h1>
             <ul class="home__list models">
-              <li class="models__item models__boss">
+              <li class="models__item">
                 <a
                   href="{% url 'simetra_app:change-boss-model' %}"
-                  class="models__link"
+                  class="models__link models__boss"
                   >Модели боссов</a
                 >
               </li>
-              <li class="models__item models__city">
+              <li class="models__item">
                 <a
                   href="{% url 'simetra_app:change-city-model' %}"
-                  class="models__link"
+                  class="models__link  models__city"
                   >Модели городов</a
                 >
               </li>
-              <li class="models__item models__employee">
+              <li class="models__item">
                 <a
                   href="{% url 'simetra_app:change-employee-model' %}"
-                  class="models__link"
+                  class="models__link models__employee"
                   >Модели сотрудников</a
                 >
               </li>

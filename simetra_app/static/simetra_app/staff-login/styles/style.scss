@@ -8,6 +8,14 @@ $blue-color: #6f80ff;
 $white-color: #ffffff;
 $black-color: #000000;
 
+$maxWidth: 1400;
+@mixin adaptiv-font($pcSize, $mobSize) {
+  $addSize: $pcSize - $mobSize;
+  $maxWidth: $maxWidth - 320;
+  font-size: calc(
+    #{$mobSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth})
+  );
+}
 /*-------------------------------------------------------------*/
 /*-----The Foundation------------------------------------------*/
 /*-------------------------------------------------------------*/
@@ -35,12 +43,17 @@ body {
 
 .home {
   color: $white-color;
-  padding: 100px 0px 0px 0px;
-
+  padding: 100px 0 0 0;
+  @media (max-width: 384px) {
+    padding: 20px 0 0 0;
+  }
   &__container {
     margin: 0 auto;
     max-width: 570px;
-    padding: 40px;
+    padding: 100px 30px 30px 30px;
+    @media (max-width: 384px) {
+      padding: 40px 30px 30px 30px;
+    }
     background: rgba(0, 0, 0, 0.5);
     box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
     border-radius: 10px;
@@ -51,7 +64,10 @@ body {
     text-align: center;
     font-weight: bold;
     font-size: 50px;
-    line-height: 130%;
+    line-height: 120%;
+    @media (max-width: 384px) {
+      font-size: 35px;
+    }
     margin-bottom: 40px;
   }
 
