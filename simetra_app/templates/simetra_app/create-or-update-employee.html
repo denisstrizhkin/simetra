@@ -69,9 +69,9 @@
           <div class="home__block">
             <form method="POST">
               {% csrf_token %}
-              <p class="home__paragraph">Полное имя: {{ employee_form.name }}</p>
-              <p class="home__paragraph">Позиция: {{ employee_form.position }}</p>
-              <p class="home__paragraph">Аватар: {{ employee_form.image }}</p>
+              <p class="home__input-block"><span class="home__descr">Полное имя:</span> {{ employee_form.name }}</p>
+              <p class="home__input-block"><span class="home__descr">Позиция:</span> {{ employee_form.position }}</p>
+              <p class="home__input-block"><span class="home__descr">Аватар:</span>{{ employee_form.image }}</p>
               <input class="home__submit" type="submit" value="Сохранить" />
             </form>
           </div>

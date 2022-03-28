@@ -14,7 +14,7 @@ $black-color: #000000;
 
 body {
   font-family: "Inter", sans-serif;
-  font-size: 18px;
+  font-size: 25px;
   background-color: $blue-color;
   color: $white-color;
 }
@@ -32,7 +32,36 @@ section {
   display: flex;
   flex-direction: column;
 }
+.mapboxgl-map {
+  border-radius: 8px;
+  margin: 20px 0px;
+}
 
+#map {
+  padding: 10px;
+  border-radius: 5px;
+}
+
+input[type="checkbox"]:checked,
+input[type="checkbox"]:not(:checked) {
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+}
+
+button[name="sumbit-new-city"]{
+  padding: 10px;
+  border-radius: 5px;
+  font-size: inherit;
+  transition: 0.4s;
+  background-color: #37407F;
+  color: white; 
+  &:hover{
+    //37407F
+    color: #ffb259;
+  }
+}
+    //ffb259
 /*-------------------------------------------------------------*/
 /*-----Technical classes---------------------------------------*/
 /*-------------------------------------------------------------*/
@@ -44,6 +73,7 @@ section {
   transition: 0.5s;
   &:hover {
     color: #ffb259;
+
   }
 }
 
@@ -86,7 +116,7 @@ section {
     gap: 20px 30px;
   }
   &__link {
-    font-size: 25px;
+    font-size: inherit;
     color: #2433a6;
     transition: 0.3s;
     &:hover {
@@ -115,16 +145,20 @@ section {
     margin-bottom: 30px;
   }
 
-  &__parameter {
-    font-size: 25px;
+  &__input-block {
     margin-bottom: 20px;
+    & input {
+      border-radius: 10px;
+      padding: 10px;
+      font-size: 16px;
+    }
   }
 
   &__submit {
-    padding: 20px;
+    padding: 10px;
     border-radius: 10px;
-    font-size: 25px;
     transition: 0.4s;
+    font-size: inherit;
     background-color: #ffb259;
     &:hover {
       color: white;

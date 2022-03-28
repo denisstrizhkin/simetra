@@ -67,10 +67,10 @@
           <div class="home__block">
             <form method="POST">
               {% csrf_token %}
-              <p class="home__paragraph">Полное имя: {{ boss_form.name }}</p>
-              <p class="home__paragraph">Позиция: {{ boss_form.position }}</p>
-              <p class="home__paragraph">Цитата: {{ boss_form.quote }}</p>
-              <p class="home__paragraph">Аватар: {{ boss_form.image }}</p>
+              <p class="home__input-block"><span class="home__descr">Полное имя:</span> {{ boss_form.name }}</p>
+              <p class="home__input-block"><span class="home__descr">Позиция:</span> {{ boss_form.position }}</p>
+              <p class="home__input-block"><span class="home__quote">Цитата:</span> {{ boss_form.quote }}</p>
+              <p class="home__input-block"><span class="home__descr">Аватар:</span> {{ boss_form.image }}</p>
               <input class="home__submit" type="submit" value="Сохранить" />
             </form>
           </div>

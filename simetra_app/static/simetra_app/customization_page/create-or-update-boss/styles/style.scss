@@ -133,18 +133,35 @@ body {
     margin-bottom: 30px;
   }
 
-  &__item {
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: space-between;
+  &__input-block{
+    font-size: 25px;
+    margin-bottom: 20px;
+    & input{
+      border-radius: 10px;
+      padding: 10px;
+      font-size: 16px;
+    }
+    & textarea {
+      resize: vertical;
+      padding: 10px;
+      border-radius: 10px;
+      font-size: 20px;
+    }
   }
 
-  &__item:last-child {
-    margin-bottom: 30px;
+  &__descr{
+    display: inline-block;
+    min-width: 170px;
+    margin: 0 auto  0;
+  }
+
+  &__quote{
+    display: block;
+    margin-bottom: 20px;
   }
 
   &__submit {
-    padding: 20px;
+    padding: 10px;
     border-radius: 10px;
     font-size: 25px;
     transition: 0.4s;

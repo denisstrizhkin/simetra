@@ -25,6 +25,9 @@ body {
   flex-direction: column;
 }
 
+#id_file {
+  font-size: 18px;
+}
 /*-------------------------------------------------------------*/
 /*-----Technical classes---------------------------------------*/
 /*-------------------------------------------------------------*/
@@ -103,7 +106,8 @@ body {
   }
 
   &__submit {
-    padding: 20px;
+    margin-top: 10px;
+    padding: 10px;
     border-radius: 10px;
     font-size: 25px;
     transition: 0.4s;

@@ -247,22 +247,37 @@ body {
   margin-bottom: 30px;
 }
 
-.home__item {
-  margin-bottom: 10px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+.home__input-block {
+  font-size: 25px;
+  margin-bottom: 20px;
 }
 
-.home__item:last-child {
-  margin-bottom: 30px;
+.home__input-block input {
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.home__input-block textarea {
+  resize: vertical;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 20px;
+}
+
+.home__descr {
+  display: inline-block;
+  min-width: 170px;
+  margin: 0 auto  0;
+}
+
+.home__quote {
+  display: block;
+  margin-bottom: 20px;
 }
 
 .home__submit {
-  padding: 20px;
+  padding: 10px;
   border-radius: 10px;
   font-size: 25px;
   -webkit-transition: 0.4s;

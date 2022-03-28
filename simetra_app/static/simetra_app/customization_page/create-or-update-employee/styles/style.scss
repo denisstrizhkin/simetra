@@ -95,7 +95,7 @@ body {
 
   &__container {
     padding: 0px 10px 0px 50px;
-    max-width: 1000px;
+    max-width: 850px;
   }
   &__title {
     font-weight: bold;
@@ -119,14 +119,6 @@ body {
     }
   }
 
-  &__caption {
-    font-size: 25px;
-    margin-bottom: 20px;
-  }
-  &__paragraph{
-    font-size: 25px;
-    margin-bottom: 20px;
-  }
   &__block {
     padding: 10px 0px;
     border-radius: 10px;
@@ -135,18 +127,24 @@ body {
     margin-bottom: 30px;
   }
 
-  &__item {
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: space-between;
+
+  &__input-block{
+    font-size: 25px;
+    margin-bottom: 20px;
+    & input{
+      border-radius: 10px;
+      padding: 10px;
+      font-size: 16px;
+    }
   }
 
-  &__item:last-child {
-    margin-bottom: 30px;
+  &__descr{
+    display: inline-block;
+    min-width: 170px;
   }
 
   &__submit {
-    padding: 20px;
+    padding: 10px;
     border-radius: 10px;
     font-size: 25px;
     transition: 0.4s;
@@ -156,3 +154,4 @@ body {
     }
   }
 }
+
