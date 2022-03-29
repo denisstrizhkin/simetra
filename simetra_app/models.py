@@ -63,172 +63,188 @@ class City(models.Model):
     latitude = models.DecimalField(max_digits=15, decimal_places=12, default=0)
 
     """ КАЧЕСТВЕННЫЕ ГРУППЫ (рейтинг 0.0 - 100.0) """
-    # 1. Безопасность и устойчивое развитие
     rating_security_n_development = models.FloatField(
         verbose_name='Безопасность и устойчивое развитие', default=0.0)
-    # 2. Комфорт и удобство
     rating_comfort_n_convenience = models.FloatField(
         verbose_name='Комфорт и удобство', default=0.0)
-    # 3. Эффективность маршрутной сети
     rating_route_network_efficiency = models.FloatField(
         verbose_name='Эффективность маршрутной сети', default=0.0)
-    # 4. Ценовая доступность
     rating_affordability = models.FloatField(
         verbose_name='Ценовая доступность', default=0.0)
-    # 5. Физическая доступность
     rating_physical_availability = models.FloatField(
         verbose_name='Физическая доступность', default=0.0)
 
     """ ПРОСТРАНСТВЕННЫЕ ХАРАКТЕРИСТИКИ """
-    #  1. Численность населения (млн чел.)
-    num_population = models.FloatField(default=0.0)
-    #  2. Протяженность УДС первой/второй категории (км)
-    length_UDS = models.FloatField(default=0.0)
-    #  3. Площадь активной зоны города (кв. км)
-    area_active_zone = models.FloatField(default=0.0)
-    #  4. Пассажиропоток наземного общественного транспорта (год) (млн чел.)
-    traffic_transport = models.FloatField(default=0.0)
-    #  5. Пассажиропоток метрополитена (год) (млн чел.)
-    traffic_metro = models.FloatField(default=0.0)
-    #  6. Количество действующих остановочных пунктов (ед.)
-    num_working_stops_overall = models.IntegerField(default=0)
-    #  7. Количество остановочных пунктов в черте активной зоны города (ед.)
-    num_working_stops_active_zone = models.IntegerField(default=0)
-    #  8. Кол-во многоквартирных домов (ед.)
-    num_of_apartments = models.IntegerField(default=0)
-    #  9. Доля домов в зоне покрытия
-    # ??? (не могу найти)
-    # 10. Доля населения в зоне покрытия (%)
-    # ??? (не могу найти)
-    # 11. Площадь покрытия активной зоны города пунктами остановок:
-    area_stops_coverage_active_zone = models.FloatField(default=0.0)
-    # 12. Доля домов в зоне покрытия метрополитеном
-    # ??? (не могу найти)
-    # 13. Доля населения в зоне покрытия метрополитеном (%)
-    # ??? (не могу найти)
-    # 14. Площадь покрытия станциями метрополитена
-    area_metro_coverage = models.FloatField(default=0.0)
-    # 15. Плотность остановок распределения остановочных пунктов по территории
-    # активной зоны города (ед./кв.км)
-    density_stops_active_zone = models.FloatField(default=0.0)
-    # 16. Процент покрытой территории (700 м) (%)
-    percent_transport_covered_area = models.FloatField(default=0.0)
-    # 17. Процент покрытой территории от станций метрополитена (1000 м) (%)
-    percent_metro_covered_area = models.FloatField(default=0.0)
-    # 18. Население с доступом к метрополитену
-    num_people_metro_access = models.IntegerField(default=0)
-    # 19. Доля населения с доступом к метрополитену
-    percent_people_metro_access = models.FloatField(default=0.0)
-    # 20. Население с доступом к общественному транспорту
-    num_people_transport_access = models.IntegerField(default=0)
-    # 21. Доля населения с доступом к общественному транспорту
-    percent_people_transport_access = models.FloatField(default=0.0)
-    # 22. Средневзвешенное расстояние между остановками (м)
-    length_avrg_between_stops = models.FloatField(default=0.0)
-    # 23. Число погибших на ОТ (чел.)
-    num_death_toll = models.IntegerField(default=0)
-    # 24. Число раненых на ОТ (чел.)
-    num_wounded = models.IntegerField(default=0)
-    # 25. Число ДТП с участием ОТ (ед.)
-    num_accidents = models.IntegerField(default=0)
-    # 26. Число ДТП в расчете на единицу подвижного состава (ед./TC)
-    num_accidents_per_unit = models.FloatField(default=0.0)
-    # 27. Число раненых и погибших в расчете на 1 ДТП (чел./ед.)
-    num_wounded_per_accident = models.FloatField(default=0.0)
-    # 28. Количество раненых и погибших в расчете на млн пассажиров
-    # (чел./млн.чел.)
-    num_wndd_n_dead_per_people = models.FloatField(default=0.0)
+    num_population = models.FloatField(
+        verbose_name='Численность населения', default=0.0)
+    length_UDS = models.FloatField(
+        verbose_name='Протяженность УДС первой/второй категории', default=0.0)
+    area_active_city_zone = models.FloatField(
+        verbose_name='Площадь активной зоны города', default=0.0)
+    traffic_ground_transport = models.FloatField(
+        verbose_name='Пассажиропоток наземного общественного транспорта',
+        default=0.0)
+    traffic_metro = models.FloatField(
+        verbose_name='Пассажиропоток метрополитена', default=0.0)
+    num_working_stops_overall = models.IntegerField(
+        verbose_name='Количество действующих остановочных пунктов', default=0)
+    num_working_stops_active_city_zone = models.IntegerField(
+        verbose_name='Количество остановочных пунктов в черте активной зоны \
+                города', default=0)
+    num_of_apartments = models.IntegerField(
+        verbose_name='Кол-во многоквартирных домов', default=0)
+    proportion_apartments_in_coverage_zone = models.FloatField(
+        verbose_name='Доля домов в зоне покрытия', default=0.0)
+    proportion_people_in_coverage_zone = models.FloatField(
+        verbose_name='Доля населения в зоне покрытия', default=0.0)
+    area_stops_active_zone_coverage_500 = models.FloatField(
+        verbose_name='Площадь покрытия активной зоны города пунктами \
+                остановок 500м', default=0.0)
+    area_stops_active_zone_coverage_700 = models.FloatField(
+        verbose_name='Площадь покрытия активной зоны города пунктами \
+                остановок 700м', default=0.0)
+    area_stops_active_zone_coverage_1000 = models.FloatField(
+        verbose_name='Площадь покрытия активной зоны города пунктами \
+                остановок 1000м', default=0.0)
+    proportion_apartments_in_metro_coverage_zone = models.FloatField(
+        verbose_name='Доля домов в зоне покрытия метрополитеном', default=0.0)
+    proportion_people_in_metro_coverage_zone = models.FloatField(
+        verbose_name='Доля населения в зоне покрытия метрополитеном',
+        default=0.0)
+    area_metro_coverage = models.FloatField(
+        verbose_name='Площадь покрытия станциями метрополитена', default=0.0)
+    density_stops_active_zone = models.FloatField(
+        verbose_name='Плотность остановок распределения остановочных пунктов \
+                по территории активной зоны города', default=0.0)
+    percent_transport_covered_area = models.FloatField(
+        verbose_name='Процент покрытой территории', default=0.0)
+    percent_metro_covered_area = models.FloatField(
+        verbose_name='Процент покрытой территории от станций метрополитена',
+        default=0.0)
+    num_people_with_metro_access = models.IntegerField(
+        verbose_name='Население с доступом к метрополитену', default=0)
+    proportion_people_with_metro_access = models.FloatField(
+        verbose_name='Доля населения с доступом к метрополитену', default=0.0)
+    num_people_with_transport_access = models.IntegerField(
+        verbose_name='Население с доступом к общественному \
+                транспорту', default=0)
+    proportion_people_with_transport_access = models.FloatField(
+        verbose_name='Доля населения с доступом к общественному \
+                транспорту', default=0.0)
+    avrg_length_between_stops = models.FloatField(
+        verbose_name='Средневзвешенное расстояние между остановками',
+        default=0.0)
+    num_death_toll = models.IntegerField(
+        verbose_name='Число погибших на ОТ', default=0)
+    num_wounded = models.IntegerField(
+        verbose_name='Число раненых на ОТ', default=0)
+    num_accidents = models.IntegerField(
+        verbose_name='Число ДТП с участием ОТ', default=0)
+    num_accidents_per_transport_unit = models.FloatField(
+        verbose_name='Число ДТП в расчете на единицу подвижного состава',
+        default=0.0)
+    num_wounded_n_dead_per_accident = models.FloatField(
+        verbose_name='Число раненых и погибших в расчете на 1 ДТП',
+        default=0.0)
+    num_wounded_n_dead_per_people = models.FloatField(
+        verbose_name='Количество раненых и погибших в расчете на млн \
+                пассажиров', default=0.0)
 
     """ ПОДВИЖНОЙ СОСТАВ """
-    #  1. Количество трамвайных вагонов (ед.)
-    num_tramway_cars = models.IntegerField(default=0)
-    #  2. Количество троллейбусных машин (ед.)
-    num_trollebuses = models.IntegerField(default=0)
-    #  3. Количество электробусов (ед.)
-    num_electrobuses = models.IntegerField(default=0)
-    # 4. Количество автобусов (*по данным о парках городских перевозчиков)
-    # (ед.)
-    num_buses = models.IntegerField(default=0)
-    #  5. Количество вагонов метрополитена (ед.)
-    num_metro_cars = models.IntegerField(default=0)
-    #  6. Количество исправных трамвайных вагонов (ед.)
-    num_working_tramway_cars = models.IntegerField(default=0)
-    #  7. Количество исправных троллейбусных машин (ед.)
-    num_working_trollebuses = models.IntegerField(default=0)
-    #  8. Количество исправных электробусов (ед.)
-    num_working_electrobuses = models.IntegerField(default=0)
-    #  9. Количество исправных автобусов (ед.)
-    num_working_buses = models.IntegerField(default=0)
-    # 10. Количество исправных вагонов метрополитена (ед.)
-    num_working_metro_cars = models.IntegerField(default=0)
-    # 11. Процент исправных трамвайных вагонов (%)
-    percent_working_tramway_cars = models.FloatField(default=0.0)
-    # 12. Процент исправных троллейбусных машин (%)
-    percent_working_trollebuses = models.FloatField(default=0.0)
-    # 13. Процент исправных электробусов (%)
-    percent_working_electrobuses = models.FloatField(default=0.0)
-    # 14. Процент исправных автобусов (%)
-    percent_working_buses = models.FloatField(default=0.0)
-    # 15. Процент исправных вагонов метрополитена (%)
-    percent_working_metro_cars = models.FloatField(default=0.0)
-    # 16. Количество автобусов по Реестру: (ед.)
-    num_buses_registry = models.IntegerField(default=0)
-    # 17. из них особо большого класса (ед.)
-    num_very_big_buses_registry = models.IntegerField(default=0)
-    # 18. из них большого класса (ед.)
-    num_big_buses_registry = models.IntegerField(default=0)
-    # 19. из них среднего класса (ед.)
-    num_medium_buses_registry = models.IntegerField(default=0)
-    # 20. из них малого класса (ед.)
-    num_small_buses_registry = models.IntegerField(default=0)
-    # 21. Количество троллейбусов и электробусов по Реестру: (ед.)
-    num_trollebuses_registry = models.IntegerField(default=0)
-    # 22. из них большого класса (ед.)
-    num_big_trollebuses_registry = models.IntegerField(default=0)
-    # 23. из них особо большого класса (ед.)
-    num_very_big_trollebuses_registry = models.IntegerField(default=0)
-    # 24. Количество трамваев по Реестру: (ед.)
-    num_tramway_cars_registry = models.IntegerField(default=0)
-    # 25. из них большого класса (ед.)
-    num_big_tramway_cars_registry = models.IntegerField(default=0)
-    # 26. из них особо большого класса (ед.)
-    num_very_big_tramway_cars_registry = models.IntegerField(default=0)
-    # 27. Средний возраст трамвайных вагонов (лет)
-    avrg_age_tramway_car = models.FloatField(default=0.0)
-    # 28. Средний возраст троллейбусных машин (лет)
-    avrg_age_trolleybus = models.FloatField(default=0.0)
-    # 29. Средний возраст автобусов(*по данным о парках городских
-    # перевозчиков) (лет)
-    avrg_age_bus = models.FloatField(default=0.0)
-    # 30. Средний возраст электробусов (лет)
-    avrg_age_electrobus = models.FloatField(default=0.0)
-    # 31. Средний возраст вагонов метро (лет)
-    avrg_age_metro_car = models.FloatField(default=0.0)
-    # 32. Количество низкопольных трамвайных вагонов (ед.)
-    num_low_profile_tramway_cars = models.IntegerField(default=0)
-    # 33. Количество низкопольных троллейбусных машин (ед.)
-    num_low_profile_trolleybuses = models.IntegerField(default=0)
-    # 34. Количество низкопольных автобусов(*по данным о парках городских
-    # перевозчиков) (ед.)
-    num_low_profile_buses = models.IntegerField(default=0)
-    # 35. Количество низкопольных электробусов
-    num_low_profile_electrobuses = models.IntegerField(default=0)
-    # 36. Обновленный подвижной состав ГЭТ(*с учетом нормативных сроков
-    # эксплуатации) (ед.)
-    num_new_GET = models.IntegerField(default=0)
-    # 37. Обновленный подвижной состав автобусов(*с учетом нормативных сроков
-    # эксплуатации) (ед.)
-    num_new_buses = models.IntegerField(default=0)
-    # 38. Доля ТС с низкопольными площадками
-    percent_low_profile_transport = models.FloatField(default=0.0)
-    # 39. Доля ТС большой вместимости
-    percent_big_capacity_transport = models.FloatField(default=0.0)
-    # 40. Доля электротранспорта в парке ТС НОТ
-    percent_elctro_transport = models.FloatField(default=0.0)
-    # 41. Доля рабочего ПС в парке ТС
-    percent_working_transport = models.FloatField(default=0.0)
-    # 42. Участие в программах обновления подвижного состава – булев атрибут,
-    percent_renew_program = models.FloatField(default=0.0)
+    num_tramway_cars = models.IntegerField(
+        verbose_name='Количество трамвайных вагонов', default=0)
+    num_trolleybuses = models.IntegerField(
+        verbose_name='Количество троллейбусных машин', default=0)
+    num_electrobuses = models.IntegerField(
+        verbose_name='Количество электробусов', default=0)
+    num_buses = models.IntegerField(
+        verbose_name='Количество автобусов', default=0)
+    num_metro_cars = models.IntegerField(
+        verbose_name='Количество вагонов метрополитена', default=0)
+    num_working_tramway_cars = models.IntegerField(
+        verbose_name='Количество исправных трамвайных вагонов', default=0)
+    num_working_trolleybuses = models.IntegerField(
+        verbose_name='Количество исправных троллейбусных машин', default=0)
+    num_working_electrobuses = models.IntegerField(
+        verbose_name='Количество исправных электробусов', default=0)
+    num_working_buses = models.IntegerField(
+        verbose_name='Количество исправных автобусов', default=0)
+    num_working_metro_cars = models.IntegerField(
+        verbose_name='Количество исправных вагонов метрополитена', default=0)
+    percent_working_tramway_cars = models.FloatField(
+        verbose_name='Процент исправных трамвайных вагонов', default=0.0)
+    percent_working_trolleybuses = models.FloatField(
+        verbose_name='Процент исправных троллейбусных машин', default=0.0)
+    percent_working_electrobuses = models.FloatField(
+        verbose_name='Процент исправных электробусов', default=0.0)
+    percent_working_buses = models.FloatField(
+        verbose_name='Процент исправных автобусов', default=0.0)
+    percent_working_metro_cars = models.FloatField(
+        verbose_name='Процент исправных вагонов метрополитена', default=0.0)
+    num_all_buses_registry = models.IntegerField(
+        verbose_name='Количество всех автобусов по Реестру', default=0)
+    num_very_big_buses_registry = models.IntegerField(
+        verbose_name='Количество автобусов особо большого класса по Реестру',
+        default=0)
+    num_big_buses_registry = models.IntegerField(
+        verbose_name='Количество автобусов большого класса по Реестру',
+        default=0)
+    num_medium_buses_registry = models.IntegerField(
+        verbose_name='Количество автобусов среднего класса по Реестру',
+        default=0)
+    num_small_buses_registry = models.IntegerField(
+        verbose_name='Количество автобусов малого класса по Реестру',
+        default=0)
+    num_all_trolleybuses_registry = models.IntegerField(
+        verbose_name='Количество всех троллейбусов и электробусов по Реестру',
+        default=0)
+    num_big_trolleybuses_registry = models.IntegerField(
+        verbose_name='Количество троллейбусов и электробусов большого класса \
+                по Реестру', default=0)
+    num_very_big_trolleybuses_registry = models.IntegerField(
+        verbose_name='Количество троллейбусов и электробусов особо большого \
+                класса по Реестру', default=0)
+    num_tramway_cars_registry = models.IntegerField(
+        verbose_name='Количество всех трамваев по Реестру', default=0)
+    num_big_tramway_cars_registry = models.IntegerField(
+        verbose_name='Количество трамваев большого класаа по Реестру',
+        default=0)
+    num_very_big_tramway_cars_registry = models.IntegerField(
+        verbose_name='Количество трамваев особо большого класаа по Реестру',
+        default=0)
+    avrg_age_tramway_car = models.FloatField(
+        verbose_name='Средний возраст трамвайных вагонов', default=0.0)
+    avrg_age_trolleybus = models.FloatField(
+        verbose_name='Средний возраст троллейбусных машин', default=0.0)
+    avrg_age_bus = models.FloatField(
+        verbose_name='Средний возраст автобусов', default=0.0)
+    avrg_age_electrobus = models.FloatField(
+        verbose_name='Средний возраст электробусов', default=0.0)
+    avrg_age_metro_car = models.FloatField(
+        verbose_name='Средний возраст вагонов метро', default=0.0)
+    num_low_profile_tramway_cars = models.IntegerField(
+        verbose_name='Количество низкопольных трамвайных вагонов', default=0)
+    num_low_profile_trolleybuses = models.IntegerField(
+        verbose_name='Количество низкопольных троллейбусных машин', default=0)
+    num_low_profile_buses = models.IntegerField(
+        verbose_name='Количество низкопольных автобусов', default=0)
+    num_low_profile_electrobuses = models.IntegerField(
+        verbose_name='Количество низкопольных электробусов', default=0)
+    num_new_GET = models.IntegerField(
+        verbose_name='Обновленный подвижной состав ГЭТ', default=0)
+    num_new_buses = models.IntegerField(
+        verbose_name='Обновленный подвижной состав автобусов', default=0)
+    proportion_low_profile_transport = models.FloatField(
+        verbose_name='Доля ТС с низкопольными площадками', default=0.0)
+    proportion_big_capacity_transport = models.FloatField(
+        verbose_name='Доля ТС большой вместимости', default=0.0)
+    proportion_electro_transport = models.FloatField(
+        verbose_name='Доля электротранспорта в парке ТС НОТ', default=0.0)
+    proportion_working_transport = models.FloatField(
+        verbose_name='Доля рабочего ПС в парке ТС', default=0.0)
+    percent_renew_program = models.FloatField(
+        verbose_name='Участие в программах обновления подвижного состава',
+        default=0.0)
 
     """ МАРШРУТЫ """
     #  1. Количество действующих трамвайных маршрутов

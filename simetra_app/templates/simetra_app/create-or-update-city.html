@@ -26,117 +26,87 @@
 
         {% load verbose_names %}
         <h3> Качественные группы (рейтинг 0.0 - 100.0) </h3>
-        <p> {% get_verbose_field_name city_form.instance "rating_security_n_development" %} : {{ city_form.rating_security_n_development }} </p>
-        <p> {% get_verbose_field_name city_form.instance "rating_comfort_n_convenience" %} : {{ city_form.rating_comfort_n_convenience }} </p>
-        <p> {% get_verbose_field_name city_form.instance "rating_route_network_efficiency" %} : {{ city_form.rating_route_network_efficiency }} </p>
-        <p> {% get_verbose_field_name city_form.instance "rating_affordability" %} : {{ city_form.rating_affordability }} </p>
-        <p> {% get_verbose_field_name city_form.instance "rating_physical_availability" %} : {{ city_form.rating_physical_availability }} </p>
+        <p> {% get_city_option_text city_form "rating_security_n_development" %} </p>
+        <p> {% get_city_option_text city_form "rating_comfort_n_convenience" %} </p>
+        <p> {% get_city_option_text city_form "rating_route_network_efficiency" %} </p>
+        <p> {% get_city_option_text city_form "rating_affordability" %}  </p>
+        <p> {% get_city_option_text city_form "rating_physical_availability" %} </p>
 
         <h3> Пространственные характеристики </h3>
-        <p> {% get_verbose_field_name city_form.instance "num_population" %}: {{ city_form.num_population }} </p>
-        <p> {% get_verbose_field_name city_form.instance "length_UDS" %}: {{ city_form.length_UDS }} </p>
-        <p> {% get_verbose_field_name city_form.instance "area_active_zone" %}: {{ city_form.area_active_zone }} </p>
-        <p> {% get_verbose_field_name city_form.instance "traffic_transport" %}: {{ city_form.traffic_transport }} </p>
-        <p> {% get_verbose_field_name city_form.instance "traffic_metro" %}: {{ city_form.traffic_metro }} </p>
-        <p> {% get_verbose_field_name city_form.instance "num_working_stops_overall" %}: {{ city_form.num_working_stops_overall }} </p>
-        <p> {% get_verbose_field_name city_form.instance "num_working_stops_active_zone" %}: {{ city_form.num_working_stops_active_zone }} </p>
-        <p> {% get_verbose_field_name city_form.instance "num_of_apartments" %}: {{ city_form.num_of_apartments }} </p>
-        <p> Доля домов в зоне покрытия (%): ??? (не могу найти) </p>
-        <p> Доля населения в зоне покрытия (%): ??? (не могу найти) </p>
-        <p> {% get_verbose_field_name city_form.instance "area_stops_coverage_active_zone" %}: {{ city_form.area_stops_coverage_active_zone }} </p>
-        <p> Доля домов в зоне покрытия метрополитеном (%): ??? (не могу найти) </p>
-        <p> Доля населения в зоне покрытия метрополитеном (%): ??? (не могу найти) </p>
-        <p> {% get_verbose_field_name city_form.instance "area_metro_coverage" %}: {{ city_form.area_metro_coverage }} </p>
-        <p> {% get_verbose_field_name city_form.instance "density_stops_active_zone" %}: {{ city_form.density_stops_active_zone }} </p>
-        <p> {% get_verbose_field_name city_form.instance "percent_transport_covered_area" %}: {{ city_form.percent_transport_covered_area }} </p>
-        <p> {% get_verbose_field_name city_form.instance "percent_metro_covered_area" %}: {{ city_form.percent_metro_covered_area }} </p>
-        <p> {% get_verbose_field_name city_form.instance "num_people_metro_access" %}: {{ city_form.num_people_metro_access }} </p>
-        <p> {% get_verbose_field_name city_form.instance "percent_people_metro_access" %}: {{ city_form.percent_people_metro_access }} </p>
-        <p> {% get_verbose_field_name city_form.instance "num_people_transport_access" %}: {{ city_form.num_people_transport_access }} </p>
-        <p> {% get_verbose_field_name city_form.instance "percent_people_transport_access" %}: {{ city_form.percent_people_transport_access }} </p>
-        <p> {% get_verbose_field_name city_form.instance "length_avrg_between_stops" %}: {{ city_form.length_avrg_between_stops }} </p>
-        <p> {% get_verbose_field_name city_form.instance "num_death_toll" %}: {{ city_form.num_death_toll }} </p>
-        <p> {% get_verbose_field_name city_form.instance "num_wounded" %}: {{ city_form.num_wounded }} </p>
-        <p> {% get_verbose_field_name city_form.instance "num_accidents" %}: {{ city_form.num_accidents }} </p>
-        <p> {% get_verbose_field_name city_form.instance "num_accidents_per_unit" %}: {{ city_form.num_accidents_per_unit }} </p>
-        <p> {% get_verbose_field_name city_form.instance "num_wounded_per_accident" %}: {{ city_form.num_wounded_per_accident }} </p>
-        <p> {% get_verbose_field_name city_form.instance "num_wndd_n_dead_per_people" %}: {{ city_form.num_wndd_n_dead_per_people }} </p>
+        <p> {% get_city_option_text city_form "num_population" %} </p>
+        <p> {% get_city_option_text city_form "length_UDS" %} </p>
+        <p> {% get_city_option_text city_form "area_active_city_zone" %} </p>
+        <p> {% get_city_option_text city_form "traffic_ground_transport" %} </p>
+        <p> {% get_city_option_text city_form "traffic_metro" %} </p>
+        <p> {% get_city_option_text city_form "num_working_stops_overall" %} </p>
+        <p> {% get_city_option_text city_form "num_working_stops_active_city_zone" %} </p>
+        <p> {% get_city_option_text city_form "num_of_apartments" %} </p>
+        <p> {% get_city_option_text city_form "proportion_apartments_in_coverage_zone" %} </p>
+        <p> {% get_city_option_text city_form "proportion_people_in_coverage_zone" %} </p>
+        <p> {% get_city_option_text city_form "area_stops_active_zone_coverage_500" %} </p>
+        <p> {% get_city_option_text city_form "area_stops_active_zone_coverage_700" %} </p>
+        <p> {% get_city_option_text city_form "area_stops_active_zone_coverage_1000" %} </p>
+        <p> {% get_city_option_text city_form "proportion_apartments_in_metro_coverage_zone" %} </p>
+        <p> {% get_city_option_text city_form "proportion_people_in_metro_coverage_zone" %} </p>
+        <p> {% get_city_option_text city_form "area_metro_coverage" %} </p>
+        <p> {% get_city_option_text city_form "density_stops_active_zone" %} </p>
+        <p> {% get_city_option_text city_form "percent_transport_covered_area" %} </p>
+        <p> {% get_city_option_text city_form "percent_metro_covered_area" %} </p>
+        <p> {% get_city_option_text city_form "num_people_with_metro_access" %} </p>
+        <p> {% get_city_option_text city_form "proportion_people_with_metro_access" %} </p>
+        <p> {% get_city_option_text city_form "num_people_with_transport_access" %} </p>
+        <p> {% get_city_option_text city_form "proportion_people_with_transport_access" %} </p>
+        <p> {% get_city_option_text city_form "avrg_length_between_stops" %} </p>
+        <p> {% get_city_option_text city_form "num_death_toll" %} </p>
+        <p> {% get_city_option_text city_form "num_wounded" %} </p>
+        <p> {% get_city_option_text city_form "num_accidents" %} </p>
+        <p> {% get_city_option_text city_form "num_accidents_per_transport_unit" %} </p>
+        <p> {% get_city_option_text city_form "num_wounded_n_dead_per_accident" %} </p>
+        <p> {% get_city_option_text city_form "num_wounded_n_dead_per_people" %} </p>
 
         <h3> Подвижной состав </h3>
-        <p> {% get_verbose_field_name city_form.instance "num_tramway_cars" %}: {{ city_form.num_tramway_cars }} </p>
-        <p> {% get_verbose_field_name city_form.instance "num_trollebuses" %}: {{ city_form.num_trollebuses }} </p>
-        <p> {% get_verbose_field_name city_form.instance "num_electrobuses" %}: {{ city_form.num_electrobuses }} </p>
-        <p> {% get_verbose_field_name city_form.instance "num_buses" %}: {{ city_form.num_buses }} </p>
-        <p> {% get_verbose_field_name city_form.instance "num_metro_cars" %}: {{ city_form.num_metro_cars }} </p>
-        <p> {% get_verbose_field_name city_form.instance "num_working_tramway_cars" %}: {{ city_form.num_working_tramway_cars }} </p>
-        <p> {% get_verbose_field_name city_form.instance "num_working_trollebuses" %}: {{ city_form.num_working_trollebuses }} </p>
-        <p> {% get_verbose_field_name city_form.instance "num_working_electrobuses" %}: {{ city_form.num_working_electrobuses }} </p>
-        <p> {% get_verbose_field_name city_form.instance "num_working_buses" %}: {{ city_form.num_working_buses }} </p>
-        <p> {% get_verbose_field_name city_form.instance "num_working_metro_cars" %}: {{ city_form.num_working_metro_cars }} </p>
-        <p> {% get_verbose_field_name city_form.instance "percent_working_tramway_cars" %}: {{ city_form.percent_working_tramway_cars }} </p>
-        <p> {% get_verbose_field_name city_form.instance "percent_working_trollebuses" %}: {{ city_form.percent_working_trollebuses }} </p>
-        <p> {% get_verbose_field_name city_form.instance "percent_working_electrobuses" %}: {{ city_form.percent_working_electrobuses }} </p>
-        <p> {% get_verbose_field_name city_form.instance "percent_working_buses" %}: {{ city_form.percent_working_buses }} </p>
-        <p> {% get_verbose_field_name city_form.instance "percent_working_metro_cars" %}: {{ city_form.percent_working_metro_cars }} </p>
-        <p> {% get_verbose_field_name city_form.instance "num_buses_registry" %}: {{ city_form.num_buses_registry }} </p>
-        <p> {% get_verbose_field_name city_form.instance "num_very_big_buses_registry" %}: {{ city_form.num_very_big_buses_registry }} </p>
-        <p> {% get_verbose_field_name city_form.instance "num_big_buses_registry" %}: {{ city_form.num_big_buses_registry }} </p>
-        <p> {% get_verbose_field_name city_form.instance "num_medium_buses_registry" %}: {{ city_form.num_medium_buses_registry }} </p>
-        <p> {% get_verbose_field_name city_form.instance "num_small_buses_registry" %}: {{ city_form.num_small_buses_registry }} </p>
-        <p> {% get_verbose_field_name city_form.instance "num_trollebuses_registry" %}: {{ city_form.num_trollebuses_registry }} </p>
-        <p> {% get_verbose_field_name city_form.instance "num_big_trollebuses_registry" %}: {{ city_form.num_big_trollebuses_registry }} </p>
-        <p> {% get_verbose_field_name city_form.instance "num_very_big_trollebuses_registry" %}: {{ city_form.num_very_big_trollebuses_registry }} </p>
-        <p> {% get_verbose_field_name city_form.instance "num_tramway_cars_registry" %}: {{ city_form.num_tramway_cars_registry }} </p>
-        <p> {% get_verbose_field_name city_form.instance "num_big_tramway_cars_registry" %}: {{ city_form.num_big_tramway_cars_registry }} </p>
-        <p> {% get_verbose_field_name city_form.instance "num_very_big_tramway_cars_registry" %}: {{ city_form.num_very_big_tramway_cars_registry }} </p>
-        <p> {% get_verbose_field_name city_form.instance "avrg_age_tramway_car" %}: {{ city_form.avrg_age_tramway_car }} </p>
-        <p> {% get_verbose_field_name city_form.instance "avrg_age_trolleybus" %}: {{ city_form.avrg_age_trolleybus }} </p>
-        <p> {% get_verbose_field_name city_form.instance "avrg_age_bus" %}: {{ city_form.avrg_age_bus }} </p>
-        <p> {% get_verbose_field_name city_form.instance "avrg_age_electrobus" %}: {{ city_form.avrg_age_electrobus }} </p>
-        <p> {% get_verbose_field_name city_form.instance "avrg_age_metro_car" %}: {{ city_form.avrg_age_metro_car }} </p>
-        <p> {% get_verbose_field_name city_form.instance "num_low_profile_tramway_cars" %}: {{ city_form.num_low_profile_tramway_cars }} </p>
-        <p> {% get_verbose_field_name city_form.instance "num_low_profile_trolleybuses" %}: {{ city_form.num_low_profile_trolleybuses }} </p>
-        <p> {% get_verbose_field_name city_form.instance "num_low_profile_buses" %}: {{ city_form.num_low_profile_buses }} </p>
-        <p> {% get_verbose_field_name city_form.instance "num_low_profile_electrobuses" %}: {{ city_form.num_low_profile_electrobuses }} </p>
-        <p> {% get_verbose_field_name city_form.instance "num_new_GET" %}: {{ city_form.num_new_GET }} </p>
-        <p> {% get_verbose_field_name city_form.instance "num_new_buses" %}: {{ city_form.num_new_buses }} </p>
-        <p> {% get_verbose_field_name city_form.instance "percent_low_profile_transport" %}: {{ city_form.percent_low_profile_transport }} </p>
-        <p> {% get_verbose_field_name city_form.instance "percent_big_capacity_transport" %}: {{ city_form.percent_big_capacity_transport }} </p>
-        <p> {% get_verbose_field_name city_form.instance "percent_elctro_transport" %}: {{ city_form.percent_elctro_transport }} </p>
-        <p> {% get_verbose_field_name city_form.instance "percent_working_transport" %}: {{ city_form.percent_working_transport }} </p>
-        <p> {% get_verbose_field_name city_form.instance "percent_renew_program" %}: {{ city_form.percent_renew_program }} </p>
-
-        <h3> Маршруты </h3>
-        <p> {% get_verbose_field_name city_form.instance "num_in_use_tramway_routes" %}: {{ city_form.num_in_use_tramway_routes }} </p>
-        <p> {% get_verbose_field_name city_form.instance "num_in_use_trolleybus_routes" %}: {{ city_form.num_in_use_trolleybus_routes }} </p>
-        <p> {% get_verbose_field_name city_form.instance "num_in_use_bus_routes" %}: {{ city_form.num_in_use_bus_routes }} </p>
-        <p> {% get_verbose_field_name city_form.instance "num_in_use_overall_routes" %}: {{ city_form.num_in_use_overall_routes }} </p>
-        <p> {% get_verbose_field_name city_form.instance "num_regulated_routes" %}: {{ city_form.num_regulated_routes }} </p>
-        <p> {% get_verbose_field_name city_form.instance "num_unregulated_routes" %}: {{ city_form.num_unregulated_routes }} </p>
-        <p> {% get_verbose_field_name city_form.instance "share_unregulated_routes" %}: {{ city_form.share_unregulated_routes }} </p>
-        <p> {% get_verbose_field_name city_form.instance "length_avrg_tramway_route" %}: {{ city_form.length_avrg_tramway_route }} </p>
-        <p> {% get_verbose_field_name city_form.instance "length_avrg_trolleybus_route" %}: {{ city_form.length_avrg_trolleybus_route }} </p>
-        <p> {% get_verbose_field_name city_form.instance "length_avrg_bus_route" %}: {{ city_form.length_avrg_bus_route }} </p>
-        <p> {% get_verbose_field_name city_form.instance "length_existing_tramway_routes" %}: {{ city_form.length_existing_tramway_routes }} </p>
-        <p> {% get_verbose_field_name city_form.instance "length_in_use_tramway_routes" %}: {{ city_form.length_in_use_tramway_routes }} </p>
-        <p> {% get_verbose_field_name city_form.instance "length_existing_trolleybus_routes" %}: {{ city_form.length_existing_trolleybus_routes }} </p>
-        <p> {% get_verbose_field_name city_form.instance "length_in_use_trolleybus_routes" %}: {{ city_form.length_in_use_trolleybus_routes }} </p>
-        <p> {% get_verbose_field_name city_form.instance "length_overall_unrailed_path" %}: {{ city_form.length_overall_unrailed_path }} </p>
-        <p> {% get_verbose_field_name city_form.instance "percent_tramway_routes_isolation" %}: {{ city_form.percent_tramway_routes_isolation }} </p>
-        <p> 17. ***перспективные атрибуты по ВП, обсуждается: (???) не нашел </p>
-        <p> {% get_verbose_field_name city_form.instance "percent_tramway_net_use" %}: {{ city_form.percent_tramway_net_use }} </p>
-        <p> {% get_verbose_field_name city_form.instance "percent_trolleybus_net_use" %}: {{ city_form.percent_trolleybus_net_use }} </p>
-        <p> 20. Количество сегментов, работающих в режиме средней загрузки: (???) не нашел </p>
-        <p> 21. Количество сегментов, работающих в режиме повышенной нагрузки: (???) не нашел </p>
-        <p> {% get_verbose_field_name city_form.instance "time_avrg_waiting_any_transport" %}: {{ city_form.time_avrg_waiting_any_transport }} </p>
-        <p> {% get_verbose_field_name city_form.instance "time_avrg_waiting_specific_transport" %}: {{ city_form.time_avrg_waiting_specific_transport }} </p>
-        <p> {% get_verbose_field_name city_form.instance "route_coefficient" %}: {{ city_form.route_coefficient }} </p>
-        <p> Коэффициент непрямолинейности маршрутов НОТ: (???) не нашел </p>
-        <p> {% get_verbose_field_name city_form.instance "transport_app_existance" %}: {{ city_form.transport_app_existance }} </p>
-        <p> {% get_verbose_field_name city_form.instance "real_time_internet_movement_information" %}: {{ city_form.real_time_internet_movement_information }} </p>
-        <p> {% get_verbose_field_name city_form.instance "transport_movement_schedule_website" %}: {{ city_form.transport_movement_schedule_website }} </p>
-        <p> {% get_verbose_field_name city_form.instance "transport_route_net_map" %}: {{ city_form.transport_route_net_map }} </p>
-        <p> {% get_verbose_field_name city_form.instance "unique_transporte_style" %}: {{ city_form.unique_transporte_style }} </p>
+        <p> {% get_city_option_text city_form "num_tramway_cars" %} </p>
+        <p> {% get_city_option_text city_form "num_trolleybuses" %} </p>
+        <p> {% get_city_option_text city_form "num_electrobuses" %} </p>
+        <p> {% get_city_option_text city_form "num_buses" %} </p>
+        <p> {% get_city_option_text city_form "num_metro_cars" %} </p>
+        <p> {% get_city_option_text city_form "num_working_tramway_cars" %} </p>
+        <p> {% get_city_option_text city_form "num_working_trolleybuses" %} </p>
+        <p> {% get_city_option_text city_form "num_working_electrobuses" %} </p>
+        <p> {% get_city_option_text city_form "num_working_buses" %} </p>
+        <p> {% get_city_option_text city_form "num_working_metro_cars" %} </p>
+        <p> {% get_city_option_text city_form "percent_working_tramway_cars" %} </p>
+        <p> {% get_city_option_text city_form "percent_working_trolleybuses" %} </p>
+        <p> {% get_city_option_text city_form "percent_working_electrobuses" %} </p>
+        <p> {% get_city_option_text city_form "percent_working_buses" %} </p>
+        <p> {% get_city_option_text city_form "percent_working_metro_cars" %} </p>
+        <p> {% get_city_option_text city_form "num_all_buses_registry" %} </p>
+        <p> {% get_city_option_text city_form "num_very_big_buses_registry" %} </p>
+        <p> {% get_city_option_text city_form "num_big_buses_registry" %} </p>
+        <p> {% get_city_option_text city_form "num_medium_buses_registry" %} </p>
+        <p> {% get_city_option_text city_form "num_small_buses_registry" %} </p>
+        <p> {% get_city_option_text city_form "num_all_trolleybuses_registry" %} </p>
+        <p> {% get_city_option_text city_form "num_big_trolleybuses_registry" %} </p>
+        <p> {% get_city_option_text city_form "num_very_big_trolleybuses_registry" %} </p>
+        <p> {% get_city_option_text city_form "num_tramway_cars_registry" %} </p>
+        <p> {% get_city_option_text city_form "num_big_tramway_cars_registry" %} </p>
+        <p> {% get_city_option_text city_form "num_very_big_tramway_cars_registry" %} </p>
+        <p> {% get_city_option_text city_form "avrg_age_tramway_car" %} </p>
+        <p> {% get_city_option_text city_form "avrg_age_trolleybus" %} </p>
+        <p> {% get_city_option_text city_form "avrg_age_bus" %} </p>
+        <p> {% get_city_option_text city_form "avrg_age_electrobus" %} </p>
+        <p> {% get_city_option_text city_form "avrg_age_metro_car" %} </p>
+        <p> {% get_city_option_text city_form "num_low_profile_tramway_cars" %} </p>
+        <p> {% get_city_option_text city_form "num_low_profile_trolleybuses" %} </p>
+        <p> {% get_city_option_text city_form "num_low_profile_buses" %} </p>
+        <p> {% get_city_option_text city_form "num_low_profile_electrobuses" %} </p>
+        <p> {% get_city_option_text city_form "num_new_GET" %} </p>
+        <p> {% get_city_option_text city_form "num_new_buses" %} </p>
+        <p> {% get_city_option_text city_form "proportion_low_profile_transport" %} </p>
+        <p> {% get_city_option_text city_form "proportion_big_capacity_transport" %} </p>
+        <p> {% get_city_option_text city_form "proportion_electro_transport" %} </p>
+        <p> {% get_city_option_text city_form "proportion_working_transport" %} </p>
+        <p> {% get_city_option_text city_form "percent_renew_program" %} </p>
 
         <h3> Тарифная система </h3>
         <p> {% get_verbose_field_name city_form.instance "salary_avrg" %}: {{ city_form.salary_avrg }} </p>
