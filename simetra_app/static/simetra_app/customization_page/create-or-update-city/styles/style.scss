@@ -1,0 +1,182 @@
+@import "_nullstyle";
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Merriweather:wght@400;700&display=swap");
+
+/*-------------------------------------------------------------*/
+/*-----Variable declaration------------------------------------*/
+/*-------------------------------------------------------------*/
+$blue-color: #6f80ff;
+$white-color: #ffffff;
+$black-color: #000000;
+
+/*-------------------------------------------------------------*/
+/*-----The Foundation------------------------------------------*/
+/*-------------------------------------------------------------*/
+
+body {
+  font-family: "Inter", sans-serif;
+  font-size: 25px;
+  background-color: $blue-color;
+  color: $white-color;
+}
+
+section {
+  padding: 10px 0px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 0px black;
+  padding: 20px 15px;
+  margin-bottom: 30px;
+}
+.wrapper {
+  min-height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.mapboxgl-map {
+  border-radius: 8px;
+  margin: 20px 0px;
+}
+
+#map {
+  padding: 10px;
+  border-radius: 5px;
+}
+
+input[type="text"],
+input[type="number"] {
+  margin: 15px 0px;
+}
+
+input[type="checkbox"]:checked,
+input[type="checkbox"]:not(:checked) {
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+}
+
+button[name="sumbit-new-city"] {
+  padding: 10px;
+  border-radius: 5px;
+  font-size: inherit;
+  transition: 0.4s;
+  margin: 15px 0px;
+  background-color: #37407f;
+  color: white;
+  &:hover {
+    color: #ffb259;
+  }
+}
+//ffb259
+/*-------------------------------------------------------------*/
+/*-----Technical classes---------------------------------------*/
+/*-------------------------------------------------------------*/
+
+._link {
+  display: block;
+  color: $white-color;
+  font-size: 20px;
+  transition: 0.5s;
+  &:hover {
+    color: #ffb259;
+  }
+}
+
+._subtitle {
+  font-size: 30px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  @media (max-width: 370px) {
+    font-size: 24px;
+  }
+}
+
+/*-------------------------------------------------------------*/
+/*-----HEADER--------------------------------------------------*/
+/*-------------------------------------------------------------*/
+
+.header {
+  position: absolute;
+  border-bottom: 4px solid white;
+  background-color: #ffb259;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  &__container {
+    max-width: 1400px;
+    margin: 0px auto;
+    padding: 0px 10px;
+    display: flex;
+    min-height: 60px;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.menu {
+  width: 100%;
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    padding: 0px 20px;
+    gap: 20px 30px;
+  }
+  &__link {
+    font-size: inherit;
+    color: #2433a6;
+    transition: 0.3s;
+    &:hover {
+      color: rgb(255, 255, 255);
+    }
+  }
+}
+
+/*-------------------------------------------------------------*/
+/*-----Home----------------------------------------------------*/
+/*-------------------------------------------------------------*/
+
+.page {
+  flex: 1 1 auto;
+  &__container {
+    padding: 100px 0px 40px 50px;
+    max-width: 1000px;
+    @media (max-width: 1050px) {
+      padding: 100px 20px 40px 20px;
+    }
+  }
+}
+
+.home {
+  &__title {
+    font-weight: bold;
+    font-size: 50px;
+    line-height: 130%;
+    margin-bottom: 30px;
+  }
+
+  &__input-block {
+    margin-bottom: 20px;
+    & input {
+      border-radius: 10px;
+      padding: 10px;
+      font-size: 16px;
+    }
+  }
+
+  &__submit {
+    padding: 10px;
+    border-radius: 10px;
+    transition: 0.4s;
+    font-size: inherit;
+    background-color: #ffb259;
+    &:hover {
+      color: white;
+    }
+  }
+
+  &__fill {
+    margin: 15px 0px;
+    line-height: 130%;
+  }
+}
