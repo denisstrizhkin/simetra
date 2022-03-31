@@ -247,109 +247,120 @@ class City(models.Model):
         default=0.0)
 
     """ МАРШРУТЫ """
-    #  1. Количество действующих трамвайных маршрутов
-    num_in_use_tramway_routes = models.IntegerField(default=0)
-    #  2. Количество действующих троллейбусных маршрутов
-    num_in_use_trolleybus_routes = models.IntegerField(default=0)
-    #  3. Количество действующих автобусных маршрутов
-    num_in_use_bus_routes = models.IntegerField(default=0)
-    #  4. Количество действующих маршрутов – всего.
-    num_in_use_overall_routes = models.IntegerField(default=0)
-    #  5. Количество маршрутов на регулируемом тарифе
-    num_regulated_routes = models.IntegerField(default=0)
-    #  6. Количество маршрутов на нерегулируемом тарифе
-    num_unregulated_routes = models.IntegerField(default=0)
-    #  7. Доля маршрутов, работающих на принципах нерегулируемого тарифа
-    share_unregulated_routes = models.IntegerField(default=0)
-    #  8. Средняя длина трамвайного маршрута
-    length_avrg_tramway_route = models.FloatField(default=0.0)
-    #  9. Средняя длина троллейбусного маршрута
-    length_avrg_trolleybus_route = models.FloatField(default=0.0)
-    # 10. Средняя длина автобусного маршрута
-    length_avrg_bus_route = models.FloatField(default=0.0)
-    # 11. Длина существующих трамвайных путей(в двухпутном исчислении)
-    length_existing_tramway_routes = models.FloatField(default=0.0)
-    # 12. Длина действующих трамвайных путей(в двухпутном исчислении)
-    length_in_use_tramway_routes = models.FloatField(default=0.0)
-    # 13. Длина существующей троллейбусной КС(в двухпутном исчислении)
-    length_existing_trolleybus_routes = models.FloatField(default=0.0)
-    # 14. Длина действующей троллейбусной КС(в двухпутном исчислении)
-    length_in_use_trolleybus_routes = models.FloatField(default=0.0)
-    # 15. Суммарная длина выделенных полос нерельсового ОТ
-    length_overall_unrailed_path = models.FloatField(default=0.0)
-    # 16. Процент обособления трамвайных путей
-    percent_tramway_routes_isolation = models.FloatField(default=0.0)
-    # 17. ***перспективные атрибуты по ВП, обсуждается
-    # (???)
-    # 18. Коэффициент использования трамвайной сети
-    percent_tramway_net_use = models.FloatField(default=0.0)
-    # 19. Коэффициент использования троллейбусной сети
-    percent_trolleybus_net_use = models.FloatField(default=0.0)
-    # 20. Количество сегментов, работающих в режиме средней загрузки
-    # (???)
-    # 21. Количество сегментов, работающих в режиме повышенной нагрузки
-    # (???)
-    # 22. Среднее время ожидания любого маршрута на остановке
-    time_avrg_waiting_any_transport = models.FloatField(default=0.0)
-    # 23. Среднее время ожидания конкретного маршрута на остановке
-    time_avrg_waiting_specific_transport = models.FloatField(default=0.0)
-    # 24. Маршрутный коэффициент
-    route_coefficient = models.FloatField(default=0.0)
-    # 25. Коэффициент непрямолинейности маршрутов НОТ
-    # (???)
-    # 26. Наличие официального/неофициального транспортного приложения
-    transport_app_existance = models.FloatField(default=0.0)
-    # 27. Доступность информации о движении ОТ в режиме реального времени
-    # через Интернет
-    real_time_internet_movement_information = models.FloatField(default=0.0)
-    # 28. Наличие сайта с расписаниями движениями транспорта
-    transport_movement_schedule_website = models.FloatField(default=0.0)
-    # 29. Наличие карт-схем маршрутной сети
-    transport_route_net_map = models.FloatField(default=0.0)
-    # 30. Фирменный стиль общественного транспорта
-    unique_transporte_style = models.FloatField(default=0.0)
+    num_routes_in_use_tramway = models.IntegerField(
+        verbose_name='Количество действующих трамвайных маршрутов', default=0)
+    num_routes_in_use_trolleybus = models.IntegerField(
+        verbose_name='Количество действующих троллейбусных маршрутов',
+        default=0)
+    num_routes_in_use_bus = models.IntegerField(
+        verbose_name='Количество действующих автобусных маршрутов', default=0)
+    num_routes_in_use_overall = models.IntegerField(
+        verbose_name='Количество действующих маршрутов – всего', default=0)
+    num_routes_regulated_tariff = models.IntegerField(
+        verbose_name='Количество маршрутов на регулируемом тарифе', default=0)
+    num_routes_unregulated_tariff = models.IntegerField(
+        verbose_name='Количество маршрутов на нерегулируемом тарифе',
+        default=0)
+    proportion_routes_unregulated_tariff = models.IntegerField(
+        verbose_name='Доля маршрутов, работающих на принципах нерегулируемого \
+                тарифа', default=0)
+    length_avrg_tramway_route = models.FloatField(
+        verbose_name='Средняя длина трамвайного маршрута', default=0.0)
+    length_avrg_trolleybus_route = models.FloatField(
+        verbose_name='Средняя длина троллейбусного маршрута', default=0.0)
+    length_avrg_bus_route = models.FloatField(
+        verbose_name='Средняя длина автобусного маршрута', default=0.0)
+    length_existing_tramway_routes = models.FloatField(
+        verbose_name='Длина существующих трамвайных путей', default=0.0)
+    length_in_use_tramway_routes = models.FloatField(
+        verbose_name='Длина действующих трамвайных путей', default=0.0)
+    length_existing_trolleybus_routes = models.FloatField(
+        verbose_name='Длина существующей троллейбусной КС', default=0.0)
+    length_in_use_trolleybus_routes = models.FloatField(
+        verbose_name='Длина действующей троллейбусной КС', default=0.0)
+    length_overall_nonrailed_transport_path = models.FloatField(
+        verbose_name='Суммарная длина выделенных полос нерельсового ОТ',
+        default=0.0)
+    percent_isolated_tramway_routes = models.FloatField(
+        verbose_name='Процент обособления трамвайных путей', default=0.0)
+    coeff_tramway_net_use = models.FloatField(
+        verbose_name='Коэффициент использования трамвайной сети', default=0.0)
+    coeff_trolleybus_net_use = models.FloatField(
+        verbose_name='Коэффициент использования троллейбусной сети',
+        default=0.0)
+    num_segments_avrg_load = models.IntegerField(
+        verbose_name='Количество сегментов, работающих в режиме средней \
+                загрузки', default=0)
+    num_segments_high_load = models.IntegerField(
+        verbose_name='Количество сегментов, работающих в режиме повышенной \
+                загрузки', default=0)
+    time_avrg_waiting_any_transport = models.FloatField(
+        verbose_name='Среднее время ожидания любого маршрута на остановке',
+        default=0.0)
+    time_avrg_waiting_specific_transport = models.FloatField(
+        verbose_name='Среднее время ожидания конкретного маршрута на \
+                остановке', default=0.0)
+    coeff_route = models.FloatField(
+        verbose_name='Маршрутный коэффициент', default=0.0)
+    coeff_non_straight_route = models.FloatField(
+        verbose_name='Коэффициент непрямолинейности маршрутов НОТ',
+        default=0.0)
+    bool_transport_app = models.FloatField(
+        verbose_name='Наличие официального / неофициального транспортного \
+                приложения', default=0.0)
+    bool_rt_internet_movement_info = models.FloatField(
+        verbose_name='Доступность информации о движении ОТ в режиме реального \
+                времени через Интернет', default=0.0)
+    bool_transport_schedule_website = models.FloatField(
+        verbose_name='Наличие сайта с расписаниями движениями транспорта',
+        default=0.0)
+    bool_transport_route_net_map = models.FloatField(
+        verbose_name='Наличие карт - схем маршрутной сети', default=0.0)
+    bool_unique_transporte_style = models.FloatField(
+        verbose_name='Фирменный стиль общественного транспорта', default=0.0)
 
     """ ТАРИФНАЯ СИСТЕМА """
-
-    #  1. Средняя заработная плата по региону (руб.)
-    salary_avrg = models.IntegerField(default=0)
-    #  2. Среднедушевые взвешенные доходы населения по региону (руб.)
-    income_avrg = models.IntegerField(default=0)
-    #  3. Стоимость(месячного) проездного билета (руб.)
-    salary_avrg = models.IntegerField(default=0)
-    # 4. Отношение стоимость проездного билета к среднедушевым доходам
-    # населения (%)
-    ratio_ticket_cost_income = models.FloatField(default=0)
-    # 5. Количество маршрутов на которых доступен проездной
-    # билет(предусмотреть возможность агрегации данных на основе атрибута
-    # маршрутов) (ед)
-    num_routes_with_ticket = models.IntegerField(default=0)
-    # 6. Количество маршрутов на которых доступен пересадочный
-    # билет(предусмотреть возможность агрегации данных на основе атрибута
-    # маршрутов) (ед.)
-    num_routes_with_transfer_ticket = models.IntegerField(default=0)
-    #  7. Социально - ориентированный тариф
-    # (???)
-    #  8. Стоимость разового билета на проезд (руб.)
-    cost_one_travel_ticket = models.IntegerField(default=0)
-    #  9. Стоимость проезда с учетом максимальной скидки
-    # (???)
-    # 10. Стоимость пересадочного тарифа (руб.)
-    cost_transfer_ticket = models.IntegerField(default=0)
-    # 11. Наличие универсальной транспортной карты – булев атрибут
-    bool_universal_transport_card = models.BooleanField(default=False)
-    # 12. Возможность дистанционного пополнения баланса и / или записи билетов
-    # на транспортную карту – булев атрибут
-    bool_online_payment = models.BooleanField(default=False)
-    # 13. Возможность оплаты проезда внутри ТС с помощью мобильных устройств
-    # или банковских карты
-    bool_nfc_payment = models.BooleanField(default=False)
-    # 14. Наличие пересадочного тарифа
-    bool_transfer_tariff = models.BooleanField(default=False)
-    # 15. Наличие тарифа на сутки и более
-    bool_day_tariff = models.BooleanField(default=False)
-    # 16. Наличие проездных билетов на длительный срок
-    bool_long_time_tariff = models.BooleanField(default=False)
+    avrg_region_salary = models.IntegerField(
+        verbose_name='Средняя заработная плата по региону', default=0)
+    avrg_region_income = models.IntegerField(
+        verbose_name='Среднедушевые взвешенные доходы населения по региону',
+        default=0)
+    price_monthly_transport_pass = models.IntegerField(
+        verbose_name='Стоимость(месячного) проездного билета', default=0)
+    ratio_pass_cost_to_income = models.FloatField(
+        verbose_name='Отношение стоимость проездного билета к среднедушевым \
+                доходам населения', default=0)
+    num_routes_with_pass = models.IntegerField(
+        verbose_name='Количество маршрутов на которых доступен проездной \
+                билет', default=0)
+    num_routes_with_transfer_pass = models.IntegerField(
+        verbose_name='Количество маршрутов на которых доступен пересадочный \
+                билет', default=0)
+    price_SOT = models.IntegerField(
+        verbose_name='Социально-ориентированный тариф', default=0)
+    price_one_time_ticket = models.IntegerField(
+        verbose_name='Стоимость разового билета на проезд', default=0)
+    price_one_time_ticket_discount = models.IntegerField(
+        verbose_name='Стоимость проезда с учетом максимальной скидки',
+        default=0)
+    price_transfer_pass = models.IntegerField(
+        verbose_name='Стоимость пересадочного тарифа', default=0)
+    bool_universal_transport_card = models.BooleanField(
+        verbose_name='Наличие универсальной транспортной карты – \
+                булев атрибут', default=False)
+    bool_online_payment = models.BooleanField(
+        verbose_name='Возможность дистанционного пополнения баланса',
+        default=False)
+    bool_nfc_payment = models.BooleanField(
+        verbose_name='Возможность оплаты проезда внутри ТС с помощью \
+                мобильных устройств или банковских карты', default=False)
+    bool_transfer_pass = models.BooleanField(
+        verbose_name='Наличие пересадочного тарифа', default=False)
+    bool_day_pass = models.BooleanField(
+        verbose_name='Наличие тарифа на сутки и более', default=False)
+    bool_long_period_pass = models.BooleanField(
+        verbose_name='Наличие проездных билетов на длительный срок',
+        default=False)
 
 
 # Outer API
