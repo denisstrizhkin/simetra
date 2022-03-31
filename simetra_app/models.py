@@ -306,7 +306,7 @@ class City(models.Model):
         verbose_name='Коэффициент непрямолинейности маршрутов НОТ',
         default=0.0)
     bool_transport_app = models.FloatField(
-        verbose_name='Наличие официального / неофициального транспортного \
+        verbose_name='Наличие официального/неофициального транспортного \
                 приложения', default=0.0)
     bool_rt_internet_movement_info = models.FloatField(
         verbose_name='Доступность информации о движении ОТ в режиме реального \
@@ -315,7 +315,7 @@ class City(models.Model):
         verbose_name='Наличие сайта с расписаниями движениями транспорта',
         default=0.0)
     bool_transport_route_net_map = models.FloatField(
-        verbose_name='Наличие карт - схем маршрутной сети', default=0.0)
+        verbose_name='Наличие карт-схем маршрутной сети', default=0.0)
     bool_unique_transporte_style = models.FloatField(
         verbose_name='Фирменный стиль общественного транспорта', default=0.0)
 
@@ -331,10 +331,10 @@ class City(models.Model):
         verbose_name='Отношение стоимость проездного билета к среднедушевым \
                 доходам населения', default=0)
     num_routes_with_pass = models.IntegerField(
-        verbose_name='Количество маршрутов на которых доступен проездной \
+        verbose_name='Количество маршрутов, на которых доступен проездной \
                 билет', default=0)
     num_routes_with_transfer_pass = models.IntegerField(
-        verbose_name='Количество маршрутов на которых доступен пересадочный \
+        verbose_name='Количество маршрутов, на которых доступен пересадочный \
                 билет', default=0)
     price_SOT = models.IntegerField(
         verbose_name='Социально-ориентированный тариф', default=0)
@@ -346,14 +346,13 @@ class City(models.Model):
     price_transfer_pass = models.IntegerField(
         verbose_name='Стоимость пересадочного тарифа', default=0)
     bool_universal_transport_card = models.BooleanField(
-        verbose_name='Наличие универсальной транспортной карты – \
-                булев атрибут', default=False)
+        verbose_name='Наличие универсальной транспортной карты', default=False)
     bool_online_payment = models.BooleanField(
         verbose_name='Возможность дистанционного пополнения баланса',
         default=False)
     bool_nfc_payment = models.BooleanField(
         verbose_name='Возможность оплаты проезда внутри ТС с помощью \
-                мобильных устройств или банковских карты', default=False)
+                мобильных устройств или банковских карт', default=False)
     bool_transfer_pass = models.BooleanField(
         verbose_name='Наличие пересадочного тарифа', default=False)
     bool_day_pass = models.BooleanField(
