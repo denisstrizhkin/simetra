@@ -207,6 +207,7 @@ body._lock {
 }
 
 .header__menu {
+  padding: 10px 0px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -611,7 +612,8 @@ body._lock {
 }
 
 .footer__logo {
-  max-width: 300px;
+  max-width: 250px;
+  margin-bottom: 30px;
 }
 
 .footer__social {

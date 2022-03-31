@@ -102,6 +102,7 @@ body._lock {
   z-index: 10;
   background-color: #37407F;
   &__menu {
+    padding: 10px 0px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -455,7 +456,8 @@ body._lock {
     padding: 40px 0px;
   }
   &__logo {
-    max-width: 300px;
+    max-width: 250px;
+    margin-bottom: 30px;
   }
 
   &__social {

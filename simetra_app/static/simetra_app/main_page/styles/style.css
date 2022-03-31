@@ -198,10 +198,11 @@ body._lock {
   left: 0;
   top: 0;
   z-index: 10;
-  background-color: #37407F;
+  background-color: #37407f;
 }
 
 .header__menu {
+  padding: 10px 0px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -547,6 +548,7 @@ body._lock {
   color: #ffffff;
   padding: 155px 0px;
   position: relative;
+  margin-bottom: 120px;
 }
 
 .statistics__body {
@@ -602,10 +604,14 @@ body._lock {
 }
 
 /*-------------------------------------------------------------*/
+/*-----Map-----------------------------------------------------*/
+/*-------------------------------------------------------------*/
+/*-------------------------------------------------------------*/
 /*-----Best----------------------------------------------------*/
 /*-------------------------------------------------------------*/
 .page__best {
   padding: 150px 0px 95px 0px;
+  margin-bottom: 40px;
 }
 
 .best__container {
@@ -787,11 +793,12 @@ body._lock {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 60px 0px;
+  padding: 0px 0px 30px 0px;
 }
 
 .footer__logo {
-  max-width: 300px;
+  max-width: 250px;
+  margin-bottom: 30px;
 }
 
 .footer__social {
