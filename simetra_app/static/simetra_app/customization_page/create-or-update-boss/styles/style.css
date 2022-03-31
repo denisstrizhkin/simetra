@@ -250,6 +250,10 @@ body {
   }
 }
 
+.home__input-block a {
+  color: white;
+}
+
 .home__descr {
   display: inline-block;
   min-width: 170px;
@@ -257,9 +261,18 @@ body {
   margin-bottom: 15px;
 }
 
+.home__quote-block {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 30px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 20px 0px;
+}
+
 .home__quote {
-  display: block;
-  margin-bottom: 15px;
+  min-width: 176px;
 }
 
 .home__submit {
@@ -269,6 +282,7 @@ body {
   -webkit-transition: 0.4s;
   transition: 0.4s;
   background-color: #ffb259;
+  cursor: pointer;
 }
 
 .home__submit:hover {

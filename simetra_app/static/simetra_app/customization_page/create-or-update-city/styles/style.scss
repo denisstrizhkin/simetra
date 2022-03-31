@@ -170,6 +170,7 @@ button[name="sumbit-new-city"] {
     transition: 0.4s;
     font-size: inherit;
     background-color: #ffb259;
+    cursor: pointer;
     &:hover {
       color: white;
     }
