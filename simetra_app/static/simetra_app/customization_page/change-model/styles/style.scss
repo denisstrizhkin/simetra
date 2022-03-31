@@ -108,7 +108,7 @@ body {
   }
 
   &__add {
-    font-size: 30px;
+    font-size: 22px;
     line-height: 120%;
     margin-bottom: 20px;
     border-radius: 10px;
@@ -117,14 +117,14 @@ body {
     &::before {
       content: "";
       background: url("../assets/img/add.png") no-repeat;
-      font-size: 25px;
+      font-size: 22px;
       padding-left: 40px;
       background-size: contain;
     }
   }
 
   &__caption {
-    font-size: 25px;
+    font-size: 30px;
     margin-bottom: 20px;
   }
 
@@ -178,7 +178,7 @@ body {
     &::before {
       content: "";
       background: url("../assets/img/load.png") no-repeat;
-      font-size: 20px;
+      font-size: 22px;
       padding-left: 28px;
       background-size: contain;
     }

@@ -1,490 +1,369 @@
 {% load static %}
-{% load mapbox_location_field_tags %} 
+{% load mapbox_location_field_tags %}
 {% location_field_includes %}
 {% include_jquery %}
 
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="{% static 'simetra_app/main_page/styles/style.css' %}"
-    />
-    <title>Rating</title>
-    <link
-      rel="apple-touch-icon"
-      sizes="57x57"
-      href="{% static 'simetra_app/main_page/assets/favicon/apple-icon-57x57.png' %}"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="60x60"
-      href="{% static 'simetra_app/main_page/assets/favicon/apple-icon-60x60.png' %}"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="72x72"
-      href="{% static 'simetra_app/main_page/assets/favicon/apple-icon-72x72.png' %}"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="76x76"
-      href="{% static 'simetra_app/main_page/assets/favicon/apple-icon-76x76.png' %}"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="114x114"
-      href="{% static 'simetra_app/main_page/assets/favicon/apple-icon-114x114.png' %}"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="120x120"
-      href="{% static 'simetra_app/main_page/assets/favicon/apple-icon-120x120.png' %}"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="144x144"
-      href="{% static 'simetra_app/main_page/assets/favicon/apple-icon-144x144.png' %}"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="152x152"
-      href="{% static 'simetra_app/main_page/assets/favicon/apple-icon-152x152.png' %}"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="{% static 'simetra_app/main_page/assets/favicon/apple-icon-180x180.png' %}"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="192x192"
-      href="{% static 'simetra_app/main_page/assets/favicon/android-icon-192x192.png' %}"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="{% static 'simetra_app/main_page/assets/favicon/favicon-32x32.png' %}"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="96x96"
-      href="{% static 'simetra_app/main_page/assets/favicon/favicon-96x96.png' %}"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="{% static 'simetra_app/main_page/assets/favicon/favicon-16x16.png' %}"
-    />
-    <link
-      rel="manifest"
-      href="{% static 'simetra_app/main_page/assets/favicon/manifest.json' %}"
-    />
-    <meta name="msapplication-TileColor" content="#ffffff" />
-    <meta
-      name="msapplication-TileImage"
-      content="{% static 'simetra_app/main_page/assets/favicon/ms-icon-144x144.png' %}"
-    />
-    <meta name="theme-color" content="#ffffff" />
 
-    <!-- Include Map -->
-    <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
-    <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{% static 'simetra_app/main_page/styles/style.css' %}" />
+  <title>Rating</title>
+  <link rel="apple-touch-icon" sizes="57x57"
+    href="{% static 'simetra_app/main_page/assets/favicon/apple-icon-57x57.png' %}" />
+  <link rel="apple-touch-icon" sizes="60x60"
+    href="{% static 'simetra_app/main_page/assets/favicon/apple-icon-60x60.png' %}" />
+  <link rel="apple-touch-icon" sizes="72x72"
+    href="{% static 'simetra_app/main_page/assets/favicon/apple-icon-72x72.png' %}" />
+  <link rel="apple-touch-icon" sizes="76x76"
+    href="{% static 'simetra_app/main_page/assets/favicon/apple-icon-76x76.png' %}" />
+  <link rel="apple-touch-icon" sizes="114x114"
+    href="{% static 'simetra_app/main_page/assets/favicon/apple-icon-114x114.png' %}" />
+  <link rel="apple-touch-icon" sizes="120x120"
+    href="{% static 'simetra_app/main_page/assets/favicon/apple-icon-120x120.png' %}" />
+  <link rel="apple-touch-icon" sizes="144x144"
+    href="{% static 'simetra_app/main_page/assets/favicon/apple-icon-144x144.png' %}" />
+  <link rel="apple-touch-icon" sizes="152x152"
+    href="{% static 'simetra_app/main_page/assets/favicon/apple-icon-152x152.png' %}" />
+  <link rel="apple-touch-icon" sizes="180x180"
+    href="{% static 'simetra_app/main_page/assets/favicon/apple-icon-180x180.png' %}" />
+  <link rel="icon" type="image/png" sizes="192x192"
+    href="{% static 'simetra_app/main_page/assets/favicon/android-icon-192x192.png' %}" />
+  <link rel="icon" type="image/png" sizes="32x32"
+    href="{% static 'simetra_app/main_page/assets/favicon/favicon-32x32.png' %}" />
+  <link rel="icon" type="image/png" sizes="96x96"
+    href="{% static 'simetra_app/main_page/assets/favicon/favicon-96x96.png' %}" />
+  <link rel="icon" type="image/png" sizes="16x16"
+    href="{% static 'simetra_app/main_page/assets/favicon/favicon-16x16.png' %}" />
+  <link rel="manifest" href="{% static 'simetra_app/main_page/assets/favicon/manifest.json' %}" />
+  <meta name="msapplication-TileColor" content="#ffffff" />
+  <meta name="msapplication-TileImage"
+    content="{% static 'simetra_app/main_page/assets/favicon/ms-icon-144x144.png' %}" />
+  <meta name="theme-color" content="#ffffff" />
 
-  <body>
-    <div class="wrapper">
-      <header class="header">
-        <div class="header__container _container">
-          {% include 'simetra_app/navbar.html' %}
+  <!-- Include Map -->
+  <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+</head>
+
+<body>
+  <div class="wrapper">
+    <header class="header">
+      <div class="header__container _container">
+        {% include 'simetra_app/navbar.html' %}
+      </div>
+    </header>
+
+    <main class="page">
+      <section class="page__home home">
+        <div class="home__container _container">
+          <div class="home__body">
+            <h1 class="home__title">
+              Рейтинг городов России <span class="_highlight">по качеству общественного транспорта 2021 г.</span>
+            </h1>
+            <div class="home__text">
+              Сравнение {{ number_of_cities }} российских городов по 51 показателю
+            </div>
+            <button class="home__button _button" type="button">
+              Посмотреть аналитику
+            </button>
+          </div>
         </div>
-      </header>
+        <div class="home__image _ibg">
+          <img src="https://thumb.tildacdn.com/tild6661-3966-4433-b033-656461616564/-/format/webp/1024-576-max.jpg"
+            alt="background photo of Alexa Rise" />
+        </div>
+      </section>
 
-      <main class="page">
-        <section class="page__home home">
-          <div class="home__container _container">
-            <div class="home__body">
-              <h1 class="home__title">
-                Рейтинг городов России <span class="_highlight">по качеству общественного транспорта 2021 г.</span>
-              </h1>
-              <div class="home__text">
-                Сравнение {{ number_of_cities }} российских городов по 51 показателю
-              </div>
-              <button class="home__button _button" type="button">
-                Посмотреть аналитику
-              </button>
+      <section class="page__comments comments">
+        <div class="comments__container _container">
+          {% for boss in bosses_list %}
+          <div class="comments__content">
+            <img class="comments__image" src="{{ boss.image.url }}" />
+            <div class="comments__text-image">
+              <h3 class="comments__initials"><b>{{ boss.name }}</b></h3>
+              <h4 class="comments__position">{{ boss.position }}</h4>
+              <p class="comments__paragraph">— {{ boss.quote }}</p>
             </div>
           </div>
-          <div class="home__image _ibg">
-            <img
-              src="https://thumb.tildacdn.com/tild6661-3966-4433-b033-656461616564/-/format/webp/1024-576-max.jpg"
-              alt="background photo of Alexa Rise"
-            />
-          </div>
-        </section>
+          {% endfor %}
+        </div>
+      </section>
 
-        <section class="page__comments comments">
-          <div class="comments__container _container">
-            {% for boss in bosses_list %}
-            <div class="comments__content">
-              <img class="comments__image" src="{{ boss.image.url }}" />
-              <div class="comments__text-image">
-                <h3 class="comments__initials"><b>{{ boss.name }}</b></h3>
-                <h4 class="comments__position">{{ boss.position }}</h4>
-                <p class="comments__paragraph">— {{ boss.quote }}</p>
-              </div>
-            </div>
-            {% endfor %}
-          </div>
-        </section>
-
-        <section class="page__about about">
-          <div class="about__container _container">
-            <h2 class="about__title _main-title">ОБ ИССЛЕДОВАНИИ</h2>
-            <div class="about__content">
-              <div class="about__text-image">
-                <p class="about__paragraph">
-                  Рейтинг городов России по качеству общественного транспорта
-                  это в первую очередь научное исследование систем общественного
-                  транспорта, которое проводилось во взаимодействии с
-                  администрациями российских городов на основе открытых данных и
-                  геопространственного анализа. Качество транспортного
-                  обслуживания оценивалось по пяти группам показателей:
-                </p>
-                <ul class="about__list">
-                  <li class="about__item">физическая доступность</li>
-                  <li class="about__item">ценовая доступность</li>
-                  <li class="about__item">
-                    эффективность транспортной системы
-                  </li>
-                  <li class="about__item">комфорт и удобство</li>
-                  <li class="about__item">
-                    безопасность и устойчивость развития
-                  </li>
-                </ul>
-                <p class="about__paragraph">
-                  На основании этих показателей определялся общий рейтинг
-                  городов.
-                </p>
-              </div>
-              <img
-                class="about__image"
-                src="https://thumb.tildacdn.com/tild3034-3938-4134-b564-346335383363/-/resize/720x/-/format/webp/Simetra-rating-gorod.jpg"
-              />
-            </div>
-            <div class="about__video">
-              <div class="about__youtube-video">
-                <iframe
-                  src="https://www.youtube.com/embed/J3V9WDdIEDY"
-                  title="YouTube video player"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen
-                ></iframe>
-              </div>
-              <div class="about__text-video">
-                <p class="about__paragraph">
-                  Вместе с урбанистом <b>Аркадием Гершманом</b> поговорили о
-                  географии нового рейтинга, проблеме данных, маршрутках как
-                  виде бизнеса, успешных и не очень удачных транспортных
-                  реформах, о том, как воспринимают рейтинг простые пассажиры и
-                  почему общественный транспорт — это в первую очередь политика.
-                </p>
-                <p class="about__paragraph">Время просмотра — 40 минут.</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="page__statistics statistics">
-          <div class="statistics__container _container">
-            <div class="statistics__body">
-              <h2 class="statistics__title _main-title">
-                В 2020 году SIMETRA впервые провела подобное исследование в
-                России и его главными результатами стали следующие цифры.
-              </h2>
-              <ul class="statistics__list">
-                <li class="statistics__item">
-                  <h3 class="statistics__number">{{ number_of_cities }}</h3>
-                  <p class="statistics__text">
-                    Городов России приняли участие в исследовании
-                  </p>
+      <section class="page__about about">
+        <div class="about__container _container">
+          <h2 class="about__title _main-title">ОБ ИССЛЕДОВАНИИ</h2>
+          <div class="about__content">
+            <div class="about__text-image">
+              <p class="about__paragraph">
+                Рейтинг городов России по качеству общественного транспорта
+                это в первую очередь научное исследование систем общественного
+                транспорта, которое проводилось во взаимодействии с
+                администрациями российских городов на основе открытых данных и
+                геопространственного анализа. Качество транспортного
+                обслуживания оценивалось по пяти группам показателей:
+              </p>
+              <ul class="about__list">
+                <li class="about__item">физическая доступность</li>
+                <li class="about__item">ценовая доступность</li>
+                <li class="about__item">
+                  эффективность транспортной системы
                 </li>
-                <li class="statistics__item">
-                  <h3 class="statistics__number">4000</h3>
-                  <p class="statistics__text">
-                    Столько раз была скачана электронная версия исследования
-                  </p>
-                </li>
-                <li class="statistics__item">
-                  <h3 class="statistics__number">8000</h3>
-                  <p class="statistics__text">
-                    Общий охват профильной аудитории, кто знаком с исследованием
-                  </p>
+                <li class="about__item">комфорт и удобство</li>
+                <li class="about__item">
+                  безопасность и устойчивость развития
                 </li>
               </ul>
-            </div>
-            <div class="statistics__image _ibg">
-              <img
-                src="https://static.tildacdn.com/tild3435-3661-4335-b464-656538666332/petersburg-2805505-m.jpg"
-                alt="background photo of Alexa Rise"
-              />
-            </div>
-          </div>
-        </section>
-
-        <section class="page__map map">
-          <div class="map__container _container">
-            <h2 class="analysis__title _main-title">
-              <span class="_highlight">ГЕОГРАФИЯ</span> ИССЛЕДОВАНИЯ В 2021 ГОДУ
-            </h2>
-
-            <div id='map' style='height: 80vh;'></div>
-            <!-- The secure way to give a key without any leak -->
-            {{ mapbox_access_token|json_script:"mapbox-access-token" }}
-            {{ cities_list_json|json_script:"cities-list-json" }}
-            <script src="{% static 'simetra_app/main_page/scripts/map.js' id="mapbox-access-token" type="application/json" %}"></script>
-          </div>
-        </section>
-
-        <section class="page__best best">
-          <div class="best__container _container">
-            <h2 class="best__title _main-title">
-              <span class="_highlight">ТОП</span> ЛУЧШИХ ГОРОДОВ РОССИИ
-              <span class="_highlight">В 2021 ГОДУ</span>
-            </h2>
-            <ul class="best__list">
-              <li class="best__item city">
-                <img
-                  class="city__image"
-                  src="https://static.tildacdn.com/tild6438-3565-4339-b765-626465383737/__1.jpg"
-                />
-                <p class="city__place">1 место</p>
-                <h3 class="city__title">ЕКАТЕРИНБУРГ</h3>
-              </li>
-              <li class="best__item city">
-                <img
-                  class="city__image"
-                  src="https://static.tildacdn.com/tild6333-3835-4634-b332-373966303537/6.jpg"
-                />
-                <p class="city__place">2 место</p>
-                <h3 class="city__title">ПЕРМЬ</h3>
-              </li>
-              <li class="best__item city">
-                <img
-                  class="city__image"
-                  src="https://static.tildacdn.com/tild3034-3038-4365-b166-633266316465/thumb_453797_1800_12.jpg"
-                />
-                <p class="city__place">3 место</p>
-                <h3 class="city__title">КАЗАНЬ</h3>
-              </li>
-              <li class="best__item city">
-                <img
-                  class="city__image"
-                  src="https://static.tildacdn.com/tild3435-6639-4135-b063-336664653836/DSC03277.jpg"
-                />
-                <p class="city__place">4 место</p>
-                <h3 class="city__title">ИЖЕВСК</h3>
-              </li>
-            </ul>
-          </div>
-        </section>
-
-        <section class="page__analysis analysis">
-          <div class="analysis__container _container">
-            <h2 class="analysis__title _main-title">
-              ГРАФИЧЕСКИЙ АНАЛИЗ ГОРОДОВ
-            </h2>
-            <ul class="analysis__list">
-              <li class="analysis__item employee"></li>
-              <li class="analysis__item employee"></li>
-              <li class="analysis__item employee"></li>
-              <li class="analysis__item employee"></li>
-              <li class="analysis__item employee"></li>
-              <li class="analysis__item employee"></li>
-              <li class="analysis__item employee"></li>
-              <li class="analysis__item employee"></li>
-            </ul>
-          </div>
-        </section>
-
-        <section class="page__download download">
-          <div class="download__container _container">
-            <div class="download__body">
-              <h2 class="download__title _main-title">
-                Скачать рейтинг 2021г.
-              </h2>
-              <h3 class="download__subtitle">
-                Ответьте всего на пять вопросов и получите рейтинг за 2021 год.
-              </h3>
-              <button class="download__button _button" type="button">
-                Получить рейтинг
-              </button>
-            </div>
-            <div class="statistics__image _ibg">
-              <img
-                src="https://static.tildacdn.com/tild6163-3265-4535-a463-633938383564/1024-683-max.jpg"
-                alt="background photo of Alexa Rise"
-              />
-            </div>
-          </div>
-        </section>
-
-        <section class="page__team team">
-          <div class="team__container _container">
-            <h2 class="team__title _main-title">
-              Мы собрали и обработали для вас
-              <span class="_highlight">данные </span>этого
-              <span class="_highlight">рейтинга</span>
-            </h2>
-            <h3 class="team__subtitle">Авторы</h3>
-            <ul class="team__list">
-              {% for employee in employees_list %}
-              <li class="team__item employee">
-                <img class="employee__image" src="{{ employee.image.url }}" />
-                <p class="employee__initials">{{ employee.name }}</p>
-                <h3 class="employee__position">{{ employee.position }}</h3>
-              </li>
-              {% endfor %}
-            </ul>
-          </div>
-        </section>
-      </main>
-
-      <footer class="footer">
-        <div class="footer__container _container">
-          <ul class="footer__list">
-            <li class="footer__item">
-              <img
-                class="footer__logo"
-                src="{% static 'simetra_app/main_page/assets/img/simetra_logo_discrip.png' %}"
-              />
-            </li>
-            <li class="footer__item">
-              <ul class="footer__social social">
-                <li class="social__item">
-                  <a
-                    href="https://www.facebook.com/simetragroup/"
-                    target="_blank"
-                  >
-                    <svg
-                      style="fill: #ffffff"
-                      version="1.1"
-                      xmlns="http://www.w3.org/2000/svg"
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                      x="0px"
-                      y="0px"
-                      width="30px"
-                      height="30px"
-                      viewBox="0 0 48 48"
-                      enable-background="new 0 0 48 48"
-                      xml:space="preserve"
-                    >
-                      <path
-                        d="M47.761,24c0,13.121-10.638,23.76-23.758,23.76C10.877,47.76,0.239,37.121,0.239,24c0-13.124,10.638-23.76,23.764-23.76 C37.123,0.24,47.761,10.876,47.761,24 M20.033,38.85H26.2V24.01h4.163l0.539-5.242H26.2v-3.083c0-1.156,0.769-1.427,1.308-1.427 h3.318V9.168L26.258,9.15c-5.072,0-6.225,3.796-6.225,6.224v3.394H17.1v5.242h2.933V38.85z"
-                      ></path>
-                    </svg>
-                  </a>
-                </li>
-                <li class="social__item">
-                  <a href="https://vk.com/simetragroup" target="_blank">
-                    <svg
-                      version="1.1"
-                      xmlns="http://www.w3.org/2000/svg"
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                      x="0px"
-                      y="0px"
-                      width="30px"
-                      height="30px"
-                      viewBox="0 0 99 99"
-                      enable-background="new 0 0 99 99"
-                      xml:space="preserve"
-                    >
-                      <path
-                        style="fill: #ffffff"
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
-                        d="M49 98C76.062 98 98 76.062 98 49C98 21.938 76.062 0 49 0C21.938 0 0 21.938 0 49C0 76.062 21.938 98 49 98ZM22 34C22.4442 55.3198 33.1042 68.1323 51.7933 68.1323H52.8527V55.9351C59.7202 56.6182 64.9132 61.6409 66.9973 68.1323H76.7008C74.0359 58.4292 67.0314 53.0649 62.658 51.0149C67.0314 48.4866 73.1814 42.3367 74.6505 34H65.8353C63.922 40.7649 58.251 46.915 52.8527 47.4958V34H44.0374V57.6433C38.5707 56.2766 31.6692 49.6482 31.3617 34H22Z"
-                      ></path>
-                    </svg>
-                  </a>
-                </li>
-                <li class="social__item">
-                  <a
-                    href="https://www.youtube.com/c/simetragroup"
-                    target="_blank"
-                  >
-                    <svg
-                      version="1.1"
-                      xmlns="http://www.w3.org/2000/svg"
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                      x="0px"
-                      y="0px"
-                      width="30px"
-                      height="30px"
-                      viewBox="-455 257 48 48"
-                      enable-background="new -455 257 48 48"
-                      xml:space="preserve"
-                    >
-                      <path
-                        style="fill: #ffffff"
-                        d="M-431,257.013c13.248,0,23.987,10.74,23.987,23.987s-10.74,23.987-23.987,23.987s-23.987-10.74-23.987-23.987 S-444.248,257.013-431,257.013z M-419.185,275.093c-0.25-1.337-1.363-2.335-2.642-2.458c-3.054-0.196-6.119-0.355-9.178-0.357 c-3.059-0.002-6.113,0.154-9.167,0.347c-1.284,0.124-2.397,1.117-2.646,2.459c-0.284,1.933-0.426,3.885-0.426,5.836 s0.142,3.903,0.426,5.836c0.249,1.342,1.362,2.454,2.646,2.577c3.055,0.193,6.107,0.39,9.167,0.39c3.058,0,6.126-0.172,9.178-0.37 c1.279-0.124,2.392-1.269,2.642-2.606c0.286-1.93,0.429-3.879,0.429-5.828C-418.756,278.971-418.899,277.023-419.185,275.093z M-433.776,284.435v-7.115l6.627,3.558L-433.776,284.435z"
-                      ></path>
-                    </svg>
-                  </a>
-                </li>
-                <li class="social__item">
-                  <a
-                    href="https://www.instagram.com/accounts/login/?next=/simetragroup/"
-                    target="_blank"
-                  >
-                    <svg
-                      version="1.1"
-                      xmlns="http://www.w3.org/2000/svg"
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                      width="30px"
-                      height="30px"
-                      viewBox="0 0 30 30"
-                      xml:space="preserve"
-                    >
-                      <path
-                        style="fill: #ffffff"
-                        d="M15,11.014 C12.801,11.014 11.015,12.797 11.015,15 C11.015,17.202 12.802,18.987 15,18.987 C17.199,18.987 18.987,17.202 18.987,15 C18.987,12.797 17.199,11.014 15,11.014 L15,11.014 Z M15,17.606 C13.556,17.606 12.393,16.439 12.393,15 C12.393,13.561 13.556,12.394 15,12.394 C16.429,12.394 17.607,13.561 17.607,15 C17.607,16.439 16.444,17.606 15,17.606 L15,17.606 Z"
-                      ></path>
-                      <path
-                        style="fill: #ffffff"
-                        d="M19.385,9.556 C18.872,9.556 18.465,9.964 18.465,10.477 C18.465,10.989 18.872,11.396 19.385,11.396 C19.898,11.396 20.306,10.989 20.306,10.477 C20.306,9.964 19.897,9.556 19.385,9.556 L19.385,9.556 Z"
-                      ></path>
-                      <path
-                        style="fill: #ffffff"
-                        d="M15.002,0.15 C6.798,0.15 0.149,6.797 0.149,15 C0.149,23.201 6.798,29.85 15.002,29.85 C23.201,29.85 29.852,23.202 29.852,15 C29.852,6.797 23.201,0.15 15.002,0.15 L15.002,0.15 Z M22.666,18.265 C22.666,20.688 20.687,22.666 18.25,22.666 L11.75,22.666 C9.312,22.666 7.333,20.687 7.333,18.28 L7.333,11.734 C7.333,9.312 9.311,7.334 11.75,7.334 L18.25,7.334 C20.688,7.334 22.666,9.312 22.666,11.734 L22.666,18.265 L22.666,18.265 Z"
-                      ></path>
-                    </svg>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li class="footer__item">
-              <p class="footer__text">
-                При использовании информации, представленной в настоящем
-                издании, обязательна ссылка на источник. Воспроизведение любым
-                способом фрагментов издания возможно только по согласованию с
-                авторами.
+              <p class="about__paragraph">
+                На основании этих показателей определялся общий рейтинг
+                городов.
               </p>
-              <p class="footer__text">
-                SIMETRA (ООО "А+С Транспроект")© Все права защищены.
+            </div>
+            <img class="about__image"
+              src="https://thumb.tildacdn.com/tild3034-3938-4134-b564-346335383363/-/resize/720x/-/format/webp/Simetra-rating-gorod.jpg" />
+          </div>
+          <div class="about__video">
+            <div class="about__youtube-video">
+              <iframe src="https://www.youtube.com/embed/J3V9WDdIEDY" title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+            </div>
+            <div class="about__text-video">
+              <p class="about__paragraph">
+                Вместе с урбанистом <b>Аркадием Гершманом</b> поговорили о
+                географии нового рейтинга, проблеме данных, маршрутках как
+                виде бизнеса, успешных и не очень удачных транспортных
+                реформах, о том, как воспринимают рейтинг простые пассажиры и
+                почему общественный транспорт — это в первую очередь политика.
               </p>
+              <p class="about__paragraph">Время просмотра — 40 минут.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="page__statistics statistics">
+        <div class="statistics__container _container">
+          <div class="statistics__body">
+            <h2 class="statistics__title _main-title">
+              В 2020 году SIMETRA впервые провела подобное исследование в
+              России и его главными результатами стали следующие цифры.
+            </h2>
+            <ul class="statistics__list">
+              <li class="statistics__item">
+                <h3 class="statistics__number">{{ number_of_cities }}</h3>
+                <p class="statistics__text">
+                  Городов России приняли участие в исследовании
+                </p>
+              </li>
+              <li class="statistics__item">
+                <h3 class="statistics__number">4000</h3>
+                <p class="statistics__text">
+                  Столько раз была скачана электронная версия исследования
+                </p>
+              </li>
+              <li class="statistics__item">
+                <h3 class="statistics__number">8000</h3>
+                <p class="statistics__text">
+                  Общий охват профильной аудитории, кто знаком с исследованием
+                </p>
+              </li>
+            </ul>
+          </div>
+          <div class="statistics__image _ibg">
+            <img src="https://static.tildacdn.com/tild3435-3661-4335-b464-656538666332/petersburg-2805505-m.jpg"
+              alt="background photo of Alexa Rise" />
+          </div>
+        </div>
+      </section>
+
+      <section class="page__map map">
+        <div class="map__container _container">
+          <h2 class="analysis__title _main-title">
+            <span class="_highlight">ГЕОГРАФИЯ</span> ИССЛЕДОВАНИЯ В 2021 ГОДУ
+          </h2>
+
+          <div id='map' style='height: 80vh;'></div>
+          <!-- The secure way to give a key without any leak -->
+          {{ mapbox_access_token|json_script:"mapbox-access-token" }}
+          {{ cities_list_json|json_script:"cities-list-json" }}
+          <script src="{% static 'simetra_app/main_page/scripts/map.js' id="mapbox-access-token" type="application/json" %}"></script>
+        </div>
+      </section>
+
+      <section class="page__best best">
+        <div class="best__container _container">
+          <h2 class="best__title _main-title">
+            <span class="_highlight">ТОП</span> ЛУЧШИХ ГОРОДОВ РОССИИ
+            <span class="_highlight">В 2021 ГОДУ</span>
+          </h2>
+          <ul class="best__list">
+            <li class="best__item city">
+              <img class="city__image" src="https://static.tildacdn.com/tild6438-3565-4339-b765-626465383737/__1.jpg" />
+              <p class="city__place">1 место</p>
+              <h3 class="city__title">ЕКАТЕРИНБУРГ</h3>
+            </li>
+            <li class="best__item city">
+              <img class="city__image" src="https://static.tildacdn.com/tild6333-3835-4634-b332-373966303537/6.jpg" />
+              <p class="city__place">2 место</p>
+              <h3 class="city__title">ПЕРМЬ</h3>
+            </li>
+            <li class="best__item city">
+              <img class="city__image"
+                src="https://static.tildacdn.com/tild3034-3038-4365-b166-633266316465/thumb_453797_1800_12.jpg" />
+              <p class="city__place">3 место</p>
+              <h3 class="city__title">КАЗАНЬ</h3>
+            </li>
+            <li class="best__item city">
+              <img class="city__image"
+                src="https://static.tildacdn.com/tild3435-6639-4135-b063-336664653836/DSC03277.jpg" />
+              <p class="city__place">4 место</p>
+              <h3 class="city__title">ИЖЕВСК</h3>
             </li>
           </ul>
         </div>
-      </footer>
-    </div>
-  </body>
+      </section>
+
+      <section class="page__analysis analysis">
+        <div class="analysis__container _container">
+          <h2 class="analysis__title _main-title">
+            ГРАФИЧЕСКИЙ АНАЛИЗ ГОРОДОВ
+          </h2>
+          <ul class="analysis__list">
+            <li class="analysis__item employee"></li>
+            <li class="analysis__item employee"></li>
+            <li class="analysis__item employee"></li>
+            <li class="analysis__item employee"></li>
+            <li class="analysis__item employee"></li>
+            <li class="analysis__item employee"></li>
+            <li class="analysis__item employee"></li>
+            <li class="analysis__item employee"></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="page__download download">
+        <div class="download__container _container">
+          <div class="download__body">
+            <h2 class="download__title _main-title">
+              Скачать рейтинг 2021г.
+            </h2>
+            <h3 class="download__subtitle">
+              Ответьте всего на пять вопросов и получите рейтинг за 2021 год.
+            </h3>
+            <button class="download__button _button" type="button">
+              Получить рейтинг
+            </button>
+          </div>
+          <div class="statistics__image _ibg">
+            <img src="https://static.tildacdn.com/tild6163-3265-4535-a463-633938383564/1024-683-max.jpg"
+              alt="background photo of Alexa Rise" />
+          </div>
+        </div>
+      </section>
+
+      <section class="page__team team">
+        <div class="team__container _container">
+          <h2 class="team__title _main-title">
+            Мы собрали и обработали для вас
+            <span class="_highlight">данные </span>этого
+            <span class="_highlight">рейтинга</span>
+          </h2>
+          <h3 class="team__subtitle">Авторы</h3>
+          <ul class="team__list">
+            {% for employee in employees_list %}
+            <li class="team__item employee">
+              <img class="employee__image" src="{{ employee.image.url }}" />
+              <p class="employee__initials">{{ employee.name }}</p>
+              <h3 class="employee__position">{{ employee.position }}</h3>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer__container _container">
+        <ul class="footer__list">
+          <li class="footer__item">
+            <a href="https://apluss.ru/" target="_blank">
+              <img class="footer__logo"
+                src="{% static 'simetra_app/main_page/assets/img/simetra_logo_discrip.png' %}" />
+            </a>
+          </li>
+          <li class="footer__item">
+            <ul class="footer__social social">
+              <li class="social__item">
+                <a href="https://www.facebook.com/simetragroup/" target="_blank">
+                  <svg style="fill: #ffffff" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="30px" height="30px"
+                    viewBox="0 0 48 48" enable-background="new 0 0 48 48" xml:space="preserve">
+                    <path
+                      d="M47.761,24c0,13.121-10.638,23.76-23.758,23.76C10.877,47.76,0.239,37.121,0.239,24c0-13.124,10.638-23.76,23.764-23.76 C37.123,0.24,47.761,10.876,47.761,24 M20.033,38.85H26.2V24.01h4.163l0.539-5.242H26.2v-3.083c0-1.156,0.769-1.427,1.308-1.427 h3.318V9.168L26.258,9.15c-5.072,0-6.225,3.796-6.225,6.224v3.394H17.1v5.242h2.933V38.85z">
+                    </path>
+                  </svg>
+                </a>
+              </li>
+              <li class="social__item">
+                <a href="https://vk.com/simetragroup" target="_blank">
+                  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                    x="0px" y="0px" width="30px" height="30px" viewBox="0 0 99 99" enable-background="new 0 0 99 99"
+                    xml:space="preserve">
+                    <path style="fill: #ffffff" fill-rule="evenodd" clip-rule="evenodd"
+                      d="M49 98C76.062 98 98 76.062 98 49C98 21.938 76.062 0 49 0C21.938 0 0 21.938 0 49C0 76.062 21.938 98 49 98ZM22 34C22.4442 55.3198 33.1042 68.1323 51.7933 68.1323H52.8527V55.9351C59.7202 56.6182 64.9132 61.6409 66.9973 68.1323H76.7008C74.0359 58.4292 67.0314 53.0649 62.658 51.0149C67.0314 48.4866 73.1814 42.3367 74.6505 34H65.8353C63.922 40.7649 58.251 46.915 52.8527 47.4958V34H44.0374V57.6433C38.5707 56.2766 31.6692 49.6482 31.3617 34H22Z">
+                    </path>
+                  </svg>
+                </a>
+              </li>
+              <li class="social__item">
+                <a href="https://www.youtube.com/c/simetragroup" target="_blank">
+                  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                    x="0px" y="0px" width="30px" height="30px" viewBox="-455 257 48 48"
+                    enable-background="new -455 257 48 48" xml:space="preserve">
+                    <path style="fill: #ffffff"
+                      d="M-431,257.013c13.248,0,23.987,10.74,23.987,23.987s-10.74,23.987-23.987,23.987s-23.987-10.74-23.987-23.987 S-444.248,257.013-431,257.013z M-419.185,275.093c-0.25-1.337-1.363-2.335-2.642-2.458c-3.054-0.196-6.119-0.355-9.178-0.357 c-3.059-0.002-6.113,0.154-9.167,0.347c-1.284,0.124-2.397,1.117-2.646,2.459c-0.284,1.933-0.426,3.885-0.426,5.836 s0.142,3.903,0.426,5.836c0.249,1.342,1.362,2.454,2.646,2.577c3.055,0.193,6.107,0.39,9.167,0.39c3.058,0,6.126-0.172,9.178-0.37 c1.279-0.124,2.392-1.269,2.642-2.606c0.286-1.93,0.429-3.879,0.429-5.828C-418.756,278.971-418.899,277.023-419.185,275.093z M-433.776,284.435v-7.115l6.627,3.558L-433.776,284.435z">
+                    </path>
+                  </svg>
+                </a>
+              </li>
+              <li class="social__item">
+                <a href="https://www.instagram.com/accounts/login/?next=/simetragroup/" target="_blank">
+                  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                    width="30px" height="30px" viewBox="0 0 30 30" xml:space="preserve">
+                    <path style="fill: #ffffff"
+                      d="M15,11.014 C12.801,11.014 11.015,12.797 11.015,15 C11.015,17.202 12.802,18.987 15,18.987 C17.199,18.987 18.987,17.202 18.987,15 C18.987,12.797 17.199,11.014 15,11.014 L15,11.014 Z M15,17.606 C13.556,17.606 12.393,16.439 12.393,15 C12.393,13.561 13.556,12.394 15,12.394 C16.429,12.394 17.607,13.561 17.607,15 C17.607,16.439 16.444,17.606 15,17.606 L15,17.606 Z">
+                    </path>
+                    <path style="fill: #ffffff"
+                      d="M19.385,9.556 C18.872,9.556 18.465,9.964 18.465,10.477 C18.465,10.989 18.872,11.396 19.385,11.396 C19.898,11.396 20.306,10.989 20.306,10.477 C20.306,9.964 19.897,9.556 19.385,9.556 L19.385,9.556 Z">
+                    </path>
+                    <path style="fill: #ffffff"
+                      d="M15.002,0.15 C6.798,0.15 0.149,6.797 0.149,15 C0.149,23.201 6.798,29.85 15.002,29.85 C23.201,29.85 29.852,23.202 29.852,15 C29.852,6.797 23.201,0.15 15.002,0.15 L15.002,0.15 Z M22.666,18.265 C22.666,20.688 20.687,22.666 18.25,22.666 L11.75,22.666 C9.312,22.666 7.333,20.687 7.333,18.28 L7.333,11.734 C7.333,9.312 9.311,7.334 11.75,7.334 L18.25,7.334 C20.688,7.334 22.666,9.312 22.666,11.734 L22.666,18.265 L22.666,18.265 Z">
+                    </path>
+                  </svg>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="footer__item">
+            <p class="footer__text">
+              При использовании информации, представленной в настоящем
+              издании, обязательна ссылка на источник. Воспроизведение любым
+              способом фрагментов издания возможно только по согласованию с
+              авторами.
+            </p>
+            <p class="footer__text">
+              SIMETRA (ООО "А+С Транспроект")© Все права защищены.
+            </p>
+          </li>
+        </ul>
+      </div>
+    </footer>
+  </div>
+  <script src="{% static 'simetra_app/main_page/scripts/script.js' %}"></script>
+</body>
+
 </html>

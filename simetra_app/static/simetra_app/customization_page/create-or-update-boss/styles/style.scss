@@ -116,11 +116,13 @@ body {
   &__input-block {
     font-size: 25px;
     margin-bottom: 20px;
+
     & input {
       border-radius: 10px;
       padding: 10px;
       font-size: 16px;
     }
+
     & textarea {
       resize: vertical;
       padding: 10px;
@@ -129,6 +131,10 @@ body {
       @media (max-width: 520px) {
         width: 100%;
       }
+    }
+
+    & a {
+      color: rgb(255, 255, 255);
     }
   }
 
@@ -139,9 +145,15 @@ body {
     margin-bottom: 15px;
   }
 
+  &__quote-block {
+    display: flex;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 20px 0px;
+  }
+
   &__quote {
-    display: block;
-    margin-bottom: 15px;
+    min-width: 176px;
   }
 
   &__submit {
@@ -150,6 +162,7 @@ body {
     font-size: 25px;
     transition: 0.4s;
     background-color: #ffb259;
+    cursor: pointer;
     &:hover {
       color: white;
     }

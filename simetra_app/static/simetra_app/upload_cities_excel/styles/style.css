@@ -238,6 +238,7 @@ tr {
   -webkit-transition: 0.4s;
   transition: 0.4s;
   background-color: #ffb259;
+  cursor: pointer;
 }
 
 .home__submit:hover {
