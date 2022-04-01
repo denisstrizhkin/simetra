@@ -108,23 +108,55 @@
         <p> {% get_city_option_text city_form "proportion_working_transport" %} </p>
         <p> {% get_city_option_text city_form "percent_renew_program" %} </p>
 
+        <h3> Маршруты </h3>
+        <p> {% get_city_option_text city_form "num_routes_in_use_tramway" %} </p>
+        <p> {% get_city_option_text city_form "num_routes_in_use_trolleybus" %} </p>
+        <p> {% get_city_option_text city_form "num_routes_in_use_bus" %} </p>
+        <p> {% get_city_option_text city_form "num_routes_in_use_overall" %} </p>
+        <p> {% get_city_option_text city_form "num_routes_regulated_tariff" %} </p>
+        <p> {% get_city_option_text city_form "num_routes_unregulated_tariff" %} </p>
+        <p> {% get_city_option_text city_form "proportion_routes_unregulated_tariff" %} </p>
+        <p> {% get_city_option_text city_form "length_avrg_tramway_route" %} </p>
+        <p> {% get_city_option_text city_form "length_avrg_trolleybus_route" %} </p>
+        <p> {% get_city_option_text city_form "length_avrg_bus_route" %} </p>
+        <p> {% get_city_option_text city_form "length_existing_tramway_routes" %} </p>
+        <p> {% get_city_option_text city_form "length_in_use_tramway_routes" %} </p>
+        <p> {% get_city_option_text city_form "length_existing_trolleybus_routes" %} </p>
+        <p> {% get_city_option_text city_form "length_in_use_trolleybus_routes" %} </p>
+        <p> {% get_city_option_text city_form "length_overall_nonrailed_transport_path" %} </p>
+        <p> {% get_city_option_text city_form "percent_isolated_tramway_routes" %} </p>
+        <p> {% get_city_option_text city_form "coeff_tramway_net_use" %} </p>
+        <p> {% get_city_option_text city_form "coeff_trolleybus_net_use" %} </p>
+        <p> {% get_city_option_text city_form "num_segments_avrg_load" %} </p>
+        <p> {% get_city_option_text city_form "num_segments_high_load" %} </p>
+        <p> {% get_city_option_text city_form "time_avrg_waiting_any_transport" %} </p>
+        <p> {% get_city_option_text city_form "time_avrg_waiting_specific_transport" %} </p>
+        <p> {% get_city_option_text city_form "coeff_route" %} </p>
+        <p> {% get_city_option_text city_form "coeff_non_straight_route" %} </p>
+        <p> {% get_city_option_text city_form "bool_transport_app" %} </p>
+        <p> {% get_city_option_text city_form "bool_rt_internet_movement_info" %} </p>
+        <p> {% get_city_option_text city_form "bool_transport_schedule_website" %} </p>
+        <p> {% get_city_option_text city_form "bool_transport_route_net_map" %} </p>
+        <p> {% get_city_option_text city_form "bool_unique_transporte_style" %} </p>
+
         <h3> Тарифная система </h3>
-        <p> {% get_verbose_field_name city_form.instance "salary_avrg" %}: {{ city_form.salary_avrg }} </p>
-        <p> {% get_verbose_field_name city_form.instance "income_avrg" %}: {{ city_form.income_avrg }} </p>
-        <p> {% get_verbose_field_name city_form.instance "salary_avrg" %}: {{ city_form.salary_avrg }} </p>
-        <p> {% get_verbose_field_name city_form.instance "ratio_ticket_cost_income" %}: {{ city_form.ratio_ticket_cost_income }} </p>
-        <p> {% get_verbose_field_name city_form.instance "num_routes_with_ticket" %}: {{ city_form.num_routes_with_ticket }} </p>
-        <p> {% get_verbose_field_name city_form.instance "num_routes_with_transfer_ticket" %}: {{ city_form.num_routes_with_transfer_ticket }} </p>
-        <p> 7. Социально - ориентированный тариф: (???) не нашел </p>
-        <p> {% get_verbose_field_name city_form.instance "cost_one_travel_ticket" %}: {{ city_form.cost_one_travel_ticket }} </p>
-        <p> 9. Стоимость проезда с учетом максимальной скидки: (???) не нашел </p>
-        <p> {% get_verbose_field_name city_form.instance "cost_transfer_ticket" %}: {{ city_form.cost_transfer_ticket }} </p>
-        <p> {% get_verbose_field_name city_form.instance "bool_universal_transport_card" %}: {{ city_form.bool_universal_transport_card }} </p>
-        <p> {% get_verbose_field_name city_form.instance "bool_online_payment" %}: {{ city_form.bool_online_payment }} </p>
-        <p> {% get_verbose_field_name city_form.instance "bool_nfc_payment" %}: {{ city_form.bool_nfc_payment }} </p>
-        <p> {% get_verbose_field_name city_form.instance "bool_transfer_tariff" %}: {{ city_form.bool_transfer_tariff }} </p>
-        <p> {% get_verbose_field_name city_form.instance "bool_day_tariff" %}: {{ city_form.bool_day_tariff }} </p>
-        <p> {% get_verbose_field_name city_form.instance "bool_long_time_tariff" %}: {{ city_form.bool_long_time_tariff }} </p>
+
+        <p> {% get_city_option_text city_form "avrg_region_salary" %} </p>
+        <p> {% get_city_option_text city_form "avrg_region_income" %} </p>
+        <p> {% get_city_option_text city_form "price_monthly_transport_pass" %} </p>
+        <p> {% get_city_option_text city_form "ratio_pass_cost_to_income" %} </p>
+        <p> {% get_city_option_text city_form "num_routes_with_pass" %} </p>
+        <p> {% get_city_option_text city_form "num_routes_with_transfer_pass" %} </p>
+        <p> {% get_city_option_text city_form "price_SOT" %} </p>
+        <p> {% get_city_option_text city_form "price_one_time_ticket" %} </p>
+        <p> {% get_city_option_text city_form "price_one_time_ticket_discount" %} </p>
+        <p> {% get_city_option_text city_form "price_transfer_pass" %} </p>
+        <p> {% get_city_option_text city_form "bool_universal_transport_card" %} </p>
+        <p> {% get_city_option_text city_form "bool_online_payment" %} </p>
+        <p> {% get_city_option_text city_form "bool_nfc_payment" %} </p>
+        <p> {% get_city_option_text city_form "bool_transfer_pass" %} </p>
+        <p> {% get_city_option_text city_form "bool_day_pass" %} </p>
+        <p> {% get_city_option_text city_form "bool_long_period_pass" %} </p>
 
         <input type="submit" value="Сохранить" />
       </form>

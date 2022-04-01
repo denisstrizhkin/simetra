@@ -296,32 +296,12 @@ def upload_cities_excel(request):
         file = forms.FileField()
 
     def write_field(city: City, sheet, field_name: str, i: int) -> None:
-        setattr(city, field_name, sheet[City._meta.get_field(
-                field_name).verbose_name, i])
-
-    def write_quality_groups(city: City, sheet, i: int) -> None:
-        write_field(
-            city, sheet, 'rating_security_n_development', i)
-        write_field(
-            city, sheet, 'rating_comfort_n_convenience', i)
-        write_field(
-            city, sheet, 'rating_physical_availability', i)
-        write_field(
-            city, sheet, 'rating_affordability', i)
-        write_field(
-            city, sheet, 'rating_route_network_efficiency', i)
-
-    def write_spatial_characteristics(city: City, sheet, i: int) -> None:
-        pass
-
-    def write_routes(city: City, sheet, i: int) -> None:
-        pass
-
-    def write_podviznoy_sostav(city: City, sheet, i: int) -> None:
-        pass
-
-    def write_tariff_system(city: City, sheet, i: int) -> None:
-        pass
+        val = sheet[City._meta.get_field(field_name).verbose_name, i]
+        try:
+            val = float(val)
+        except ValueError:
+            val = 0
+        setattr(city, field_name, val)
 
     if request.method == "POST":
         form = UploadFileForm(request.POST, request.FILES)
@@ -330,11 +310,138 @@ def upload_cities_excel(request):
             excel_book = request.FILES["file"].get_book()
 
             sheet_names = {
-                'КАЧЕСТВЕННЫЕ ГРУППЫ': write_quality_groups,
-                'ПРОСТРАНСТВЕННЫЕ_ХАРАКТЕРИСТИКИ': write_spatial_characteristics,
-                'ПОДВИЖНОЙ СОСТАВ': write_podviznoy_sostav,
-                'МАРШРУТЫ': write_routes,
-                'ТАРИФНАЯ СИСТЕМА': write_tariff_system,
+                'КАЧЕСТВЕННЫЕ ГРУППЫ': [
+                    'rating_security_n_development',
+                    'rating_comfort_n_convenience',
+                    'rating_physical_availability',
+                    'rating_affordability',
+                    'rating_route_network_efficiency'
+                ],
+                'ПРОСТРАНСТВЕННЫЕ_ХАРАКТЕРИСТИКИ': [
+                    'num_population',
+                    'length_UDS',
+                    'area_active_city_zone',
+                    'traffic_ground_transport',
+                    'traffic_metro',
+                    'num_working_stops_overall',
+                    'num_working_stops_active_city_zone',
+                    'num_of_apartments',
+                    'proportion_apartments_in_coverage_zone',
+                    'proportion_people_in_coverage_zone',
+                    'area_stops_active_zone_coverage_500',
+                    'area_stops_active_zone_coverage_700',
+                    'area_stops_active_zone_coverage_1000',
+                    'proportion_apartments_in_metro_coverage_zone',
+                    'proportion_people_in_metro_coverage_zone',
+                    'area_metro_coverage',
+                    'density_stops_active_zone',
+                    'percent_transport_covered_area',
+                    'percent_metro_covered_area',
+                    'num_people_with_metro_access',
+                    'proportion_people_with_metro_access',
+                    'num_people_with_transport_access',
+                    'proportion_people_with_transport_access',
+                    'avrg_length_between_stops',
+                    'num_death_toll',
+                    'num_wounded',
+                    'num_accidents',
+                    'num_accidents_per_transport_unit',
+                    'num_wounded_n_dead_per_accident',
+                    'num_wounded_n_dead_per_people',
+                ],
+                'ПОДВИЖНОЙ СОСТАВ': [
+                    'num_tramway_cars',
+                    'num_trolleybuses',
+                    'num_electrobuses',
+                    'num_buses',
+                    'num_metro_cars',
+                    'num_working_tramway_cars',
+                    'num_working_trolleybuses',
+                    'num_working_electrobuses',
+                    'num_working_buses',
+                    'num_working_metro_cars',
+                    'percent_working_tramway_cars',
+                    'percent_working_trolleybuses',
+                    'percent_working_electrobuses',
+                    'percent_working_buses',
+                    'percent_working_metro_cars',
+                    'num_all_buses_registry',
+                    'num_very_big_buses_registry',
+                    'num_big_buses_registry',
+                    'num_medium_buses_registry',
+                    'num_small_buses_registry',
+                    'num_all_trolleybuses_registry',
+                    'num_big_trolleybuses_registry',
+                    'num_very_big_trolleybuses_registry',
+                    'num_tramway_cars_registry',
+                    'num_big_tramway_cars_registry',
+                    'num_very_big_tramway_cars_registry',
+                    'avrg_age_tramway_car',
+                    'avrg_age_trolleybus',
+                    'avrg_age_bus',
+                    'avrg_age_electrobus',
+                    'avrg_age_metro_car',
+                    'num_low_profile_tramway_cars',
+                    'num_low_profile_trolleybuses',
+                    'num_low_profile_buses',
+                    'num_low_profile_electrobuses',
+                    'num_new_GET',
+                    'num_new_buses',
+                    'proportion_low_profile_transport',
+                    'proportion_big_capacity_transport',
+                    'proportion_electro_transport',
+                    'proportion_working_transport',
+                    'percent_renew_program'
+                ],
+                'МАРШРУТЫ': [
+                    'num_routes_in_use_tramway',
+                    'num_routes_in_use_trolleybus',
+                    'num_routes_in_use_bus',
+                    'num_routes_in_use_overall',
+                    'num_routes_regulated_tariff',
+                    'num_routes_unregulated_tariff',
+                    'proportion_routes_unregulated_tariff',
+                    'length_avrg_tramway_route',
+                    'length_avrg_trolleybus_route',
+                    'length_avrg_bus_route',
+                    'length_existing_tramway_routes',
+                    'length_in_use_tramway_routes',
+                    'length_existing_trolleybus_routes',
+                    'length_in_use_trolleybus_routes',
+                    'length_overall_nonrailed_transport_path',
+                    'percent_isolated_tramway_routes',
+                    'coeff_tramway_net_use',
+                    'coeff_trolleybus_net_use',
+                    'num_segments_avrg_load',
+                    'num_segments_high_load',
+                    'time_avrg_waiting_any_transport',
+                    'time_avrg_waiting_specific_transport',
+                    'coeff_route',
+                    'coeff_non_straight_route',
+                    'bool_transport_app',
+                    'bool_rt_internet_movement_info',
+                    'bool_transport_schedule_website',
+                    'bool_transport_route_net_map',
+                    'bool_unique_transporte_style',
+                ],
+                'ТАРИФНАЯ СИСТЕМА': [
+                    'avrg_region_salary',
+                    'avrg_region_income',
+                    'price_monthly_transport_pass',
+                    'ratio_pass_cost_to_income',
+                    'num_routes_with_pass',
+                    'num_routes_with_transfer_pass',
+                    'price_SOT',
+                    'price_one_time_ticket',
+                    'price_one_time_ticket_discount',
+                    'price_transfer_pass',
+                    'bool_universal_transport_card',
+                    'bool_online_payment',
+                    'bool_nfc_payment',
+                    'bool_transfer_pass',
+                    'bool_day_pass',
+                    'bool_long_period_pass'
+                ],
             }
 
             def check_sheet_existance(book, sheet_name) -> bool:
@@ -354,8 +461,9 @@ def upload_cities_excel(request):
                 return render(request, "simetra_app/upload_cities_excel.html",
                               {"form": form, "error_message": error_message})
 
-            def write_sheet(sheet_name, write_function) -> None:
+            def write_sheet(sheet_name) -> None:
                 sheet = excel_book[sheet_name]
+                field_names = sheet_names[sheet_name]
 
                 sheet.name_rows_by_column(0)
                 for i in range(0, sheet.number_of_columns()):
@@ -367,11 +475,13 @@ def upload_cities_excel(request):
                     else:
                         city = City(name=name)
 
-                    write_function(city, sheet, i)
+                    for field_name in field_names:
+                        write_field(city, sheet, field_name, i)
+
                     city.save()
 
             for key in sheet_names:
-                write_sheet(key, sheet_names[key])
+                write_sheet(key)
 
         else:
             return HttpResponseBadRequest()

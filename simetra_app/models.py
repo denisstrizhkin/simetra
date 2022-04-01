@@ -90,7 +90,7 @@ class City(models.Model):
         verbose_name='Количество действующих остановочных пунктов', default=0)
     num_working_stops_active_city_zone = models.IntegerField(
         verbose_name='Количество остановочных пунктов в черте активной зоны \
-                города', default=0)
+города', default=0)
     num_of_apartments = models.IntegerField(
         verbose_name='Кол-во многоквартирных домов', default=0)
     proportion_apartments_in_coverage_zone = models.FloatField(
@@ -99,13 +99,13 @@ class City(models.Model):
         verbose_name='Доля населения в зоне покрытия', default=0.0)
     area_stops_active_zone_coverage_500 = models.FloatField(
         verbose_name='Площадь покрытия активной зоны города пунктами \
-                остановок 500м', default=0.0)
+остановок 500м', default=0.0)
     area_stops_active_zone_coverage_700 = models.FloatField(
         verbose_name='Площадь покрытия активной зоны города пунктами \
-                остановок 700м', default=0.0)
+остановок 700м', default=0.0)
     area_stops_active_zone_coverage_1000 = models.FloatField(
         verbose_name='Площадь покрытия активной зоны города пунктами \
-                остановок 1000м', default=0.0)
+остановок 1000м', default=0.0)
     proportion_apartments_in_metro_coverage_zone = models.FloatField(
         verbose_name='Доля домов в зоне покрытия метрополитеном', default=0.0)
     proportion_people_in_metro_coverage_zone = models.FloatField(
@@ -115,7 +115,7 @@ class City(models.Model):
         verbose_name='Площадь покрытия станциями метрополитена', default=0.0)
     density_stops_active_zone = models.FloatField(
         verbose_name='Плотность остановок распределения остановочных пунктов \
-                по территории активной зоны города', default=0.0)
+по территории активной зоны города', default=0.0)
     percent_transport_covered_area = models.FloatField(
         verbose_name='Процент покрытой территории', default=0.0)
     percent_metro_covered_area = models.FloatField(
@@ -127,10 +127,10 @@ class City(models.Model):
         verbose_name='Доля населения с доступом к метрополитену', default=0.0)
     num_people_with_transport_access = models.IntegerField(
         verbose_name='Население с доступом к общественному \
-                транспорту', default=0)
+транспорту', default=0)
     proportion_people_with_transport_access = models.FloatField(
         verbose_name='Доля населения с доступом к общественному \
-                транспорту', default=0.0)
+транспорту', default=0.0)
     avrg_length_between_stops = models.FloatField(
         verbose_name='Средневзвешенное расстояние между остановками',
         default=0.0)
@@ -148,7 +148,7 @@ class City(models.Model):
         default=0.0)
     num_wounded_n_dead_per_people = models.FloatField(
         verbose_name='Количество раненых и погибших в расчете на млн \
-                пассажиров', default=0.0)
+пассажиров', default=0.0)
 
     """ ПОДВИЖНОЙ СОСТАВ """
     num_tramway_cars = models.IntegerField(
@@ -200,10 +200,10 @@ class City(models.Model):
         default=0)
     num_big_trolleybuses_registry = models.IntegerField(
         verbose_name='Количество троллейбусов и электробусов большого класса \
-                по Реестру', default=0)
+по Реестру', default=0)
     num_very_big_trolleybuses_registry = models.IntegerField(
         verbose_name='Количество троллейбусов и электробусов особо большого \
-                класса по Реестру', default=0)
+класса по Реестру', default=0)
     num_tramway_cars_registry = models.IntegerField(
         verbose_name='Количество всех трамваев по Реестру', default=0)
     num_big_tramway_cars_registry = models.IntegerField(
@@ -243,7 +243,7 @@ class City(models.Model):
     proportion_working_transport = models.FloatField(
         verbose_name='Доля рабочего ПС в парке ТС', default=0.0)
     percent_renew_program = models.FloatField(
-        verbose_name='Участие в программах обновления подвижного состава',
+        verbose_name='Участие в программе обновления подвижного состава',
         default=0.0)
 
     """ МАРШРУТЫ """
@@ -263,7 +263,7 @@ class City(models.Model):
         default=0)
     proportion_routes_unregulated_tariff = models.IntegerField(
         verbose_name='Доля маршрутов, работающих на принципах нерегулируемого \
-                тарифа', default=0)
+тарифа', default=0)
     length_avrg_tramway_route = models.FloatField(
         verbose_name='Средняя длина трамвайного маршрута', default=0.0)
     length_avrg_trolleybus_route = models.FloatField(
@@ -290,16 +290,16 @@ class City(models.Model):
         default=0.0)
     num_segments_avrg_load = models.IntegerField(
         verbose_name='Количество сегментов, работающих в режиме средней \
-                загрузки', default=0)
+загрузки', default=0)
     num_segments_high_load = models.IntegerField(
         verbose_name='Количество сегментов, работающих в режиме повышенной \
-                загрузки', default=0)
+загрузки', default=0)
     time_avrg_waiting_any_transport = models.FloatField(
         verbose_name='Среднее время ожидания любого маршрута на остановке',
         default=0.0)
     time_avrg_waiting_specific_transport = models.FloatField(
         verbose_name='Среднее время ожидания конкретного маршрута на \
-                остановке', default=0.0)
+остановке', default=0.0)
     coeff_route = models.FloatField(
         verbose_name='Маршрутный коэффициент', default=0.0)
     coeff_non_straight_route = models.FloatField(
@@ -307,15 +307,16 @@ class City(models.Model):
         default=0.0)
     bool_transport_app = models.FloatField(
         verbose_name='Наличие официального/неофициального транспортного \
-                приложения', default=0.0)
+приложения', default=0.0)
     bool_rt_internet_movement_info = models.FloatField(
         verbose_name='Доступность информации о движении ОТ в режиме реального \
-                времени через Интернет', default=0.0)
+времени через Интернет', default=0.0)
     bool_transport_schedule_website = models.FloatField(
-        verbose_name='Наличие сайта с расписаниями движениями транспорта',
+        verbose_name='Наличие сайта с расписаниями движения транспорта',
         default=0.0)
     bool_transport_route_net_map = models.FloatField(
-        verbose_name='Наличие карт-схем маршрутной сети', default=0.0)
+        verbose_name='Наличие карт-схем маршрутной сети в сети Интернет',
+        default=0.0)
     bool_unique_transporte_style = models.FloatField(
         verbose_name='Фирменный стиль общественного транспорта', default=0.0)
 
@@ -328,14 +329,14 @@ class City(models.Model):
     price_monthly_transport_pass = models.IntegerField(
         verbose_name='Стоимость(месячного) проездного билета', default=0)
     ratio_pass_cost_to_income = models.FloatField(
-        verbose_name='Отношение стоимость проездного билета к среднедушевым \
-                доходам населения', default=0)
+        verbose_name='Отношение стоимости проездного билета к среднедушевым \
+доходам населения', default=0)
     num_routes_with_pass = models.IntegerField(
         verbose_name='Количество маршрутов, на которых доступен проездной \
-                билет', default=0)
+билет', default=0)
     num_routes_with_transfer_pass = models.IntegerField(
         verbose_name='Количество маршрутов, на которых доступен пересадочный \
-                билет', default=0)
+билет', default=0)
     price_SOT = models.IntegerField(
         verbose_name='Социально-ориентированный тариф', default=0)
     price_one_time_ticket = models.IntegerField(
@@ -352,7 +353,7 @@ class City(models.Model):
         default=False)
     bool_nfc_payment = models.BooleanField(
         verbose_name='Возможность оплаты проезда внутри ТС с помощью \
-                мобильных устройств или банковских карт', default=False)
+мобильных устройств или банковских карт', default=False)
     bool_transfer_pass = models.BooleanField(
         verbose_name='Наличие пересадочного тарифа', default=False)
     bool_day_pass = models.BooleanField(
