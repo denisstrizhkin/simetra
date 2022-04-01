@@ -1,0 +1,186 @@
+@import "_nullstyle";
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Merriweather:wght@400;700&display=swap");
+
+/*-------------------------------------------------------------*/
+/*-----Variable declaration------------------------------------*/
+/*-------------------------------------------------------------*/
+$blue-color: #6f80ff;
+$white-color: #ffffff;
+$black-color: #000000;
+
+/*-------------------------------------------------------------*/
+/*-----The Foundation------------------------------------------*/
+/*-------------------------------------------------------------*/
+
+body {
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+  background-color: $blue-color;
+}
+
+.wrapper {
+  min-height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/*-------------------------------------------------------------*/
+/*-----Technical classes---------------------------------------*/
+/*-------------------------------------------------------------*/
+
+._link {
+  display: block;
+  color: $white-color;
+  font-size: 20px;
+  transition: 0.5s;
+  &:hover {
+    color: #ffb259;
+  }
+}
+
+/*-------------------------------------------------------------*/
+/*-----HEADER--------------------------------------------------*/
+/*-------------------------------------------------------------*/
+
+.header {
+  position: absolute;
+  border-bottom: 4px solid white;
+  background-color: #ffb259;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  &__container {
+    max-width: 1400px;
+    margin: 0px auto;
+    padding: 0px 10px;
+    display: flex;
+    min-height: 60px;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.menu {
+  width: 100%;
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    padding: 0px 20px;
+    gap: 20px 30px;
+  }
+  &__link {
+    font-size: 25px;
+    color: #2433a6;
+    transition: 0.3s;
+    &:hover {
+      color: rgb(255, 255, 255);
+    }
+  }
+}
+
+/*-------------------------------------------------------------*/
+/*-----Home----------------------------------------------------*/
+/*-------------------------------------------------------------*/
+
+.page {
+  flex: 1 1 auto;
+}
+
+.home {
+  color: $white-color;
+  padding: 100px 0px 0px 0px;
+
+  &__container {
+    padding: 0px 10px 0px 50px;
+    max-width: 680px;
+    @media (max-width: 720px) {
+      padding: 0px 10px 0px 10px;
+    }
+  }
+  &__title {
+    font-weight: bold;
+    font-size: 50px;
+    line-height: 130%;
+    margin-bottom: 30px;
+  }
+
+  &__add {
+    font-size: 22px;
+    line-height: 120%;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px black;
+    padding: 20px 15px;
+    &::before {
+      content: "";
+      background: url("../assets/img/add.png") no-repeat;
+      font-size: 22px;
+      padding-left: 40px;
+      background-size: contain;
+    }
+  }
+
+  &__caption {
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
+
+  &__block {
+    padding: 10px 0px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px black;
+    padding: 20px 15px;
+    margin-bottom: 30px;
+  }
+
+  &__item {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 10px 40px;
+  }
+
+  &__item:last-child {
+    margin-bottom: 30px;
+  }
+
+  &__change {
+    color: inherit;
+    display: inline;
+    &::before {
+      content: "";
+      background: url("../assets/img/change.png") no-repeat;
+      font-size: 15px;
+      padding-left: 22px;
+      background-size: contain;
+    }
+  }
+
+  &__delete {
+    color: inherit;
+    display: inline;
+    margin: 0 auto 0 auto;
+    &::before {
+      content: "";
+      background: url("../assets/img/delete.png") no-repeat;
+      font-size: 15px;
+      padding-left: 22px;
+      background-size: contain;
+    }
+  }
+  &__load {
+    margin-bottom: 15px;
+    &::before {
+      content: "";
+      background: url("../assets/img/load.png") no-repeat;
+      font-size: 22px;
+      padding-left: 28px;
+      background-size: contain;
+    }
+  }
+}

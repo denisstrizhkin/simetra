@@ -1,0 +1,127 @@
+@import "_nullstyle";
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Merriweather:wght@400;700&display=swap");
+
+/*-------------------------------------------------------------*/
+/*-----Variable declaration------------------------------------*/
+/*-------------------------------------------------------------*/
+$blue-color: #6f80ff;
+$white-color: #ffffff;
+$black-color: #000000;
+
+/*-------------------------------------------------------------*/
+/*-----The Foundation------------------------------------------*/
+/*-------------------------------------------------------------*/
+
+body {
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+  background-color: $blue-color;
+}
+
+.wrapper {
+  min-height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+tr{
+  display: flex;
+  gap: 15px 30px;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+#id_file {
+  font-size: 18px;
+}
+/*-------------------------------------------------------------*/
+/*-----Technical classes---------------------------------------*/
+/*-------------------------------------------------------------*/
+
+/*-------------------------------------------------------------*/
+/*-----HEADER--------------------------------------------------*/
+/*-------------------------------------------------------------*/
+
+.header {
+  position: absolute;
+  border-bottom: 4px solid white;
+  background-color: #ffb259;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  &__container {
+    max-width: 1400px;
+    margin: 0px auto;
+    padding: 0px 10px;
+    display: flex;
+    min-height: 60px;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.menu {
+  width: 100%;
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    padding: 0px 20px;
+    gap: 20px 30px;
+  }
+  &__link {
+    font-size: 25px;
+    color: #2433a6;
+    transition: 0.3s;
+    &:hover {
+      color: rgb(255, 255, 255);
+    }
+  }
+}
+
+/*-------------------------------------------------------------*/
+/*-----Home----------------------------------------------------*/
+/*-------------------------------------------------------------*/
+
+.page {
+  flex: 1 1 auto;
+}
+
+.home {
+  color: $white-color;
+  &__container {
+    padding: 100px 10px 0px 50px;
+    max-width: 700px;
+    @media (max-width: 750px) {
+      padding: 100px 10px 0px 10px;
+    }
+  }
+  &__title {
+    font-weight: bold;
+    font-size: 50px;
+    line-height: 130%;
+    margin-bottom: 30px;
+  }
+
+  &__block {
+    padding: 10px 0px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px black;
+    padding: 20px 15px;
+    margin-bottom: 30px;
+  }
+
+  &__submit {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 25px;
+    transition: 0.4s;
+    background-color: #ffb259;
+    cursor: pointer;
+    &:hover {
+      color: white;
+    }
+  }
+}

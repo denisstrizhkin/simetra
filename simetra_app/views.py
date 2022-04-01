@@ -101,7 +101,7 @@ def customization_page(request):
 @login_required(login_url='simetra_app:staff-login')
 def change_boss_model(request):
     context = get_context_to_change_model(Boss)
-    context['heading'] = 'Боссы'
+    context['heading'] = 'Руководители'
     context['object_name'] = 'boss'
     return render(request, 'simetra_app/change-model.html', context)
 
@@ -112,7 +112,7 @@ def create_boss(request):
 
     context = {
         'boss_form': boss_form,
-        'title': 'Добавить Нового Босса',
+        'title': 'Добавить Нового Руководителя',
     }
 
     if request.method == 'POST':
@@ -131,7 +131,7 @@ def update_boss(request, boss_id):
 
     context = {
         'boss_form': boss_form,
-        'title': 'Изменить Существующего Босса',
+        'title': 'Изменить Существующего Руководителя',
     }
 
     if request.method == 'POST':

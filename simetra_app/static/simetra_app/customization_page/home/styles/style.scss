@@ -1,0 +1,210 @@
+@import "_nullstyle";
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Merriweather:wght@400;700&display=swap");
+
+/*-------------------------------------------------------------*/
+/*-----Variable declaration------------------------------------*/
+/*-------------------------------------------------------------*/
+$blue-color: #6f80ff;
+$white-color: #ffffff;
+$black-color: #000000;
+
+$maxWidth: 1400;
+@mixin adaptiv-font($pcSize, $mobSize) {
+  $addSize: $pcSize - $mobSize;
+  $maxWidth: $maxWidth - 320;
+  font-size: calc(
+    #{$mobSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth})
+  );
+}
+/*-------------------------------------------------------------*/
+/*-----The Foundation------------------------------------------*/
+/*-------------------------------------------------------------*/
+
+body {
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+  background-color: $blue-color;
+}
+
+.wrapper {
+  min-height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/*-------------------------------------------------------------*/
+/*-----Technical classes---------------------------------------*/
+/*-------------------------------------------------------------*/
+
+._container {
+  max-width: 1400px;
+  margin: 0px auto;
+  padding: 0px 10px;
+}
+
+/*-------------------------------------------------------------*/
+/*-----HEADER--------------------------------------------------*/
+/*-------------------------------------------------------------*/
+
+.header {
+  position: absolute;
+  border-bottom: 4px solid white;
+  background-color: #ffb259;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  &__container {
+    display: flex;
+    min-height: 60px;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+//37407F
+.menu {
+  width: 100%;
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    padding: 0px 20px;
+    gap: 20px 30px;
+  }
+  &__link {
+    font-size: 25px;
+    color: #2433a6;
+    transition: 0.3s;
+    &:hover {
+      color: rgb(255, 255, 255);
+    }
+  }
+}
+
+/*-------------------------------------------------------------*/
+/*-----Home----------------------------------------------------*/
+/*-------------------------------------------------------------*/
+
+.page {
+  flex: 1 1 auto;
+}
+
+.home {
+  color: $white-color;
+  padding: 150px 0px 300px 0px;
+  text-align: center;
+  &__title {
+    font-weight: bold;
+    line-height: 130%;
+    margin-bottom: 40px;
+    @include adaptiv-font(50, 28);
+  }
+}
+
+.models__item:not(:last-child) {
+  margin-bottom: 35px;
+}
+
+.models__link {
+  display: inline-block;
+  line-height: 150%;
+  @include adaptiv-font(40, 24);
+  color: inherit;
+  transition: 0.3s;
+  &:hover {
+    transform: scale(1.2);
+  }
+}
+
+.models__boss {
+  &::before {
+    content: "";
+    background: url("../assets/img/boss.png") no-repeat;
+    background-size: contain;
+    margin-right: 5px;
+    padding: 0px 30px;
+    @media (max-width: 1000px) {
+      padding: 0px 20px;
+    }
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+}
+
+.models__city {
+  &::before {
+    content: "";
+    background: url("../assets/img/city.png") no-repeat;
+    background-size: contain;
+    margin-right: 5px;
+    padding: 0px 30px;
+    @media (max-width: 1000px) {
+      padding: 0px 20px;
+    }
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+}
+.models__employee {
+  &::before {
+    content: "";
+    background: url("../assets/img/employee.png") no-repeat;
+    background-size: contain;
+    margin-right: 5px;
+    padding: 0px 30px;
+    @media (max-width: 1000px) {
+      padding: 0px 20px;
+    }
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+}
+
+
+/*-------------------------------------------------------------*/
+/*-----FOOTER--------------------------------------------------*/
+/*-------------------------------------------------------------*/
+
+.footer {
+  background-color: $black-color;
+  color: $white-color;
+  &__list {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px 0px 30px 0px;
+  }
+  &__logo {
+    max-width: 300px;
+  }
+
+  &__social {
+    margin-bottom: 40px;
+  }
+  &__text {
+    max-width: 700px;
+    text-align: center;
+    line-height: 150%;
+  }
+}
+
+.social {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px 20px;
+
+  .social__item svg {
+    width: 40px;
+    height: 40px;
+    transition: 0.3s;
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+}
