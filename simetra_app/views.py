@@ -600,9 +600,12 @@ def is_city_name_correct_to_find_coordinates(city_name):
 
 
 def update_context_for_customization_pages_navbar(request, context):
+    def is_it_update_page(url_ancestors_name_list):
+        return url_ancestors_name_list[-2][:7] == 'update-'
+
     url_ancestors_name_list = request.path.split('/')[1:-1]
 
-    if url_ancestors_name_list[-2][:7] == 'update-':
+    if is_it_update_page(url_ancestors_name_list):
         context['update_model'] = url_ancestors_name_list[-2]
         context['model_id'] = url_ancestors_name_list[-1]
 
