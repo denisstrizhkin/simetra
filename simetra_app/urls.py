@@ -26,6 +26,11 @@ urlpatterns = [
     path('create-boss/', views.create_boss, name='create-boss'),
     path('update-boss/<str:boss_id>/', views.update_boss, name='update-boss'),
     path('delete-boss/<str:boss_id>/', views.delete_boss, name='delete-boss'),
+    path(
+        'delete-all-instances-of-boss/',
+        views.delete_all_bosses,
+        name='delete-all-instances-of-boss'
+    ),
 
     # Employee Pages
     path(
@@ -47,6 +52,11 @@ urlpatterns = [
         'delete-employee/<str:employee_id>/',
         views.delete_employee,
         name='delete-employee'
+    ),
+    path(
+        'delete-all-instances-of-employee/',
+        views.delete_all_employees,
+        name='delete-all-instances-of-employee'
     ),
 
     # City Pages
@@ -71,7 +81,7 @@ urlpatterns = [
         name='delete-city'
     ),
     path(
-        'delete-all-instsaces-of-city',
+        'delete-all-instsaces-of-city/',
         views.delete_all_cities,
         name='delete-all-instsaces-of-city',
     ),

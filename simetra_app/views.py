@@ -152,6 +152,16 @@ def delete_boss(request, boss_id):
 
 
 @login_required(login_url='simetra_app:staff-login')
+def delete_all_bosses(request):
+    bosses_list = Boss.objects.all()
+
+    for boss in bosses_list:
+        boss.delete()
+    
+    return redirect('simetra_app:change-boss-model')
+
+
+@login_required(login_url='simetra_app:staff-login')
 def change_city_model(request):
     context = get_context_to_change_model(City)
     context['heading'] = 'Города'
@@ -274,6 +284,16 @@ def update_employee(request, employee_id):
 def delete_employee(request, employee_id):
     employee = get_object_or_404(Employee, pk=employee_id)
     employee.delete()
+    return redirect('simetra_app:change-employee-model')
+
+
+@login_required(login_url='simetra_app:staff-login')
+def delete_all_employees(request):
+    employees_list = Employee.objects.all()
+
+    for employee in employees_list:
+        employee.delete()
+    
     return redirect('simetra_app:change-employee-model')
 
 
@@ -525,7 +545,7 @@ class CityCoordinates():
         coordinates = coordinates.split(',')
         longitude = float(coordinates[1])
         latitude = float(coordinates[0])
-        
+
         return longitude, latitude
 
 
