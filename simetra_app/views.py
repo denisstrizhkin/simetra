@@ -1,13 +1,12 @@
-from django.contrib.contenttypes.models import ContentType
-from django.http import HttpResponseBadRequest
 from django import forms
 import json
 
 from django.contrib import messages
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseBadRequest
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.contenttypes.models import ContentType
 from django.core.serializers.json import DjangoJSONEncoder
 
 from simetra.settings import MAPBOX_KEY
@@ -32,8 +31,8 @@ def main_page(request):
             'longitude': city.longitude,
             'latitude': city.latitude,
         }
-        city_dictionary_json = json.dumps(
-            city_dictionary, cls=DjangoJSONEncoder)
+
+        city_dictionary_json = json.dumps(city_dictionary, cls=DjangoJSONEncoder)
         cities_list_json.append(city_dictionary_json)
 
     context = {
@@ -87,8 +86,7 @@ def staff_login_page(request):
             login(request, user)
             return redirect('simetra_app:customization')
         else:
-            messages.info(
-                request, 'Секретное имя ИЛИ секретный ключ некорректны!')
+            messages.info(request, 'Секретное имя ИЛИ секретный ключ некорректны!')
 
     return render(request, 'simetra_app/staff-login.html')
 
@@ -171,8 +169,7 @@ def create_city(request):
 
     if request.method == 'POST':
         if does_city_already_exist(request.POST):
-            return HttpResponse(
-                'Такой город уже существует! Создайте новый город или обновите существующий.')
+            return HttpResponse('Такой город уже существует! Создайте новый город или обновите существующий.')
 
         city_form = CityForm(request.POST)
 
@@ -224,7 +221,7 @@ def create_employee(request):
 
     context = {
         'employee_form': employee_form,
-        'title': 'Добавить Нового Сотрудника'
+        'title': 'Добавить Нового Сотрудника',
     }
 
     if request.method == 'POST':
@@ -233,10 +230,7 @@ def create_employee(request):
         if employee_form.is_valid():
             employee_form.save()
 
-    return render(
-        request,
-        'simetra_app/create-or-update-employee.html',
-        context)
+    return render(request, 'simetra_app/create-or-update-employee.html', context)
 
 
 @login_required(login_url='simetra_app:staff-login')
@@ -255,10 +249,7 @@ def update_employee(request, employee_id):
         if employee_form.is_valid():
             employee_form.save()
 
-    return render(
-        request,
-        'simetra_app/create-or-update-employee.html',
-        context)
+    return render(request, 'simetra_app/create-or-update-employee.html', context)
 
 
 @login_required(login_url='simetra_app:staff-login')
@@ -284,8 +275,7 @@ def get_context_to_change_model(Object):
         'number_of_objects': Object.objects.all().count(),
     }
 
-    if ContentType.objects.get_for_model(
-            Object) == ContentType.objects.get_for_model(City):
+    if ContentType.objects.get_for_model(Object) == ContentType.objects.get_for_model(City):
         context["is_city"] = True
 
     return context
@@ -454,12 +444,15 @@ def upload_cities_excel(request):
             error_message = ''
             for sheet_name in sheet_names:
                 if not check_sheet_existance(excel_book, sheet_name):
-                    error_message = 'Документ не содержит следующего листа: \
-                            "{}"'.format(sheet_name)
+                    error_message = 'Документ не содержит следующего листа: "{}"'.format(sheet_name)
 
             if error_message != '':
-                return render(request, "simetra_app/upload_cities_excel.html",
-                              {"form": form, "error_message": error_message})
+                context = {
+                    "form": form,
+                    "error_message": error_message,
+                }
+
+                return render(request, "simetra_app/upload_cities_excel.html", context)
 
             def write_sheet(sheet_name) -> None:
                 sheet = excel_book[sheet_name]
@@ -488,11 +481,9 @@ def upload_cities_excel(request):
     else:
         form = UploadFileForm()
 
-    return render(
-        request,
-        "simetra_app/upload_cities_excel.html",
-        {
-            "form": form,
-            "error_message": '',
-        },
-    )
+    context = {
+        "form": form,
+        "error_message": '',
+    }
+
+    return render(request, "simetra_app/upload_cities_excel.html", context)
