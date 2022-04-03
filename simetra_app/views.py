@@ -10,7 +10,8 @@ from django.core.serializers.json import DjangoJSONEncoder
 
 from simetra.settings import MAPBOX_KEY
 from .models import Boss, Employee, City
-from .forms import BossForm, EmployeeForm, LocationOfCityForm, CityForm, UploadFileForm
+from .forms import BossForm, EmployeeForm, LocationOfCityForm, CityForm, \
+    UploadFileForm
 
 
 def staff_logout(request):
@@ -31,7 +32,8 @@ def main_page(request):
             'latitude': city.latitude,
         }
 
-        city_dictionary_json = json.dumps(city_dictionary, cls=DjangoJSONEncoder)
+        city_dictionary_json = json.dumps(
+            city_dictionary, cls=DjangoJSONEncoder)
         cities_list_json.append(city_dictionary_json)
 
     context = {
@@ -85,7 +87,8 @@ def staff_login_page(request):
             login(request, user)
             return redirect('simetra_app:customization')
         else:
-            messages.info(request, 'Секретное имя ИЛИ секретный ключ некорректны!')
+            messages.info(
+                request, 'Секретное имя ИЛИ секретный ключ некорректны!')
 
     return render(request, 'simetra_app/staff-login.html')
 
@@ -168,7 +171,10 @@ def create_city(request):
 
     if request.method == 'POST':
         if does_city_already_exist(request.POST):
-            return HttpResponse('Такой город уже существует! Создайте новый город или обновите существующий.')
+            return HttpResponse(
+                'Такой город уже существует! Создайте новый город или \
+                обновите существующий.'
+            )
 
         city_form = CityForm(request.POST)
 
@@ -229,7 +235,8 @@ def create_employee(request):
         if employee_form.is_valid():
             employee_form.save()
 
-    return render(request, 'simetra_app/create-or-update-employee.html', context)
+    return render(
+        request, 'simetra_app/create-or-update-employee.html', context)
 
 
 @login_required(login_url='simetra_app:staff-login')
@@ -248,7 +255,8 @@ def update_employee(request, employee_id):
         if employee_form.is_valid():
             employee_form.save()
 
-    return render(request, 'simetra_app/create-or-update-employee.html', context)
+    return render(
+        request, 'simetra_app/create-or-update-employee.html', context)
 
 
 @login_required(login_url='simetra_app:staff-login')
@@ -274,7 +282,10 @@ def get_context_to_change_model(Object):
         'number_of_objects': Object.objects.all().count(),
     }
 
-    if ContentType.objects.get_for_model(Object) == ContentType.objects.get_for_model(City):
+    is_object_city = ContentType.objects.get_for_model(Object) == \
+        ContentType.objects.get_for_model(City)
+
+    if is_object_city:
         context["is_city"] = True
 
     return context
@@ -442,7 +453,8 @@ def upload_cities_excel(request):
             error_message = ''
             for sheet_name in sheet_names:
                 if not check_sheet_existance(excel_book, sheet_name):
-                    error_message = 'Документ не содержит следующего листа: "{}"'.format(sheet_name)
+                    error_message = 'Документ не содержит следующего листа: \
+                        "{}"'.format(sheet_name)
 
             if error_message != '':
                 context = {
@@ -450,7 +462,8 @@ def upload_cities_excel(request):
                     "error_message": error_message,
                 }
 
-                return render(request, "simetra_app/upload_cities_excel.html", context)
+                return render(
+                    request, "simetra_app/upload_cities_excel.html", context)
 
             def write_sheet(sheet_name) -> None:
                 sheet = excel_book[sheet_name]

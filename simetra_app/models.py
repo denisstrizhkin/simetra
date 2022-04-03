@@ -53,8 +53,7 @@ class City(models.Model):
     def __str__(self):
         return self.name
 
-    # In Mapbox longtitude always goes first and latitude goes second
-    # (by the time of 13.03.22)
+    # In Mapbox longtitude always goes first and latitude goes second (by the time of 13.03.22)
     # To find coorinates, open 'Response' -> 'features' -> '0' -> 'center'
     # From the page https://docs.mapbox.com/playground/geocoding/
     name = models.CharField(max_length=100)
