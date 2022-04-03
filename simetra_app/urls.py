@@ -31,27 +31,55 @@ urlpatterns = [
     path(
         'change-employee/',
         views.change_employee_model,
-        name='change-employee-model'),
-    path('create-employee/', views.create_employee, name='create-employee'),
+        name='change-employee-model'
+    ),
+    path(
+        'create-employee/',
+        views.create_employee,
+        name='create-employee'
+    ),
     path(
         'update-employee/<str:employee_id>/',
         views.update_employee,
-        name='update-employee'),
+        name='update-employee'
+    ),
     path(
         'delete-employee/<str:employee_id>/',
         views.delete_employee,
-        name='delete-employee'),
+        name='delete-employee'
+    ),
 
     # City Pages
-    path('change-city/', views.change_city_model, name='change-city-model'),
-    path('create-city/', views.create_city, name='create-city'),
-    path('update-city/<str:city_id>/', views.update_city, name='update-city'),
-    path('delete-city/<str:city_id>/', views.delete_city, name='delete-city'),
-    path('cities/<str:city_name>/', views.city_page, name='city-page'),
+    path(
+        'change-city/',
+        views.change_city_model,
+        name='change-city-model'
+    ),
+    path(
+        'create-city/',
+        views.create_city,
+        name='create-city'
+    ),
+    path(
+        'update-city/<str:city_id>/',
+        views.update_city,
+        name='update-city'
+    ),
+    path(
+        'delete-city/<str:city_id>/',
+        views.delete_city,
+        name='delete-city'
+    ),
+    path(
+        'cities/<str:city_name>/',
+        views.city_page,
+        name='city-page'
+    ),
     path(
         'upload_cities_excel/',
         views.upload_cities_excel,
-        name='upload_cities_excel'),
+        name='upload_cities_excel'
+    ),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
