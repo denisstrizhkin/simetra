@@ -266,6 +266,8 @@ body {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   gap: 10px 40px;
+  padding: 5px;
+  border-radius: 5px;
 }
 
 .home__item:last-child {

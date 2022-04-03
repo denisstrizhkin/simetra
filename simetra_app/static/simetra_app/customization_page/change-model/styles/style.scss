@@ -145,6 +145,8 @@ body {
     align-items: baseline;
     flex-wrap: wrap;
     gap: 10px 40px;
+    padding: 5px;
+    border-radius: 5px;
   }
 
   &__item:last-child {

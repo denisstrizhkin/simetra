@@ -6,7 +6,7 @@
   <nav class="menu__body">
     <ul class="menu__list">
       <li class="menu__item">
-        <a href="#" class="menu__link _link">География</a>
+        <a href="{% url 'simetra_app:main' %}#main__map" class="menu__link _link">География</a>
       </li>
       <li class="menu__item">
         <a href="{% url 'simetra_app:data-base' %}" class="menu__link _link">База данных</a>
@@ -18,7 +18,7 @@
         <a href="{% url 'simetra_app:methodology' %}" class="menu__link _link">Методология</a>
       </li>
       <li class="menu__item">
-        <a href="#" class="menu__link _link">О проекте</a>
+        <a href="{% url 'simetra_app:main' %}#main__team" class="menu__link _link">О проекте</a>
       </li>
     </ul>
   </nav>

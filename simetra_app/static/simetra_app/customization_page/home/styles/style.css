@@ -296,11 +296,12 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 0px 0px 30px 0px;
+  padding: 30px 0px 30px 0px;
 }
 
 .footer__logo {
-  max-width: 300px;
+  max-width: 250px;
+  margin-bottom: 30px;
 }
 
 .footer__social {
