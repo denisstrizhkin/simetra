@@ -69,6 +69,7 @@
         <section class="page__home home">
 
       <h1 class="home__title">{{ title }}</h1>
+      {% include 'simetra_app/customization-navbar.html' %}
       {{ location_of_city_form.media }}
       <form method="POST">
         {% csrf_token %}

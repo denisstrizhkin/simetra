@@ -1,0 +1,5 @@
+{% for ancestor in url_ancestors_name_list %} 
+    {% with 'simetra_app:'|add:ancestor as ancestor_url %}
+        <p><a href="{% url ancestor_url %}">{{ ancestor }}</a></p>
+    {% endwith %} 
+{% endfor%}

@@ -64,6 +64,7 @@
             <section class="page__home home">
                 <div class="home__container">
                     <h1 class="home__title"> Загрузка .xlsx файла </h1>
+                    {% include 'simetra_app/customization-navbar.html' %}
                     <div class="home__block">
                         <p style="color: red;"> {{ error_message }} </p>
                         <form action="" enctype="multipart/form-data" method="post">

@@ -104,6 +104,7 @@ def change_boss_model(request):
     context = get_context_to_change_model(Boss)
     context['heading'] = 'Руководители'
     context['object_name'] = 'boss'
+    context = update_context_for_customization_pages_navbar(request, context)
     return render(request, 'simetra_app/change-model.html', context)
 
 
@@ -115,6 +116,8 @@ def create_boss(request):
         'boss_form': boss_form,
         'title': 'Добавить Нового Руководителя',
     }
+
+    context = update_context_for_customization_pages_navbar(request, context)
 
     if request.method == 'POST':
         boss_form = BossForm(request.POST)
@@ -134,6 +137,8 @@ def update_boss(request, boss_id):
         'boss_form': boss_form,
         'title': 'Изменить Существующего Руководителя',
     }
+
+    context = update_context_for_customization_pages_navbar(request, context)
 
     if request.method == 'POST':
         boss_form = BossForm(request.POST, instance=boss)
@@ -166,6 +171,7 @@ def change_city_model(request):
     context = get_context_to_change_model(City)
     context['heading'] = 'Города'
     context['object_name'] = 'city'
+    context = update_context_for_customization_pages_navbar(request, context)
     return render(request, 'simetra_app/change-model.html', context)
 
 
@@ -179,6 +185,8 @@ def create_city(request):
         'location_of_city_form': location_of_city_form,
         'title': 'Добавить Новый Город',
     }
+
+    context = update_context_for_customization_pages_navbar(request, context)
 
     if request.method == 'POST':
         if does_city_already_exist(request.POST):
@@ -206,6 +214,8 @@ def update_city(request, city_id):
         'location_of_city_form': location_of_city_form,
         'title': 'Изменить Существующий Город',
     }
+
+    context = update_context_for_customization_pages_navbar(request, context)
 
     if request.method == 'POST':
         city_form = CityForm(request.POST, instance=city)
@@ -238,6 +248,7 @@ def change_employee_model(request):
     context = get_context_to_change_model(Employee)
     context['heading'] = 'Сотрудники'
     context['object_name'] = 'employee'
+    context = update_context_for_customization_pages_navbar(request, context)
     return render(request, 'simetra_app/change-model.html', context)
 
 
@@ -249,6 +260,8 @@ def create_employee(request):
         'employee_form': employee_form,
         'title': 'Добавить Нового Сотрудника',
     }
+
+    context = update_context_for_customization_pages_navbar(request, context)
 
     if request.method == 'POST':
         employee_form = EmployeeForm(request.POST)
@@ -269,6 +282,8 @@ def update_employee(request, employee_id):
         'employee_form': employee_form,
         'title': 'Изменить Существующего Сотрудника',
     }
+
+    context = update_context_for_customization_pages_navbar(request, context)
 
     if request.method == 'POST':
         employee_form = EmployeeForm(request.POST, instance=employee)
@@ -507,6 +522,8 @@ def upload_cities_excel(request):
         "form": form,
         "error_message": '',
     }
+    
+    context = update_context_for_customization_pages_navbar(request, context)
 
     return render(request, "simetra_app/upload_cities_excel.html", context)
 
@@ -579,3 +596,9 @@ def is_city_name_correct_to_find_coordinates(city_name):
         return False
     
     return True
+
+
+def update_context_for_customization_pages_navbar(request, context):
+    url_ancestors_name_list = request.path.split('/')[1:-1]
+    context['url_ancestors_name_list'] = url_ancestors_name_list
+    return context
