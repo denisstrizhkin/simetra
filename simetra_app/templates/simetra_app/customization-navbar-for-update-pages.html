@@ -1,0 +1,3 @@
+{% with 'simetra_app:'|add:update_model as update_model_url %}
+    <p><a href="{% url update_model_url model_id %}">{{ update_model }}</a></p>
+{% endwith %}

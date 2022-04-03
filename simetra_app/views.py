@@ -139,6 +139,7 @@ def update_boss(request, boss_id):
     }
 
     context = update_context_for_customization_pages_navbar(request, context)
+    print(context)
 
     if request.method == 'POST':
         boss_form = BossForm(request.POST, instance=boss)
@@ -162,7 +163,7 @@ def delete_all_bosses(request):
 
     for boss in bosses_list:
         boss.delete()
-    
+
     return redirect('simetra_app:change-boss-model')
 
 
@@ -436,7 +437,7 @@ def upload_cities_excel(request):
         "form": form,
         "error_message": '',
     }
-    
+
     context = update_context_for_customization_pages_navbar(request, context)
 
     return render(request, "simetra_app/upload_cities_excel.html", context)
@@ -455,7 +456,7 @@ def delete_all_cities(request):
 
     for city in cities_list:
         city.delete()
-    
+
     return redirect('simetra_app:change-city-model')
 
 
@@ -524,7 +525,7 @@ def delete_all_employees(request):
 
     for employee in employees_list:
         employee.delete()
-    
+
     return redirect('simetra_app:change-employee-model')
 
 
@@ -555,7 +556,7 @@ class CityCoordinates():
 
     def get_longitude_and_latitude_by_city_name(self):
         city_format_to_get_coordinates = self.city.replace(' ', '+')
-        
+
         coordinates = self.__get_city_coordinates_from_mapbox_json_file(
             city_format_to_get_coordinates)
 
@@ -594,11 +595,20 @@ def does_city_already_exist(requestPOST):
 def is_city_name_correct_to_find_coordinates(city_name):
     if city_name == 'ВЕС' or city_name == 'ПРОБА':
         return False
-    
+
     return True
 
 
 def update_context_for_customization_pages_navbar(request, context):
     url_ancestors_name_list = request.path.split('/')[1:-1]
+
+    if url_ancestors_name_list[-2][:7] == 'update-':
+        context['update_model'] = url_ancestors_name_list[-2]
+        context['model_id'] = url_ancestors_name_list[-1]
+
+        del(url_ancestors_name_list[-2])
+        del(url_ancestors_name_list[-1])
+
     context['url_ancestors_name_list'] = url_ancestors_name_list
+
     return context

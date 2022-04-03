@@ -67,6 +67,7 @@
         <div class="home__container">
           <h1 class="home__title">{{ title }}</h1>
           {% include 'simetra_app/customization-navbar.html' %}
+          {% include 'simetra_app/customization-navbar-for-update-pages.html' %}
           <div class="home__block">
             <form method="POST">
               {% csrf_token %}

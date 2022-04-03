@@ -68,7 +68,7 @@
           <h1 class="home__title">{{ heading }}</h1>
           {% include 'simetra_app/customization-navbar.html' %}
           {% with 'simetra_app:create-'|add:object_name as creation_link %}
-          <p><a class="home__add _link" href="{% url creation_link %}">Добавить новый экземпляр модели</a></p>
+            <p><a class="home__add _link" href="{% url creation_link %}">Добавить новый экземпляр модели</a></p>
           {% endwith %}
           <div class="home__block">
             <h2 class="home__caption">Список существующих моделей:</h2>
