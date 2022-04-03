@@ -227,92 +227,6 @@ def update_city(request, city_id):
 
 
 @login_required(login_url='simetra_app:staff-login')
-def delete_city(request, city_id):
-    city = get_object_or_404(City, pk=city_id)
-    city.delete()
-    return redirect('simetra_app:change-city-model')
-
-
-@login_required(login_url='simetra_app:staff-login')
-def delete_all_cities(request):
-    cities_list = City.objects.all()
-
-    for city in cities_list:
-        city.delete()
-    
-    return redirect('simetra_app:change-city-model')
-
-
-@login_required(login_url='simetra_app:staff-login')
-def change_employee_model(request):
-    context = get_context_to_change_model(Employee)
-    context['heading'] = 'Сотрудники'
-    context['object_name'] = 'employee'
-    context = update_context_for_customization_pages_navbar(request, context)
-    return render(request, 'simetra_app/change-model.html', context)
-
-
-@login_required(login_url='simetra_app:staff-login')
-def create_employee(request):
-    employee_form = EmployeeForm()
-
-    context = {
-        'employee_form': employee_form,
-        'title': 'Добавить Нового Сотрудника',
-    }
-
-    context = update_context_for_customization_pages_navbar(request, context)
-
-    if request.method == 'POST':
-        employee_form = EmployeeForm(request.POST)
-
-        if employee_form.is_valid():
-            employee_form.save()
-
-    return render(
-        request, 'simetra_app/create-or-update-employee.html', context)
-
-
-@login_required(login_url='simetra_app:staff-login')
-def update_employee(request, employee_id):
-    employee = get_object_or_404(Employee, pk=employee_id)
-    employee_form = EmployeeForm(instance=employee)
-
-    context = {
-        'employee_form': employee_form,
-        'title': 'Изменить Существующего Сотрудника',
-    }
-
-    context = update_context_for_customization_pages_navbar(request, context)
-
-    if request.method == 'POST':
-        employee_form = EmployeeForm(request.POST, instance=employee)
-
-        if employee_form.is_valid():
-            employee_form.save()
-
-    return render(
-        request, 'simetra_app/create-or-update-employee.html', context)
-
-
-@login_required(login_url='simetra_app:staff-login')
-def delete_employee(request, employee_id):
-    employee = get_object_or_404(Employee, pk=employee_id)
-    employee.delete()
-    return redirect('simetra_app:change-employee-model')
-
-
-@login_required(login_url='simetra_app:staff-login')
-def delete_all_employees(request):
-    employees_list = Employee.objects.all()
-
-    for employee in employees_list:
-        employee.delete()
-    
-    return redirect('simetra_app:change-employee-model')
-
-
-@login_required(login_url='simetra_app:staff-login')
 def upload_cities_excel(request):
     def write_field(city: City, sheet, field_name: str, i: int) -> None:
         val = sheet[City._meta.get_field(field_name).verbose_name, i]
@@ -526,6 +440,92 @@ def upload_cities_excel(request):
     context = update_context_for_customization_pages_navbar(request, context)
 
     return render(request, "simetra_app/upload_cities_excel.html", context)
+
+
+@login_required(login_url='simetra_app:staff-login')
+def delete_city(request, city_id):
+    city = get_object_or_404(City, pk=city_id)
+    city.delete()
+    return redirect('simetra_app:change-city-model')
+
+
+@login_required(login_url='simetra_app:staff-login')
+def delete_all_cities(request):
+    cities_list = City.objects.all()
+
+    for city in cities_list:
+        city.delete()
+    
+    return redirect('simetra_app:change-city-model')
+
+
+@login_required(login_url='simetra_app:staff-login')
+def change_employee_model(request):
+    context = get_context_to_change_model(Employee)
+    context['heading'] = 'Сотрудники'
+    context['object_name'] = 'employee'
+    context = update_context_for_customization_pages_navbar(request, context)
+    return render(request, 'simetra_app/change-model.html', context)
+
+
+@login_required(login_url='simetra_app:staff-login')
+def create_employee(request):
+    employee_form = EmployeeForm()
+
+    context = {
+        'employee_form': employee_form,
+        'title': 'Добавить Нового Сотрудника',
+    }
+
+    context = update_context_for_customization_pages_navbar(request, context)
+
+    if request.method == 'POST':
+        employee_form = EmployeeForm(request.POST)
+
+        if employee_form.is_valid():
+            employee_form.save()
+
+    return render(
+        request, 'simetra_app/create-or-update-employee.html', context)
+
+
+@login_required(login_url='simetra_app:staff-login')
+def update_employee(request, employee_id):
+    employee = get_object_or_404(Employee, pk=employee_id)
+    employee_form = EmployeeForm(instance=employee)
+
+    context = {
+        'employee_form': employee_form,
+        'title': 'Изменить Существующего Сотрудника',
+    }
+
+    context = update_context_for_customization_pages_navbar(request, context)
+
+    if request.method == 'POST':
+        employee_form = EmployeeForm(request.POST, instance=employee)
+
+        if employee_form.is_valid():
+            employee_form.save()
+
+    return render(
+        request, 'simetra_app/create-or-update-employee.html', context)
+
+
+@login_required(login_url='simetra_app:staff-login')
+def delete_employee(request, employee_id):
+    employee = get_object_or_404(Employee, pk=employee_id)
+    employee.delete()
+    return redirect('simetra_app:change-employee-model')
+
+
+@login_required(login_url='simetra_app:staff-login')
+def delete_all_employees(request):
+    employees_list = Employee.objects.all()
+
+    for employee in employees_list:
+        employee.delete()
+    
+    return redirect('simetra_app:change-employee-model')
 
 
 class CityCoordinates():
