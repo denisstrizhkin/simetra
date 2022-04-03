@@ -72,8 +72,8 @@
           <div class="home__block">
             <h2 class="home__caption">Список существующих моделей:</h2>
             <ul>  
-              {% with 'simetra_app:delete-all-instsaces-of-'|add:object_name as deleting_link %}
-              <a href="{% url deleting_link %}">Удалить все города</a>
+              {% with 'simetra_app:delete-all-instances-of-'|add:object_name as deleting_link %}
+              <a href="{% url deleting_link %}">Удалить все экземпляры модели</a>
               {% endwith %}
               {% for object in list_of_objects %}
               <li class="home__item">
