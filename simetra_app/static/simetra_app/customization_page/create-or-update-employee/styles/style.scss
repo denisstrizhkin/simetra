@@ -112,6 +112,7 @@ body {
     box-shadow: 0px 0px 10px 0px black;
     padding: 20px 15px;
     margin-bottom: 30px;
+    background-color: #37407F;
   }
 
 
@@ -123,6 +124,10 @@ body {
       padding: 10px;
       font-size: 16px;
     }
+     
+  & a{
+    color: white;
+  }
   }
 
   &__descr{

@@ -114,6 +114,7 @@ body {
     border-radius: 10px;
     box-shadow: 0px 0px 10px 0px black;
     padding: 20px 15px;
+    background-color: #37407F;
     &::before {
       content: "";
       background: url("../assets/img/add.png") no-repeat;
@@ -134,6 +135,7 @@ body {
     box-shadow: 0px 0px 10px 0px black;
     padding: 20px 15px;
     margin-bottom: 30px;
+    background-color: #37407F;
   }
 
   &__item {
