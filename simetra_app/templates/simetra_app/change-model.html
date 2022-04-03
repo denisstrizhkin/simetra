@@ -71,14 +71,18 @@
           {% endwith %}
           <div class="home__block">
             <h2 class="home__caption">Список существующих моделей:</h2>
-            <ul>
+            <ul>  
+              {% with 'simetra_app:delete-all-instsaces-of-'|add:object_name as deleting_link %}
+              <a href="{% url deleting_link %}">Удалить все города</a>
+              {% endwith %}
               {% for object in list_of_objects %}
               <li class="home__item">
                 {{ object.name }}
                 <div class="home__options">
                   {% with 'simetra_app:update-'|add:object_name as updating_link %}
                   <a class="home__change _link" href="{% url updating_link object.id %}">Изменить</a>
-                  {% endwith %} {% with 'simetra_app:delete-'|add:object_name as deleting_link %}
+                  {% endwith %} 
+                  {% with 'simetra_app:delete-'|add:object_name as deleting_link %}
                   <a class="home__delete _link" href="{% url deleting_link object.id %}">Удалить</a>
                   {% endwith %}
                 </div>

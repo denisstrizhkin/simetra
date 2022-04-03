@@ -71,6 +71,11 @@ urlpatterns = [
         name='delete-city'
     ),
     path(
+        'delete-all-instsaces-of-city',
+        views.delete_all_cities,
+        name='delete-all-instsaces-of-city',
+    ),
+    path(
         'cities/<str:city_name>/',
         views.city_page,
         name='city-page'

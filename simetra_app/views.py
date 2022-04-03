@@ -1,4 +1,5 @@
 import json
+import urllib
 
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseBadRequest
@@ -213,6 +214,16 @@ def delete_city(request, city_id):
 
 
 @login_required(login_url='simetra_app:staff-login')
+def delete_all_cities(request):
+    cities_list = City.objects.all()
+
+    for city in cities_list:
+        city.delete()
+    
+    return redirect('simetra_app:change-city-model')
+
+
+@login_required(login_url='simetra_app:staff-login')
 def change_employee_model(request):
     context = get_context_to_change_model(Employee)
     context['heading'] = 'Сотрудники'
@@ -266,31 +277,7 @@ def delete_employee(request, employee_id):
     return redirect('simetra_app:change-employee-model')
 
 
-def does_city_already_exist(requestPOST):
-    new_city_name = requestPOST['name']
-
-    for city in City.objects.all():
-        if city.name == new_city_name:
-            return True
-
-    return False
-
-
-def get_context_to_change_model(Object):
-    context = {
-        'list_of_objects': Object.objects.all(),
-        'number_of_objects': Object.objects.all().count(),
-    }
-
-    is_object_city = ContentType.objects.get_for_model(Object) == \
-        ContentType.objects.get_for_model(City)
-
-    if is_object_city:
-        context["is_city"] = True
-
-    return context
-
-
+@login_required(login_url='simetra_app:staff-login')
 def upload_cities_excel(request):
     def write_field(city: City, sheet, field_name: str, i: int) -> None:
         val = sheet[City._meta.get_field(field_name).verbose_name, i]
@@ -479,10 +466,16 @@ def upload_cities_excel(request):
                     else:
                         city = City(name=name)
 
-                    for field_name in field_names:
-                        write_field(city, sheet, field_name, i)
+                    if is_city_name_correct_to_find_coordinates(city.name):
+                        longitude, latitude = CityCoordinates(city.name).\
+                            get_longitude_and_latitude_by_city_name()
+                        city.longitude = longitude
+                        city.latitude = latitude
 
-                    city.save()
+                        for field_name in field_names:
+                            write_field(city, sheet, field_name, i)
+
+                        city.save()
 
             for key in sheet_names:
                 write_sheet(key)
@@ -496,3 +489,73 @@ def upload_cities_excel(request):
     }
 
     return render(request, "simetra_app/upload_cities_excel.html", context)
+
+
+class CityCoordinates():
+    def __init__(self, city_english_name):
+        self.city = city_english_name
+        self.__MAPBOX_KEY = 'pk.eyJ1IjoicmF0aW5nLW9mLWNpdGllcyIsImEiOiJjbDBwMzVxYmEweXV0M2tudG5iNTVoOWEwIn0.-TuXo1E4722kHkQswNZh2A'
+
+    def __parse_coordinates_by_search_pattern(self, unparsed_coordinates):
+        pattern = '"center":['
+        start = unparsed_coordinates.find(pattern) + len(pattern)
+        end = unparsed_coordinates.find(']', start)
+        cooridnates = unparsed_coordinates[start:end]
+        return cooridnates
+
+    def __get_city_coordinates_from_mapbox_json_file(self, city):
+        unparsed_coordinates_file = urllib.request.urlopen(
+            'https://api.mapbox.com/geocoding/v5/mapbox.places/' + city +
+            '.json?access_token=' + self.__MAPBOX_KEY
+        )
+
+        unparsed_coordinates_string = str(unparsed_coordinates_file.read())
+
+        coordinates = self.__parse_coordinates_by_search_pattern(
+            unparsed_coordinates_string)
+
+        return coordinates
+
+    def get_longitude_and_latitude_by_city_name(self):
+        city_format_to_get_coordinates = self.city.replace(' ', '+')
+        
+        coordinates = self.__get_city_coordinates_from_mapbox_json_file(
+            city_format_to_get_coordinates)
+
+        coordinates = coordinates.split(',')
+        longitude = float(coordinates[1])
+        latitude = float(coordinates[0])
+        
+        return longitude, latitude
+
+
+def get_context_to_change_model(Object):
+    context = {
+        'list_of_objects': Object.objects.all(),
+        'number_of_objects': Object.objects.all().count(),
+    }
+
+    is_object_city = ContentType.objects.get_for_model(Object) == \
+        ContentType.objects.get_for_model(City)
+
+    if is_object_city:
+        context["is_city"] = True
+
+    return context
+
+
+def does_city_already_exist(requestPOST):
+    new_city_name = requestPOST['name']
+
+    for city in City.objects.all():
+        if city.name == new_city_name:
+            return True
+
+    return False
+
+
+def is_city_name_correct_to_find_coordinates(city_name):
+    if city_name == 'ВЕС' or city_name == 'ПРОБА':
+        return False
+    
+    return True
