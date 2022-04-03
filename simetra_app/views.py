@@ -1,4 +1,3 @@
-from django import forms
 import json
 
 from django.contrib import messages
@@ -11,7 +10,7 @@ from django.core.serializers.json import DjangoJSONEncoder
 
 from simetra.settings import MAPBOX_KEY
 from .models import Boss, Employee, City
-from .forms import BossForm, EmployeeForm, LocationOfCityForm, CityForm
+from .forms import BossForm, EmployeeForm, LocationOfCityForm, CityForm, UploadFileForm
 
 
 def staff_logout(request):
@@ -282,9 +281,6 @@ def get_context_to_change_model(Object):
 
 
 def upload_cities_excel(request):
-    class UploadFileForm(forms.Form):
-        file = forms.FileField()
-
     def write_field(city: City, sheet, field_name: str, i: int) -> None:
         val = sheet[City._meta.get_field(field_name).verbose_name, i]
         try:
@@ -292,6 +288,8 @@ def upload_cities_excel(request):
         except ValueError:
             val = 0
         setattr(city, field_name, val)
+
+    form = UploadFileForm()
 
     if request.method == "POST":
         form = UploadFileForm(request.POST, request.FILES)
@@ -478,8 +476,6 @@ def upload_cities_excel(request):
 
         else:
             return HttpResponseBadRequest()
-    else:
-        form = UploadFileForm()
 
     context = {
         "form": form,
