@@ -73,7 +73,7 @@
               {% csrf_token %}
               <p class="home__input-block"><span class="home__descr">Полное имя:</span> {{ employee_form.name }}</p>
               <p class="home__input-block"><span class="home__descr">Позиция:</span> {{ employee_form.position }}</p>
-              <p class="home__input-block"><span class="home__descr">Аватар:</span>{{ employee_form.image }}</p>
+              <p name="home__image-field" class="home__input-block"><span class="home__descr">Аватар:</span>{{ employee_form.image }}</p>
               <input class="home__submit" type="submit" value="Сохранить" />
             </form>
           </div>
@@ -81,6 +81,7 @@
       </section>
     </main>
   </div>
+  <script src="{% static 'simetra_app/customization_page/create-or-update-employee/scripts/changeImageFieldStandardForm.js' %}"></script>
 </body>
 
 </html>
