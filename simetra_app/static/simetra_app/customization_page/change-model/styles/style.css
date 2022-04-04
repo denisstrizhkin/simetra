@@ -218,6 +218,12 @@ body {
   margin-bottom: 30px;
 }
 
+@media (max-width: 390px) {
+  .home__title {
+    font-size: 40px;
+  }
+}
+
 .home__add {
   font-size: 22px;
   line-height: 120%;
@@ -226,7 +232,7 @@ body {
   -webkit-box-shadow: 0px 0px 10px 0px black;
           box-shadow: 0px 0px 10px 0px black;
   padding: 20px 15px;
-  background-color: #37407F;
+  background-color: #37407f;
 }
 
 .home__add::before {
@@ -240,6 +246,7 @@ body {
 .home__caption {
   font-size: 30px;
   margin-bottom: 20px;
+  line-height: 130%;
 }
 
 .home__block {
@@ -249,7 +256,7 @@ body {
           box-shadow: 0px 0px 10px 0px black;
   padding: 20px 15px;
   margin-bottom: 30px;
-  background-color: #37407F;
+  background-color: #37407f;
 }
 
 .home__item {
@@ -257,12 +264,13 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  font-size: 22px;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  -webkit-box-align: baseline;
-      -ms-flex-align: baseline;
-          align-items: baseline;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   gap: 10px 40px;
@@ -274,31 +282,39 @@ body {
   margin-bottom: 30px;
 }
 
-.home__change {
-  color: inherit;
-  display: inline;
+.home__options {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px 10px;
 }
 
-.home__change::before {
-  content: "";
-  background: url("../assets/img/change.png") no-repeat;
-  font-size: 15px;
-  padding-left: 22px;
-  background-size: contain;
+.home__change, .home__delete {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0px 5px;
 }
 
-.home__delete {
-  color: inherit;
-  display: inline;
-  margin: 0 auto 0 auto;
+.home__option-image {
+  width: 30px;
 }
 
-.home__delete::before {
-  content: "";
-  background: url("../assets/img/delete.png") no-repeat;
-  font-size: 15px;
-  padding-left: 22px;
-  background-size: contain;
+@media (max-width: 576px) {
+  .home__change span,
+  .home__delete span {
+    text-align: center;
+    display: none;
+  }
+  .home__option-image {
+    width: 35px;
+  }
 }
 
 .home__load {
@@ -312,4 +328,3 @@ body {
   padding-left: 28px;
   background-size: contain;
 }
-/*# sourceMappingURL=style.css.map */

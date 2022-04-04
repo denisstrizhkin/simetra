@@ -66,9 +66,15 @@
                 {{ object.name }}
                 <div class="home__options">
                   {% with 'simetra_app:update-'|add:object_name as updating_link %}
-                  <a class="home__change _link" href="{% url updating_link object.id %}">Изменить</a>
+                  <a class="home__change _link" href="{% url updating_link object.id %}">
+                    <span>Изменить</span>
+                    <img class="home__option-image" src="{% static 'simetra_app/customization_page/change-model/assets/img/change.png' %}">
+                  </a>
                   {% endwith %} {% with 'simetra_app:delete-'|add:object_name as deleting_link %}
-                  <a class="home__delete _link" href="{% url deleting_link object.id %}">Удалить</a>
+                  <a class="home__delete _link" href="{% url deleting_link object.id %}">
+                    <span>Удалить</span>
+                    <img class="home__option-image" src="{% static 'simetra_app/customization_page/change-model/assets/img/delete.png' %}">
+                  </a>
                   {% endwith %}
                 </div>
 
