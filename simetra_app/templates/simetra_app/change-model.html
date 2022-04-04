@@ -92,7 +92,7 @@
               {% endfor %}
             </ul>
             {% if is_city == True %}
-            <a class="home__load _link" href="{% url 'simetra_app:upload_cities_excel' %}">
+            <a class="home__load _link" href="{% url 'simetra_app:upload-cities-excel' %}">
               Загрузить данные с помощью .xlsx(ods) файла</a>
             {% endif %}
             <p>Общее количество моделей: {{ number_of_objects }}</p>

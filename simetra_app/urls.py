@@ -108,9 +108,9 @@ urlpatterns = [
         name='city-page'
     ),
     path(
-        'customization/change-city/upload_cities_excel/',
+        'customization/change-city/upload-cities-excel/',
         views.upload_cities_excel,
-        name='upload_cities_excel'
+        name='upload-cities-excel'
     ),
 ]
 

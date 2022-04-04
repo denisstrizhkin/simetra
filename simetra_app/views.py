@@ -400,7 +400,7 @@ def upload_cities_excel(request):
                 }
 
                 return render(
-                    request, "simetra_app/upload_cities_excel.html", context)
+                    request, "simetra_app/upload-cities-excel.html", context)
 
             def write_sheet(sheet_name) -> None:
                 sheet = excel_book[sheet_name]
@@ -440,7 +440,7 @@ def upload_cities_excel(request):
 
     context = update_context_for_customization_pages_navbar(request, context)
 
-    return render(request, "simetra_app/upload_cities_excel.html", context)
+    return render(request, "simetra_app/upload-cities-excel.html", context)
 
 
 @login_required(login_url='simetra_app:staff-login')
