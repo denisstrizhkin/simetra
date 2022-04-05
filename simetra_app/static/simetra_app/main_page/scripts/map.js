@@ -53,6 +53,6 @@ citiesUnparsed.forEach(cityUnparsed => {
     });
 
     marker._element.addEventListener('click', () => {
-        window.location.href = name;
+        window.location.href = 'cities/' + name + '/';
     });
 });
