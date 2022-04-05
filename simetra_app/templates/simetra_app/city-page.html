@@ -7,6 +7,7 @@
     <title>{{ name }}</title>
 </head>
 <body>
+    {{ cities_list_json|json_script:"cities-list-json" }}
     <h2>{{ name }}</h2>
     <p>Широта: {{ longitude }}</p>
     <p>Долгота: {{ latitude }}</p>

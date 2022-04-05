@@ -25,17 +25,20 @@ def main_page(request):
 
     form = LocationOfCityForm()
 
-    cities_list_json = []
-    for city in City.objects.all():
-        city_dictionary = {
-            'name': city.name,
-            'longitude': city.longitude,
-            'latitude': city.latitude,
-        }
+    # cities_list_json = []
+    # for city in City.objects.all():
+    #     city_dictionary = {
+    #         'name': city.name,
+    #         'longitude': city.longitude,
+    #         'latitude': city.latitude,
+    #     }
 
-        city_dictionary_json = json.dumps(
-            city_dictionary, cls=DjangoJSONEncoder)
-        cities_list_json.append(city_dictionary_json)
+    #     city_dictionary_json = json.dumps(
+    #         city_dictionary, cls=DjangoJSONEncoder)
+    #     cities_list_json.append(city_dictionary_json)
+
+    required_fields = ['name', 'longitude', 'latitude']
+    cities_list_json = get_JSON_city_list(required_fields)
 
     context = {
         'bosses_list': Boss.objects.all(),
@@ -62,13 +65,16 @@ def data_base_page(request):
 
 
 def city_page(request, city_name):
-    print(city_name)
     city = get_object_or_404(City, name=city_name)
+
+    required_fields = ['name', 'longitude', 'latitude']
+    cities_list_json = get_JSON_city_list(required_fields)
 
     context = {
         'name': city.name,
         'longitude': city.longitude,
         'latitude': city.latitude,
+        'cities_list_json': cities_list_json,
     }
 
     return render(request, 'simetra_app/city-page.html', context)
@@ -617,3 +623,28 @@ def update_context_for_customization_pages_navbar(request, context):
     print(url_ancestors_name_list)
 
     return context
+
+
+def get_JSON_city_list(city_fields_list):
+    cities_list_json = []
+
+    for city in City.objects.all():
+        keys = []
+        values = []
+        for key in city_fields_list:
+            keys.append(key)
+            value = getattr(city, key)
+            values.append(value)
+
+        city_dictionary = {}
+        city_dictionary_length = len(keys)
+        for i in range(city_dictionary_length):
+            current_key = keys[i]
+            current_value = values[i]
+            city_dictionary[current_key] = current_value
+
+        city_dictionary_json = json.dumps(
+            city_dictionary, cls=DjangoJSONEncoder)
+        cities_list_json.append(city_dictionary_json)
+    
+    return cities_list_json
