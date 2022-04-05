@@ -608,10 +608,12 @@ def update_context_for_customization_pages_navbar(request, context):
     if is_it_update_page(url_ancestors_name_list):
         context['update_model'] = url_ancestors_name_list[-2]
         context['model_id'] = url_ancestors_name_list[-1]
+        context['is_this_update_page'] = True
 
         del(url_ancestors_name_list[-2])
         del(url_ancestors_name_list[-1])
 
     context['url_ancestors_name_list'] = url_ancestors_name_list
+    print(url_ancestors_name_list)
 
     return context
