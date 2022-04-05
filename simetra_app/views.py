@@ -25,18 +25,6 @@ def main_page(request):
 
     form = LocationOfCityForm()
 
-    # cities_list_json = []
-    # for city in City.objects.all():
-    #     city_dictionary = {
-    #         'name': city.name,
-    #         'longitude': city.longitude,
-    #         'latitude': city.latitude,
-    #     }
-
-    #     city_dictionary_json = json.dumps(
-    #         city_dictionary, cls=DjangoJSONEncoder)
-    #     cities_list_json.append(city_dictionary_json)
-
     required_fields = ['name', 'longitude', 'latitude']
     cities_list_json = get_JSON_city_list(required_fields)
 
