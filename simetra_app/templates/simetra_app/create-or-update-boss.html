@@ -52,13 +52,17 @@
       <section class="page__home home">
         <div class="home__container">
           <h1 class="home__title">{{ title }}</h1>
+          {% include 'simetra_app/customization-navbar.html' %}
+          {% if is_this_update_page %}
+            {% include 'simetra_app/customization-navbar-for-update-pages.html' %}
+          {% endif %}
           <div class="home__block">
             <form method="POST">
               {% csrf_token %}
               <p class="home__input-block"><span class="home__descr">Полное имя:</span> {{ boss_form.name }}</p>
               <p class="home__input-block"><span class="home__descr">Позиция:</span> {{ boss_form.position }}</p>
               <p class="home__input-block home__quote-block"><span class="home__quote">Цитата:</span> {{ boss_form.quote }}</p>
-              <p class="home__input-block"><span class="home__descr">Аватар:</span> {{ boss_form.image }}</p>
+              <p name="home__image-field" class="home__input-block"><span class="home__descr">Аватар:</span> {{ boss_form.image }}</p>
               <input class="home__submit" type="submit" value="Сохранить" />
             </form>
           </div>
@@ -66,6 +70,7 @@
       </section>
     </main>
   </div>
+  <script src="{% static 'simetra_app/customization_page/create-or-update-boss/scripts/changeImageFieldStandardForm.js' %}"></script>
 </body>
 
 </html>

@@ -1,18 +1,18 @@
-from django.contrib.contenttypes.models import ContentType
-from django.http import HttpResponseBadRequest
-from django import forms
 import json
+import urllib
 
 from django.contrib import messages
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseBadRequest
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.contenttypes.models import ContentType
 from django.core.serializers.json import DjangoJSONEncoder
 
 from simetra.settings import MAPBOX_KEY
 from .models import Boss, Employee, City
-from .forms import BossForm, EmployeeForm, LocationOfCityForm, CityForm
+from .forms import BossForm, EmployeeForm, LocationOfCityForm, CityForm, \
+    UploadFileForm
 
 
 def staff_logout(request):
@@ -32,6 +32,7 @@ def main_page(request):
             'longitude': city.longitude,
             'latitude': city.latitude,
         }
+
         city_dictionary_json = json.dumps(
             city_dictionary, cls=DjangoJSONEncoder)
         cities_list_json.append(city_dictionary_json)
@@ -103,6 +104,7 @@ def change_boss_model(request):
     context = get_context_to_change_model(Boss)
     context['heading'] = 'Руководители'
     context['object_name'] = 'boss'
+    context = update_context_for_customization_pages_navbar(request, context)
     return render(request, 'simetra_app/change-model.html', context)
 
 
@@ -114,6 +116,8 @@ def create_boss(request):
         'boss_form': boss_form,
         'title': 'Добавить Нового Руководителя',
     }
+
+    context = update_context_for_customization_pages_navbar(request, context)
 
     if request.method == 'POST':
         boss_form = BossForm(request.POST)
@@ -134,6 +138,9 @@ def update_boss(request, boss_id):
         'title': 'Изменить Существующего Руководителя',
     }
 
+    context = update_context_for_customization_pages_navbar(request, context)
+    print(context)
+
     if request.method == 'POST':
         boss_form = BossForm(request.POST, instance=boss)
 
@@ -151,10 +158,21 @@ def delete_boss(request, boss_id):
 
 
 @login_required(login_url='simetra_app:staff-login')
+def delete_all_bosses(request):
+    bosses_list = Boss.objects.all()
+
+    for boss in bosses_list:
+        boss.delete()
+
+    return redirect('simetra_app:change-boss-model')
+
+
+@login_required(login_url='simetra_app:staff-login')
 def change_city_model(request):
     context = get_context_to_change_model(City)
     context['heading'] = 'Города'
     context['object_name'] = 'city'
+    context = update_context_for_customization_pages_navbar(request, context)
     return render(request, 'simetra_app/change-model.html', context)
 
 
@@ -169,10 +187,14 @@ def create_city(request):
         'title': 'Добавить Новый Город',
     }
 
+    context = update_context_for_customization_pages_navbar(request, context)
+
     if request.method == 'POST':
         if does_city_already_exist(request.POST):
             return HttpResponse(
-                'Такой город уже существует! Создайте новый город или обновите существующий.')
+                'Такой город уже существует! Создайте новый город или \
+                обновите существующий.'
+            )
 
         city_form = CityForm(request.POST)
 
@@ -194,6 +216,8 @@ def update_city(request, city_id):
         'title': 'Изменить Существующий Город',
     }
 
+    context = update_context_for_customization_pages_navbar(request, context)
+
     if request.method == 'POST':
         city_form = CityForm(request.POST, instance=city)
 
@@ -204,97 +228,7 @@ def update_city(request, city_id):
 
 
 @login_required(login_url='simetra_app:staff-login')
-def delete_city(request, city_id):
-    city = get_object_or_404(City, pk=city_id)
-    city.delete()
-    return redirect('simetra_app:change-city-model')
-
-
-@login_required(login_url='simetra_app:staff-login')
-def change_employee_model(request):
-    context = get_context_to_change_model(Employee)
-    context['heading'] = 'Сотрудники'
-    context['object_name'] = 'employee'
-    return render(request, 'simetra_app/change-model.html', context)
-
-
-@login_required(login_url='simetra_app:staff-login')
-def create_employee(request):
-    employee_form = EmployeeForm()
-
-    context = {
-        'employee_form': employee_form,
-        'title': 'Добавить Нового Сотрудника'
-    }
-
-    if request.method == 'POST':
-        employee_form = EmployeeForm(request.POST)
-
-        if employee_form.is_valid():
-            employee_form.save()
-
-    return render(
-        request,
-        'simetra_app/create-or-update-employee.html',
-        context)
-
-
-@login_required(login_url='simetra_app:staff-login')
-def update_employee(request, employee_id):
-    employee = get_object_or_404(Employee, pk=employee_id)
-    employee_form = EmployeeForm(instance=employee)
-
-    context = {
-        'employee_form': employee_form,
-        'title': 'Изменить Существующего Сотрудника',
-    }
-
-    if request.method == 'POST':
-        employee_form = EmployeeForm(request.POST, instance=employee)
-
-        if employee_form.is_valid():
-            employee_form.save()
-
-    return render(
-        request,
-        'simetra_app/create-or-update-employee.html',
-        context)
-
-
-@login_required(login_url='simetra_app:staff-login')
-def delete_employee(request, employee_id):
-    employee = get_object_or_404(Employee, pk=employee_id)
-    employee.delete()
-    return redirect('simetra_app:change-employee-model')
-
-
-def does_city_already_exist(requestPOST):
-    new_city_name = requestPOST['name']
-
-    for city in City.objects.all():
-        if city.name == new_city_name:
-            return True
-
-    return False
-
-
-def get_context_to_change_model(Object):
-    context = {
-        'list_of_objects': Object.objects.all(),
-        'number_of_objects': Object.objects.all().count(),
-    }
-
-    if ContentType.objects.get_for_model(
-            Object) == ContentType.objects.get_for_model(City):
-        context["is_city"] = True
-
-    return context
-
-
 def upload_cities_excel(request):
-    class UploadFileForm(forms.Form):
-        file = forms.FileField()
-
     def write_field(city: City, sheet, field_name: str, i: int) -> None:
         val = sheet[City._meta.get_field(field_name).verbose_name, i]
         try:
@@ -302,6 +236,8 @@ def upload_cities_excel(request):
         except ValueError:
             val = 0
         setattr(city, field_name, val)
+
+    form = UploadFileForm()
 
     if request.method == "POST":
         form = UploadFileForm(request.POST, request.FILES)
@@ -455,11 +391,16 @@ def upload_cities_excel(request):
             for sheet_name in sheet_names:
                 if not check_sheet_existance(excel_book, sheet_name):
                     error_message = 'Документ не содержит следующего листа: \
-                            "{}"'.format(sheet_name)
+                        "{}"'.format(sheet_name)
 
             if error_message != '':
-                return render(request, "simetra_app/upload_cities_excel.html",
-                              {"form": form, "error_message": error_message})
+                context = {
+                    "form": form,
+                    "error_message": error_message,
+                }
+
+                return render(
+                    request, "simetra_app/upload-cities-excel.html", context)
 
             def write_sheet(sheet_name) -> None:
                 sheet = excel_book[sheet_name]
@@ -475,24 +416,204 @@ def upload_cities_excel(request):
                     else:
                         city = City(name=name)
 
-                    for field_name in field_names:
-                        write_field(city, sheet, field_name, i)
+                    if is_city_name_correct_to_find_coordinates(city.name):
+                        longitude, latitude = CityCoordinates(city.name).\
+                            get_longitude_and_latitude_by_city_name()
+                        city.longitude = longitude
+                        city.latitude = latitude
 
-                    city.save()
+                        for field_name in field_names:
+                            write_field(city, sheet, field_name, i)
+
+                        city.save()
 
             for key in sheet_names:
                 write_sheet(key)
 
         else:
             return HttpResponseBadRequest()
-    else:
-        form = UploadFileForm()
+
+    context = {
+        "form": form,
+        "error_message": '',
+    }
+
+    context = update_context_for_customization_pages_navbar(request, context)
+
+    return render(request, "simetra_app/upload-cities-excel.html", context)
+
+
+@login_required(login_url='simetra_app:staff-login')
+def delete_city(request, city_id):
+    city = get_object_or_404(City, pk=city_id)
+    city.delete()
+    return redirect('simetra_app:change-city-model')
+
+
+@login_required(login_url='simetra_app:staff-login')
+def delete_all_cities(request):
+    cities_list = City.objects.all()
+
+    for city in cities_list:
+        city.delete()
+
+    return redirect('simetra_app:change-city-model')
+
+
+@login_required(login_url='simetra_app:staff-login')
+def change_employee_model(request):
+    context = get_context_to_change_model(Employee)
+    context['heading'] = 'Сотрудники'
+    context['object_name'] = 'employee'
+    context = update_context_for_customization_pages_navbar(request, context)
+    return render(request, 'simetra_app/change-model.html', context)
+
+
+@login_required(login_url='simetra_app:staff-login')
+def create_employee(request):
+    employee_form = EmployeeForm()
+
+    context = {
+        'employee_form': employee_form,
+        'title': 'Добавить Нового Сотрудника',
+    }
+
+    context = update_context_for_customization_pages_navbar(request, context)
+
+    if request.method == 'POST':
+        employee_form = EmployeeForm(request.POST)
+
+        if employee_form.is_valid():
+            employee_form.save()
 
     return render(
-        request,
-        "simetra_app/upload_cities_excel.html",
-        {
-            "form": form,
-            "error_message": '',
-        },
-    )
+        request, 'simetra_app/create-or-update-employee.html', context)
+
+
+@login_required(login_url='simetra_app:staff-login')
+def update_employee(request, employee_id):
+    employee = get_object_or_404(Employee, pk=employee_id)
+    employee_form = EmployeeForm(instance=employee)
+
+    context = {
+        'employee_form': employee_form,
+        'title': 'Изменить Существующего Сотрудника',
+    }
+
+    context = update_context_for_customization_pages_navbar(request, context)
+
+    if request.method == 'POST':
+        employee_form = EmployeeForm(request.POST, instance=employee)
+
+        if employee_form.is_valid():
+            employee_form.save()
+
+    return render(
+        request, 'simetra_app/create-or-update-employee.html', context)
+
+
+@login_required(login_url='simetra_app:staff-login')
+def delete_employee(request, employee_id):
+    employee = get_object_or_404(Employee, pk=employee_id)
+    employee.delete()
+    return redirect('simetra_app:change-employee-model')
+
+
+@login_required(login_url='simetra_app:staff-login')
+def delete_all_employees(request):
+    employees_list = Employee.objects.all()
+
+    for employee in employees_list:
+        employee.delete()
+
+    return redirect('simetra_app:change-employee-model')
+
+
+class CityCoordinates():
+    def __init__(self, city_english_name):
+        self.city = city_english_name
+        self.__MAPBOX_KEY = 'pk.eyJ1IjoicmF0aW5nLW9mLWNpdGllcyIsImEiOiJjbDBwMzVxYmEweXV0M2tudG5iNTVoOWEwIn0.-TuXo1E4722kHkQswNZh2A'
+
+    def __parse_coordinates_by_search_pattern(self, unparsed_coordinates):
+        pattern = '"center":['
+        start = unparsed_coordinates.find(pattern) + len(pattern)
+        end = unparsed_coordinates.find(']', start)
+        cooridnates = unparsed_coordinates[start:end]
+        return cooridnates
+
+    def __get_city_coordinates_from_mapbox_json_file(self, city):
+        unparsed_coordinates_file = urllib.request.urlopen(
+            'https://api.mapbox.com/geocoding/v5/mapbox.places/' + city +
+            '.json?access_token=' + self.__MAPBOX_KEY
+        )
+
+        unparsed_coordinates_string = str(unparsed_coordinates_file.read())
+
+        coordinates = self.__parse_coordinates_by_search_pattern(
+            unparsed_coordinates_string)
+
+        return coordinates
+
+    def get_longitude_and_latitude_by_city_name(self):
+        city_format_to_get_coordinates = self.city.replace(' ', '+')
+
+        coordinates = self.__get_city_coordinates_from_mapbox_json_file(
+            city_format_to_get_coordinates)
+
+        coordinates = coordinates.split(',')
+        longitude = float(coordinates[1])
+        latitude = float(coordinates[0])
+
+        return longitude, latitude
+
+
+def get_context_to_change_model(Object):
+    context = {
+        'list_of_objects': Object.objects.all(),
+        'number_of_objects': Object.objects.all().count(),
+    }
+
+    is_object_city = ContentType.objects.get_for_model(Object) == \
+        ContentType.objects.get_for_model(City)
+
+    if is_object_city:
+        context["is_city"] = True
+
+    return context
+
+
+def does_city_already_exist(requestPOST):
+    new_city_name = requestPOST['name']
+
+    for city in City.objects.all():
+        if city.name == new_city_name:
+            return True
+
+    return False
+
+
+def is_city_name_correct_to_find_coordinates(city_name):
+    if city_name == 'ВЕС' or city_name == 'ПРОБА':
+        return False
+
+    return True
+
+
+def update_context_for_customization_pages_navbar(request, context):
+    def is_it_update_page(url_ancestors_name_list):
+        return url_ancestors_name_list[-2][:7] == 'update-'
+
+    url_ancestors_name_list = request.path.split('/')[1:-1]
+
+    if is_it_update_page(url_ancestors_name_list):
+        context['update_model'] = url_ancestors_name_list[-2]
+        context['model_id'] = url_ancestors_name_list[-1]
+        context['is_this_update_page'] = True
+
+        del(url_ancestors_name_list[-2])
+        del(url_ancestors_name_list[-1])
+
+    context['url_ancestors_name_list'] = url_ancestors_name_list
+    print(url_ancestors_name_list)
+
+    return context
