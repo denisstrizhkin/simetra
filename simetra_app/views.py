@@ -64,11 +64,11 @@ def data_base_page(request):
 def city_page(request, city_name):
     print(city_name)
     city = get_object_or_404(City, name=city_name)
-
     context = {
         'name': city.name,
         'longitude': city.longitude,
         'latitude': city.latitude,
+
     }
 
     return render(request, 'simetra_app/city-page.html', context)
