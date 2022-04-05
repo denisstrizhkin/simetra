@@ -1,0 +1,1 @@
+const citiesUnparsed = JSON.parse(document.getElementById('cities-list-json').textContent);

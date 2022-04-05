@@ -45,11 +45,17 @@ def methodology_page(request):
 
 
 def analytics_page(request):
-    return render(request, 'simetra_app/analytics.html')
+    required_fields = ['name']
+    cities_list_json = get_JSON_city_list(required_fields)
+    context = {'cities_list_json': cities_list_json}
+    return render(request, 'simetra_app/analytics.html', context)
 
 
 def data_base_page(request):
-    return render(request, 'simetra_app/data-base.html')
+    required_fields = ['name']
+    cities_list_json = get_JSON_city_list(required_fields)
+    context = {'cities_list_json': cities_list_json}
+    return render(request, 'simetra_app/data-base.html', context)
 
 
 def city_page(request, city_name):
@@ -634,5 +640,5 @@ def get_JSON_city_list(city_fields_list):
         city_dictionary_json = json.dumps(
             city_dictionary, cls=DjangoJSONEncoder)
         cities_list_json.append(city_dictionary_json)
-    
+
     return cities_list_json
