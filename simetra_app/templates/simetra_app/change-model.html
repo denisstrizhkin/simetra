@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Настройка</title>
+  <!--INCLUDE-->
+  <link rel="stylesheet" href="{% static 'simetra_app/customization_page/change-model/styles/style.css' %}" />
+  <!--INCLUDE-->
+  <link rel="apple-touch-icon-precomposed" sizes="57x57" href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-57x57.png' %}" />
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-114x114.png' %}" />
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-72x72.png' %}" />
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-144x144.png' %}" />
+  <link rel="apple-touch-icon-precomposed" sizes="60x60" href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-60x60.png' %}" />
+  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-120x120.png' %}" />
+  <link rel="apple-touch-icon-precomposed" sizes="76x76" href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-76x76.png' %}" />
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-152x152.png' %}" />
+  <link rel="icon" type="image/png" href="{% static 'simetra_app/general_assets/favicon/favicon-196x196.png' %}" sizes="196x196" />
+  <link rel="icon" type="image/png" href="{% static 'simetra_app/general_assets/favicon/favicon-96x96.png' %}" sizes="96x96" />
+  <link rel="icon" type="image/png" href="{% static 'simetra_app/general_assets/favicon/favicon-32x32.png' %}" sizes="32x32" />
+  <link rel="icon" type="image/png" href="{% static 'simetra_app/general_assets/favicon/favicon-16x16.png' %}" sizes="16x16" />
+  <link rel="icon" type="image/png" href="{% static 'simetra_app/general_assets/favicon/favicon-128.png' %}" sizes="128x128" />
+  <meta name="application-name" content="&nbsp;" />
+  <meta name="msapplication-TileColor" content="#FFFFFF" />
+  <meta name="msapplication-TileImage" content="{% static 'simetra_app/general_assets/favicon/mstile-144x144.png' %}" />
+  <meta name="msapplication-square70x70logo" content="{% static 'simetra_app/general_assets/favicon/mstile-70x70.png' %}" />
+  <meta name="msapplication-square150x150logo" content="{% static 'simetra_app/general_assets/favicon/mstile-150x150.png' %}" />
+  <meta name="msapplication-wide310x150logo" content="{% static 'simetra_app/general_assets/favicon/mstile-310x150.png' %}" />
+  <meta name="msapplication-square310x310logo" content="{% static 'simetra_app/general_assets/favicon/mstile-310x310.png' %}" />
+</head>
+
+<body>
+  <div class="wrapper">
+
+    <header class="header">
+      <div class="header__container">
+        <nav class="header__menu menu">
+          <ul class="menu__list">
+            <li class="menu__item">
+              <a href="{% url 'simetra_app:customization' %}" class="menu__link _link">На главную</a>
+            </li>
+            <li class="menu__item">
+              <a href="{% url 'simetra_app:staff-logout' %}" class="menu__link _link">Выход</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="page">
+      <section class="page__home home">
+        <div class="home__container">
+          <h1 class="home__title">{{ heading }}</h1>
+          {% include 'simetra_app/customization-navbar.html' %}
+          {% with 'simetra_app:create-'|add:object_name as creation_link %}
+            <p><a class="home__add _link" href="{% url creation_link %}">Добавить новый экземпляр модели</a></p>
+          {% endwith %}
+          <div class="home__block">
+            <h2 class="home__caption">Список существующих моделей:</h2>
+            <ul>  
+              {% with 'simetra_app:delete-all-instances-of-'|add:object_name as deleting_link %}
+              <a href="{% url deleting_link %}">Удалить все экземпляры модели</a>
+              {% endwith %}
+              {% for object in list_of_objects %}
+              <li class="home__item">
+                {{ object.name }}
+                <div class="home__options">
+                  {% with 'simetra_app:update-'|add:object_name as updating_link %}
+                  <a class="home__change _link" href="{% url updating_link object.id %}">
+                    <span>Изменить</span>
+                    <img class="home__option-image" src="{% static 'simetra_app/customization_page/change-model/assets/img/change.png' %}">
+                  </a>
+                  {% endwith %} 
+                  {% with 'simetra_app:delete-'|add:object_name as deleting_link %}
+                  <a class="home__delete _link" href="{% url deleting_link object.id %}">
+                    <span>Удалить</span>
+                    <img class="home__option-image" src="{% static 'simetra_app/customization_page/change-model/assets/img/delete.png' %}">
+                  </a>
+                  {% endwith %}
+                </div>
+
+              </li>
+              {% endfor %}
+            </ul>
+            {% if is_city == True %}
+            <a class="home__load _link" href="{% url 'simetra_app:upload-cities-excel' %}">
+              Загрузить данные с помощью .xlsx(ods) файла</a>
+            {% endif %}
+            <p>Общее количество моделей: {{ number_of_objects }}</p>
+          </div>
+      </section>
+    </main>
+  </div>
+</body>
+
+</html>
