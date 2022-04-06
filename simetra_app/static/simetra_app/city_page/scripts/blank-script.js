@@ -7,35 +7,27 @@ const citiesUnparsed = JSON.parse(
 const featureGroups = JSON.parse(citiesUnparsed[0]);
 
 const qualityGroups = Object.entries(
-  JSON.parse(featureGroups["КАЧЕСТВЕННЫЕ ГРУППЫ"][0])
-);
-const spatialCharacteristics = Object.entries(
-  JSON.parse(featureGroups["ПРОСТРАНСТВЕННЫЕ_ХАРАКТЕРИСТИКИ"][0])
-);
-const rollinStock = Object.entries(
-  JSON.parse(featureGroups["ПОДВИЖНОЙ СОСТАВ"][0])
-);
-const routes = Object.entries(JSON.parse(featureGroups["МАРШРУТЫ"][0]));
-const tariffSystem = Object.entries(
-  JSON.parse(featureGroups["ТАРИФНАЯ СИСТЕМА"][0])
-);
-
-// console.log(qualityGroups);
-// console.log(spatialCharacteristics);
-// console.log(rollinStock);
-// console.log(routes);
-// console.log(tariffSystem);
+    JSON.parse(featureGroups["КАЧЕСТВЕННЫЕ ГРУППЫ"][0])
+  ),
+  spatialCharacteristics = Object.entries(
+    JSON.parse(featureGroups["ПРОСТРАНСТВЕННЫЕ_ХАРАКТЕРИСТИКИ"][0])
+  ),
+  rollinStock = Object.entries(
+    JSON.parse(featureGroups["ПОДВИЖНОЙ СОСТАВ"][0])
+  ),
+  routes = Object.entries(JSON.parse(featureGroups["МАРШРУТЫ"][0])),
+  tariffSystem = Object.entries(
+    JSON.parse(featureGroups["ТАРИФНАЯ СИСТЕМА"][0])
+  );
 
 const citiesAttrVerboseNameUnparsed = JSON.parse(
   document.getElementById("city_attr_verbose_names_list_json").textContent
 );
-
 const cityAttributeName = JSON.parse(citiesAttrVerboseNameUnparsed[0]);
 
 function generateDatas(arrField, start, end) {
   let data = [];
   for (let i = start; i < end; i++) {
-    // console.log(arrField);
     data.push(arrField[i][1]);
   }
   return data;
@@ -43,12 +35,8 @@ function generateDatas(arrField, start, end) {
 
 function generateLabels(arrField, start, end) {
   let data = [];
-
   for (let i = start; i < end; i++) {
-    // console.log(arrField[i][0]);
     const buffName = arrField[i][0];
-    // console.log(cityAttributeName[`${buffName}`]);
-    // console.log(cityAttributeName.buffName);
     data.push(cityAttributeName[`${buffName}`]);
   }
   return data;
@@ -57,13 +45,13 @@ function generateLabels(arrField, start, end) {
 /*-------------------------------------------------------------*/
 /*-----Polar Area----------------------------------------------*/
 /*-------------------------------------------------------------*/
-function createNewPolarArea(start, end) {
+function createNewPolarArea(groupArr, start, end) {
   const data = {
-    labels: generateLabels(qualityGroups, start, end),
+    labels: generateLabels(groupArr, start, end),
     datasets: [
       {
         label: "Dataset 1",
-        data: generateDatas(qualityGroups, start, end),
+        data: generateDatas(groupArr, start, end),
         backgroundColor: [
           "rgba(255, 99, 132,1)",
           "rgba(54, 162, 235,1)",
@@ -93,18 +81,17 @@ function createNewPolarArea(start, end) {
   };
   return config;
 }
-new Chart(document.getElementById("myChart-1"), createNewPolarArea(0, 5));
 
 /*-------------------------------------------------------------*/
 /*-----Bar-----------------------------------------------------*/
 /*-------------------------------------------------------------*/
-function createNewBar(start, end) {
+function createNewBar(groupArr, start, end) {
   const data = {
-    labels: generateLabels(spatialCharacteristics, start, end),
+    labels: generateLabels(groupArr, start, end),
     datasets: [
       {
         label: "Пространственные характеристики",
-        data: generateDatas(spatialCharacteristics, start, end),
+        data: generateDatas(groupArr, start, end),
         backgroundColor: [
           "rgba(255, 99, 132,1)",
           "rgba(54, 162, 235,1)",
@@ -136,18 +123,16 @@ function createNewBar(start, end) {
   };
   return config;
 }
-new Chart(document.getElementById("myChart-2"), createNewBar(0, 5));
-
 
 /*-------------------------------------------------------------*/
 /*-----Bubble--------------------------------------------------*/
 /*-------------------------------------------------------------*/
 
-function generateDatasForBubble(objectField, start, end) {
+function generateDatasForBubble(groupArr, start, end) {
   let data = [];
   for (let i = start; i < end; i++) {
     data.push({
-      x: objectField[i][1],
+      x: groupArr[i][1],
       y: (i + 1) * 10,
       r: 20,
     });
@@ -155,13 +140,12 @@ function generateDatasForBubble(objectField, start, end) {
   return data;
 }
 
-function createNewBubble(start, end) {
+function createNewBubble(groupArr, start, end) {
   const data = {
-    // labels: generateDatas(Object.keys(cityObj), start, end),
     datasets: [
       {
         label: "dataSet",
-        data: generateDatasForBubble(rollinStock, start, end),
+        data: generateDatasForBubble(groupArr, start, end),
         backgroundColor: [
           "rgba(255, 99, 132,1)",
           "rgba(54, 162, 235,1)",
@@ -192,19 +176,16 @@ function createNewBubble(start, end) {
   return config;
 }
 
-new Chart(document.getElementById("myChart-3"), createNewBubble(0, 5));
-
-
 /*-------------------------------------------------------------*/
 /*-----Radar---------------------------------------------------*/
 /*-------------------------------------------------------------*/
 
-function createNewRadar(start, end) {
+function createNewRadar(groupArr, start, end) {
   const data = {
-    labels: generateLabels(routes, start, end),
+    labels: generateLabels(groupArr, start, end),
     datasets: [
       {
-        data: generateDatas(routes, start, end),
+        data: generateDatas(groupArr, start, end),
       },
     ],
   };
@@ -234,20 +215,16 @@ function createNewRadar(start, end) {
   };
   return config;
 }
-new Chart(document.getElementById("myChart-4"), createNewRadar(0, 5));
-
 
 /*-------------------------------------------------------------*/
-/*-----Radar regular-------------------------------------------*/
+/*-----Pie-----------------------------------------------------*/
 /*-------------------------------------------------------------*/
-
-function createNewRadarRegular(start, end) {
+function createNewPie(groupArr, start, end) {
   const data = {
-    labels: generateLabels(tariffSystem, start, end),
+    labels: generateLabels(groupArr, start, end),
     datasets: [
       {
-        data: generateDatas(tariffSystem, start, end),
-        borderColor: "white",
+        data: generateDatas(groupArr, start, end),
         backgroundColor: [
           "rgba(255, 99, 132,1)",
           "rgba(54, 162, 235,1)",
@@ -260,14 +237,17 @@ function createNewRadarRegular(start, end) {
   };
 
   const config = {
-    type: "radar",
+    type: "pie",
     data: data,
     options: {
       responsive: true,
       plugins: {
+        legend: {
+          position: "top",
+        },
         title: {
           display: true,
-          text: "Chart.js Radar Chart",
+          text: "Chart.js Pie Chart",
         },
       },
     },
@@ -275,7 +255,164 @@ function createNewRadarRegular(start, end) {
   return config;
 }
 
+/*-------------------------------------------------------------*/
+/*-----Doughnut------------------------------------------------*/
+/*-------------------------------------------------------------*/
+function createNewDoughnut(groupArr, start, end) {
+  const data = {
+    labels: generateLabels(groupArr, start, end),
+    datasets: [
+      {
+        data: generateDatas(groupArr, start, end),
+        backgroundColor: [
+          "rgba(255, 99, 132,1)",
+          "rgba(54, 162, 235,1)",
+          "rgba(255, 206, 86,1)",
+          "rgba(75, 192, 192,1)",
+          "rgba(153, 102, 255,1)",
+        ],
+      },
+    ],
+  };
+
+  const config = {
+    type: "doughnut",
+    data: data,
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: "top",
+        },
+        title: {
+          display: true,
+          text: "Chart.js Doughnut Chart",
+        },
+      },
+    },
+  };
+  return config;
+}
+/*-------------------------------------------------------------*/
+/*-----Horizontal Bar Chart------------------------------------*/
+/*-------------------------------------------------------------*/
+
+function horizontalBarChart(groupArr, start, end) {
+  const data = {
+    labels: generateLabels(groupArr, start, end),
+    datasets: [
+      {
+        data: generateDatas(groupArr, start, end),
+        borderColor: "white",
+        backgroundColor: [
+          "rgba(255, 99, 132,1)",
+          "rgba(54, 162, 235,1)",
+          "rgba(255, 206, 86,1)",
+          "rgba(75, 192, 192,1)",
+          "rgba(153, 102, 255,1)",
+          "rgba(255, 99, 132,1)",
+          "rgba(54, 162, 235,1)",
+          "rgba(255, 206, 86,1)",
+          "rgba(75, 192, 192,1)",
+          "rgba(153, 102, 255,1)",
+        ],
+      },
+    ],
+  };
+
+  const config = {
+    type: "horizontalBar",
+    data: data,
+    options: {
+      indexAxis: "y",
+      elements: {
+        bar: {
+          borderWidth: 2,
+        },
+      },
+      responsive: true,
+      plugins: {
+        legend: {
+          position: "right",
+        },
+        title: {
+          display: true,
+          text: "Chart.js Horizontal Bar Chart",
+        },
+      },
+    },
+  };
+  return config;
+}
+
+/*-------------------------------------------------------------*/
+/*-------------------------------------------------------------*/
+/*-----Creating charts-----------------------------------------*/
+/*-------------------------------------------------------------*/
+/*-------------------------------------------------------------*/
+
+/*-------------------------------------------------------------*/
+/*-----Quality-------------------------------------------------*/
+/*-------------------------------------------------------------*/
+
 new Chart(
-  document.getElementById("myChart-5"),
-  createNewRadarRegular(0, 6)
+  document.getElementById("quality-1"),
+  createNewPolarArea(qualityGroups, 0, 5)
+);
+
+/*-------------------------------------------------------------*/
+/*-----Spatial-------------------------------------------------*/
+/*-------------------------------------------------------------*/
+
+new Chart(
+  document.getElementById("spatial-1"),
+  createNewBar(spatialCharacteristics, 0, 5)
+);
+
+/*-------------------------------------------------------------*/
+/*-----Analysis------------------------------------------------*/
+/*-------------------------------------------------------------*/
+new Chart(
+  document.getElementById("rolling-stock-1"),
+  createNewPie(rollinStock, 0, 5)
+);
+new Chart(
+  document.getElementById("rolling-stock-2"),
+  createNewDoughnut(rollinStock, 5, 10)
+);
+
+const analysisContainer = document.querySelector(".rolling-stock__container");
+
+for (let i = 10, j = 3; i < 15; i++, j++) {
+  const newChart = document.createElement("canvas");
+  newChart.id = `rolling-stock-${j}`;
+  analysisContainer.append(newChart);
+  new Chart(
+    document.getElementById(newChart.id),
+    createNewDoughnut(rollinStock, i, i + 1)
+  );
+}
+
+// for (let i = 16, j = 8; i < 25; i+=4, j++) {
+//   const newChart = document.createElement('canvas');
+//   newChart.id = `analysis-${j}`;
+//   analysisContainer.append(newChart);
+//   new Chart(document.getElementById(newChart.id), createNewDoughnut(i, i + 4, rollinStock));
+// }
+
+//33C2C7
+//60EEC4
+
+/*-------------------------------------------------------------*/
+/*-----Routes--------------------------------------------------*/
+/*-------------------------------------------------------------*/
+
+new Chart(document.getElementById("routes-1"), createNewRadar(routes, 0, 6));
+
+/*-------------------------------------------------------------*/
+/*-----Tariff--------------------------------------------------*/
+/*-------------------------------------------------------------*/
+new Chart(
+  document.getElementById("tariff-1"),
+  horizontalBarChart(tariffSystem, 3, 16)
 );
