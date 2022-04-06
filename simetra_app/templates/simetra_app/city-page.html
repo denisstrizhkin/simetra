@@ -51,7 +51,11 @@
 </head>
 
 <body>
-    {{ cities_list_json|json_script:"cities-list-json" }}
+    {{ city_attr_verbose_names_list_json|json_script:"city_attr_verbose_names_list_json" }}
+    {{ cities_attrs_by_groups_list_json|json_script:"cities_attrs_by_groups_list_json" }}
+    <h2>{{ name }}</h2>
+    <p>Широта: {{ longitude }}</p>
+    <p>Долгота: {{ latitude }}</p>
 
 
 
@@ -77,7 +81,7 @@
                 <div class="quality__container _container">
                     <h2 class="quality__title _title">Качественные группы</h2>
                     <div>
-                        <canvas id="myChart"></canvas>
+                        <canvas id="myChart-1"></canvas>
                     </div>
                 </div>
             </section>
@@ -86,14 +90,7 @@
                 <div class="spatial__container _container">
                     <h2 class="spatial__title _title">
                         Пространственные характеристики </h2>
-                    <ul class="spatial__charts">
-                        <li> <canvas id="myChart-2"></canvas></li>
-                        <!-- <li> <canvas id="myChart-3"></canvas></li>
-                        <li> <canvas id="myChart-4"></canvas></li>
-                        <li> <canvas id="myChart-5"></canvas></li>
-                        <li> <canvas id="myChart-6"></canvas></li>
-                        <li> <canvas id="myChart-7"></canvas></li> -->
-                    </ul>
+                    <canvas id="myChart-2"></canvas>
                 </div>
             </section>
 
@@ -103,7 +100,7 @@
                     <h2 class="analysis__title _title">
                         Подвижной состав
                     </h2>
-                    <canvas id="myChart-8"></canvas>
+                    <canvas id="myChart-3"></canvas>
                 </div>
             </section>
 
@@ -112,7 +109,7 @@
                     <h2 class="routes__title _title">
                         Маршруты
                     </h2>
-                    <canvas id="myChart-20"></canvas>
+                    <canvas id="myChart-4"></canvas>
             </section>
 
             <section class="page__tariff tariff">
@@ -120,7 +117,7 @@
                     <h2 class="tariff__title _title">
                         Тарифная система
                     </h2>
-                    <canvas id="myChart-30"></canvas>
+                    <canvas id="myChart-5"></canvas>
                 </div>
             </section>
         </main>
