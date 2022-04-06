@@ -1,1 +1,21 @@
-const citiesUnparsed = JSON.parse(document.getElementById('cities-list-json').textContent);
+"use strict";
+
+const citiesUnparsed = JSON.parse(
+  document.getElementById("cities-list-json").textContent
+);
+
+const nameCity = document.location.pathname.slice(
+  8,
+  document.location.pathname.length - 1
+);
+
+function findCity() {
+  for (let i = 0; i < citiesUnparsed.length; i++) {
+    const cityUnparsed = citiesUnparsed[i];
+    const city = JSON.parse(cityUnparsed);
+    if (city["name"] === nameCity) {
+      return city;
+    }
+  }
+}
+const cityObj = findCity();
