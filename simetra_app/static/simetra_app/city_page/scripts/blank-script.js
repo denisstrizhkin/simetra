@@ -167,4 +167,54 @@ function createNewBubble(start, end) {
 new Chart(document.getElementById("myChart-8"), createNewBubble(38, 43));
 // 80
 
+function generateDatasForBubble(objectField, start, end) {
+  let data = [];
+  for (let i = start; i < end; i++) {
+    data.push({
+      x: objectField[i],
+      y: (i + 1) * 10,
+      r: 20,
+    });
+  }
+  return data;
+}
 
+function createNewRadar(start, end) {
+
+  const data = {
+    labels: generateDatas(Object.keys(cityObj), start, end),
+    datasets: [
+      {
+        data: generateDatas(Object.values(cityObj), start, end),
+      },
+    ],
+  };
+
+  const config = {
+    type: "radar",
+    data: data,
+    options: {
+      plugins: {
+        legend: false,
+        tooltip: false,
+      },
+      elements: {
+        line: {
+          backgroundColor: "#00A82D",
+          borderColor: "#00A82D",
+        },
+        point: {
+          backgroundColor: "rgba(54, 162, 235,1)",
+          hoverBackgroundColor: "rgba(54, 162, 235,1)",
+          radius: 10,
+          pointStyle: "circle",
+          hoverRadius: 15,
+        },
+      },
+    },
+  };
+  return config;
+}
+console.log(Object.keys(cityObj)[108]);
+new Chart(document.getElementById("myChart-20"), createNewRadar(80, 85));
+// 109
