@@ -1,7 +1,7 @@
 "use strict";
 
 const citiesUnparsed = JSON.parse(
-  document.getElementById("cities-list-json").textContent
+  document.getElementById("cities_attrs_by_groups_list_json").textContent
 );
 
 const citiesAttrVerboseNameUnparsed = JSON.parse(

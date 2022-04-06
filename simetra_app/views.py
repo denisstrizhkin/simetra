@@ -1,4 +1,5 @@
 import json
+from this import d
 from threading import get_ident
 import urllib
 
@@ -62,144 +63,154 @@ def data_base_page(request):
 def city_page(request, city_name):
     city = get_object_or_404(City, name=city_name)
 
-    required_fields = [
-        'name',
-        'longitude',
-        'latitude',
-        'rating_security_n_development',
-        'rating_comfort_n_convenience',
-        'rating_route_network_efficiency',
-        'rating_affordability',
-        'rating_physical_availability',
-        'num_population',
-        'length_UDS',
-        'area_active_city_zone',
-        'traffic_ground_transport',
-        'traffic_metro',
-        'num_working_stops_overall',
-        'num_working_stops_active_city_zone',
-        'num_of_apartments',
-        'proportion_apartments_in_coverage_zone',
-        'proportion_people_in_coverage_zone',
-        'area_stops_active_zone_coverage_500',
-        'area_stops_active_zone_coverage_700',
-        'area_stops_active_zone_coverage_1000',
-        'proportion_apartments_in_metro_coverage_zone',
-        'proportion_people_in_metro_coverage_zone',
-        'area_metro_coverage',
-        'density_stops_active_zone',
-        'percent_transport_covered_area',
-        'percent_metro_covered_area',
-        'num_people_with_metro_access',
-        'proportion_people_with_metro_access',
-        'num_people_with_transport_access',
-        'proportion_people_with_transport_access',
-        'avrg_length_between_stops',
-        'num_death_toll',
-        'num_wounded',
-        'num_accidents',
-        'num_accidents_per_transport_unit',
-        'num_wounded_n_dead_per_accident',
-        'num_wounded_n_dead_per_people',
-        'num_tramway_cars',
-        'num_trolleybuses',
-        'num_electrobuses',
-        'num_buses',
-        'num_metro_cars',
-        'num_working_tramway_cars',
-        'num_working_trolleybuses',
-        'num_working_electrobuses',
-        'num_working_buses',
-        'num_working_metro_cars',
-        'percent_working_tramway_cars',
-        'percent_working_trolleybuses',
-        'percent_working_electrobuses',
-        'percent_working_buses',
-        'percent_working_metro_cars',
-        'num_all_buses_registry',
-        'num_very_big_buses_registry',
-        'num_big_buses_registry',
-        'num_medium_buses_registry',
-        'num_small_buses_registry',
-        'num_all_trolleybuses_registry',
-        'num_big_trolleybuses_registry',
-        'num_very_big_trolleybuses_registry',
-        'num_tramway_cars_registry',
-        'num_big_tramway_cars_registry',
-        'num_very_big_tramway_cars_registry',
-        'avrg_age_tramway_car',
-        'avrg_age_trolleybus',
-        'avrg_age_bus',
-        'avrg_age_electrobus',
-        'avrg_age_metro_car',
-        'num_low_profile_tramway_cars',
-        'num_low_profile_trolleybuses',
-        'num_low_profile_buses',
-        'num_low_profile_electrobuses',
-        'num_new_GET',
-        'num_new_buses',
-        'proportion_low_profile_transport',
-        'proportion_big_capacity_transport',
-        'proportion_electro_transport',
-        'proportion_working_transport',
-        'percent_renew_program',
-        'num_routes_in_use_tramway',
-        'num_routes_in_use_trolleybus',
-        'num_routes_in_use_bus',
-        'num_routes_in_use_overall',
-        'num_routes_regulated_tariff',
-        'num_routes_unregulated_tariff',
-        'proportion_routes_unregulated_tariff',
-        'length_avrg_tramway_route',
-        'length_avrg_trolleybus_route',
-        'length_avrg_bus_route',
-        'length_existing_tramway_routes',
-        'length_in_use_tramway_routes',
-        'length_existing_trolleybus_routes',
-        'length_in_use_trolleybus_routes',
-        'length_overall_nonrailed_transport_path',
-        'percent_isolated_tramway_routes',
-        'coeff_tramway_net_use',
-        'coeff_trolleybus_net_use',
-        'num_segments_avrg_load',
-        'num_segments_high_load',
-        'time_avrg_waiting_any_transport',
-        'time_avrg_waiting_specific_transport',
-        'coeff_route',
-        'coeff_non_straight_route',
-        'bool_transport_app',
-        'bool_rt_internet_movement_info',
-        'bool_transport_schedule_website',
-        'bool_transport_route_net_map',
-        'bool_unique_transporte_style',
-        'avrg_region_salary',
-        'avrg_region_income',
-        'price_monthly_transport_pass',
-        'ratio_pass_cost_to_income',
-        'num_routes_with_pass',
-        'num_routes_with_transfer_pass',
-        'price_SOT',
-        'price_one_time_ticket',
-        'price_one_time_ticket_discount',
-        'price_transfer_pass',
-        'bool_universal_transport_card',
-        'bool_online_payment',
-        'bool_nfc_payment',
-        'bool_transfer_pass',
-        'bool_day_pass',
-        'bool_long_period_pass'
+    # required_fields = [
+    #     'name',
+    #     'longitude',
+    #     'latitude',
+    #     'rating_security_n_development',
+    #     'rating_comfort_n_convenience',
+    #     'rating_route_network_efficiency',
+    #     'rating_affordability',
+    #     'rating_physical_availability',
+    #     'num_population',
+    #     'length_UDS',
+    #     'area_active_city_zone',
+    #     'traffic_ground_transport',
+    #     'traffic_metro',
+    #     'num_working_stops_overall',
+    #     'num_working_stops_active_city_zone',
+    #     'num_of_apartments',
+    #     'proportion_apartments_in_coverage_zone',
+    #     'proportion_people_in_coverage_zone',
+    #     'area_stops_active_zone_coverage_500',
+    #     'area_stops_active_zone_coverage_700',
+    #     'area_stops_active_zone_coverage_1000',
+    #     'proportion_apartments_in_metro_coverage_zone',
+    #     'proportion_people_in_metro_coverage_zone',
+    #     'area_metro_coverage',
+    #     'density_stops_active_zone',
+    #     'percent_transport_covered_area',
+    #     'percent_metro_covered_area',
+    #     'num_people_with_metro_access',
+    #     'proportion_people_with_metro_access',
+    #     'num_people_with_transport_access',
+    #     'proportion_people_with_transport_access',
+    #     'avrg_length_between_stops',
+    #     'num_death_toll',
+    #     'num_wounded',
+    #     'num_accidents',
+    #     'num_accidents_per_transport_unit',
+    #     'num_wounded_n_dead_per_accident',
+    #     'num_wounded_n_dead_per_people',
+    #     'num_tramway_cars',
+    #     'num_trolleybuses',
+    #     'num_electrobuses',
+    #     'num_buses',
+    #     'num_metro_cars',
+    #     'num_working_tramway_cars',
+    #     'num_working_trolleybuses',
+    #     'num_working_electrobuses',
+    #     'num_working_buses',
+    #     'num_working_metro_cars',
+    #     'percent_working_tramway_cars',
+    #     'percent_working_trolleybuses',
+    #     'percent_working_electrobuses',
+    #     'percent_working_buses',
+    #     'percent_working_metro_cars',
+    #     'num_all_buses_registry',
+    #     'num_very_big_buses_registry',
+    #     'num_big_buses_registry',
+    #     'num_medium_buses_registry',
+    #     'num_small_buses_registry',
+    #     'num_all_trolleybuses_registry',
+    #     'num_big_trolleybuses_registry',
+    #     'num_very_big_trolleybuses_registry',
+    #     'num_tramway_cars_registry',
+    #     'num_big_tramway_cars_registry',
+    #     'num_very_big_tramway_cars_registry',
+    #     'avrg_age_tramway_car',
+    #     'avrg_age_trolleybus',
+    #     'avrg_age_bus',
+    #     'avrg_age_electrobus',
+    #     'avrg_age_metro_car',
+    #     'num_low_profile_tramway_cars',
+    #     'num_low_profile_trolleybuses',
+    #     'num_low_profile_buses',
+    #     'num_low_profile_electrobuses',
+    #     'num_new_GET',
+    #     'num_new_buses',
+    #     'proportion_low_profile_transport',
+    #     'proportion_big_capacity_transport',
+    #     'proportion_electro_transport',
+    #     'proportion_working_transport',
+    #     'percent_renew_program',
+    #     'num_routes_in_use_tramway',
+    #     'num_routes_in_use_trolleybus',
+    #     'num_routes_in_use_bus',
+    #     'num_routes_in_use_overall',
+    #     'num_routes_regulated_tariff',
+    #     'num_routes_unregulated_tariff',
+    #     'proportion_routes_unregulated_tariff',
+    #     'length_avrg_tramway_route',
+    #     'length_avrg_trolleybus_route',
+    #     'length_avrg_bus_route',
+    #     'length_existing_tramway_routes',
+    #     'length_in_use_tramway_routes',
+    #     'length_existing_trolleybus_routes',
+    #     'length_in_use_trolleybus_routes',
+    #     'length_overall_nonrailed_transport_path',
+    #     'percent_isolated_tramway_routes',
+    #     'coeff_tramway_net_use',
+    #     'coeff_trolleybus_net_use',
+    #     'num_segments_avrg_load',
+    #     'num_segments_high_load',
+    #     'time_avrg_waiting_any_transport',
+    #     'time_avrg_waiting_specific_transport',
+    #     'coeff_route',
+    #     'coeff_non_straight_route',
+    #     'bool_transport_app',
+    #     'bool_rt_internet_movement_info',
+    #     'bool_transport_schedule_website',
+    #     'bool_transport_route_net_map',
+    #     'bool_unique_transporte_style',
+    #     'avrg_region_salary',
+    #     'avrg_region_income',
+    #     'price_monthly_transport_pass',
+    #     'ratio_pass_cost_to_income',
+    #     'num_routes_with_pass',
+    #     'num_routes_with_transfer_pass',
+    #     'price_SOT',
+    #     'price_one_time_ticket',
+    #     'price_one_time_ticket_discount',
+    #     'price_transfer_pass',
+    #     'bool_universal_transport_card',
+    #     'bool_online_payment',
+    #     'bool_nfc_payment',
+    #     'bool_transfer_pass',
+    #     'bool_day_pass',
+    #     'bool_long_period_pass'
+    # ]
+
+    required_groups = [
+        'КАЧЕСТВЕННЫЕ ГРУППЫ',
+        'ПРОСТРАНСТВЕННЫЕ_ХАРАКТЕРИСТИКИ',
+        'ПОДВИЖНОЙ СОСТАВ',
+        'МАРШРУТЫ',
+        'ТАРИФНАЯ СИСТЕМА'
     ]
 
-    cities_list_json = get_JSON_city_list(required_fields)
-    city_attr_verbose_names_list_json = get_JSON_city_attr_verbose_names(
-        required_fields)
+    cities_attrs_by_groups_list_json = get_JSON_city_list_by_many_groups(
+        required_groups, city_name)
+
+    city_attr_verbose_names_json = get_JSON_city_attr_verbose_names_by_groups(
+        required_groups)
 
     context = {
         'name': city.name,
         'longitude': city.longitude,
         'latitude': city.latitude,
-        'cities_list_json': cities_list_json,
-        'city_attr_verbose_names_list_json': city_attr_verbose_names_list_json,
+        'cities_attrs_by_groups_list_json': cities_attrs_by_groups_list_json,
+        'city_attr_verbose_names_list_json': city_attr_verbose_names_json,
     }
 
     return render(request, 'simetra_app/city-page.html', context)
@@ -376,140 +387,7 @@ def upload_cities_excel(request):
         if form.is_valid():
             excel_book = request.FILES["file"].get_book()
 
-            sheet_names = {
-                'КАЧЕСТВЕННЫЕ ГРУППЫ': [
-                    'rating_security_n_development',
-                    'rating_comfort_n_convenience',
-                    'rating_physical_availability',
-                    'rating_affordability',
-                    'rating_route_network_efficiency'
-                ],
-                'ПРОСТРАНСТВЕННЫЕ_ХАРАКТЕРИСТИКИ': [
-                    'num_population',
-                    'length_UDS',
-                    'area_active_city_zone',
-                    'traffic_ground_transport',
-                    'traffic_metro',
-                    'num_working_stops_overall',
-                    'num_working_stops_active_city_zone',
-                    'num_of_apartments',
-                    'proportion_apartments_in_coverage_zone',
-                    'proportion_people_in_coverage_zone',
-                    'area_stops_active_zone_coverage_500',
-                    'area_stops_active_zone_coverage_700',
-                    'area_stops_active_zone_coverage_1000',
-                    'proportion_apartments_in_metro_coverage_zone',
-                    'proportion_people_in_metro_coverage_zone',
-                    'area_metro_coverage',
-                    'density_stops_active_zone',
-                    'percent_transport_covered_area',
-                    'percent_metro_covered_area',
-                    'num_people_with_metro_access',
-                    'proportion_people_with_metro_access',
-                    'num_people_with_transport_access',
-                    'proportion_people_with_transport_access',
-                    'avrg_length_between_stops',
-                    'num_death_toll',
-                    'num_wounded',
-                    'num_accidents',
-                    'num_accidents_per_transport_unit',
-                    'num_wounded_n_dead_per_accident',
-                    'num_wounded_n_dead_per_people',
-                ],
-                'ПОДВИЖНОЙ СОСТАВ': [
-                    'num_tramway_cars',
-                    'num_trolleybuses',
-                    'num_electrobuses',
-                    'num_buses',
-                    'num_metro_cars',
-                    'num_working_tramway_cars',
-                    'num_working_trolleybuses',
-                    'num_working_electrobuses',
-                    'num_working_buses',
-                    'num_working_metro_cars',
-                    'percent_working_tramway_cars',
-                    'percent_working_trolleybuses',
-                    'percent_working_electrobuses',
-                    'percent_working_buses',
-                    'percent_working_metro_cars',
-                    'num_all_buses_registry',
-                    'num_very_big_buses_registry',
-                    'num_big_buses_registry',
-                    'num_medium_buses_registry',
-                    'num_small_buses_registry',
-                    'num_all_trolleybuses_registry',
-                    'num_big_trolleybuses_registry',
-                    'num_very_big_trolleybuses_registry',
-                    'num_tramway_cars_registry',
-                    'num_big_tramway_cars_registry',
-                    'num_very_big_tramway_cars_registry',
-                    'avrg_age_tramway_car',
-                    'avrg_age_trolleybus',
-                    'avrg_age_bus',
-                    'avrg_age_electrobus',
-                    'avrg_age_metro_car',
-                    'num_low_profile_tramway_cars',
-                    'num_low_profile_trolleybuses',
-                    'num_low_profile_buses',
-                    'num_low_profile_electrobuses',
-                    'num_new_GET',
-                    'num_new_buses',
-                    'proportion_low_profile_transport',
-                    'proportion_big_capacity_transport',
-                    'proportion_electro_transport',
-                    'proportion_working_transport',
-                    'percent_renew_program'
-                ],
-                'МАРШРУТЫ': [
-                    'num_routes_in_use_tramway',
-                    'num_routes_in_use_trolleybus',
-                    'num_routes_in_use_bus',
-                    'num_routes_in_use_overall',
-                    'num_routes_regulated_tariff',
-                    'num_routes_unregulated_tariff',
-                    'proportion_routes_unregulated_tariff',
-                    'length_avrg_tramway_route',
-                    'length_avrg_trolleybus_route',
-                    'length_avrg_bus_route',
-                    'length_existing_tramway_routes',
-                    'length_in_use_tramway_routes',
-                    'length_existing_trolleybus_routes',
-                    'length_in_use_trolleybus_routes',
-                    'length_overall_nonrailed_transport_path',
-                    'percent_isolated_tramway_routes',
-                    'coeff_tramway_net_use',
-                    'coeff_trolleybus_net_use',
-                    'num_segments_avrg_load',
-                    'num_segments_high_load',
-                    'time_avrg_waiting_any_transport',
-                    'time_avrg_waiting_specific_transport',
-                    'coeff_route',
-                    'coeff_non_straight_route',
-                    'bool_transport_app',
-                    'bool_rt_internet_movement_info',
-                    'bool_transport_schedule_website',
-                    'bool_transport_route_net_map',
-                    'bool_unique_transporte_style',
-                ],
-                'ТАРИФНАЯ СИСТЕМА': [
-                    'avrg_region_salary',
-                    'avrg_region_income',
-                    'price_monthly_transport_pass',
-                    'ratio_pass_cost_to_income',
-                    'num_routes_with_pass',
-                    'num_routes_with_transfer_pass',
-                    'price_SOT',
-                    'price_one_time_ticket',
-                    'price_one_time_ticket_discount',
-                    'price_transfer_pass',
-                    'bool_universal_transport_card',
-                    'bool_online_payment',
-                    'bool_nfc_payment',
-                    'bool_transfer_pass',
-                    'bool_day_pass',
-                    'bool_long_period_pass'
-                ],
-            }
+            sheet_names = get_city_attrs_by_groups_dict()
 
             def check_sheet_existance(book, sheet_name) -> bool:
                 try:
@@ -588,7 +466,7 @@ def delete_all_cities(request):
     for city in cities_list:
         city.delete()
 
-    return redirect('simetra_app:change-city-model')
+    return redirect('simetra_app:change-city')
 
 
 @login_required(login_url='simetra_app:staff-login')
@@ -750,19 +628,28 @@ def update_context_for_customization_pages_navbar(request, context):
     return context
 
 
-def get_JSON_city_list(city_attr_list):
-    cities_list_json = []
-
-    for city in City.objects.all():
+def get_JSON_city_list(city_attr_list, city_name=None):
+    def get_JSON_city_attr_and_value_list(city_object):
         city_dictionary = {}
 
         for attr in city_attr_list:
-            value = getattr(city, attr)
+            value = getattr(city_object, attr)
             city_dictionary[attr] = value
 
         city_dictionary_json = json.dumps(
             city_dictionary, cls=DjangoJSONEncoder)
-        cities_list_json.append(city_dictionary_json)
+
+        return city_dictionary_json
+
+    if city_name is None:
+        cities_list_json = []
+        for city in City.objects.all():
+            city_dictionary_json = get_JSON_city_attr_and_value_list(city)
+            cities_list_json.append(city_dictionary_json)
+    else:
+        city = get_object_or_404(City, name=city_name)
+        city_dictionary_json = get_JSON_city_attr_and_value_list(city)
+        cities_list_json = [city_dictionary_json]
 
     return cities_list_json
 
@@ -771,6 +658,7 @@ def get_JSON_city_attr_verbose_names(city_attr_list):
     verbose_names_list_json = []
 
     verbose_names_dictionary = {}
+
     for attribute_name in city_attr_list:
         verbose_name = City._meta.get_field(attribute_name).verbose_name
         verbose_names_dictionary[attribute_name] = verbose_name
@@ -778,5 +666,174 @@ def get_JSON_city_attr_verbose_names(city_attr_list):
     verbose_names_dictionary_json = json.dumps(
         verbose_names_dictionary, cls=DjangoJSONEncoder)
     verbose_names_list_json.append(verbose_names_dictionary_json)
-    
+
     return verbose_names_list_json
+
+
+def get_JSON_city_list_by_many_groups(group_list, city_name=None):
+    def get_JSON_city_list_by_one_group(group_name, city_name=None):
+        attrs_by_groups = get_city_attrs_by_groups_dict()
+        current_group_attrs = attrs_by_groups[group_name]
+        return get_JSON_city_list(current_group_attrs, city_name)
+
+    cities_attrs_by_groups_dict = {}
+    
+    for group in group_list:
+        cities_attrs_by_groups_dict[group] = get_JSON_city_list_by_one_group(
+            group, city_name)
+
+    cities_attrs_by_groups_dict_json = json.dumps(
+        cities_attrs_by_groups_dict, cls=DjangoJSONEncoder)
+    cities_attrs_by_groups_list_json = [cities_attrs_by_groups_dict_json]
+
+    return cities_attrs_by_groups_list_json
+
+
+def get_JSON_city_attr_verbose_names_by_groups(group_list):
+    required_attrs = []
+
+    attrs_by_groups = get_city_attrs_by_groups_dict()
+
+    for group in group_list:
+        required_attrs += attrs_by_groups[group]
+
+    return get_JSON_city_attr_verbose_names(required_attrs)
+
+
+def get_city_attrs_by_groups_dict():
+    attrs_by_groups = {
+        'КАЧЕСТВЕННЫЕ ГРУППЫ': [
+            'rating_security_n_development',
+            'rating_comfort_n_convenience',
+            'rating_physical_availability',
+            'rating_affordability',
+            'rating_route_network_efficiency'
+        ],
+        'ПРОСТРАНСТВЕННЫЕ_ХАРАКТЕРИСТИКИ': [
+            'num_population',
+            'length_UDS',
+            'area_active_city_zone',
+            'traffic_ground_transport',
+            'traffic_metro',
+            'num_working_stops_overall',
+            'num_working_stops_active_city_zone',
+            'num_of_apartments',
+            'proportion_apartments_in_coverage_zone',
+            'proportion_people_in_coverage_zone',
+            'area_stops_active_zone_coverage_500',
+            'area_stops_active_zone_coverage_700',
+            'area_stops_active_zone_coverage_1000',
+            'proportion_apartments_in_metro_coverage_zone',
+            'proportion_people_in_metro_coverage_zone',
+            'area_metro_coverage',
+            'density_stops_active_zone',
+            'percent_transport_covered_area',
+            'percent_metro_covered_area',
+            'num_people_with_metro_access',
+            'proportion_people_with_metro_access',
+            'num_people_with_transport_access',
+            'proportion_people_with_transport_access',
+            'avrg_length_between_stops',
+            'num_death_toll',
+            'num_wounded',
+            'num_accidents',
+            'num_accidents_per_transport_unit',
+            'num_wounded_n_dead_per_accident',
+            'num_wounded_n_dead_per_people',
+        ],
+        'ПОДВИЖНОЙ СОСТАВ': [
+            'num_tramway_cars',
+            'num_trolleybuses',
+            'num_electrobuses',
+            'num_buses',
+            'num_metro_cars',
+            'num_working_tramway_cars',
+            'num_working_trolleybuses',
+            'num_working_electrobuses',
+            'num_working_buses',
+            'num_working_metro_cars',
+            'percent_working_tramway_cars',
+            'percent_working_trolleybuses',
+            'percent_working_electrobuses',
+            'percent_working_buses',
+            'percent_working_metro_cars',
+            'num_all_buses_registry',
+            'num_very_big_buses_registry',
+            'num_big_buses_registry',
+            'num_medium_buses_registry',
+            'num_small_buses_registry',
+            'num_all_trolleybuses_registry',
+            'num_big_trolleybuses_registry',
+            'num_very_big_trolleybuses_registry',
+            'num_tramway_cars_registry',
+            'num_big_tramway_cars_registry',
+            'num_very_big_tramway_cars_registry',
+            'avrg_age_tramway_car',
+            'avrg_age_trolleybus',
+            'avrg_age_bus',
+            'avrg_age_electrobus',
+            'avrg_age_metro_car',
+            'num_low_profile_tramway_cars',
+            'num_low_profile_trolleybuses',
+            'num_low_profile_buses',
+            'num_low_profile_electrobuses',
+            'num_new_GET',
+            'num_new_buses',
+            'proportion_low_profile_transport',
+            'proportion_big_capacity_transport',
+            'proportion_electro_transport',
+            'proportion_working_transport',
+            'percent_renew_program'
+        ],
+        'МАРШРУТЫ': [
+            'num_routes_in_use_tramway',
+            'num_routes_in_use_trolleybus',
+            'num_routes_in_use_bus',
+            'num_routes_in_use_overall',
+            'num_routes_regulated_tariff',
+            'num_routes_unregulated_tariff',
+            'proportion_routes_unregulated_tariff',
+            'length_avrg_tramway_route',
+            'length_avrg_trolleybus_route',
+            'length_avrg_bus_route',
+            'length_existing_tramway_routes',
+            'length_in_use_tramway_routes',
+            'length_existing_trolleybus_routes',
+            'length_in_use_trolleybus_routes',
+            'length_overall_nonrailed_transport_path',
+            'percent_isolated_tramway_routes',
+            'coeff_tramway_net_use',
+            'coeff_trolleybus_net_use',
+            'num_segments_avrg_load',
+            'num_segments_high_load',
+            'time_avrg_waiting_any_transport',
+            'time_avrg_waiting_specific_transport',
+            'coeff_route',
+            'coeff_non_straight_route',
+            'bool_transport_app',
+            'bool_rt_internet_movement_info',
+            'bool_transport_schedule_website',
+            'bool_transport_route_net_map',
+            'bool_unique_transporte_style',
+        ],
+        'ТАРИФНАЯ СИСТЕМА': [
+            'avrg_region_salary',
+            'avrg_region_income',
+            'price_monthly_transport_pass',
+            'ratio_pass_cost_to_income',
+            'num_routes_with_pass',
+            'num_routes_with_transfer_pass',
+            'price_SOT',
+            'price_one_time_ticket',
+            'price_one_time_ticket_discount',
+            'price_transfer_pass',
+            'bool_universal_transport_card',
+            'bool_online_payment',
+            'bool_nfc_payment',
+            'bool_transfer_pass',
+            'bool_day_pass',
+            'bool_long_period_pass'
+        ],
+    }
+
+    return attrs_by_groups
