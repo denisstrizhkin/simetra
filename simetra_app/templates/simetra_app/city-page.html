@@ -52,6 +52,7 @@
 
 <body>
     {{ cities_list_json|json_script:"cities-list-json" }}
+    {{ city_attr_verbose_names_list_json|json_script:"city_attr_verbose_names_list_json" }}
     <h2>{{ name }}</h2>
     <p>Широта: {{ longitude }}</p>
     <p>Долгота: {{ latitude }}</p>

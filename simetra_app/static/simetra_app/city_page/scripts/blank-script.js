@@ -4,6 +4,10 @@ const citiesUnparsed = JSON.parse(
   document.getElementById("cities-list-json").textContent
 );
 
+const citiesAttrVerboseNameUnparsed = JSON.parse(
+  document.getElementById("city_attr_verbose_names_list_json").textContent
+);
+
 const nameCity = document.location.pathname.slice(
   8,
   document.location.pathname.length - 1

@@ -53,7 +53,7 @@ def analytics_page(request):
 
 
 def data_base_page(request):
-    required_fields = ['name']
+    required_fields = ['name', 'longitude']
     cities_list_json = get_JSON_city_list(required_fields)
     context = {'cities_list_json': cities_list_json}
     return render(request, 'simetra_app/data-base.html', context)
@@ -63,8 +63,8 @@ def city_page(request, city_name):
     city = get_object_or_404(City, name=city_name)
 
     required_fields = [
-        'name', 
-        'longitude', 
+        'name',
+        'longitude',
         'latitude',
         'rating_security_n_development',
         'rating_comfort_n_convenience',
@@ -189,14 +189,17 @@ def city_page(request, city_name):
         'bool_day_pass',
         'bool_long_period_pass'
     ]
-    
+
     cities_list_json = get_JSON_city_list(required_fields)
+    city_attr_verbose_names_list_json = get_JSON_city_attr_verbose_names(
+        required_fields)
 
     context = {
         'name': city.name,
         'longitude': city.longitude,
         'latitude': city.latitude,
         'cities_list_json': cities_list_json,
+        'city_attr_verbose_names_list_json': city_attr_verbose_names_list_json,
     }
 
     return render(request, 'simetra_app/city-page.html', context)
@@ -747,26 +750,33 @@ def update_context_for_customization_pages_navbar(request, context):
     return context
 
 
-def get_JSON_city_list(city_fields_list):
+def get_JSON_city_list(city_attr_list):
     cities_list_json = []
 
     for city in City.objects.all():
-        keys = []
-        values = []
-        for key in city_fields_list:
-            keys.append(key)
-            value = getattr(city, key)
-            values.append(value)
-
         city_dictionary = {}
-        city_dictionary_length = len(keys)
-        for i in range(city_dictionary_length):
-            current_key = keys[i]
-            current_value = values[i]
-            city_dictionary[current_key] = current_value
+
+        for attr in city_attr_list:
+            value = getattr(city, attr)
+            city_dictionary[attr] = value
 
         city_dictionary_json = json.dumps(
             city_dictionary, cls=DjangoJSONEncoder)
         cities_list_json.append(city_dictionary_json)
 
     return cities_list_json
+
+
+def get_JSON_city_attr_verbose_names(city_attr_list):
+    verbose_names_list_json = []
+
+    verbose_names_dictionary = {}
+    for attribute_name in city_attr_list:
+        verbose_name = City._meta.get_field(attribute_name).verbose_name
+        verbose_names_dictionary[attribute_name] = verbose_name
+
+    verbose_names_dictionary_json = json.dumps(
+        verbose_names_dictionary, cls=DjangoJSONEncoder)
+    verbose_names_list_json.append(verbose_names_dictionary_json)
+    
+    return verbose_names_list_json
