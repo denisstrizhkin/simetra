@@ -218,3 +218,45 @@ function createNewRadar(start, end) {
 console.log(Object.keys(cityObj)[108]);
 new Chart(document.getElementById("myChart-20"), createNewRadar(80, 85));
 // 109
+
+
+
+
+
+function createNewRadarRegular(start, end) {
+
+  const data = {
+    labels: generateDatas(Object.keys(cityObj), start, end),
+    datasets: [
+      {
+        data: generateDatas(Object.values(cityObj), start, end),
+        borderColor: "white",
+        backgroundColor:  [
+          "rgba(255, 99, 132,1)",
+          "rgba(54, 162, 235,1)",
+          "rgba(255, 206, 86,1)",
+          "rgba(75, 192, 192,1)",
+          "rgba(153, 102, 255,1)",
+        ],
+      },
+      
+    ],
+  };
+
+  const config = {
+    type: 'radar',
+    data: data,
+    options: {
+      responsive: true,
+      plugins: {
+        title: {
+          display: true,
+          text: 'Chart.js Radar Chart'
+        }
+      }
+    },
+  };
+  return config;
+}
+
+new Chart(document.getElementById("myChart-30"), createNewRadarRegular(109, 120));
