@@ -34,7 +34,7 @@ function generateDatas(arrField, start, end) {
   }
   return data;
 }
-console.log(rollinStock);
+
 function generateLabels(arrField, start, end) {
   let data = [];
   for (let i = start; i < end; i++) {
@@ -252,55 +252,109 @@ function createNewMultiSeriesPie(groupArr, start, end) {
 /*-----Creating charts-----------------------------------------*/
 /*-------------------------------------------------------------*/
 /*-------------------------------------------------------------*/
-
+function createNewChart(nameGroup, index){
+  const newChart = document.createElement('canvas');
+  const groupContainer = document.querySelector(`.${nameGroup}__container`);
+  newChart.id = `${nameGroup}-${index}`;
+  groupContainer.appendChild(newChart);
+}
 /*-------------------------------------------------------------*/
 /*-----Quality-------------------------------------------------*/
 /*-------------------------------------------------------------*/
 
+createNewChart('quality', 1);
 new Chart(
   document.getElementById("quality-1"),
   createNewPolarArea(qualityGroups, 0, 5)
 );
-
 /*-------------------------------------------------------------*/
 /*-----Spatial-------------------------------------------------*/
 /*-------------------------------------------------------------*/
 
+createNewChart('spatial', 1);
 new Chart(
   document.getElementById("spatial-1"),
   createNewPie(spatialCharacteristics, 0, 5)
 );
 
+
+createNewChart('spatial', 2);
+new Chart(
+  document.getElementById("spatial-2"),
+  createNewDoughnut(spatialCharacteristics, 5, 10)
+);
+
+createNewChart('spatial', 3);
+new Chart(
+  document.getElementById("spatial-3"),
+  createNewDoughnut(spatialCharacteristics, 10, 15)
+);
+
+createNewChart('spatial', 4);
+new Chart(
+  document.getElementById("spatial-4"),
+  createNewDoughnut(spatialCharacteristics, 15, 20)
+);
+
+createNewChart('spatial', 5);
+new Chart(
+  document.getElementById("spatial-5"),
+  createNewDoughnut(spatialCharacteristics, 25, 30)
+);
+
 /*-------------------------------------------------------------*/
-/*-----Analysis------------------------------------------------*/
+/*-----Rolling stock-------------------------------------------*/
 /*-------------------------------------------------------------*/
+
+createNewChart('rolling-stock', 1);
 new Chart(
   document.getElementById("rolling-stock-1"),
-  createNewPie(rollinStock, 0, 5)
+  createNewPie(spatialCharacteristics, 0, 5)
 );
+
+
+createNewChart('rolling-stock', 2);
 new Chart(
   document.getElementById("rolling-stock-2"),
   createNewDoughnut(rollinStock, 5, 10)
 );
 
-const analysisContainer = document.querySelector(".rolling-stock__container");
+createNewChart('rolling-stock', 3);
+new Chart(
+  document.getElementById("rolling-stock-3"),
+  createNewDoughnut(rollinStock, 10, 15)
+);
 
-for (let i = 10, j = 3; i < 15; i++, j++) {
-  const newChart = document.createElement("canvas");
-  newChart.id = `rolling-stock-${j}`;
-  analysisContainer.append(newChart);
-  new Chart(
-    document.getElementById(newChart.id),
-    createNewDoughnut(rollinStock, i, i + 1)
-  );
-}
+createNewChart('rolling-stock', 4);
+new Chart(
+  document.getElementById("rolling-stock-4"),
+  createNewDoughnut(rollinStock, 15, 20)
+);
 
-for (let i = 16, j = 8; i < 25; i+=4, j++) {
-  const newChart = document.createElement('canvas');
-  newChart.id = `analysis-${j}`;
-  analysisContainer.append(newChart);
-  new Chart(document.getElementById(newChart.id), createNewDoughnut(i, i + 4, rollinStock));
-}
+createNewChart('rolling-stock', 5);
+new Chart(
+  document.getElementById("rolling-stock-5"),
+  createNewDoughnut(rollinStock, 25, 30)
+);
+
+createNewChart('rolling-stock', 6);
+new Chart(
+  document.getElementById("rolling-stock-6"),
+  createNewDoughnut(rollinStock, 30, 35)
+);
+
+createNewChart('rolling-stock', 7);
+new Chart(
+  document.getElementById("rolling-stock-7"),
+  createNewDoughnut(rollinStock, 35, 40)
+);
+
+createNewChart('rolling-stock', 8);
+new Chart(
+  document.getElementById("rolling-stock-8"),
+  createNewDoughnut(rollinStock, 40, 42)
+);
+
 
 //33C2C7
 //60EEC4
@@ -309,17 +363,65 @@ for (let i = 16, j = 8; i < 25; i+=4, j++) {
 /*-----Routes--------------------------------------------------*/
 /*-------------------------------------------------------------*/
 
-new Chart(document.getElementById("routes-1"), createNewPie(routes, 0, 6));
+createNewChart('routes', 1);
+new Chart(
+  document.getElementById("routes-1"),
+  createNewPie(routes, 0, 5)
+);
 
+createNewChart('routes', 2);
 new Chart(
   document.getElementById("routes-2"),
-  createNewMultiSeriesPie(routes, 0, 6)
+  createNewDoughnut(routes, 5, 10)
 );
+
+createNewChart('routes', 3);
+new Chart(
+  document.getElementById("routes-3"),
+  createNewDoughnut(routes, 10, 15)
+);
+
+createNewChart('routes', 4);
+new Chart(
+  document.getElementById("routes-4"),
+  createNewDoughnut(routes, 15, 20)
+);
+
+createNewChart('routes', 5);
+new Chart(
+  document.getElementById("routes-5"),
+  createNewDoughnut(routes, 25, 29)
+);
+
+
+
+
 /*-------------------------------------------------------------*/
 /*-----Tariff--------------------------------------------------*/
 /*-------------------------------------------------------------*/
+createNewChart('tariff', 1);
 new Chart(
   document.getElementById("tariff-1"),
-  createNewPie(tariffSystem, 3, 16)
+  createNewPie(routes, 0, 5)
 );
 
+createNewChart('tariff', 2);
+new Chart(
+  document.getElementById("tariff-2"),
+  createNewDoughnut(tariffSystem, 5, 10)
+);
+
+createNewChart('tariff', 3);
+new Chart(
+  document.getElementById("tariff-3"),
+  createNewDoughnut(tariffSystem, 10, 15)
+);
+
+createNewChart('tariff', 4);
+new Chart(
+  document.getElementById("tariff-4"),
+  createNewDoughnut(tariffSystem, 15, 16)
+);
+
+
+console.log(tariffSystem);
