@@ -3,3 +3,9 @@
         <p><a href="{% url ancestor_url %}">{{ ancestor }}</a></p>
     {% endwith %} 
 {% endfor%}
+
+{% if is_this_update_page %}
+    {% with 'simetra_app:'|add:update_model as update_model_url %}
+        <p><a href="{% url update_model_url model_id %}">{{ update_model }}</a></p>
+    {% endwith %}
+{% endif %}
