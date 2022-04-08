@@ -54,7 +54,9 @@
       <section class="page__home home">
         <div class="home__container">
           <h1 class="home__title">{{ title }}</h1>
-          {% include 'simetra_app/customization-navbar.html' %}
+          <div class="home__navbar">
+            {% include 'simetra_app/customization-navbar.html' %}
+          </div>
           <div class="home__block">
             <form method="POST">
               {% csrf_token %}

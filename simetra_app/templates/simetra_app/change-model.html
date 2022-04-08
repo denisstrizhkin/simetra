@@ -49,7 +49,7 @@
         </nav>
       </div>
     </header>
-
+    <center>
     <main class="page">
       <section class="page__home home">
         <div class="home__container">
@@ -61,7 +61,7 @@
             <p><a class="home__add _link" href="{% url creation_link %}">Добавить новую модель</a></p>
           {% endwith %}
           <div class="home__block">
-            <h2 class="home__caption">Список существующих моделей:</h2>
+            <h2 class="home__caption">Список существующих моделей</h2>
             <ul>  
               {% for object in list_of_objects %}
                 <li class="home__item">
@@ -92,15 +92,6 @@
               </li>
             </ul>
 
-            <!-- <div class="home__options">
-              {% with 'simetra_app:delete-all-instances-of-'|add:object_name as deleting_link %}
-                <a class="home__delete _link" href="{% url deleting_link %}">
-                  Удалить всё
-                  <img class="home__option-image" src="{% static 'simetra_app/customization_page/change-model/assets/img/delete.png' %}">
-                </a>
-              {% endwith %}
-            </div> -->
-
             {% if is_city == True %}
             <a class="home__load _link" href="{% url 'simetra_app:upload-cities-excel' %}">
               Загрузить данные с помощью .xlsx(ods) файла</a>
@@ -109,6 +100,7 @@
           </div>
       </section>
     </main>
+   </center>
   </div>
 </body>
 
