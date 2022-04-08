@@ -229,21 +229,37 @@ body._lock {
 .page {
   flex: 1 1 auto;
 }
-
 .home__container {
-  padding: 150px 0px 0px 0px;
+  padding: 150px 0px 150px 0px;
+}
+.home__title {
+  margin: 0 auto;
+  font-size: 50px;
+  margin-bottom: 30px;
+}
+.home__coordinates {
   display: flex;
-  justify-content: space-between;
-  
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px 40px;
+}
+canvas {
+  max-width: 900px;
+  margin: 0 auto;
 }
 
+// .page__quality {
+//   background-color: #37407f;
+// }
+
+// .quality__container {
+// padding: 100px 0px 50px 0px;
+// }
 /*-------------------------------------------------------------*/
 /*-----Spatial-------------------------------------------------*/
 /*-------------------------------------------------------------*/
 
-
-
-canvas{
+canvas {
   width: 100%;
   margin-bottom: 150px;
 }
