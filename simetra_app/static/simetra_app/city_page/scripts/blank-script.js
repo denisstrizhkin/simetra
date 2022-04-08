@@ -6,6 +6,13 @@ const citiesUnparsed = JSON.parse(
 
 const featureGroups = JSON.parse(citiesUnparsed[0]);
 
+const nameFeatureGroups = [
+  "Качественные группы",
+  "Пространственные характеристики",
+  "Подвижной состав",
+  "Маршруты",
+  "Тарифная система",
+];
 const qualityGroups = Object.entries(
     JSON.parse(featureGroups["КАЧЕСТВЕННЫЕ ГРУППЫ"][0])
   ),
@@ -25,11 +32,16 @@ const citiesAttrVerboseNameUnparsed = JSON.parse(
 );
 const cityAttributeName = JSON.parse(citiesAttrVerboseNameUnparsed[0]);
 
+let unusedProperties = [];
+let nameUnusedProperties = [];
+
 function generateDatas(arrField, start, end) {
   let data = [];
   for (let i = start; i < end; i++) {
     if (arrField[i][1] !== 0) {
       data.push(arrField[i][1]);
+    } else {
+      unusedProperties.push(arrField[i][1]);
     }
   }
   return data;
@@ -38,9 +50,11 @@ function generateDatas(arrField, start, end) {
 function generateLabels(arrField, start, end) {
   let data = [];
   for (let i = start; i < end; i++) {
+    const buffName = arrField[i][0];
     if (arrField[i][1] !== 0) {
-      const buffName = arrField[i][0];
       data.push(cityAttributeName[`${buffName}`]);
+    } else {
+      nameUnusedProperties.push(cityAttributeName[`${buffName}`]);
     }
   }
   return data;
@@ -310,15 +324,27 @@ function createNewChart(nameGroup, index) {
   newChart.id = `${nameGroup}-${index}`;
   groupContainer.appendChild(newChart);
 }
+
+function saveUnusedProperties() {
+  buffUnusedProperties.push(unusedProperties);
+  buffNameUnusedProperties.push(nameUnusedProperties);
+  unusedProperties = [];
+  nameUnusedProperties = [];
+}
 /*-------------------------------------------------------------*/
 /*-----Quality-------------------------------------------------*/
 /*-------------------------------------------------------------*/
+
+let buffUnusedProperties = [];
+let buffNameUnusedProperties = [];
 
 createNewChart("quality", 1);
 new Chart(
   document.getElementById("quality-1"),
   createNewPolarArea(qualityGroups, 0, 5)
 );
+
+saveUnusedProperties();
 /*-------------------------------------------------------------*/
 /*-----Spatial-------------------------------------------------*/
 /*-------------------------------------------------------------*/
@@ -353,6 +379,7 @@ new Chart(
   createNewDoughnut(spatialCharacteristics, 25, 30)
 );
 
+saveUnusedProperties();
 /*-------------------------------------------------------------*/
 /*-----Rolling stock-------------------------------------------*/
 /*-------------------------------------------------------------*/
@@ -407,7 +434,7 @@ new Chart(
 
 //33C2C7
 //60EEC4
-
+saveUnusedProperties();
 /*-------------------------------------------------------------*/
 /*-----Routes--------------------------------------------------*/
 /*-------------------------------------------------------------*/
@@ -439,6 +466,7 @@ new Chart(
   createNewDoughnut(routes, 25, 29)
 );
 
+saveUnusedProperties();
 /*-------------------------------------------------------------*/
 /*-----Tariff--------------------------------------------------*/
 /*-------------------------------------------------------------*/
@@ -462,3 +490,37 @@ new Chart(
   document.getElementById("tariff-4"),
   createNewDoughnut(tariffSystem, 15, 16)
 );
+
+saveUnusedProperties();
+
+/*-------------------------------------------------------------*/
+/*-----Unused--------------------------------------------------*/
+/*-------------------------------------------------------------*/
+const unusedContainer = document.querySelector(".unused__container");
+
+for (let i = 0; i < buffUnusedProperties.length; i++) {
+  let unusedList;
+
+  if (buffUnusedProperties[i].length !== 0) {
+    const unusedWrapper = document.createElement("div");
+    unusedWrapper.classList.add("unused__wrapper");
+    unusedContainer.append(unusedWrapper);
+
+    const unusedListTitle = document.createElement("h3");
+
+    unusedListTitle.textContent = nameFeatureGroups[i];
+    unusedWrapper.append(unusedListTitle);
+
+    unusedList = document.createElement("ul");
+    unusedList.classList.add("unused__list");
+    unusedWrapper.append(unusedList);
+  }
+
+  for (let j = 0; j < buffUnusedProperties[i].length; j++) {
+    const unuseElement = document.createElement("li");
+    unuseElement.textContent = `${buffNameUnusedProperties[i][j]}`;
+    console.log(unuseElement);
+    console.log(unusedList);
+    unusedList.append(unuseElement);
+  }
+}
