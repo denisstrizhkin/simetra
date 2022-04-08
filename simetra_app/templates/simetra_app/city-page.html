@@ -69,11 +69,14 @@
         <main class="page">
             <section class="page__home home">
                 <div class="home__container _container">
-                    <h1 class="home__title">
-                        {{ name }}
-                    </h1>
-                    <p>Широта: {{ longitude }}</p>
-                    <p>Долгота: {{ latitude }}</p>
+                    <div>City Image</div>
+                    <div class="home__content">
+                        <h1 class="home__title">
+                            {{ name }}
+                        </h1>
+                        <p>Широта: {{ longitude }}</p>
+                        <p>Долгота: {{ latitude }}</p>
+                    </div>
                 </div>
             </section>
 
@@ -81,7 +84,6 @@
                 <div class="quality__container _container">
                     <h2 class="quality__title _title">Качественные группы</h2>
                     <div>
-                        <canvas id="myChart-1"></canvas>
                     </div>
                 </div>
             </section>
@@ -90,17 +92,15 @@
                 <div class="spatial__container _container">
                     <h2 class="spatial__title _title">
                         Пространственные характеристики </h2>
-                    <canvas id="myChart-2"></canvas>
                 </div>
             </section>
 
 
-            <section class="page__analysis analysis">
-                <div class="analysis__container _container">
-                    <h2 class="analysis__title _title">
+            <section class="page__rolling-stock rolling-stock">
+                <div class="rolling-stock__container _container">
+                    <h2 class="rolling-stock__title _title">
                         Подвижной состав
                     </h2>
-                    <canvas id="myChart-3"></canvas>
                 </div>
             </section>
 
@@ -109,7 +109,6 @@
                     <h2 class="routes__title _title">
                         Маршруты
                     </h2>
-                    <canvas id="myChart-4"></canvas>
             </section>
 
             <section class="page__tariff tariff">
@@ -117,7 +116,6 @@
                     <h2 class="tariff__title _title">
                         Тарифная система
                     </h2>
-                    <canvas id="myChart-5"></canvas>
                 </div>
             </section>
         </main>
