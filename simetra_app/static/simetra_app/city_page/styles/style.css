@@ -383,7 +383,7 @@ canvas {
 }
 
 .unused__wrapper:nth-child(2n + 1) {
-  background-color: #37407F;
+  background-color: #37407f;
 }
 
 .unused__wrapper h3 {
@@ -392,9 +392,22 @@ canvas {
   margin-bottom: 30px;
 }
 
+@media (max-width: 360px) {
+  .unused__wrapper h3 {
+    font-size: 26px;
+  }
+}
+
 .unused__list li {
   font-size: 24px;
   margin-bottom: 20px;
+  line-height: 130%;
+}
+
+@media (max-width: 360px) {
+  .unused__list li {
+    font-size: 20px;
+  }
 }
 
 /*-------------------------------------------------------------*/
