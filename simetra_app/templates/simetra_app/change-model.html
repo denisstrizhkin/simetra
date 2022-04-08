@@ -54,39 +54,53 @@
       <section class="page__home home">
         <div class="home__container">
           <h1 class="home__title">{{ heading }}</h1>
-          <div class="home__block">
+          <div class="home__navbar">
             {% include 'simetra_app/customization-navbar.html' %}
           </div>
           {% with 'simetra_app:create-'|add:object_name as creation_link %}
-            <p><a class="home__add _link" href="{% url creation_link %}">Добавить новый экземпляр модели</a></p>
+            <p><a class="home__add _link" href="{% url creation_link %}">Добавить новую модель</a></p>
           {% endwith %}
           <div class="home__block">
             <h2 class="home__caption">Список существующих моделей:</h2>
             <ul>  
-              {% with 'simetra_app:delete-all-instances-of-'|add:object_name as deleting_link %}
-              <a href="{% url deleting_link %}">Удалить все экземпляры модели</a>
-              {% endwith %}
               {% for object in list_of_objects %}
-              <li class="home__item">
-                {{ object.name }}
-                <div class="home__options">
-                  {% with 'simetra_app:update-'|add:object_name as updating_link %}
-                  <a class="home__change _link" href="{% url updating_link object.id %}">
-                    <span>Изменить</span>
-                    <img class="home__option-image" src="{% static 'simetra_app/customization_page/change-model/assets/img/change.png' %}">
-                  </a>
-                  {% endwith %} 
-                  {% with 'simetra_app:delete-'|add:object_name as deleting_link %}
-                  <a class="home__delete _link" href="{% url deleting_link object.id %}">
-                    <span>Удалить</span>
+                <li class="home__item">
+                  {{ object.name }}
+                  <div class="home__options">
+                    {% with 'simetra_app:update-'|add:object_name as updating_link %}
+                      <a class="home__change _link" href="{% url updating_link object.id %}">
+                        <span>Изменить</span>
+                        <img class="home__option-image" src="{% static 'simetra_app/customization_page/change-model/assets/img/change.png' %}">
+                      </a>
+                    {% endwith %} 
+                    {% with 'simetra_app:delete-'|add:object_name as deleting_link %}
+                      <a class="home__delete _link" href="{% url deleting_link object.id %}">
+                        <span>Удалить</span>
+                        <img class="home__option-image" src="{% static 'simetra_app/customization_page/change-model/assets/img/delete.png' %}">
+                      </a>
+                    {% endwith %}
+                  </div>
+                </li>
+              {% endfor %}
+              <li class="home__item _right-text">
+                {% with 'simetra_app:delete-all-instances-of-'|add:object_name as deleting_link %}
+                  <a class="home__delete _link" href="{% url deleting_link %}">
+                    Удалить всё
                     <img class="home__option-image" src="{% static 'simetra_app/customization_page/change-model/assets/img/delete.png' %}">
                   </a>
-                  {% endwith %}
-                </div>
-
+                {% endwith %}
               </li>
-              {% endfor %}
             </ul>
+
+            <!-- <div class="home__options">
+              {% with 'simetra_app:delete-all-instances-of-'|add:object_name as deleting_link %}
+                <a class="home__delete _link" href="{% url deleting_link %}">
+                  Удалить всё
+                  <img class="home__option-image" src="{% static 'simetra_app/customization_page/change-model/assets/img/delete.png' %}">
+                </a>
+              {% endwith %}
+            </div> -->
+
             {% if is_city == True %}
             <a class="home__load _link" href="{% url 'simetra_app:upload-cities-excel' %}">
               Загрузить данные с помощью .xlsx(ods) файла</a>

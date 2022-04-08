@@ -57,13 +57,13 @@
 
     <main class="page">
       <div class="page__container">
+        <h1 class="home__title">{{ title }}</h1>
         <form method="POST">
           <div class="home__block">
             {% include 'simetra_app/customization-navbar.html' %}
           </div>
             
           <section class="page__home home">
-            <h1 class="home__title">{{ title }}</h1>
             {{ location_of_city_form.media }}
             {% csrf_token %}
             {{ location_of_city_form }}
