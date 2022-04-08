@@ -281,7 +281,6 @@ def update_boss(request, boss_id):
     }
 
     context = update_context_for_customization_pages_navbar(request, context)
-    print(context)
 
     if request.method == 'POST':
         boss_form = BossForm(request.POST, instance=boss)
@@ -623,7 +622,6 @@ def update_context_for_customization_pages_navbar(request, context):
         del(url_ancestors_name_list[-1])
 
     context['url_ancestors_name_list'] = url_ancestors_name_list
-    print(url_ancestors_name_list)
 
     return context
 
