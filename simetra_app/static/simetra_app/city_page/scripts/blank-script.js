@@ -227,25 +227,63 @@ function createNewDoughnut(groupArr, start, end) {
 /*-----Multi Series Pie----------------------------------------*/
 /*-------------------------------------------------------------*/
 
+// function generateMultiDatas(arrField, start, end) {
+//   let data = [];
+//   for (let i = start; i < end; i++) {
+//     if (arrField[i][1] !== 0) {
+//       const dataBuff = []
+//       dataBuff.push(arrField[i][1]);
+//       dataBuff.push(100 - arrField[i][1]);
+
+//       data.push(dataBuff);
+//     } else {
+//       unusedProperties.push(arrField[i][1]);
+//     }
+//   }
+//   return data;
+// }
+
+function generateMultiLabels(arrField, start, end) {
+  let data = [];
+  for (let i = start; i < end; i++) {
+    const buffName = arrField[i][0];
+    if (arrField[i][1] !== 0) {
+      console.log(cityAttributeName[`${buffName}`]);
+      data.push(cityAttributeName[`${buffName}`]);
+      data.push(`Оставшийся процент`);
+    } else {
+      data.push(`Нет данных`);
+      data.push(`Нет данных`);
+      // data.push(`Оставшийся процент`);
+      nameUnusedProperties.push(cityAttributeName[`${buffName}`]);
+    }
+  }
+  return data;
+}
+
 function createNewMultiSeriesPie(groupArr, start, end) {
   const data = {
-    labels: generateLabels(groupArr, start, end),
+    labels: generateMultiLabels(groupArr, start, end),
     datasets: [
       {
         backgroundColor: ["#33C2C7", "#60EEC4"],
-        data: [21, 79],
+        data: [groupArr[start][1], 100 - groupArr[start][1]],
       },
       {
         backgroundColor: ["#FF9840", "#FFB270"],
-        data: [33, 67],
+        data: [groupArr[start + 1][1], 100 - groupArr[start + 1][1]],
       },
       {
         backgroundColor: ["#456DD0", "#93ABE8"],
-        data: [20, 80],
+        data: [groupArr[start + 2][1], 100 - groupArr[start + 2][1]],
       },
       {
         backgroundColor: ["#39E143", "#163788"],
-        data: [10, 90],
+        data: [groupArr[start + 3][1], 100 - groupArr[start + 3][1]],
+      },
+      {
+        backgroundColor: ["#33C2C7", "#60EEC4"],
+        data: [groupArr[start + 4][1], 100 - groupArr[start + 4][1]],
       },
     ],
   };
@@ -387,7 +425,7 @@ saveUnusedProperties();
 createNewChart("rolling-stock", 1);
 new Chart(
   document.getElementById("rolling-stock-1"),
-  createNewPie(spatialCharacteristics, 0, 5)
+  createNewPie(rollinStock, 0, 5)
 );
 
 createNewChart("rolling-stock", 2);
@@ -396,12 +434,18 @@ new Chart(
   createNewDoughnut(rollinStock, 5, 10)
 );
 
+/*-----Procent-------------------------------------------*/
 createNewChart("rolling-stock", 3);
 new Chart(
   document.getElementById("rolling-stock-3"),
-  createNewDoughnut(rollinStock, 10, 15)
+  createNewMultiSeriesPie(rollinStock, 10, 15)
 );
+console.log(rollinStock);
+for (let i = 10; i < 15; i++) {
+  // console.log(rollinStock[i][1]);
+}
 
+/*-------------------------------------------------------------*/
 createNewChart("rolling-stock", 4);
 new Chart(
   document.getElementById("rolling-stock-4"),
@@ -519,8 +563,6 @@ for (let i = 0; i < buffUnusedProperties.length; i++) {
   for (let j = 0; j < buffUnusedProperties[i].length; j++) {
     const unuseElement = document.createElement("li");
     unuseElement.textContent = `${buffNameUnusedProperties[i][j]}`;
-    console.log(unuseElement);
-    console.log(unusedList);
     unusedList.append(unuseElement);
   }
 }
