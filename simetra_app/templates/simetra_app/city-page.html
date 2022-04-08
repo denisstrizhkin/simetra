@@ -53,12 +53,6 @@
 <body>
     {{ city_attr_verbose_names_list_json|json_script:"city_attr_verbose_names_list_json" }}
     {{ cities_attrs_by_groups_list_json|json_script:"cities_attrs_by_groups_list_json" }}
-    <h2>{{ name }}</h2>
-    <p>Широта: {{ longitude }}</p>
-    <p>Долгота: {{ latitude }}</p>
-
-
-
     <div class="wrapper">
         <header class="header">
             <div class="header__container _container">
@@ -69,11 +63,10 @@
         <main class="page">
             <section class="page__home home">
                 <div class="home__container _container">
-                    <div>City Image</div>
-                    <div class="home__content">
-                        <h1 class="home__title">
-                            {{ name }}
-                        </h1>
+                    <h1 class="home__title _title">
+                        {{ name }}
+                    </h1>
+                    <div class="home__coordinates">
                         <p>Широта: {{ longitude }}</p>
                         <p>Долгота: {{ latitude }}</p>
                     </div>
@@ -83,8 +76,6 @@
             <section class="page__quality quality">
                 <div class="quality__container _container">
                     <h2 class="quality__title _title">Качественные группы</h2>
-                    <div>
-                    </div>
                 </div>
             </section>
 
@@ -115,6 +106,14 @@
                 <div class="tariff__container _container">
                     <h2 class="tariff__title _title">
                         Тарифная система
+                    </h2>
+                </div>
+            </section>
+
+            <section class="page__unused unused">
+                <div class="unused__container _container">
+                    <h2 class="unused__title _title">
+                        Неиспользуемые свойства
                     </h2>
                 </div>
             </section>
@@ -201,7 +200,7 @@
             </div>
         </footer>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1"></script>
     <script src="{% static 'simetra_app/city_page/scripts/blank-script.js' %}"></script>
 </body>
 
