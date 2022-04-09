@@ -2,12 +2,13 @@ import json
 import urllib
 
 from django.contrib import messages
-from django.http import HttpResponse, HttpResponseBadRequest
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.contenttypes.models import ContentType
 from django.core.serializers.json import DjangoJSONEncoder
+from django.http import HttpResponse, HttpResponseBadRequest, \
+    HttpResponseRedirect
 
 from simetra.settings import MAPBOX_KEY
 from .models import Boss, Employee, City
@@ -276,15 +277,17 @@ def update_boss(request, boss_id):
     context = {
         'boss_form': boss_form,
         'title': 'Изменить Существующего Руководителя',
+        'boss_image_path': boss.image.url,
     }
 
     context = update_context_for_customization_pages_navbar(request, context)
 
     if request.method == 'POST':
-        boss_form = BossForm(request.POST, instance=boss)
+        boss_form = BossForm(request.POST, request.FILES, instance=boss)
 
         if boss_form.is_valid():
             boss_form.save()
+            return HttpResponseRedirect('')
 
     return render(request, 'simetra_app/create-or-update-boss.html', context)
 
@@ -504,15 +507,17 @@ def update_employee(request, employee_id):
     context = {
         'employee_form': employee_form,
         'title': 'Изменить Существующего Сотрудника',
+        'employee_image_path': employee.image.url,
     }
 
     context = update_context_for_customization_pages_navbar(request, context)
 
     if request.method == 'POST':
-        employee_form = EmployeeForm(request.POST, instance=employee)
+        employee_form = EmployeeForm(request.POST, request.FILES, instance=employee)
 
         if employee_form.is_valid():
             employee_form.save()
+            return HttpResponseRedirect('')
 
     return render(
         request, 'simetra_app/create-or-update-employee.html', context)

@@ -259,6 +259,16 @@ body {
   margin-bottom: 15px;
 }
 
+.home__descr-image-form-field {
+  float: left;
+  min-width: 170px;
+}
+
+.home__image-form-field {
+  position: flex;
+  margin-left: 170px;
+}
+
 .home__submit {
   padding: 10px;
   border-radius: 10px;

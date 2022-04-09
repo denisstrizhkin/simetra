@@ -57,12 +57,28 @@
             {% include 'simetra_app/customization-navbar.html' %}
           </div>
           <div class="home__block">
-            <form method="POST">
+            <form method="POST" enctype="multipart/form-data">
               {% csrf_token %}
-              <p class="home__input-block"><span class="home__descr">Полное имя:</span> {{ boss_form.name }}</p>
-              <p class="home__input-block"><span class="home__descr">Позиция:</span> {{ boss_form.position }}</p>
-              <p class="home__input-block home__quote-block"><span class="home__quote">Цитата:</span> {{ boss_form.quote }}</p>
-              <p name="home__image-field" class="home__input-block"><span class="home__descr">Аватар:</span> {{ boss_form.image }}</p>
+              <p class="home__input-block">
+                <span class="home__descr">Полное имя:</span> 
+                {{ boss_form.name }}
+              </p>
+              <p class="home__input-block">
+                <span class="home__descr">Позиция:</span> 
+                {{ boss_form.position }}
+              </p>
+              <p class="home__input-block home__quote-block">
+                <span class="home__quote">Цитата:</span> 
+                {{ boss_form.quote }}
+              </p>
+              <div class="home__input-block">
+                <div class="home__descr-image-form-field">Аватар:</div>
+                <div class="home__image-form-field">
+                  <span class="home__image-discription">Текущее изображение</span>
+                  <p><img src="{{ boss_image_path }}" alt="Аватар" class="home__avatar_img"></p>
+                  <span name="image-field">{{ boss_form.image }}</span>
+                </div>
+              </div>
               <input class="home__submit" type="submit" value="Сохранить" />
             </form>
           </div>
@@ -70,7 +86,7 @@
       </section>
     </main>
   </div>
-  <script src="{% static 'simetra_app/customization_page/create-or-update-boss/scripts/changeImageFieldStandardForm.js' %}"></script>
+  <script src="{% static 'simetra_app/customization_page/common-static/scripts/change-image-field-standard-form.js' %}"></script>
 </body>
 
 </html>
