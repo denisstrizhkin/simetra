@@ -7,9 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Настройка</title>
-  <!--INCLUDE-->
   <link rel="stylesheet" href="{% static 'simetra_app/customization_page/change-model/styles/style.css' %}" />
-  <!--INCLUDE-->
+  <link rel="stylesheet" href="{% static 'simetra_app/customization_page/common-static/styles/style.css' %}" />
   <link rel="apple-touch-icon-precomposed" sizes="57x57" href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-57x57.png' %}" />
   <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-114x114.png' %}" />
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-72x72.png' %}" />
@@ -34,7 +33,6 @@
 
 <body>
   <div class="wrapper">
-
     <header class="header">
       <div class="header__container">
         <nav class="header__menu menu">
@@ -49,19 +47,18 @@
         </nav>
       </div>
     </header>
-    <center>
     <main class="page">
       <section class="page__home home">
-        <div class="home__container">
-          <h1 class="home__title">{{ heading }}</h1>
-          <div class="home__navbar">
+        <div class="home__container _center-block">
+          <h1 class="home__title _center-text">{{ heading }}</h1>
+          <div class="home__navbar _center-text">
             {% include 'simetra_app/customization-navbar.html' %}
           </div>
           {% with 'simetra_app:create-'|add:object_name as creation_link %}
-            <p><a class="home__add _link" href="{% url creation_link %}">Добавить новую модель</a></p>
+            <p class="_center-text"><a class="home__add _link" href="{% url creation_link %}">Добавить новую модель</a></p>
           {% endwith %}
           <div class="home__block">
-            <h2 class="home__caption">Список существующих моделей</h2>
+            <h2 class="home__caption _center-text">Список существующих моделей</h2>
             <ul>  
               {% for object in list_of_objects %}
                 <li class="home__item">
@@ -97,14 +94,13 @@
             </ul>
 
             {% if is_city %}
-            <a class="home__load _link" href="{% url 'simetra_app:upload-cities-excel' %}">
+            <a class="home__load _link _center-text" href="{% url 'simetra_app:upload-cities-excel' %}">
               Загрузить данные с помощью .xlsx(ods) файла</a>
             {% endif %}
-            <p>Общее количество моделей: {{ number_of_objects }}</p>
+            <p class="_center-text">Общее количество моделей: {{ number_of_objects }}</p>
           </div>
       </section>
     </main>
-   </center>
   </div>
   <script src="{% static 'simetra_app/customization_page/change-model/scripts/manage-delete-all-button.js' %}"></script>
   <script src="{% static 'simetra_app/customization_page/change-model/scripts/translate-city-name-to-russian.js' %}"></script>

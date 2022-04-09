@@ -7,10 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Настройка</title>
-  <!--INCLUDE-->
-  <link rel="stylesheet"
-    href="{% static 'simetra_app/customization_page/create-or-update-employee/styles/style.css' %}" />
-  <!--INCLUDE-->
+  <link rel="stylesheet" href="{% static 'simetra_app/customization_page/create-or-update-employee/styles/style.css' %}" />
+  <link rel="stylesheet" href="{% static 'simetra_app/customization_page/common-static/styles/style.css' %}" />
   <link rel="apple-touch-icon-precomposed" sizes="57x57" href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-57x57.png' %}" />
   <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-114x114.png' %}" />
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-72x72.png' %}" />
@@ -50,12 +48,11 @@
       </div>
     </header>
 
-    <center>
     <main class="page">
       <section class="page__home home">
-        <div class="home__container">
-          <h1 class="home__title">{{ title }}</h1>
-          <div class="home__navbar">
+        <div class="home__container _center-block">
+          <h1 class="home__title _center-text">{{ title }}</h1>
+          <div class="home__navbar _center-text">
             {% include 'simetra_app/customization-navbar.html' %}
           </div>
           <div class="home__block">
@@ -70,7 +67,6 @@
         </div>
       </section>
     </main>
-    </center>
   </div>
   <script src="{% static 'simetra_app/customization_page/create-or-update-employee/scripts/change-image-field-standard-form.js' %}"></script>
 </body>

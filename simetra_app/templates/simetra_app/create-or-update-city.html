@@ -13,9 +13,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Настройка</title>
-  <!--INCLUDE-->
   <link rel="stylesheet" href="{% static 'simetra_app/customization_page/create-or-update-city/styles/style.css' %}" />
-  <!--INCLUDE-->
+  <link rel="stylesheet" href="{% static 'simetra_app/customization_page/common-static/styles/style.css' %}" />
   <link rel="apple-touch-icon-precomposed" sizes="57x57" href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-57x57.png' %}" />
   <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-114x114.png' %}" />
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-72x72.png' %}" />
@@ -55,12 +54,11 @@
       </div>
     </header>
 
-    <center>
     <main class="page">
-      <div class="page__container">
-        <h1 class="home__title">{{ title }}</h1>
+      <div class="page__container _center-block">
+        <h1 class="home__title _center-text">{{ title }}</h1>
         <form method="POST">
-          <div class="home__navbar">
+          <div class="home__navbar _center-text">
             {% include 'simetra_app/customization-navbar.html' %}
           </div>
             
@@ -226,7 +224,6 @@
         </form>
       </div>
     </main>
-    </center>
   </div>
 
   <script src="{% static 'simetra_app/customization_page/create-or-update-city/scripts/fill-name-field.js' %}"></script>
