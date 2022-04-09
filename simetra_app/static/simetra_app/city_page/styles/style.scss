@@ -229,21 +229,86 @@ body._lock {
 .page {
   flex: 1 1 auto;
 }
-
 .home__container {
-  padding: 150px 0px 0px 0px;
+  padding: 150px 0px 150px 0px;
+}
+.home__title {
+  margin: 0 auto;
+  font-size: 50px;
+  margin-bottom: 30px;
+}
+.home__coordinates {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px 40px;
+}
+canvas {
+  max-width: 900px;
+  margin: 0 auto;
 }
 
+// .page__quality {
+//   background-color: #37407f;
+// }
+
+// .quality__container {
+// padding: 100px 0px 50px 0px;
+// }
 /*-------------------------------------------------------------*/
 /*-----Spatial-------------------------------------------------*/
 /*-------------------------------------------------------------*/
 
-
-
-canvas{
+canvas {
   width: 100%;
   margin-bottom: 150px;
 }
+
+/*-------------------------------------------------------------*/
+/*-----Unused--------------------------------------------------*/
+/*-------------------------------------------------------------*/
+.page__unused {
+}
+.unused {
+}
+.unused__container {
+}
+._container {
+}
+.unused__title {
+}
+._title {
+}
+
+.unused__wrapper {
+  background-color: $blue-color;
+  padding: 50px 30px;
+  border-radius: 10px;
+  color: white;
+  margin-bottom: 50px;
+  &:nth-child(2n + 1) {
+    background-color: #37407f;
+  }
+}
+
+.unused__wrapper h3 {
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 30px;
+  @media (max-width: 360px) {
+    font-size: 26px;
+  }
+}
+
+.unused__list li {
+  font-size: 24px;
+  margin-bottom: 20px;
+  line-height: 130%;
+  @media (max-width: 360px) {
+    font-size: 20px;
+  }
+}
+
 /*-------------------------------------------------------------*/
 /*-----FOOTER--------------------------------------------------*/
 /*-------------------------------------------------------------*/

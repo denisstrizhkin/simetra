@@ -53,12 +53,6 @@
 <body>
     {{ city_attr_verbose_names_list_json|json_script:"city_attr_verbose_names_list_json" }}
     {{ cities_attrs_by_groups_list_json|json_script:"cities_attrs_by_groups_list_json" }}
-    <h2>{{ name }}</h2>
-    <p>Широта: {{ longitude }}</p>
-    <p>Долгота: {{ latitude }}</p>
-
-
-
     <div class="wrapper">
         <header class="header">
             <div class="header__container _container">
@@ -69,20 +63,19 @@
         <main class="page">
             <section class="page__home home">
                 <div class="home__container _container">
-                    <h1 class="home__title">
+                    <h1 class="home__title _title">
                         {{ name }}
                     </h1>
-                    <p>Широта: {{ longitude }}</p>
-                    <p>Долгота: {{ latitude }}</p>
+                    <div class="home__coordinates">
+                        <p>Широта: {{ longitude }}</p>
+                        <p>Долгота: {{ latitude }}</p>
+                    </div>
                 </div>
             </section>
 
             <section class="page__quality quality">
                 <div class="quality__container _container">
                     <h2 class="quality__title _title">Качественные группы</h2>
-                    <div>
-                        <canvas id="myChart-1"></canvas>
-                    </div>
                 </div>
             </section>
 
@@ -90,17 +83,15 @@
                 <div class="spatial__container _container">
                     <h2 class="spatial__title _title">
                         Пространственные характеристики </h2>
-                    <canvas id="myChart-2"></canvas>
                 </div>
             </section>
 
 
-            <section class="page__analysis analysis">
-                <div class="analysis__container _container">
-                    <h2 class="analysis__title _title">
+            <section class="page__rolling-stock rolling-stock">
+                <div class="rolling-stock__container _container">
+                    <h2 class="rolling-stock__title _title">
                         Подвижной состав
                     </h2>
-                    <canvas id="myChart-3"></canvas>
                 </div>
             </section>
 
@@ -109,7 +100,6 @@
                     <h2 class="routes__title _title">
                         Маршруты
                     </h2>
-                    <canvas id="myChart-4"></canvas>
             </section>
 
             <section class="page__tariff tariff">
@@ -117,7 +107,14 @@
                     <h2 class="tariff__title _title">
                         Тарифная система
                     </h2>
-                    <canvas id="myChart-5"></canvas>
+                </div>
+            </section>
+
+            <section class="page__unused unused">
+                <div class="unused__container _container">
+                    <h2 class="unused__title _title">
+                        Неиспользуемые свойства
+                    </h2>
                 </div>
             </section>
         </main>
@@ -203,7 +200,7 @@
             </div>
         </footer>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1"></script>
     <script src="{% static 'simetra_app/city_page/scripts/blank-script.js' %}"></script>
 </body>
 
