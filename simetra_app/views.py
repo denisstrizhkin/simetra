@@ -311,8 +311,6 @@ def change_city_model(request):
     context = get_context_to_change_model(City)
     context['heading'] = 'Города'
     context['object_name'] = 'city'
-    lt = LibreTranslateAPI("https://translate.argosopentech.com/")
-    print(lt.translate("Cheboksary", "en", "ru"))
     context = update_context_for_customization_pages_navbar(request, context)
     return render(request, 'simetra_app/change-model.html', context)
 
