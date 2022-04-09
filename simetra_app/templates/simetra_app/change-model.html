@@ -65,7 +65,11 @@
             <ul>  
               {% for object in list_of_objects %}
                 <li class="home__item">
-                  {{ object.name }}
+                  {% if is_city %}
+                    <span name="city-name">{{ object.name }}</span>
+                  {% else %}
+                    {{ object.name }}
+                  {% endif %}
                   <div class="home__options">
                     {% with 'simetra_app:update-'|add:object_name as updating_link %}
                       <a class="home__change _link" href="{% url updating_link object.id %}">
@@ -82,7 +86,7 @@
                   </div>
                 </li>
               {% endfor %}
-              <li class="home__item _right-text">
+              <li name="delete-all-button" class="home__item _right-text">
                 {% with 'simetra_app:delete-all-instances-of-'|add:object_name as deleting_link %}
                   <a class="home__delete _link" href="{% url deleting_link %}">
                     Удалить всё
@@ -92,7 +96,7 @@
               </li>
             </ul>
 
-            {% if is_city == True %}
+            {% if is_city %}
             <a class="home__load _link" href="{% url 'simetra_app:upload-cities-excel' %}">
               Загрузить данные с помощью .xlsx(ods) файла</a>
             {% endif %}
@@ -102,6 +106,7 @@
     </main>
    </center>
   </div>
+  <script src="{% static 'simetra_app/customization_page/change-model/scripts/manage-delete-all-button.js' %}"></script>
+  <script src="{% static 'simetra_app/customization_page/change-model/scripts/translate-city-name-to-russian.js' %}"></script>
 </body>
-
 </html>

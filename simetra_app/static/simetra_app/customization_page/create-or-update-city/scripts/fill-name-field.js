@@ -1,5 +1,4 @@
 const submitNewCityButton = document.getElementsByName('sumbit-new-city')[0];
-console.log(submitNewCityButton);
 const backendCityName = document.getElementsByName('name')[0];
 
 const pointLongitude = document.getElementsByName('longitude')[0];

@@ -55,6 +55,7 @@
       </div>
     </header>
 
+    <center>
     <main class="page">
       <div class="page__container">
         <h1 class="home__title">{{ title }}</h1>
@@ -68,6 +69,7 @@
             {% csrf_token %}
             {{ location_of_city_form }}
             <p class="home__input-block">Город: {{ city_form.name }}</p>
+            <p class="home__input-block">Город (на русском): {{ city_form.russian_name }}</p>
           </section>
             
           <section class="page__geolocation">
@@ -224,9 +226,10 @@
         </form>
       </div>
     </main>
+    </center>
   </div>
 
-  <script src="{% static 'simetra_app/customization_page/scripts/fill_name_field.js' %}"></script>
+  <script src="{% static 'simetra_app/customization_page/create-or-update-city/scripts/fill-name-field.js' %}"></script>
 </body>
 
 </html>

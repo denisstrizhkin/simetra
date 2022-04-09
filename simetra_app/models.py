@@ -58,6 +58,7 @@ class City(models.Model):
     # To find coorinates, open 'Response' -> 'features' -> '0' -> 'center'
     # From the page https://docs.mapbox.com/playground/geocoding/
     name = models.CharField(max_length=100)
+    russian_name = models.CharField(max_length=100, default='')
     longitude = models.DecimalField(
         max_digits=15,
         decimal_places=12,
