@@ -71,6 +71,11 @@ a:hover {
   text-decoration: none;
 }
 
+ul,
+p {
+  margin-bottom: 0;
+}
+
 ul li {
   list-style: none;
 }
@@ -260,6 +265,11 @@ body {
   padding: 10px;
   border-radius: 10px;
   font-size: 20px;
+}
+
+.home__align-vertically-text {
+  display: flex;
+  align-items: center;
 }
 
 @media (max-width: 520px) {

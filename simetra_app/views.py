@@ -254,14 +254,14 @@ def create_boss(request):
     boss_form = BossForm()
 
     context = {
+        'is_create_page': True,
         'boss_form': boss_form,
-        'title': 'Добавить Нового Руководителя',
     }
 
     context = update_context_for_customization_pages_navbar(request, context)
 
     if request.method == 'POST':
-        boss_form = BossForm(request.POST)
+        boss_form = BossForm(request.POST, request.FILES)
 
         if boss_form.is_valid():
             boss_form.save()
@@ -281,8 +281,8 @@ def update_boss(request, boss_id):
     boss_form = BossForm(instance=boss)
 
     context = {
+        'is_create_page': False,
         'boss_form': boss_form,
-        'title': 'Изменить Существующего Руководителя',
         'boss_image_path': boss.image.url,
     }
 
@@ -515,14 +515,14 @@ def create_employee(request):
     employee_form = EmployeeForm()
 
     context = {
+        'is_create_page': True,
         'employee_form': employee_form,
-        'title': 'Добавить Нового Сотрудника',
     }
 
     context = update_context_for_customization_pages_navbar(request, context)
 
     if request.method == 'POST':
-        employee_form = EmployeeForm(request.POST)
+        employee_form = EmployeeForm(request.POST, request.FILES)
 
         if employee_form.is_valid():
             employee_form.save()
@@ -543,8 +543,8 @@ def update_employee(request, employee_id):
     employee_form = EmployeeForm(instance=employee)
 
     context = {
+        'is_create_page': False,
         'employee_form': employee_form,
-        'title': 'Изменить Существующего Сотрудника',
         'employee_image_path': employee.image.url,
     }
 

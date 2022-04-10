@@ -52,6 +52,11 @@
     <main class="page">
       <section class="page__home home">
         <div class="home__container _center-block">
+          {% if is_create_page %}
+            <h1 class="home__title _center-text">Добавить Нового Сотрудника</h1>
+          {% else %}
+            <h1 class="home__title _center-text">Изменить Существующего Сотрудника</h1>
+          {% endif %}
           <h1 class="home__title _center-text">{{ title }}</h1>
           <div class="home__navbar _center-text">
             {% include 'simetra_app/customization-navbar.html' %}
@@ -71,8 +76,10 @@
               <div class="home__input-block">
                 <div class="home__descr-image-form-field">Аватар:</div>
                 <div class="home__image-form-field">
-                  <span class="home__image-discription">Текущее изображение</span>
-                  <p><img src="{{ employee_image_path }}" alt="Аватар" class="home__avatar_img"></p>
+                  {% if not is_create_page %}
+                    <span class="home__image-discription">Текущее изображение</span>
+                    <p><img src="{{ employee_image_path }}" alt="Аватар" class="home__avatar_img"></p>
+                  {% endif %}
                   <span name="image-field">{{ employee_form.image }}</span>
                 </div>
               </div>
@@ -86,7 +93,7 @@
       </section>
     </main>
   </div>
+  <p hidden name="is-create-page">{{ is_create_page }}</p>
   <script src="{% static 'simetra_app/customization_page/common-static/scripts/change-image-field-standard-form.js' %}"></script>
 </body>
-
 </html>

@@ -1,9 +1,17 @@
 let standardImgForm = document.getElementsByName('image-field')[0];
 let standardImgFormHTML = standardImgForm.innerHTML;
 
-const indexOfChangeWord = standardImgFormHTML.indexOf('Change:');
+const isCreatePage = document.getElementsByName('is-create-page')[0];
+const isCreatePageValue = isCreatePage.textContent;
 
-standardImgFormHTML = standardImgFormHTML.slice(indexOfChangeWord);
-standardImgFormHTML = standardImgFormHTML.replace('Change', 'Изменить');
+if (isCreatePageValue == 'True') {
+    const inputImage = document.getElementById('id_image');
+    inputImage.style.paddingTop = 0;
+} else {
+    const indexOfChangeWord = standardImgFormHTML.indexOf('Change:');
 
-standardImgForm.innerHTML = standardImgFormHTML;
+    standardImgFormHTML = standardImgFormHTML.slice(indexOfChangeWord);
+    standardImgFormHTML = standardImgFormHTML.replace('Change', 'Изменить');
+
+    standardImgForm.innerHTML = standardImgFormHTML;
+}
