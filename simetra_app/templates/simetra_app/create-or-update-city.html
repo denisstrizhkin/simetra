@@ -66,166 +66,187 @@
             {{ location_of_city_form.media }}
             {% csrf_token %}
             {{ location_of_city_form }}
-            <p class="home__input-block">Город: {{ city_form.name }}</p>
-            <p class="home__input-block">Город (на русском): {{ city_form.russian_name }}</p>
-          </section>
-            
-          <section class="page__geolocation">
-            <h2 class="_subtitle"> Геолокация </h2>
-            <p class="home__input-block">Широта (longitude): {{ city_form.longitude }}</p>
-            <p class="home__input-block">Долгота (latitude): {{ city_form.latitude }}</p>
+            <p class="home__input-block _space-between">
+              <span class="home__align-vertically-text">
+                Город (на английском)
+              </span>
+              {{ city_form.name }}
+            </p>
+            <p class="home__input-block _space-between">
+              <span class="home__align-vertically-text">
+                Город (на русском) 
+              </span>
+              {{ city_form.russian_name }}
+            </p>
+            <div class="home__input-block _space-between">
+              <span class="home__align-vertically-text">
+                Широта (Longitude) 
+              </span>
+              {{ city_form.longitude }}
+            </div>
+            <div class="home__input-block _space-between">
+              <span class="home__align-vertically-text">
+                Долгота (Latitude)
+              </span> 
+              {{ city_form.latitude }}
+            </div>
+            <div class="home__fill">Заполнить поля автоматически</div>
+            <div class="home__fill">
+              <input type="button" class="home__submit _margin-off" name="sumbit-new-city" value="Заполнить">
+            </div>
           </section>
 
           <section class="page__groups">
             <h2 class="_subtitle"> Качественные группы (рейтинг 0.0 - 100.0) </h2>
-            <p class="home__input-block"> {% get_city_option_text city_form "rating_security_n_development" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "rating_comfort_n_convenience" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "rating_route_network_efficiency" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "rating_affordability" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "rating_physical_availability" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "rating_security_n_development" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "rating_comfort_n_convenience" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "rating_route_network_efficiency" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "rating_affordability" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "rating_physical_availability" %} </p>
           </section>
           
           <section class="page__area">
             <h2 class="_subtitle"> Пространственные характеристики </h2>
-            <p class="home__input-block"> {% get_city_option_text city_form "num_population" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "length_UDS" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "area_active_city_zone" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "traffic_ground_transport" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "traffic_metro" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "num_working_stops_overall" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "num_working_stops_active_city_zone" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "num_of_apartments" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "proportion_apartments_in_coverage_zone" %}</p>
-            <p class="home__input-block"> {% get_city_option_text city_form "proportion_people_in_coverage_zone" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "area_stops_active_zone_coverage_500" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "area_stops_active_zone_coverage_700" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "area_stops_active_zone_coverage_1000" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "proportion_apartments_in_metro_coverage_zone"%} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "proportion_people_in_metro_coverage_zone" %}</p>
-            <p class="home__input-block"> {% get_city_option_text city_form "area_metro_coverage" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "density_stops_active_zone" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "percent_transport_covered_area" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "percent_metro_covered_area" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "num_people_with_metro_access" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "proportion_people_with_metro_access" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "num_people_with_transport_access" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "proportion_people_with_transport_access" %}</p>
-            <p class="home__input-block"> {% get_city_option_text city_form "avrg_length_between_stops" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "num_death_toll" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "num_wounded" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "num_accidents" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "num_accidents_per_transport_unit" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "num_wounded_n_dead_per_accident" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "num_wounded_n_dead_per_people" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "num_population" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "length_UDS" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "area_active_city_zone" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "traffic_ground_transport" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "traffic_metro" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "num_working_stops_overall" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "num_working_stops_active_city_zone" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "num_of_apartments" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "proportion_apartments_in_coverage_zone" %}</p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "proportion_people_in_coverage_zone" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "area_stops_active_zone_coverage_500" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "area_stops_active_zone_coverage_700" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "area_stops_active_zone_coverage_1000" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "proportion_apartments_in_metro_coverage_zone"%} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "proportion_people_in_metro_coverage_zone" %}</p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "area_metro_coverage" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "density_stops_active_zone" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "percent_transport_covered_area" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "percent_metro_covered_area" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "num_people_with_metro_access" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "proportion_people_with_metro_access" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "num_people_with_transport_access" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "proportion_people_with_transport_access" %}</p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "avrg_length_between_stops" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "num_death_toll" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "num_wounded" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "num_accidents" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "num_accidents_per_transport_unit" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "num_wounded_n_dead_per_accident" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "num_wounded_n_dead_per_people" %} </p>
           </section>
           
           <section class="page__composition">
             <h2 class="_subtitle"> Подвижной состав </h2>
-            <p class="home__input-block"> {% get_city_option_text city_form "num_tramway_cars" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "num_trolleybuses" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "num_electrobuses" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "num_buses" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "num_metro_cars" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "num_working_tramway_cars" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "num_working_trolleybuses" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "num_working_electrobuses" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "num_working_buses" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "num_working_metro_cars" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "percent_working_tramway_cars" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "percent_working_trolleybuses" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "percent_working_electrobuses" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "percent_working_buses" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "percent_working_metro_cars" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "num_all_buses_registry" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "num_very_big_buses_registry" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "num_big_buses_registry" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "num_medium_buses_registry" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "num_small_buses_registry" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "num_all_trolleybuses_registry" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "num_big_trolleybuses_registry" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "num_very_big_trolleybuses_registry" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "num_tramway_cars_registry" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "num_big_tramway_cars_registry" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "num_very_big_tramway_cars_registry" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "avrg_age_tramway_car" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "avrg_age_trolleybus" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "avrg_age_bus" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "avrg_age_electrobus" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "avrg_age_metro_car" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "num_low_profile_tramway_cars" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "num_low_profile_trolleybuses" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "num_low_profile_buses" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "num_low_profile_electrobuses" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "num_new_GET" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "num_new_buses" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "proportion_low_profile_transport" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "proportion_big_capacity_transport" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "proportion_electro_transport" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "proportion_working_transport" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "percent_renew_program" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "num_tramway_cars" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "num_trolleybuses" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "num_electrobuses" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "num_buses" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "num_metro_cars" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "num_working_tramway_cars" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "num_working_trolleybuses" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "num_working_electrobuses" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "num_working_buses" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "num_working_metro_cars" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "percent_working_tramway_cars" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "percent_working_trolleybuses" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "percent_working_electrobuses" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "percent_working_buses" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "percent_working_metro_cars" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "num_all_buses_registry" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "num_very_big_buses_registry" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "num_big_buses_registry" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "num_medium_buses_registry" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "num_small_buses_registry" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "num_all_trolleybuses_registry" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "num_big_trolleybuses_registry" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "num_very_big_trolleybuses_registry" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "num_tramway_cars_registry" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "num_big_tramway_cars_registry" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "num_very_big_tramway_cars_registry" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "avrg_age_tramway_car" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "avrg_age_trolleybus" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "avrg_age_bus" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "avrg_age_electrobus" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "avrg_age_metro_car" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "num_low_profile_tramway_cars" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "num_low_profile_trolleybuses" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "num_low_profile_buses" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "num_low_profile_electrobuses" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "num_new_GET" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "num_new_buses" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "proportion_low_profile_transport" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "proportion_big_capacity_transport" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "proportion_electro_transport" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "proportion_working_transport" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "percent_renew_program" %} </p>
           </section>
           
           <section class="page__routes">
             <h2 class="_subtitle"> Маршруты </h2>
-            <p class="home__input-block"> {% get_city_option_text city_form "num_routes_in_use_tramway" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "num_routes_in_use_trolleybus" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "num_routes_in_use_bus" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "num_routes_in_use_overall" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "num_routes_regulated_tariff" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "num_routes_unregulated_tariff" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "proportion_routes_unregulated_tariff" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "length_avrg_tramway_route" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "length_avrg_trolleybus_route" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "length_avrg_bus_route" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "length_existing_tramway_routes" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "length_in_use_tramway_routes" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "length_existing_trolleybus_routes" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "length_in_use_trolleybus_routes" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "length_overall_nonrailed_transport_path" %}</p>
-            <p class="home__input-block"> {% get_city_option_text city_form "percent_isolated_tramway_routes" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "coeff_tramway_net_use" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "coeff_trolleybus_net_use" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "num_segments_avrg_load" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "num_segments_high_load" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "time_avrg_waiting_any_transport" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "time_avrg_waiting_specific_transport" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "coeff_route" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "coeff_non_straight_route" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "bool_transport_app" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "bool_rt_internet_movement_info" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "bool_transport_schedule_website" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "bool_transport_route_net_map" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "bool_unique_transporte_style" %} </p>
-            
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "num_routes_in_use_tramway" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "num_routes_in_use_trolleybus" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "num_routes_in_use_bus" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "num_routes_in_use_overall" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "num_routes_regulated_tariff" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "num_routes_unregulated_tariff" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "proportion_routes_unregulated_tariff" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "length_avrg_tramway_route" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "length_avrg_trolleybus_route" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "length_avrg_bus_route" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "length_existing_tramway_routes" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "length_in_use_tramway_routes" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "length_existing_trolleybus_routes" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "length_in_use_trolleybus_routes" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "length_overall_nonrailed_transport_path" %}</p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "percent_isolated_tramway_routes" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "coeff_tramway_net_use" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "coeff_trolleybus_net_use" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "num_segments_avrg_load" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "num_segments_high_load" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "time_avrg_waiting_any_transport" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "time_avrg_waiting_specific_transport" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "coeff_route" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "coeff_non_straight_route" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "bool_transport_app" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "bool_rt_internet_movement_info" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "bool_transport_schedule_website" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "bool_transport_route_net_map" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "bool_unique_transporte_style" %} </p>
+          </section>
+          <section class="page__tariffes">
             <h2 class="_subtitle"> Тарифная система </h2>
-            <p class="home__input-block"> {% get_city_option_text city_form "avrg_region_salary" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "avrg_region_income" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "price_monthly_transport_pass" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "ratio_pass_cost_to_income" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "num_routes_with_pass" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "num_routes_with_transfer_pass" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "price_SOT" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "price_one_time_ticket" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "price_one_time_ticket_discount" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "price_transfer_pass" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "bool_universal_transport_card" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "bool_online_payment" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "bool_nfc_payment" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "bool_transfer_pass" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "bool_day_pass" %} </p>
-            <p class="home__input-block"> {% get_city_option_text city_form "bool_long_period_pass" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "avrg_region_salary" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "avrg_region_income" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "price_monthly_transport_pass" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "ratio_pass_cost_to_income" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "num_routes_with_pass" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "num_routes_with_transfer_pass" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "price_SOT" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "price_one_time_ticket" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "price_one_time_ticket_discount" %} </p>
+            <p class="home__input-block _space-between"> {% get_city_option_text city_form "price_transfer_pass" %} </p>
             
-            <input class="home__submit" type="submit" value="Сохранить" />
+            <h2 class="_subsubtitle">Чекбоксы</h2>
+            <p class="home__input-block-for-checkbox _space-between"> {% get_city_option_text city_form "bool_universal_transport_card" %} </p>
+            <p class="home__input-block-for-checkbox _space-between"> {% get_city_option_text city_form "bool_online_payment" %} </p>
+            <p class="home__input-block-for-checkbox _space-between"> {% get_city_option_text city_form "bool_nfc_payment" %} </p>
+            <p class="home__input-block-for-checkbox _space-between"> {% get_city_option_text city_form "bool_transfer_pass" %} </p>
+            <p class="home__input-block-for-checkbox _space-between"> {% get_city_option_text city_form "bool_day_pass" %} </p>
+            <p class="home__input-block-for-checkbox _space-between"> {% get_city_option_text city_form "bool_long_period_pass" %} </p>
             
-            <div class="home__fill">Заполнить поля автоматически:
-              <button name="sumbit-new-city">Заполнить</button>
+            <div class="home__fill">
+              <input class="home__submit" type="submit" value="Сохранить" />
             </div>
           </section>
         </form>
       </div>
     </main>
   </div>
-
+  <script src="{% static 'simetra_app/customization_page/create-or-update-city/scripts/translate-location-field.js' %}"></script>
   <script src="{% static 'simetra_app/customization_page/create-or-update-city/scripts/fill-name-field.js' %}"></script>
 </body>
 

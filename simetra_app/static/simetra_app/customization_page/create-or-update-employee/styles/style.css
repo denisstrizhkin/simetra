@@ -200,7 +200,7 @@ body {
 }
 
 .home__container {
-  padding: 100px 10px 0px 50px;
+  padding: 100px 10px 0px 0px;
   max-width: 850px;
 }
 
