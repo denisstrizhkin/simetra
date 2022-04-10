@@ -16,6 +16,26 @@ from .forms import BossForm, EmployeeForm, LocationOfCityForm, CityForm, \
     UploadFileForm
 
 
+def staff_login_page(request):
+    if request.user.is_authenticated:
+        return redirect('simetra_app:customization')
+
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('simetra_app:customization')
+        else:
+            messages.info(
+                request, 'Секретное имя ИЛИ секретный ключ некорректны!')
+
+    return render(request, 'simetra_app/staff-login.html')
+
+
 def staff_logout(request):
     logout(request)
     return redirect('simetra_app:staff-login')
@@ -213,26 +233,6 @@ def city_page(request, city_name):
     }
 
     return render(request, 'simetra_app/city-page.html', context)
-
-
-def staff_login_page(request):
-    if request.user.is_authenticated:
-        return redirect('simetra_app:customization')
-
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-
-        user = authenticate(request, username=username, password=password)
-
-        if user is not None:
-            login(request, user)
-            return redirect('simetra_app:customization')
-        else:
-            messages.info(
-                request, 'Секретное имя ИЛИ секретный ключ некорректны!')
-
-    return render(request, 'simetra_app/staff-login.html')
 
 
 @login_required(login_url='simetra_app:staff-login')
