@@ -266,6 +266,12 @@ def create_boss(request):
         if boss_form.is_valid():
             boss_form.save()
 
+            message_text = 'Модель руководителя была успешно создана!'
+            messages.success(request, message_text)
+        else:
+            message_text = 'Не удалось создать модель руководителя!'
+            messages.success(request, message_text)
+
     return render(request, 'simetra_app/create-or-update-boss.html', context)
 
 
@@ -287,7 +293,14 @@ def update_boss(request, boss_id):
 
         if boss_form.is_valid():
             boss_form.save()
+
+            message_text = 'Модель руководителя была успешно изменена!'
+            messages.success(request, message_text)
             return HttpResponseRedirect('')
+        else:
+            message_text = 'Не удалось изменить модель руководителя!'
+            messages.success(request, message_text)
+            
 
     return render(request, 'simetra_app/create-or-update-boss.html', context)
 
@@ -296,7 +309,7 @@ def update_boss(request, boss_id):
 def delete_boss(request, boss_id):
     boss = get_object_or_404(Boss, pk=boss_id)
     boss.delete()
-    return redirect('simetra_app:change-boss-model')
+    return redirect('simetra_app:change-boss')
 
 
 @login_required(login_url='simetra_app:staff-login')
@@ -306,7 +319,7 @@ def delete_all_bosses(request):
     for boss in bosses_list:
         boss.delete()
 
-    return redirect('simetra_app:change-boss-model')
+    return redirect('simetra_app:change-boss')
 
 
 @login_required(login_url='simetra_app:staff-login')
@@ -343,6 +356,12 @@ def create_city(request):
         if city_form.is_valid():
             city_form.save()
 
+            message_text = 'Модель города была успешно создана!'
+            messages.success(request, message_text)
+        else:
+            message_text = 'Не удалось создать модель города!'
+            messages.success(request, message_text)
+
     return render(request, 'simetra_app/create-or-update-city.html', context)
 
 
@@ -365,6 +384,15 @@ def update_city(request, city_id):
 
         if city_form.is_valid():
             city_form.save()
+
+            message_text = 'Модель города была успешно изменена!'
+            messages.success(request, message_text)
+
+            return HttpResponseRedirect('')
+        else:
+            message_text = 'Не удалось изменить модель города!'
+            messages.success(request, message_text)
+            
 
     return render(request, 'simetra_app/create-or-update-city.html', context)
 
@@ -440,9 +468,11 @@ def upload_cities_excel(request):
             for key in sheet_names:
                 write_sheet(key)
 
-            messages.success(request, 'Файл был успешно загружен.')
+            message_text = 'Файл был успешно загружен!'
+            messages.success(request, message_text)
         else:
-            messages.error(request, 'Неверный формат файла!')
+            message_text = 'Неверный формат файла!'
+            messages.error(request, message_text)
 
     context = {
         "form": form,
@@ -458,7 +488,7 @@ def upload_cities_excel(request):
 def delete_city(request, city_id):
     city = get_object_or_404(City, pk=city_id)
     city.delete()
-    return redirect('simetra_app:change-city-model')
+    return redirect('simetra_app:change-city')
 
 
 @login_required(login_url='simetra_app:staff-login')
@@ -497,6 +527,12 @@ def create_employee(request):
         if employee_form.is_valid():
             employee_form.save()
 
+            message_text = 'Модель сотрудника была успешно создана!'
+            messages.success(request, message_text)
+        else:
+            message_text = 'Не удалось создать модель сотрудника!'
+            messages.error(request, message_text)
+
     return render(
         request, 'simetra_app/create-or-update-employee.html', context)
 
@@ -519,7 +555,14 @@ def update_employee(request, employee_id):
 
         if employee_form.is_valid():
             employee_form.save()
+
+            message_text = 'Модель сотрудника была успешно создана!'
+            messages.success(request, message_text)
+
             return HttpResponseRedirect('')
+        else:
+            message_text = 'Не удалось создать модель сотрудника!'
+            messages.error(request, message_text)
 
     return render(
         request, 'simetra_app/create-or-update-employee.html', context)
@@ -529,7 +572,7 @@ def update_employee(request, employee_id):
 def delete_employee(request, employee_id):
     employee = get_object_or_404(Employee, pk=employee_id)
     employee.delete()
-    return redirect('simetra_app:change-employee-model')
+    return redirect('simetra_app:change-employee')
 
 
 @login_required(login_url='simetra_app:staff-login')
@@ -539,7 +582,7 @@ def delete_all_employees(request):
     for employee in employees_list:
         employee.delete()
 
-    return redirect('simetra_app:change-employee-model')
+    return redirect('simetra_app:change-employee')
 
 
 class CityCoordinates():

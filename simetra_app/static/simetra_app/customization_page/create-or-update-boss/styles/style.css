@@ -221,6 +221,12 @@ body {
   background-color: #37407f;
 }
 
+.home__message {
+  max-width: 90%;
+  border-radius: 10px;
+  margin-bottom: 50px;
+}
+
 .home__title {
   font-weight: bold;
   font-size: 50px;
