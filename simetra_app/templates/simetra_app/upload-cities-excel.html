@@ -1,73 +1,160 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="ru">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Настройка</title>
-    <!--INCLUDE-->
-    <link rel="stylesheet" href="{% static 'simetra_app/upload_cities_excel/styles/style.css' %}" />
-    <!--INCLUDE-->
-    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-57x57.png' %}" />
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-114x114.png' %}" />
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-72x72.png' %}" />
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-144x144.png' %}" />
-    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-60x60.png' %}" />
-    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-120x120.png' %}" />
-    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-76x76.png' %}" />
-    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-152x152.png' %}" />
-    <link rel="icon" type="image/png" href="{% static 'simetra_app/general_assets/favicon/favicon-196x196.png' %}" sizes="196x196" />
-    <link rel="icon" type="image/png" href="{% static 'simetra_app/general_assets/favicon/favicon-96x96.png' %}" sizes="96x96" />
-    <link rel="icon" type="image/png" href="{% static 'simetra_app/general_assets/favicon/favicon-32x32.png' %}" sizes="32x32" />
-    <link rel="icon" type="image/png" href="{% static 'simetra_app/general_assets/favicon/favicon-16x16.png' %}" sizes="16x16" />
-    <link rel="icon" type="image/png" href="{% static 'simetra_app/general_assets/favicon/favicon-128.png' %}" sizes="128x128" />
+    <link
+      rel="stylesheet"
+      href="{% static 'simetra_app/upload_cities_excel/styles/style.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'simetra_app/customization_page/common-static/styles/style.css' %}"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="57x57"
+      href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-57x57.png' %}"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="114x114"
+      href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-114x114.png' %}"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="72x72"
+      href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-72x72.png' %}"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="144x144"
+      href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-144x144.png' %}"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="60x60"
+      href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-60x60.png' %}"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="120x120"
+      href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-120x120.png' %}"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="76x76"
+      href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-76x76.png' %}"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="152x152"
+      href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-152x152.png' %}"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="{% static 'simetra_app/general_assets/favicon/favicon-196x196.png' %}"
+      sizes="196x196"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="{% static 'simetra_app/general_assets/favicon/favicon-96x96.png' %}"
+      sizes="96x96"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="{% static 'simetra_app/general_assets/favicon/favicon-32x32.png' %}"
+      sizes="32x32"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="{% static 'simetra_app/general_assets/favicon/favicon-16x16.png' %}"
+      sizes="16x16"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="{% static 'simetra_app/general_assets/favicon/favicon-128.png' %}"
+      sizes="128x128"
+    />
     <meta name="application-name" content="&nbsp;" />
     <meta name="msapplication-TileColor" content="#FFFFFF" />
-    <meta name="msapplication-TileImage" content="{% static 'simetra_app/general_assets/favicon/mstile-144x144.png' %}" />
-    <meta name="msapplication-square70x70logo" content="{% static 'simetra_app/general_assets/favicon/mstile-70x70.png' %}" />
-    <meta name="msapplication-square150x150logo" content="{% static 'simetra_app/general_assets/favicon/mstile-150x150.png' %}" />
-    <meta name="msapplication-wide310x150logo" content="{% static 'simetra_app/general_assets/favicon/mstile-310x150.png' %}" />
-    <meta name="msapplication-square310x310logo" content="{% static 'simetra_app/general_assets/favicon/mstile-310x310.png' %}" />
-</head>
+    <meta
+      name="msapplication-TileImage"
+      content="{% static 'simetra_app/general_assets/favicon/mstile-144x144.png' %}"
+    />
+    <meta
+      name="msapplication-square70x70logo"
+      content="{% static 'simetra_app/general_assets/favicon/mstile-70x70.png' %}"
+    />
+    <meta
+      name="msapplication-square150x150logo"
+      content="{% static 'simetra_app/general_assets/favicon/mstile-150x150.png' %}"
+    />
+    <meta
+      name="msapplication-wide310x150logo"
+      content="{% static 'simetra_app/general_assets/favicon/mstile-310x150.png' %}"
+    />
+    <meta
+      name="msapplication-square310x310logo"
+      content="{% static 'simetra_app/general_assets/favicon/mstile-310x310.png' %}"
+    />
+  </head>
 
-<body>
+  <body>
     <div class="wrapper">
-        <header class="header">
-            <div class="header__container">
-                <nav class="header__menu menu">
-                    <ul class="menu__list">
-                        <li class="menu__item">
-                            <a href="{% url 'simetra_app:customization' %}" class="menu__link _link">На главную</a>
-                        </li>
-                        <li class="menu__item">
-                            <a href="{% url 'simetra_app:staff-logout' %}" class="menu__link _link">Выход</a>
-                        </li>
-                    </ul>
-                </nav>
+      <header class="header">
+        <div class="header__container">
+          <nav class="header__menu menu">
+            <ul class="menu__list">
+              <li class="menu__item">
+                <a
+                  href="{% url 'simetra_app:customization' %}"
+                  class="menu__link _link"
+                  >На главную</a
+                >
+              </li>
+              <li class="menu__item">
+                <a
+                  href="{% url 'simetra_app:staff-logout' %}"
+                  class="menu__link _link"
+                  >Выход</a
+                >
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+      <main class="page">
+        <section class="page__home home">
+          <div class="home__container _center-block">
+            <h1 class="home__title _center-text">Загрузка .xlsx файла</h1>
+            <div class="home__navbar _center-text">
+              {% include 'simetra_app/customization-navbar.html' %}
             </div>
-        </header>
-
-        <main class="page">
-            <section class="page__home home">
-                <div class="home__container">
-                    <h1 class="home__title"> Загрузка .xlsx файла </h1>
-                    {% include 'simetra_app/customization-navbar.html' %}
-                    <div class="home__block">
-                        <p style="color: red;"> {{ error_message }} </p>
-                        <form action="" enctype="multipart/form-data" method="post">
-                            <table>
-                                {{ form.as_table }}
-                            </table>
-                            {% csrf_token %}
-                            <input class='home__submit' type="submit" value="Загрузить">
-                        </form>
-                    </div>
+            <div class="home__block">
+              <p style="color: red">{{ error_message }}</p>
+              <form action="" enctype="multipart/form-data" method="post">
+                <table>
+                  {{ form.as_table }}
+                </table>
+                {% csrf_token %}
+                <div class="home__fill">
+                  <input class="home__submit" type="submit" value="Загрузить" />
                 </div>
-            </section>
-        </main>
+              </form>
+            </div>
+          </div>
+        </section>
+      </main>
     </div>
-</body>
-
+  </body>
 </html>

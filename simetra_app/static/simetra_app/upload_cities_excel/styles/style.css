@@ -228,10 +228,21 @@ tr {
           box-shadow: 0px 0px 10px 0px black;
   padding: 20px 15px;
   margin-bottom: 30px;
+  background-color: #37407F;
+}
+
+.home__navbar {
+  font-size: 22px;
+  line-height: 120%;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 0px 10px 0px black;
+          box-shadow: 0px 0px 10px 0px black;
+  padding: 15px 15px;
+  background-color: #37407f;
 }
 
 .home__submit {
-  margin-top: 10px;
   padding: 10px;
   border-radius: 10px;
   font-size: 25px;
@@ -243,4 +254,9 @@ tr {
 
 .home__submit:hover {
   color: white;
+}
+
+.home__fill {
+  margin: 15px 0px;
+  line-height: 130%;
 }
