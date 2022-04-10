@@ -24,22 +24,17 @@ citiesUnparsed.forEach(cityUnparsed => {
     const popupSettings = {
         closeButton: false,
         closeOnClick: false,
-        offset: [0, -35],
+        className: '_styled-popup',
+        anchor: 'center',
+        offset: [-10, -30],
     }
 
     const popup = new mapboxgl.Popup(popupSettings);
 
-    // const markerSettings = {
-    //     'color': '#6f80ff',
-    //     'marker-size': 'small',
-    // }
-
     const markerSettings = document.createElement('div');
     markerSettings.className = '_styled-marker';
-    console.log(markerSettings);
 
-    const marker = new mapboxgl
-        .Marker(markerSettings)
+    const marker = new mapboxgl.Marker(markerSettings)
         .setLngLat([latitudeParsed, longitudeParsed])
         .addTo(map);
 
