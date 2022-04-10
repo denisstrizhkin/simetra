@@ -193,12 +193,12 @@ body._lock {
 /*-----HEADER--------------------------------------------------*/
 /*-------------------------------------------------------------*/
 .header {
-  position: absolute;
+  position: fixed;
   width: 100%;
   left: 0;
   top: 0;
   z-index: 10;
-  background-color: #37407f;
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 .header__menu {
@@ -212,6 +212,10 @@ body._lock {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+}
+
+.header__color {
+  background-color: rgba(0, 0, 0, 0.9);
 }
 
 .menu {
@@ -840,3 +844,4 @@ body._lock {
   -webkit-transform: scale(1.2);
           transform: scale(1.2);
 }
+/*# sourceMappingURL=style.css.map */

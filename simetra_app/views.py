@@ -436,11 +436,13 @@ def upload_cities_excel(request):
 
                         city.save()
 
+
             for key in sheet_names:
                 write_sheet(key)
 
+            messages.success(request, 'Файл был успешно загружен.')
         else:
-            return HttpResponseBadRequest()
+            messages.error(request, 'Неверный формат файла!')
 
     context = {
         "form": form,
