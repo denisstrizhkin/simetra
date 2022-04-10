@@ -9,7 +9,7 @@ mapboxgl.accessToken = mapboxAccessToken;
 
 const map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v11',
+    style: 'mapbox://styles/mapbox/dark-v10',
     center: [moscowLatitude, moscowLongitude],
     zoom: 3,
 });
@@ -29,15 +29,19 @@ citiesUnparsed.forEach(cityUnparsed => {
 
     const popup = new mapboxgl.Popup(popupSettings);
 
-    const markerSettings = {
-        color: 'red',
-    }
+    // const markerSettings = {
+    //     'color': '#6f80ff',
+    //     'marker-size': 'small',
+    // }
 
-    const marker = new mapboxgl.Marker(markerSettings)
+    const markerSettings = document.createElement('div');
+    markerSettings.className = '_styled-marker';
+    console.log(markerSettings);
+
+    const marker = new mapboxgl
+        .Marker(markerSettings)
         .setLngLat([latitudeParsed, longitudeParsed])
         .addTo(map);
-
-    console.log(marker._element);
 
     marker._element.addEventListener('mouseenter', () => {
         marker._element.style.cursor = 'pointer';
