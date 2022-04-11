@@ -73,9 +73,17 @@ def analytics_page(request):
 
 
 def data_base_page(request):
+    cities_list = City.objects.all()
+
     required_fields = ['name', 'longitude']
     cities_list_json = get_JSON_city_list(required_fields)
-    context = {'cities_list_json': cities_list_json}
+
+    context = {
+        'cities_list_json': cities_list_json,
+        'cities_list': cities_list,
+        'number_of_cities': len(cities_list),
+    }
+
     return render(request, 'simetra_app/data-base.html', context)
 
 
@@ -300,7 +308,6 @@ def update_boss(request, boss_id):
         else:
             message_text = 'Не удалось изменить модель руководителя!'
             messages.success(request, message_text)
-            
 
     return render(request, 'simetra_app/create-or-update-boss.html', context)
 
@@ -392,7 +399,6 @@ def update_city(request, city_id):
         else:
             message_text = 'Не удалось изменить модель города!'
             messages.success(request, message_text)
-            
 
     return render(request, 'simetra_app/create-or-update-city.html', context)
 
@@ -463,7 +469,6 @@ def upload_cities_excel(request):
                             write_field(city, sheet, field_name, i)
 
                         city.save()
-
 
             for key in sheet_names:
                 write_sheet(key)
@@ -551,7 +556,8 @@ def update_employee(request, employee_id):
     context = update_context_for_customization_pages_navbar(request, context)
 
     if request.method == 'POST':
-        employee_form = EmployeeForm(request.POST, request.FILES, instance=employee)
+        employee_form = EmployeeForm(
+            request.POST, request.FILES, instance=employee)
 
         if employee_form.is_valid():
             employee_form.save()
@@ -723,7 +729,7 @@ def get_JSON_city_list_by_many_groups(group_list, city_name=None):
         return get_JSON_city_list(current_group_attrs, city_name)
 
     cities_attrs_by_groups_dict = {}
-    
+
     for group in group_list:
         cities_attrs_by_groups_dict[group] = get_JSON_city_list_by_one_group(
             group, city_name)
