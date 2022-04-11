@@ -445,6 +445,7 @@ def upload_cities_excel(request):
                 return render(
                     request, "simetra_app/upload-cities-excel.html", context)
 
+            loc_read = {}
             def write_sheet(sheet_name) -> None:
                 sheet = excel_book[sheet_name]
                 field_names = sheet_names[sheet_name]
@@ -452,6 +453,8 @@ def upload_cities_excel(request):
                 sheet.name_rows_by_column(0)
                 for i in range(0, sheet.number_of_columns()):
                     name = sheet['Город', i]
+                    if not name in loc_read:
+                        loc_read[name] = False
 
                     city = None
                     if City.objects.filter(name=name).exists():
@@ -459,12 +462,14 @@ def upload_cities_excel(request):
                     else:
                         city = City(name=name)
 
-                    if is_city_name_correct_to_find_coordinates(city.name):
+                    if not loc_read[name] and is_city_name_correct_to_find_coordinates(city.name):
                         longitude, latitude = CityCoordinates(city.name).\
                             get_longitude_and_latitude_by_city_name()
+
                         city.longitude = longitude
                         city.latitude = latitude
 
+                    if loc_read[name]:
                         for field_name in field_names:
                             write_field(city, sheet, field_name, i)
 
@@ -590,7 +595,6 @@ def delete_all_employees(request):
 
     return redirect('simetra_app:change-employee')
 
-
 class CityCoordinates():
     def __init__(self, city_english_name):
         self.city = city_english_name
@@ -608,7 +612,6 @@ class CityCoordinates():
             'https://api.mapbox.com/geocoding/v5/mapbox.places/' + city +
             '.json?access_token=' + self.__MAPBOX_KEY
         )
-
         unparsed_coordinates_string = str(unparsed_coordinates_file.read())
 
         coordinates = self.__parse_coordinates_by_search_pattern(
