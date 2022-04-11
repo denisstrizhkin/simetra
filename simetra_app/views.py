@@ -73,7 +73,7 @@ def analytics_page(request):
 
 
 def data_base_page(request):
-    cities_list = City.objects.all()
+    cities_list = City.objects.all().order_by('-sum_of_rating')
 
     required_fields = ['name', 'longitude']
     cities_list_json = get_JSON_city_list(required_fields)
@@ -340,7 +340,7 @@ def change_city_model(request):
 
 @login_required(login_url='simetra_app:staff-login')
 def create_city(request):
-    city_form = CityForm()
+    city_form = CityForm(initial={'sum_of_rating': 0})
     location_of_city_form = LocationOfCityForm()
 
     context = {
@@ -361,13 +361,15 @@ def create_city(request):
         city_form = CityForm(request.POST)
 
         if city_form.is_valid():
-            city_form.save()
+            new_city = city_form.save(commit=False)
+            new_city = get_city_sum_of_rating(new_city)
+            new_city.save()
 
             message_text = 'Модель города была успешно создана!'
             messages.success(request, message_text)
         else:
             message_text = 'Не удалось создать модель города!'
-            messages.success(request, message_text)
+            messages.error(request, message_text)
 
     return render(request, 'simetra_app/create-or-update-city.html', context)
 
@@ -388,17 +390,17 @@ def update_city(request, city_id):
 
     if request.method == 'POST':
         city_form = CityForm(request.POST, instance=city)
-
+        
         if city_form.is_valid():
-            city_form.save()
+            new_city = city_form.save(commit=False)
+            new_city = get_city_sum_of_rating(new_city)
+            new_city.save()
 
             message_text = 'Модель города была успешно изменена!'
             messages.success(request, message_text)
-
-            return HttpResponseRedirect('')
         else:
             message_text = 'Не удалось изменить модель города!'
-            messages.success(request, message_text)
+            messages.error(request, message_text)
 
     return render(request, 'simetra_app/create-or-update-city.html', context)
 
@@ -464,6 +466,7 @@ def upload_cities_excel(request):
                             get_longitude_and_latitude_by_city_name()
                         city.longitude = longitude
                         city.latitude = latitude
+                        city = get_city_sum_of_rating(city)
 
                         for field_name in field_names:
                             write_field(city, sheet, field_name, i)
@@ -708,7 +711,6 @@ def get_JSON_city_list(city_attr_list, city_name=None):
 
 def get_JSON_city_attr_verbose_names(city_attr_list):
     verbose_names_list_json = []
-
     verbose_names_dictionary = {}
 
     for attribute_name in city_attr_list:
@@ -889,3 +891,13 @@ def get_city_attrs_by_groups_dict():
     }
 
     return attrs_by_groups
+
+
+def get_city_sum_of_rating(city):
+    city.sum_of_rating = float(city.rating_physical_availability) +\
+        float(city.rating_affordability) +\
+        float(city.rating_route_network_efficiency) +\
+        float(city.rating_comfort_n_convenience) +\
+        float(city.rating_security_n_development)
+
+    return city
