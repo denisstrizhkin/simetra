@@ -102,6 +102,10 @@ class City(models.Model):
         verbose_name='Физическая доступность',
         default=0.0
     )
+    sum_of_rating = models.FloatField(
+        verbose_name='Итоговый рейтинг',
+        default=0.0
+    )
 
     """ ПРОСТРАНСТВЕННЫЕ ХАРАКТЕРИСТИКИ """
     num_population = models.FloatField(
