@@ -406,12 +406,32 @@ def update_city(request, city_id):
 @login_required(login_url='simetra_app:staff-login')
 def upload_cities_excel(request):
     def write_field(city: City, sheet, field_name: str, i: int) -> None:
+        field_type = type(getattr(city, field_name))
         val = sheet[City._meta.get_field(field_name).verbose_name, i]
-        try:
-            val = float(val)
-        except ValueError:
-            val = 0
-        setattr(city, field_name, val)
+        cname = getattr(city, 'name')
+        vname = City._meta.get_field(field_name).verbose_name
+        fmt = "Город: {}, Значение: [{}] должно быть {}"
+        err_msg = ''
+
+        if field_type == type(False):
+            try:
+                val = bool(val)
+            except ValueError:
+                err_msg = fmt.format(cname, vname, 'Булевой переменной')
+        elif field_type == type("str"):
+            val = str(val)
+            if val.isnumeric():
+                err_msg = fmt.format(cname, vname, 'Строкой')
+        elif field_type == type(10) or field_type == type(10.0):
+            try:
+                val = float(val)
+            except ValueError:
+                err_msg = fmt.format(cname, vname, 'Числом')
+
+        if err_msg != '':
+            messages.error(request, err_msg)
+        else:
+            setattr(city, field_name, val)
 
     form = UploadFileForm()
 
@@ -437,16 +457,12 @@ def upload_cities_excel(request):
                         "{}"'.format(sheet_name)
 
             if error_message != '':
-                context = {
-                    "form": form,
-                    "error_message": error_message,
-                }
-
-                return render(
-                    request, "simetra_app/upload-cities-excel.html", context)
+                message_text = error_message
+                messages.error(request, message_text)
 
             loc_read = {}
             def write_sheet(sheet_name) -> None:
+                #global loc_read, count
                 sheet = excel_book[sheet_name]
                 field_names = sheet_names[sheet_name]
 
@@ -465,6 +481,7 @@ def upload_cities_excel(request):
                     if not loc_read[name] and is_city_name_correct_to_find_coordinates(city.name):
                         longitude, latitude = CityCoordinates(city.name).\
                             get_longitude_and_latitude_by_city_name()
+                        loc_read[name] = True
 
                         city.longitude = longitude
                         city.latitude = latitude
@@ -757,6 +774,10 @@ def get_JSON_city_attr_verbose_names_by_groups(group_list):
 
 def get_city_attrs_by_groups_dict():
     attrs_by_groups = {
+        'ГОРОДА': [
+            'region',
+            'russian_name'
+        ],
         'КАЧЕСТВЕННЫЕ ГРУППЫ': [
             'rating_security_n_development',
             'rating_comfort_n_convenience',

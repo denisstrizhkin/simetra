@@ -58,7 +58,6 @@ class City(models.Model):
     # To find coorinates, open 'Response' -> 'features' -> '0' -> 'center'
     # From the page https://docs.mapbox.com/playground/geocoding/
     name = models.CharField(max_length=100)
-    russian_name = models.CharField(max_length=100, default='')
     longitude = models.DecimalField(
         max_digits=15,
         decimal_places=12,
@@ -68,6 +67,18 @@ class City(models.Model):
         max_digits=15,
         decimal_places=12,
         default=0,
+    )
+
+    """ ГОРОДА """
+    russian_name = models.CharField(
+        max_length=100,
+        verbose_name='Русское название',
+        default=''
+    )
+    region = models.CharField(
+        max_length=5,
+        verbose_name='Округ',
+        default=''
     )
 
     """ КАЧЕСТВЕННЫЕ ГРУППЫ (рейтинг 0.0 - 100.0) """
