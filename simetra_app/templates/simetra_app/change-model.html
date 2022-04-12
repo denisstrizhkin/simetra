@@ -63,7 +63,7 @@
               {% for object in list_of_objects %}
                 <li class="home__item">
                   {% if is_city %}
-                    <span name="city-name">{{ object.name }}</span>
+                    <span name="city-name">{{ object.russian_name }}</span>
                   {% else %}
                     {{ object.name }}
                   {% endif %}

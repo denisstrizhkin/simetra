@@ -161,7 +161,7 @@
               {% for city in cities_list %}
                 <tr name="table-row-values">
                   <th scope="row" name="number" class="_center-text">#</th>
-                  <td class="_center-text _center-text-vertically">{{ city.name }}</td>
+                  <td class="_center-text _center-text-vertically">{{ city.russian_name }}</td>
                   <td class="_center-text _center-text-vertically">{{ city.rating_physical_availability|floatformat:2 }}</td>
                   <td class="_center-text _center-text-vertically">{{ city.rating_affordability|floatformat:2 }}</td>
                   <td class="_center-text _center-text-vertically">{{ city.rating_route_network_efficiency|floatformat:2 }}</td>

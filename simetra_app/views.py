@@ -46,7 +46,7 @@ def main_page(request):
 
     form = LocationOfCityForm()
 
-    required_fields = ['name', 'longitude', 'latitude']
+    required_fields = ['name', 'russian_name', 'longitude', 'latitude']
     cities_list_json = get_JSON_city_list(required_fields)
 
     context = {

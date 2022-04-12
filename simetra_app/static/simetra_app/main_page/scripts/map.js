@@ -18,6 +18,7 @@ citiesUnparsed.forEach(cityUnparsed => {
     const city = JSON.parse(cityUnparsed);
 
     const name = city['name'];
+    const russian_name = city['russian_name'];
     const longitudeParsed = city['longitude'];
     const latitudeParsed = city['latitude'];
 
@@ -42,7 +43,7 @@ citiesUnparsed.forEach(cityUnparsed => {
         marker._element.style.cursor = 'pointer';
 
         popup.setLngLat([latitudeParsed, longitudeParsed])
-            .setText(name)
+            .setText(russian_name)
             .addTo(map);
     });
 
