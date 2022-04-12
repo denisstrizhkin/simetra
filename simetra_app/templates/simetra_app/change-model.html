@@ -7,9 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Настройка</title>
-  <!--INCLUDE-->
   <link rel="stylesheet" href="{% static 'simetra_app/customization_page/change-model/styles/style.css' %}" />
-  <!--INCLUDE-->
+  <link rel="stylesheet" href="{% static 'simetra_app/customization_page/common-static/styles/style.css' %}" />
   <link rel="apple-touch-icon-precomposed" sizes="57x57" href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-57x57.png' %}" />
   <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-114x114.png' %}" />
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-72x72.png' %}" />
@@ -34,7 +33,6 @@
 
 <body>
   <div class="wrapper">
-
     <header class="header">
       <div class="header__container">
         <nav class="header__menu menu">
@@ -49,51 +47,62 @@
         </nav>
       </div>
     </header>
-
     <main class="page">
       <section class="page__home home">
-        <div class="home__container">
-          <h1 class="home__title">{{ heading }}</h1>
-          {% include 'simetra_app/customization-navbar.html' %}
+        <div class="home__container _center-block">
+          <h1 class="home__title _center-text">{{ heading }}</h1>
+          <div class="home__navbar _center-text">
+            {% include 'simetra_app/customization-navbar.html' %}
+          </div>
           {% with 'simetra_app:create-'|add:object_name as creation_link %}
-            <p><a class="home__add _link" href="{% url creation_link %}">Добавить новый экземпляр модели</a></p>
+            <p class="_center-text"><a class="home__add _link" href="{% url creation_link %}">Добавить новую модель</a></p>
           {% endwith %}
           <div class="home__block">
-            <h2 class="home__caption">Список существующих моделей:</h2>
+            <h2 class="home__caption _center-text">Список существующих моделей</h2>
             <ul>  
-              {% with 'simetra_app:delete-all-instances-of-'|add:object_name as deleting_link %}
-              <a href="{% url deleting_link %}">Удалить все экземпляры модели</a>
-              {% endwith %}
               {% for object in list_of_objects %}
-              <li class="home__item">
-                {{ object.name }}
-                <div class="home__options">
-                  {% with 'simetra_app:update-'|add:object_name as updating_link %}
-                  <a class="home__change _link" href="{% url updating_link object.id %}">
-                    <span>Изменить</span>
-                    <img class="home__option-image" src="{% static 'simetra_app/customization_page/change-model/assets/img/change.png' %}">
-                  </a>
-                  {% endwith %} 
-                  {% with 'simetra_app:delete-'|add:object_name as deleting_link %}
-                  <a class="home__delete _link" href="{% url deleting_link object.id %}">
-                    <span>Удалить</span>
+                <li class="home__item">
+                  {% if is_city %}
+                    <span name="city-name">{{ object.russian_name }}</span>
+                  {% else %}
+                    {{ object.name }}
+                  {% endif %}
+                  <div class="home__options">
+                    {% with 'simetra_app:update-'|add:object_name as updating_link %}
+                      <a class="home__change _link" href="{% url updating_link object.id %}">
+                        <span>Изменить</span>
+                        <img class="home__option-image" src="{% static 'simetra_app/customization_page/change-model/assets/img/change.png' %}">
+                      </a>
+                    {% endwith %} 
+                    {% with 'simetra_app:delete-'|add:object_name as deleting_link %}
+                      <a class="home__delete _link" href="{% url deleting_link object.id %}">
+                        <span>Удалить</span>
+                        <img class="home__option-image" src="{% static 'simetra_app/customization_page/change-model/assets/img/delete.png' %}">
+                      </a>
+                    {% endwith %}
+                  </div>
+                </li>
+              {% endfor %}
+              <li name="delete-all-button" class="home__item _right-text">
+                {% with 'simetra_app:delete-all-instances-of-'|add:object_name as deleting_link %}
+                  <a class="home__delete _link" href="{% url deleting_link %}">
+                    Удалить всё
                     <img class="home__option-image" src="{% static 'simetra_app/customization_page/change-model/assets/img/delete.png' %}">
                   </a>
-                  {% endwith %}
-                </div>
-
+                {% endwith %}
               </li>
-              {% endfor %}
             </ul>
-            {% if is_city == True %}
-            <a class="home__load _link" href="{% url 'simetra_app:upload-cities-excel' %}">
+
+            {% if is_city %}
+            <a class="home__load _link _center-text" href="{% url 'simetra_app:upload-cities-excel' %}">
               Загрузить данные с помощью .xlsx(ods) файла</a>
             {% endif %}
-            <p>Общее количество моделей: {{ number_of_objects }}</p>
+            <p class="_center-text">Общее количество моделей: {{ number_of_objects }}</p>
           </div>
       </section>
     </main>
   </div>
+  <script src="{% static 'simetra_app/customization_page/change-model/scripts/manage-delete-all-button.js' %}"></script>
+  <script src="{% static 'simetra_app/customization_page/change-model/scripts/translate-city-name-to-russian.js' %}"></script>
 </body>
-
 </html>

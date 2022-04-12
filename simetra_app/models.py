@@ -69,6 +69,18 @@ class City(models.Model):
         default=0,
     )
 
+    """ ГОРОДА """
+    russian_name = models.CharField(
+        max_length=100,
+        verbose_name='Русское название',
+        default=''
+    )
+    region = models.CharField(
+        max_length=5,
+        verbose_name='Округ',
+        default=''
+    )
+
     """ КАЧЕСТВЕННЫЕ ГРУППЫ (рейтинг 0.0 - 100.0) """
     rating_security_n_development = models.FloatField(
         verbose_name='Безопасность и устойчивое развитие',
@@ -88,6 +100,10 @@ class City(models.Model):
     )
     rating_physical_availability = models.FloatField(
         verbose_name='Физическая доступность',
+        default=0.0
+    )
+    sum_of_rating = models.FloatField(
+        verbose_name='Итоговый рейтинг',
         default=0.0
     )
 

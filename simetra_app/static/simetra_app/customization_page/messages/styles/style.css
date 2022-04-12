@@ -1,0 +1,20 @@
+._close-button {
+  font-weight: bold;
+  float: right;
+  transition: 0.3s;
+}
+
+._close-button:hover {
+  cursor: pointer;
+  color: black;
+}
+
+.message {
+  max-width: 90%;
+  border-radius: 10px;
+  margin-bottom: 50px;
+}
+
+ul {
+  margin-bottom: 0;
+}

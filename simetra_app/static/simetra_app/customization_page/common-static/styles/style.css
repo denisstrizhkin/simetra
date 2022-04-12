@@ -1,0 +1,28 @@
+._center-block {
+    margin-left: auto;
+    margin-right: auto;
+}
+  
+._center-text {
+  text-align: center;
+}
+
+.home__avatar_img {
+  max-width: 200px;
+  margin-top: 10px; 
+  margin-bottom: 5px;
+  border-radius: 5px;
+}
+
+@media (max-width: 485px) {
+  .home__image-form-field {
+    margin-top: 5px;
+    position: relative;
+    margin-left: 0 !important;
+  }
+
+  .home__descr-image-form-field {
+    min-width: 100% !important;
+    margin-bottom: 15px;
+  }
+}

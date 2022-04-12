@@ -18,7 +18,7 @@ class BossForm(forms.ModelForm):
 class CityForm(forms.ModelForm):
     class Meta:
         model = City
-        fields = '__all__'
+        exclude = ['sum_of_rating']
 
 
 class EmployeeForm(forms.ModelForm):
@@ -28,4 +28,4 @@ class EmployeeForm(forms.ModelForm):
 
 
 class UploadFileForm(forms.Form):
-    file = forms.FileField()
+    file = forms.FileField(label='Файл (.xlsx)')

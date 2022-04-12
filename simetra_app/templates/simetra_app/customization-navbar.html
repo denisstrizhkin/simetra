@@ -1,5 +1,30 @@
-{% for ancestor in url_ancestors_name_list %} 
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'simetra_app/customization_page/customization-navbar/styles/style.css' %}" />
+
+<ul>
+  {% for ancestor in url_ancestors_name_list %} 
     {% with 'simetra_app:'|add:ancestor as ancestor_url %}
-        <p><a href="{% url ancestor_url %}">{{ ancestor }}</a></p>
+      <li>
+        <a href="{% url ancestor_url %}">
+          <span class="_link" name="navbar-element-name">{{ ancestor }}</span>
+        </a>
+      </li> 
+      <span name="quotation-mark">»</span>
     {% endwith %} 
-{% endfor%}
+  {% endfor%} 
+  
+  {% if is_this_update_page %} 
+    {% with 'simetra_app:'|add:update_model as update_model_url %}
+      <li>
+        <a href="{% url update_model_url model_id %}">
+          <span class="_link" name="navbar-element-name">{{ update_model }}</span>
+        </a>
+      </li>
+      <span name="quotation-mark">»</span>
+    {% endwith %} 
+  {% endif %}
+</ul>
+
+<script src="{% static 'simetra_app/customization_page/customization-navbar/scripts/delete-extra-quotation-mark.js' %}"></script>
+<script src="{% static 'simetra_app/customization_page/customization-navbar/scripts/translate-navbar-to-russian.js' %}"></script>

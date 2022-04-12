@@ -117,12 +117,12 @@ body._lock {
 /*-------------------------------------------------------------*/
 
 .header {
-  position: absolute;
+  position: fixed;
   width: 100%;
   left: 0;
   top: 0;
   z-index: 10;
-  background-color: #37407f;
+  background-color: rgba(0, 0, 0, .7);
   &__menu {
     padding: 10px 0px;
     display: flex;
@@ -130,7 +130,11 @@ body._lock {
     justify-content: space-between;
   }
 }
-
+.header{
+  &__color{
+      background-color: rgba(0, 0, 0, .9);
+  }
+}
 .menu {
   width: 100%;
   &__list {

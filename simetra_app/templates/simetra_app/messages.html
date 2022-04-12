@@ -1,0 +1,16 @@
+{% load static %}
+
+
+<link
+  rel="stylesheet"
+  href="{% static 'simetra_app/customization_page/messages/styles/style.css' %}"
+/>
+
+{% if messages %} 
+  {% for message in messages %}
+  <div class="alert {{ message.tags }} alert-dismissible fade show message _center-block _center-text" role="alert">
+    {{ message }}
+    <span aria-hidden="true" class="_close-button" onclick="this.parentElement.style.display='none';">&times;</span>
+  </div>
+  {% endfor %} 
+{% endif %}

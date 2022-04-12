@@ -9,7 +9,7 @@ mapboxgl.accessToken = mapboxAccessToken;
 
 const map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v11',
+    style: 'mapbox://styles/mapbox/dark-v10',
     center: [moscowLatitude, moscowLongitude],
     zoom: 3,
 });
@@ -18,32 +18,32 @@ citiesUnparsed.forEach(cityUnparsed => {
     const city = JSON.parse(cityUnparsed);
 
     const name = city['name'];
+    const russian_name = city['russian_name'];
     const longitudeParsed = city['longitude'];
     const latitudeParsed = city['latitude'];
 
     const popupSettings = {
         closeButton: false,
         closeOnClick: false,
-        offset: [0, -35],
+        className: '_styled-popup',
+        anchor: 'center',
+        offset: [-10, -30],
     }
 
     const popup = new mapboxgl.Popup(popupSettings);
 
-    const markerSettings = {
-        color: 'red',
-    }
+    const markerSettings = document.createElement('div');
+    markerSettings.className = '_styled-marker';
 
     const marker = new mapboxgl.Marker(markerSettings)
         .setLngLat([latitudeParsed, longitudeParsed])
         .addTo(map);
 
-    console.log(marker._element);
-
     marker._element.addEventListener('mouseenter', () => {
         marker._element.style.cursor = 'pointer';
 
         popup.setLngLat([latitudeParsed, longitudeParsed])
-            .setText(name)
+            .setText(russian_name)
             .addTo(map);
     });
 

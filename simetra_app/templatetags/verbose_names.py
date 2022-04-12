@@ -11,5 +11,9 @@ def get_verbose_field_name(instance, field_name):
 
 @register.simple_tag
 def get_city_option_text(city_form, field_name):
-    return format_html("{}: {}", get_verbose_field_name(
-        city_form.instance, field_name), city_form[field_name])
+    return format_html(
+        '<span class="home__align-vertically-text">{}</span>'
+        + '<span class="home__align-vertically-text">{}</span>',
+        get_verbose_field_name(city_form.instance, field_name),
+        city_form[field_name]
+    )
