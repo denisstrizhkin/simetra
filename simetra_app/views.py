@@ -918,10 +918,10 @@ def get_city_attrs_by_groups_dict():
 
 
 def get_city_sum_of_rating(city):
-    city.sum_of_rating = float(city.rating_physical_availability) +\
-        float(city.rating_affordability) +\
-        float(city.rating_route_network_efficiency) +\
-        float(city.rating_comfort_n_convenience) +\
-        float(city.rating_security_n_development)
+    city.sum_of_rating = city.rating_physical_availability +\
+        city.rating_affordability +\
+        city.rating_route_network_efficiency +\
+        city.rating_comfort_n_convenience +\
+        city.rating_security_n_development
 
     return city

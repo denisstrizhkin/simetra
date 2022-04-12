@@ -200,6 +200,18 @@ body {
   display: none;
 }
 
+._hide-city-by-region {
+  display: none;
+}
+
+._hide-city-by-population {
+  display: none;
+}
+
+._hide-column-by-indicator {
+  display: none;
+}
+
 /*-------------------------------------------------------------*/
 /*-----HEADER--------------------------------------------------*/
 /*-------------------------------------------------------------*/
