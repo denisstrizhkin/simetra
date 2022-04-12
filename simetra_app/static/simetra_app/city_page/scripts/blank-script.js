@@ -96,7 +96,6 @@ function createNewPolarArea(groupArr, start, end) {
       responsive: true,
       scales: {
         color: "#ffffff",
-        // backgroundColor: "#ffffff",
       },
       plugins: {
         tooltip: {
@@ -109,7 +108,7 @@ function createNewPolarArea(groupArr, start, end) {
         legend: {
           position: "top",
           labels: {
-            color: "#ffffff",
+            // color: "#ffffff",
             font: {
               size: 20,
             },
@@ -124,7 +123,7 @@ function createNewPolarArea(groupArr, start, end) {
 /*-------------------------------------------------------------*/
 /*-----Pie-----------------------------------------------------*/
 /*-------------------------------------------------------------*/
-function createNewPie(groupArr, start, end) {
+function createNewPie(groupArr, start, end, fontColor = "black") {
   const data = {
     labels: generateLabels(groupArr, start, end),
     datasets: [
@@ -157,6 +156,7 @@ function createNewPie(groupArr, start, end) {
         legend: {
           position: "top",
           labels: {
+            color: fontColor,
             font: {
               size: 20,
             },
@@ -174,7 +174,7 @@ function createNewPie(groupArr, start, end) {
 /*-------------------------------------------------------------*/
 /*-----Doughnut------------------------------------------------*/
 /*-------------------------------------------------------------*/
-function createNewDoughnut(groupArr, start, end) {
+function createNewDoughnut(groupArr, start, end, fontColor = "black") {
   const data = {
     labels: generateLabels(groupArr, start, end),
     datasets: [
@@ -207,6 +207,7 @@ function createNewDoughnut(groupArr, start, end) {
         legend: {
           position: "top",
           labels: {
+            color: fontColor,
             font: {
               size: 20,
             },
@@ -388,37 +389,37 @@ saveUnusedProperties();
 createNewChart("spatial", 1);
 new Chart(
   document.getElementById("spatial-1"),
-  createNewPie(spatialCharacteristics, 0, 5)
+  createNewPie(spatialCharacteristics, 0, 5, "white")
 );
 
 createNewChart("spatial", 2);
 new Chart(
   document.getElementById("spatial-2"),
-  createNewDoughnut(spatialCharacteristics, 5, 8)
+  createNewDoughnut(spatialCharacteristics, 5, 8, "white")
 );
 
 createNewChart("spatial", 3);
 new Chart(
   document.getElementById("spatial-3"),
-  createNewDoughnut(spatialCharacteristics, 8, 13)
+  createNewDoughnut(spatialCharacteristics, 8, 13, "white")
 );
 
 createNewChart("spatial", 4);
 new Chart(
   document.getElementById("spatial-4"),
-  createNewDoughnut(spatialCharacteristics, 13, 18)
+  createNewDoughnut(spatialCharacteristics, 13, 18, "white")
 );
 
 createNewChart("spatial", 5);
 new Chart(
   document.getElementById("spatial-5"),
-  createNewDoughnut(spatialCharacteristics, 18, 20)
+  createNewDoughnut(spatialCharacteristics, 18, 20, "white")
 );
 
 createNewChart("spatial", 6);
 new Chart(
   document.getElementById("spatial-6"),
-  createNewDoughnut(spatialCharacteristics, 25, 30)
+  createNewDoughnut(spatialCharacteristics, 25, 30, "white")
 );
 
 saveUnusedProperties();
@@ -476,6 +477,21 @@ new Chart(
   createNewDoughnut(rollinStock, 40, 42)
 );
 
+// const config = {
+//   type: "pie",
+//   data: data,
+//   options: {
+//     responsive: true,
+//     plugins: {
+//       tooltip: {
+//         enabled: true,
+//         caretSize: 8,
+//         bodyFont: {
+//           size: 15,
+//         },
+//       },
+//       legend: {
+//         labels: {
 //33C2C7
 //60EEC4
 saveUnusedProperties();
