@@ -72,16 +72,16 @@
               <div class="page__rating-filter-column">
                 <h1>РАЗМЕР ГОРОДА</h1>
                 <div class="input-checkbox">
-                  <input type="checkbox" id="millionaire" name="millionaire-city" checked>
-                  <label for="millionaire-city">Более 1млн.</label>
+                  <input type="checkbox" id="millionaire" name="population" checked>
+                  <label for="millionaire">Более 1млн.</label>
                 </div>
                 <div class="input-checkbox">
-                  <input type="checkbox" id="half-millionaire" name="half-millionaire-city" checked>
-                  <label for="half-millionaire-city">0.5-1млн.</label>
+                  <input type="checkbox" id="half-millionaire" name="population" checked>
+                  <label for="half-millionaire">0.5-1млн.</label>
                 </div>
                 <div class="input-checkbox">
-                  <input type="checkbox" id="non-half-millionaire" name="non-half-millionaire-city" checked>
-                  <label for="non-half-millionaire-city">Менее 0.5млн.</label>
+                  <input type="checkbox" id="non-half-millionaire" name="population" checked>
+                  <label for="nnon-half-millionaire">Менее 0.5млн.</label>
                 </div>
               </div>
               <div class="page__rating-filter-column">
@@ -146,7 +146,7 @@
           </div>
           <table class="table table-hover">
             <thead>
-              <tr>
+              <tr name="table-row-head">
                 <th scope="col" class="_center-text _center-text-vertically">№</th>
                 <th scope="col" class="_center-text _center-text-vertically">Город</th>
                 <th scope="col" class="_center-text _center-text-vertically">Физическая доступность</th>
@@ -154,18 +154,21 @@
                 <th scope="col" class="_center-text _center-text-vertically">Эффективность транспортной сети</th>
                 <th scope="col" class="_center-text _center-text-vertically">Комфорт и удобство</th>
                 <th scope="col" class="_center-text _center-text-vertically">Безопасность и устойчивое развитие</th>
+                <th scope="col" class="_center-text _center-text-vertically">Итого</th>
               </tr>
             </thead>
             <tbody>
               {% for city in cities_list %}
-                <tr>
+                <tr name="table-row-values">
                   <th scope="row" name="number" class="_center-text">#</th>
-                  <td class="_center-text">{{ city.name }}</td>
-                  <td class="_center-text">{{ city.rating_physical_availability|floatformat:2 }}</td>
-                  <td class="_center-text">{{ city.rating_affordability|floatformat:2 }}</td>
-                  <td class="_center-text">{{ city.rating_route_network_efficiency|floatformat:2 }}</td>
-                  <td class="_center-text">{{ city.rating_comfort_n_convenience|floatformat:2 }}</td>
-                  <td class="_center-text">{{ city.rating_security_n_development|floatformat:2 }}</td>
+                  <td class="_center-text _center-text-vertically">{{ city.name }}</td>
+                  <td class="_center-text _center-text-vertically">{{ city.rating_physical_availability|floatformat:2 }}</td>
+                  <td class="_center-text _center-text-vertically">{{ city.rating_affordability|floatformat:2 }}</td>
+                  <td class="_center-text _center-text-vertically">{{ city.rating_route_network_efficiency|floatformat:2 }}</td>
+                  <td class="_center-text _center-text-vertically">{{ city.rating_comfort_n_convenience|floatformat:2 }}</td>
+                  <td class="_center-text _center-text-vertically">{{ city.rating_security_n_development|floatformat:2 }}</td>
+                  <td class="_center-text _center-text-vertically">{{ city.sum_of_rating|floatformat:2 }}</td>
+                  <td id="num-population" class="_hide-element">{{ city.num_population }}</>
                 </tr> 
               {% endfor %}
             </tbody>
@@ -301,6 +304,6 @@
         </div>
       </footer>
     </div>
-    <script src="{% static 'simetra_app/data_base_page/scripts/numerate-table.js' %}"></script>
+    <script src="{% static 'simetra_app/data_base_page/scripts/filter.js' %}"></script>
   </body>
 </html>
