@@ -94,12 +94,10 @@ function createNewPolarArea(groupArr, start, end) {
     // },
     options: {
       responsive: true,
-      // scales: {
-      //   myScale: {
-      //     type: 'logarithmic',
-      //     position: 'right', // `axis` is determined by the position as `'y'`
-      //   }
-      // },
+      scales: {
+        color: "#ffffff",
+        // backgroundColor: "#ffffff",
+      },
       plugins: {
         tooltip: {
           enabled: true,
@@ -111,7 +109,7 @@ function createNewPolarArea(groupArr, start, end) {
         legend: {
           position: "top",
           labels: {
-            // color: '#ffffff',
+            color: "#ffffff",
             font: {
               size: 20,
             },
