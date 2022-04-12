@@ -6,10 +6,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <meta name="description"
-        content="Оценка качества общественного транспорта в российских городах и составила рейтинг городов России по качеству общественного транспорта.">
-    <meta name="subject" content="Рейтинг городов России по качеству общественного транспорта.">
-    <meta name="abstract" content="Рейтинг городов России по качеству общественного транспорта."> -->
+    <meta name="description"
+        content="Оценка качества общественного транспорта в российском городе по определенным показателям">
+    <meta name="subject" content="Рейтинг города России по качеству общественного транспорта.">
+    <meta name="abstract" content="Рейтинг города России по качеству общественного транспорта.">
     <meta name="rating" content="General">
 
     <title>{{ name }}</title>
@@ -70,7 +70,7 @@
         <main class="page">
             <section class="page__home home">
                 <div class="home__container _container">
-                    <img class="home__image" src="#" alt="City Image">
+                    <img class="home__image" src="#" alt="City Image" title="Изображение города">
                     <div class="home__info">
                         <h1 class="home__title _title">
                             {{ name }}
@@ -134,9 +134,10 @@
             <div class="footer__container _container">
                 <ul class="footer__list">
                     <li class="footer__item">
-                        <a href="https://apluss.ru/" target="_blank">
+                        <a href="{% url 'simetra_app:main' %}">
                             <img class="footer__logo"
-                                src="{% static 'simetra_app/main_page/assets/img/simetra_logo_discrip.png' %}" />
+                                src="{% static 'simetra_app/main_page/assets/img/simetra_logo_discrip.png' %}"
+                                alt="Изображение логотипа" title="Логотип Simetra" />
                         </a>
                     </li>
                     <li class="footer__item">

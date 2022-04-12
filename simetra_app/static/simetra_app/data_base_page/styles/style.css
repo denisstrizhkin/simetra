@@ -174,44 +174,6 @@ body {
   color: #6f80ff;
 }
 
-._center-text {
-  text-align: center;
-}
-
-._center-text-vertically {
-  vertical-align: middle;
-}
-
-._center-text-vertically-flexbox {
-  display: flex;
-  align-items: center;
-}
-
-._center-block {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-._customers-blue-color {
-  color: #6f80ff;
-}
-
-._hide-element {
-  display: none;
-}
-
-._hide-city-by-region {
-  display: none;
-}
-
-._hide-city-by-population {
-  display: none;
-}
-
-._hide-column-by-indicator {
-  display: none;
-}
-
 /*-------------------------------------------------------------*/
 /*-----HEADER--------------------------------------------------*/
 /*-------------------------------------------------------------*/
@@ -259,83 +221,12 @@ body {
 /*-------------------------------------------------------------*/
 /*-----MAIN--------------------------------------------------*/
 /*-------------------------------------------------------------*/
-h1.page {
-  margin-top: 24px;
-  font-size: 60px;
-  font-weight: bold;
-}
-
-h2.page {
-  font-size: 24px;
-  font-weight: bold;
-}
-
-.page__description {
-  max-width: 600px;
-}
-
-.page__description-header {
-  margin-bottom: 60px;
-  margin-top: 90px;
-}
-
-.page__description-main {
-  font-size: 24px;
-}
-
-.page__description-footer {
-  margin-top: 40px;
-  margin-bottom: 80px;
-  font-weight: bold;
-}
-
-.page__description-link {
-  color: #000000;
-}
-
-.page__description-link:hover {
-  color: #000000;
-}
-
-h1.page__rating {
+.page-title {
+  padding-top: 150px;
+  padding-bottom: 120px;
+  z-index: 5;
   font-size: 36px;
-  margin-top: 80px;
-  font-weight: bold;
-}
-
-.page__rating-filter {
-  margin-top: 72px;
-  margin-bottom: 36px;
-}
-
-.page__rating-filter-row {
-  display: table;
-}
-
-.page__rating-filter-column {
-  display: table-cell;
-  min-width: 280px;
-}
-
-.page__rating-filter-column > h1 {
-  font-weight: bold;
-  color: #6f80ff;
-  margin-top: 14px;
-  margin-bottom: 14px;
-}
-
-.page__rating-filter-column > .input-checkbox {
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-.page__rating-filter-element {
-  max-width: 280px;
-}
-
-h1.page__rating-filter {
-  font-size: 24px;
-  font-weight: bold;
+  text-align: center;
 }
 
 /*-------------------------------------------------------------*/

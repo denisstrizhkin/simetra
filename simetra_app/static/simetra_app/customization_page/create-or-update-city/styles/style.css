@@ -71,10 +71,6 @@ a:hover {
   text-decoration: none;
 }
 
-ul {
-  margin: 0;
-}
-
 ul li {
   list-style: none;
 }
@@ -187,30 +183,9 @@ button[name="sumbit-new-city"]:hover {
   font-weight: bold;
 }
 
-._subsubtitle {
-  font-size: 27px;
-  margin-bottom: 15px;
-  font-weight: bold;
-}
-
-._space-between {
-  display: flex;
-  justify-content: space-between;
-}
-
-._margin-off {
-  margin: 0 !important;
-}
-
 @media (max-width: 370px) {
   ._subtitle {
     font-size: 24px;
-  }
-}
-
-@media (max-width: 820px) {
-  .home__input-block {
-    display: block;
   }
 }
 
@@ -281,35 +256,14 @@ button[name="sumbit-new-city"]:hover {
 }
 
 .page__container {
-  padding: 100px 0px 40px 0px;
-  max-width: 900px;
+  padding: 100px 0px 40px 50px;
+  max-width: 1000px;
 }
 
 @media (max-width: 1050px) {
   .page__container {
     padding: 100px 20px 40px 20px;
   }
-}
-
-.home__navbar {
-  font-size: 22px;
-  line-height: 120%;
-  margin-bottom: 20px;
-  border-radius: 10px;
-  -webkit-box-shadow: 0px 0px 10px 0px black;
-          box-shadow: 0px 0px 10px 0px black;
-  padding: 15px 15px;
-  background-color: #37407f;
-}
-
-.home__block {
-  padding: 10px 0px;
-  border-radius: 10px;
-  -webkit-box-shadow: 0px 0px 10px 0px black;
-          box-shadow: 0px 0px 10px 0px black;
-  padding: 20px 15px;
-  margin-bottom: 30px;
-  background-color: #37407F;
 }
 
 .home__title {
@@ -319,8 +273,7 @@ button[name="sumbit-new-city"]:hover {
   margin-bottom: 30px;
 }
 
-.home__input-block,
-.home__input-block-for-checkbox {
+.home__input-block {
   margin-bottom: 20px;
 }
 
@@ -330,15 +283,8 @@ button[name="sumbit-new-city"]:hover {
   font-size: 16px;
 }
 
-.home__align-vertically-text {
-  display: flex;
-  align-items: center;
-  margin-right: 15px;
-}
-
 .home__submit {
   padding: 10px;
-  margin-top: 15px;
   border-radius: 10px;
   -webkit-transition: 0.4s;
   transition: 0.4s;

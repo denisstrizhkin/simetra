@@ -32,6 +32,10 @@ const citiesAttrVerboseNameUnparsed = JSON.parse(
 );
 const cityAttributeName = JSON.parse(citiesAttrVerboseNameUnparsed[0]);
 
+/*-------------------------------------------------------------*/
+/*-----Generate datas------------------------------------------*/
+/*-------------------------------------------------------------*/
+
 function generateDatas(arrField, start, end) {
   let data = [];
   for (let i = start; i < end; i++) {
