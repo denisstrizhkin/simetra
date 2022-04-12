@@ -500,41 +500,47 @@ saveUnusedProperties();
 /*-------------------------------------------------------------*/
 
 createNewChart("routes", 1);
-new Chart(document.getElementById("routes-1"), createNewPie(routes, 0, 4));
+new Chart(
+  document.getElementById("routes-1"),
+  createNewPie(routes, 0, 4, "white")
+);
 
 createNewChart("routes", 2);
-new Chart(document.getElementById("routes-2"), createNewPie(routes, 4, 7));
+new Chart(
+  document.getElementById("routes-2"),
+  createNewPie(routes, 4, 7, "white")
+);
 
 createNewChart("routes", 3);
 new Chart(
   document.getElementById("routes-3"),
-  createNewDoughnut(routes, 7, 10)
+  createNewDoughnut(routes, 7, 10, "white")
 );
 
 createNewChart("routes", 4);
 new Chart(
   document.getElementById("routes-4"),
-  createNewDoughnut(routes, 10, 14)
+  createNewDoughnut(routes, 10, 14, "white")
 );
 
 // !!! Data
 createNewChart("routes", 5);
 new Chart(
   document.getElementById("routes-5"),
-  createNewDoughnut(routes, 14, 19)
+  createNewDoughnut(routes, 14, 19, "white")
 );
 
 createNewChart("routes", 6);
 new Chart(
   document.getElementById("routes-6"),
-  createNewDoughnut(routes, 19, 21)
+  createNewDoughnut(routes, 19, 21, "white")
 );
 
 // !!! Data
 createNewChart("routes", 7);
 new Chart(
   document.getElementById("routes-7"),
-  createNewDoughnut(routes, 21, 26)
+  createNewDoughnut(routes, 21, 26, "white")
 );
 
 // !!! Data
@@ -542,10 +548,9 @@ new Chart(
 createNewChart("routes", 8);
 new Chart(
   document.getElementById("routes-8"),
-  createNewDoughnut(routes, 26, 29)
+  createNewDoughnut(routes, 26, 29, "white")
 );
 
-console.log(routes.length);
 saveUnusedProperties();
 /*-------------------------------------------------------------*/
 /*-----Tariff--------------------------------------------------*/
