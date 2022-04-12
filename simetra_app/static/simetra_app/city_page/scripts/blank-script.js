@@ -396,24 +396,30 @@ new Chart(
 createNewChart("spatial", 2);
 new Chart(
   document.getElementById("spatial-2"),
-  createNewDoughnut(spatialCharacteristics, 5, 10)
+  createNewDoughnut(spatialCharacteristics, 5, 8)
 );
 
 createNewChart("spatial", 3);
 new Chart(
   document.getElementById("spatial-3"),
-  createNewDoughnut(spatialCharacteristics, 10, 15)
+  createNewDoughnut(spatialCharacteristics, 8, 13)
 );
 
 createNewChart("spatial", 4);
 new Chart(
   document.getElementById("spatial-4"),
-  createNewDoughnut(spatialCharacteristics, 15, 20)
+  createNewDoughnut(spatialCharacteristics, 13, 18)
 );
 
 createNewChart("spatial", 5);
 new Chart(
   document.getElementById("spatial-5"),
+  createNewDoughnut(spatialCharacteristics, 18, 20)
+);
+
+createNewChart("spatial", 6);
+new Chart(
+  document.getElementById("spatial-6"),
   createNewDoughnut(spatialCharacteristics, 25, 30)
 );
 
@@ -440,10 +446,6 @@ new Chart(
   document.getElementById("rolling-stock-3"),
   createNewMultiSeriesPie(rollinStock, 10, 15)
 );
-console.log(rollinStock);
-for (let i = 10; i < 15; i++) {
-  // console.log(rollinStock[i][1]);
-}
 
 /*-------------------------------------------------------------*/
 createNewChart("rolling-stock", 4);
@@ -484,32 +486,52 @@ saveUnusedProperties();
 /*-------------------------------------------------------------*/
 
 createNewChart("routes", 1);
-new Chart(document.getElementById("routes-1"), createNewPie(routes, 0, 5));
+new Chart(document.getElementById("routes-1"), createNewPie(routes, 0, 4));
 
 createNewChart("routes", 2);
-new Chart(
-  document.getElementById("routes-2"),
-  createNewDoughnut(routes, 5, 10)
-);
+new Chart(document.getElementById("routes-2"), createNewPie(routes, 4, 7));
 
 createNewChart("routes", 3);
 new Chart(
   document.getElementById("routes-3"),
-  createNewDoughnut(routes, 10, 15)
+  createNewDoughnut(routes, 7, 10)
 );
 
 createNewChart("routes", 4);
 new Chart(
   document.getElementById("routes-4"),
-  createNewDoughnut(routes, 15, 20)
+  createNewDoughnut(routes, 10, 14)
 );
 
+// !!! Data
 createNewChart("routes", 5);
 new Chart(
   document.getElementById("routes-5"),
-  createNewDoughnut(routes, 25, 29)
+  createNewDoughnut(routes, 14, 19)
 );
 
+createNewChart("routes", 6);
+new Chart(
+  document.getElementById("routes-6"),
+  createNewDoughnut(routes, 19, 21)
+);
+
+// !!! Data
+createNewChart("routes", 7);
+new Chart(
+  document.getElementById("routes-7"),
+  createNewDoughnut(routes, 21, 26)
+);
+
+// !!! Data
+// ??? 30
+createNewChart("routes", 8);
+new Chart(
+  document.getElementById("routes-8"),
+  createNewDoughnut(routes, 26, 29)
+);
+
+console.log(routes.length);
 saveUnusedProperties();
 /*-------------------------------------------------------------*/
 /*-----Tariff--------------------------------------------------*/
@@ -526,13 +548,7 @@ new Chart(
 createNewChart("tariff", 3);
 new Chart(
   document.getElementById("tariff-3"),
-  createNewDoughnut(tariffSystem, 10, 15)
-);
-
-createNewChart("tariff", 4);
-new Chart(
-  document.getElementById("tariff-4"),
-  createNewDoughnut(tariffSystem, 15, 16)
+  createNewDoughnut(tariffSystem, 10, 16)
 );
 
 saveUnusedProperties();
