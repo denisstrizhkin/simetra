@@ -12,7 +12,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description"
     content="Компания SIMETRA разработала методику оценки качества общественного транспорта в российских городах и составила рейтинг городов России по качеству общественного транспорта.">
-  <meta name="keywords" content="общественный транспорт, рейтинг городов, simetra, оценка качества общественного транспорта, качество общественного транспорта">
+  <meta name="subject" content="Рейтинг городов России по качеству общественного транспорта.">
+  <meta name="abstract" content="Рейтинг городов России по качеству общественного транспорта.">
+  <meta name="rating" content="General">
+
+
   <title>Рейтинг городов России по качеству общественного транспорта</title>
 
 
@@ -96,7 +100,7 @@
         <div class="comments__container _container">
           {% for boss in bosses_list %}
           <div class="comments__content">
-            <img class="comments__image" src="{{ boss.image.url }}" alt="Изображение руководителя"/>
+            <img class="comments__image" src="{{ boss.image.url }}" alt="Изображение руководителя" />
             <div class="comments__text-image">
               <h3 class="comments__initials"><b>{{ boss.name }}</b></h3>
               <h4 class="comments__position">{{ boss.position }}</h4>
@@ -137,7 +141,8 @@
               </p>
             </div>
             <img class="about__image"
-              src="https://thumb.tildacdn.com/tild3034-3938-4134-b564-346335383363/-/resize/720x/-/format/webp/Simetra-rating-gorod.jpg" alt="Изображение"/>
+              src="https://thumb.tildacdn.com/tild3034-3938-4134-b564-346335383363/-/resize/720x/-/format/webp/Simetra-rating-gorod.jpg"
+              alt="Изображение" />
           </div>
           <div class="about__video">
             <div class="about__youtube-video">
@@ -204,7 +209,7 @@
           <!-- The secure way to give a key without any leak -->
           {{ mapbox_access_token|json_script:"mapbox-access-token" }}
           {{ cities_list_json|json_script:"cities-list-json" }}
-          <script src="{% static 'simetra_app/main_page/scripts/map.js' id=" mapbox-access-token"
+          <script src="{% static 'simetra_app/main_page/scripts/map.js' id="mapbox-access-token"
             type="application/json" %}"></script>
         </div>
       </section>
@@ -217,24 +222,28 @@
           </h2>
           <ul class="best__list">
             <li class="best__item city">
-              <img class="city__image" src="https://static.tildacdn.com/tild6438-3565-4339-b765-626465383737/__1.jpg" alt="Изображение Екатеринбурга"/>
+              <img class="city__image" src="https://static.tildacdn.com/tild6438-3565-4339-b765-626465383737/__1.jpg"
+                alt="Изображение Екатеринбурга" />
               <p class="city__place">1 место</p>
               <h3 class="city__title">ЕКАТЕРИНБУРГ</h3>
             </li>
             <li class="best__item city">
-              <img class="city__image" src="https://static.tildacdn.com/tild6333-3835-4634-b332-373966303537/6.jpg" alt="Изображение Перми"/>
+              <img class="city__image" src="https://static.tildacdn.com/tild6333-3835-4634-b332-373966303537/6.jpg"
+                alt="Изображение Перми" />
               <p class="city__place">2 место</p>
               <h3 class="city__title">ПЕРМЬ</h3>
             </li>
             <li class="best__item city">
               <img class="city__image"
-                src="https://static.tildacdn.com/tild3034-3038-4365-b166-633266316465/thumb_453797_1800_12.jpg" alt="Изображение Казани"/>
+                src="https://static.tildacdn.com/tild3034-3038-4365-b166-633266316465/thumb_453797_1800_12.jpg"
+                alt="Изображение Казани" />
               <p class="city__place">3 место</p>
               <h3 class="city__title">КАЗАНЬ</h3>
             </li>
             <li class="best__item city">
               <img class="city__image"
-                src="https://static.tildacdn.com/tild3435-6639-4135-b063-336664653836/DSC03277.jpg" alt="Изображение Ижевска"/>
+                src="https://static.tildacdn.com/tild3435-6639-4135-b063-336664653836/DSC03277.jpg"
+                alt="Изображение Ижевска" />
               <p class="city__place">4 место</p>
               <h3 class="city__title">ИЖЕВСК</h3>
             </li>
@@ -291,7 +300,7 @@
           <ul class="team__list">
             {% for employee in employees_list %}
             <li class="team__item employee">
-              <img class="employee__image" src="{{ employee.image.url }}" alt="Изображение сотрудника"/>
+              <img class="employee__image" src="{{ employee.image.url }}" alt="Изображение сотрудника" />
               <p class="employee__initials">{{ employee.name }}</p>
               <h3 class="employee__position">{{ employee.position }}</h3>
             </li>
@@ -306,8 +315,8 @@
         <ul class="footer__list">
           <li class="footer__item">
             <a href="https://apluss.ru/" target="_blank">
-              <img class="footer__logo"
-                src="{% static 'simetra_app/main_page/assets/img/simetra_logo_discrip.png' %}" alt="Изображение логоготипа"/>
+              <img class="footer__logo" src="{% static 'simetra_app/main_page/assets/img/simetra_logo_discrip.png' %}"
+                alt="Изображение логоготипа" />
             </a>
           </li>
           <li class="footer__item">
