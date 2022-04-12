@@ -390,7 +390,7 @@ def update_city(request, city_id):
 
     if request.method == 'POST':
         city_form = CityForm(request.POST, instance=city)
-        
+
         if city_form.is_valid():
             new_city = city_form.save(commit=False)
             new_city = get_city_sum_of_rating(new_city)
@@ -463,8 +463,9 @@ def upload_cities_excel(request):
                 messages.error(request, message_text)
 
             loc_read = {}
+
             def write_sheet(sheet_name) -> None:
-                #global loc_read, count
+                # global loc_read, count
                 sheet = excel_book[sheet_name]
                 field_names = sheet_names[sheet_name]
 
@@ -481,7 +482,7 @@ def upload_cities_excel(request):
                         city = City(name=name)
 
                     if not loc_read[name] and is_city_name_correct_to_find_coordinates(city.name):
-                        longitude, latitude = CityCoordinates(city.name).\
+                        longitude, latitude = CityCoordinates(city.name). \
                             get_longitude_and_latitude_by_city_name()
                         loc_read[name] = True
 
@@ -615,6 +616,7 @@ def delete_all_employees(request):
 
     return redirect('simetra_app:change-employee')
 
+
 class CityCoordinates():
     def __init__(self, city_english_name):
         self.city = city_english_name
@@ -659,7 +661,7 @@ def get_context_to_change_model(Object):
     }
 
     is_object_city = ContentType.objects.get_for_model(Object) == \
-        ContentType.objects.get_for_model(City)
+                     ContentType.objects.get_for_model(City)
 
     if is_object_city:
         context["is_city"] = True
@@ -695,8 +697,8 @@ def update_context_for_customization_pages_navbar(request, context):
         context['model_id'] = url_ancestors_name_list[-1]
         context['is_this_update_page'] = True
 
-        del(url_ancestors_name_list[-2])
-        del(url_ancestors_name_list[-1])
+        del (url_ancestors_name_list[-2])
+        del (url_ancestors_name_list[-1])
 
     context['url_ancestors_name_list'] = url_ancestors_name_list
 
@@ -918,10 +920,10 @@ def get_city_attrs_by_groups_dict():
 
 
 def get_city_sum_of_rating(city):
-    city.sum_of_rating = float(city.rating_physical_availability) +\
-        float(city.rating_affordability) +\
-        float(city.rating_route_network_efficiency) +\
-        float(city.rating_comfort_n_convenience) +\
-        float(city.rating_security_n_development)
+    city.sum_of_rating = float(city.rating_physical_availability) + \
+                         float(city.rating_affordability) + \
+                         float(city.rating_route_network_efficiency) + \
+                         float(city.rating_comfort_n_convenience) + \
+                         float(city.rating_security_n_development)
 
     return city
