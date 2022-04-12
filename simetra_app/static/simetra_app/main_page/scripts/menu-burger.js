@@ -20,3 +20,33 @@ menuLinks.forEach((item) => {
     }
   });
 });
+
+/*-------------------------------------------------------------*/
+/*-------------------------------------------------------------*/
+/*-------------------------------------------------------------*/
+
+// const links = document.querySelectorAll("a[data-goto]");
+// if (links.length > 0) {
+//   links.forEach((link) => {
+//     link.addEventListener("click", (e) => {
+//       const menuLink = e.target;
+//       if (
+//         menuLink.dataset.goto &&
+//         document.querySelector(menuLink.dataset.goto)
+//       ) {
+//         const gotoBlock = document.querySelector(menuLink.dataset.goto);
+//         const gotoBlockValue =
+//           gotoBlock.getBoundingClientRect().top +
+//           pageYOffset -
+//           document.querySelector("header").offsetHeight;
+
+//         window.scrollTo({
+//           top: gotoBlockValue,
+//           behavior: "smooth",
+//         });
+//         // e.preventDefault();
+//       }
+//     });
+//   });
+// }
+

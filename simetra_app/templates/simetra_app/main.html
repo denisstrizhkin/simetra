@@ -21,9 +21,10 @@
 
 
 
-  <!--INCLUDE-->
+  <!--Styles-->
   <link rel="stylesheet" href="{% static 'simetra_app/main_page/styles/style.css' %}" />
-  <!--INCLUDE-->
+  <!--Styles-->
+
   <link rel="apple-touch-icon-precomposed" sizes="57x57"
     href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-57x57.png' %}" />
   <link rel="apple-touch-icon-precomposed" sizes="114x114"
@@ -209,7 +210,7 @@
           <!-- The secure way to give a key without any leak -->
           {{ mapbox_access_token|json_script:"mapbox-access-token" }}
           {{ cities_list_json|json_script:"cities-list-json" }}
-          <script src="{% static 'simetra_app/main_page/scripts/map.js' id="mapbox-access-token"
+          <script src="{% static 'simetra_app/main_page/scripts/map.js' id=" mapbox-access-token"
             type="application/json" %}"></script>
         </div>
       </section>
@@ -387,7 +388,9 @@
       </div>
     </footer>
   </div>
+  </div>
   <script src="{% static 'simetra_app/main_page/scripts/menu-burger.js' %}"></script>
+
 </body>
 
 </html>
