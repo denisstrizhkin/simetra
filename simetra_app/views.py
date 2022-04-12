@@ -626,8 +626,8 @@ class CityCoordinates():
         pattern = '"center":['
         start = unparsed_coordinates.find(pattern) + len(pattern)
         end = unparsed_coordinates.find(']', start)
-        cooridnates = unparsed_coordinates[start:end]
-        return cooridnates
+        coordinates = unparsed_coordinates[start:end]
+        return coordinates
 
     def __get_city_coordinates_from_mapbox_json_file(self, city):
         unparsed_coordinates_file = urllib.request.urlopen(
