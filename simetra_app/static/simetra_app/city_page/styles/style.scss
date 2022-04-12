@@ -270,7 +270,7 @@ canvas {
   max-width: 700px;
   width: 100%;
   margin: 0 auto;
-  margin-bottom: 150px;
+  margin-bottom: 100px;
 }
 
 .labels {
@@ -383,14 +383,12 @@ canvas {
   border-radius: 10px;
   color: white;
   margin-bottom: 50px;
-  &:nth-child(2n + 1) {
-    background-color: #37407f;
-  }
 }
 
 .unused__wrapper h3 {
   text-align: center;
-  font-size: 30px;
+  font-size: 35px;
+  font-weight: bold;
   margin-bottom: 30px;
   @media (max-width: 360px) {
     font-size: 26px;
@@ -398,6 +396,7 @@ canvas {
 }
 
 .unused__list li {
+  text-align: center;
   font-size: 24px;
   margin-bottom: 20px;
   line-height: 130%;
