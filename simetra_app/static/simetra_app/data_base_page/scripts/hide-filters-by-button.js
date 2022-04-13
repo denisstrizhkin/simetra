@@ -9,7 +9,13 @@ function getWidth() {
 }
 
 function isAdaptive() {
-    return getWidth() <= 1080;
+    const border = 1080;
+    return getWidth() <= border;
+}
+
+function isAdaptiveBorder() {
+    const border = 1080;
+    return getWidth() == border;
 }
 
 function showOrHideFilterByButton() {
@@ -27,11 +33,11 @@ function showOrHideFilterByApative() {
     const filter = document.getElementsByName('filters')[0];
     const isFilterHidden = filter.classList.contains('_hide-element');
 
-    if (isAdaptive() && !isFilterHidden) {
+    if (isAdaptiveBorder() && !isFilterHidden) {
         filter.classList.add('_hide-element');
     }
 
-    if (!isAdaptive() && isFilterHidden) {
+    if (!isAdaptiveBorder() && isFilterHidden) {
         filter.classList.remove('_hide-element');
     }
 }
@@ -70,5 +76,3 @@ filterButton.addEventListener('click', () => {
 
 showOrHideFilterButtonByAdaptive();
 showOrHideFilterByApative();
-
-console.log(getWidth());
