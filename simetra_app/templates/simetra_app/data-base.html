@@ -237,36 +237,38 @@
             </div>
           </div>
           <h1 class="page__rating-filter">Таблица</h1>
-          <table class="table table-hover">
-            <thead>
-              <tr name="table-row-head">
-                <th scope="col" class="_center-text _center-text-vertically">№</th>
-                <th scope="col" class="_center-text _center-text-vertically">Город</th>
-                <th scope="col" class="_center-text _center-text-vertically">Физическая доступность</th>
-                <th scope="col" class="_center-text _center-text-vertically">Ценовая доступность</th>
-                <th scope="col" class="_center-text _center-text-vertically">Эффективность транспортной сети</th>
-                <th scope="col" class="_center-text _center-text-vertically">Комфорт и удобство</th>
-                <th scope="col" class="_center-text _center-text-vertically">Безопасность и устойчивое развитие</th>
-                <th scope="col" class="_center-text _center-text-vertically">Итого</th>
-              </tr>
-            </thead>
-            <tbody id="parent-of-table-values">
-              {% for city in cities_list %}
-                <tr name="table-row-values">
-                  <th scope="row" name="number" class="_center-text">#</th>
-                  <td class="_center-text _center-text-vertically">{{ city.russian_name }}</td>
-                  <td class="_center-text _center-text-vertically" name="numeric-data">{{ city.rating_physical_availability|floatformat:2 }}</td>
-                  <td class="_center-text _center-text-vertically" name="numeric-data">{{ city.rating_affordability|floatformat:2 }}</td>
-                  <td class="_center-text _center-text-vertically" name="numeric-data">{{ city.rating_route_network_efficiency|floatformat:2 }}</td>
-                  <td class="_center-text _center-text-vertically" name="numeric-data">{{ city.rating_comfort_n_convenience|floatformat:2 }}</td>
-                  <td class="_center-text _center-text-vertically" name="numeric-data">{{ city.rating_security_n_development|floatformat:2 }}</td>
-                  <td class="_center-text _center-text-vertically" id="sum-of-rating">{{ city.sum_of_rating|floatformat:2 }}</td>
-                  <td id="num-population" class="_hide-element">{{ city.num_population }}</td>
-                  <td id="region" class="_hide-element">{{ city.region }}</td>
-                </tr> 
-              {% endfor %}
-            </tbody>
-          </table>
+          <div class="_table-scroll">
+            <table class="table table-hover" style="overflow-x: auto;">
+              <thead>
+                <tr name="table-row-head">
+                  <th scope="col" class="_center-text _center-text-vertically">№</th>
+                  <th scope="col" class="_center-text _center-text-vertically">Город</th>
+                  <th scope="col" class="_center-text _center-text-vertically">Физическая доступность</th>
+                  <th scope="col" class="_center-text _center-text-vertically">Ценовая доступность</th>
+                  <th scope="col" class="_center-text _center-text-vertically">Эффективность транспортной сети</th>
+                  <th scope="col" class="_center-text _center-text-vertically">Комфорт и удобство</th>
+                  <th scope="col" class="_center-text _center-text-vertically">Безопасность и устойчивое развитие</th>
+                  <th scope="col" class="_center-text _center-text-vertically">Итого</th>
+                </tr>
+              </thead>
+              <tbody id="parent-of-table-values">
+                {% for city in cities_list %}
+                  <tr name="table-row-values">
+                    <th scope="row" name="number" class="_center-text">#</th>
+                    <td class="_center-text _center-text-vertically">{{ city.russian_name }}</td>
+                    <td class="_center-text _center-text-vertically" name="numeric-data">{{ city.rating_physical_availability|floatformat:2 }}</td>
+                    <td class="_center-text _center-text-vertically" name="numeric-data">{{ city.rating_affordability|floatformat:2 }}</td>
+                    <td class="_center-text _center-text-vertically" name="numeric-data">{{ city.rating_route_network_efficiency|floatformat:2 }}</td>
+                    <td class="_center-text _center-text-vertically" name="numeric-data">{{ city.rating_comfort_n_convenience|floatformat:2 }}</td>
+                    <td class="_center-text _center-text-vertically" name="numeric-data">{{ city.rating_security_n_development|floatformat:2 }}</td>
+                    <td class="_center-text _center-text-vertically" id="sum-of-rating">{{ city.sum_of_rating|floatformat:2 }}</td>
+                    <td id="num-population" class="_hide-element">{{ city.num_population }}</td>
+                    <td id="region" class="_hide-element">{{ city.region }}</td>
+                  </tr> 
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
         </div>
       </main>
 
