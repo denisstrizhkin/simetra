@@ -10,30 +10,58 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rating</title>
-  <!--INCLUDE-->
+  <meta name="description"
+    content="Компания SIMETRA разработала методику оценки качества общественного транспорта в российских городах и составила рейтинг городов России по качеству общественного транспорта.">
+  <meta name="subject" content="Рейтинг городов России по качеству общественного транспорта.">
+  <meta name="abstract" content="Рейтинг городов России по качеству общественного транспорта.">
+  <meta name="rating" content="General">
+
+
+  <title>Рейтинг городов России по качеству общественного транспорта</title>
+
+
+
+  <!--Styles-->
   <link rel="stylesheet" href="{% static 'simetra_app/main_page/styles/style.css' %}" />
-  <!--INCLUDE-->
-  <link rel="apple-touch-icon-precomposed" sizes="57x57" href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-57x57.png' %}" />
-  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-114x114.png' %}" />
-  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-72x72.png' %}" />
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-144x144.png' %}" />
-  <link rel="apple-touch-icon-precomposed" sizes="60x60" href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-60x60.png' %}" />
-  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-120x120.png' %}" />
-  <link rel="apple-touch-icon-precomposed" sizes="76x76" href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-76x76.png' %}" />
-  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-152x152.png' %}" />
-  <link rel="icon" type="image/png" href="{% static 'simetra_app/general_assets/favicon/favicon-196x196.png' %}" sizes="196x196" />
-  <link rel="icon" type="image/png" href="{% static 'simetra_app/general_assets/favicon/favicon-96x96.png' %}" sizes="96x96" />
-  <link rel="icon" type="image/png" href="{% static 'simetra_app/general_assets/favicon/favicon-32x32.png' %}" sizes="32x32" />
-  <link rel="icon" type="image/png" href="{% static 'simetra_app/general_assets/favicon/favicon-16x16.png' %}" sizes="16x16" />
-  <link rel="icon" type="image/png" href="{% static 'simetra_app/general_assets/favicon/favicon-128.png' %}" sizes="128x128" />
+  <!--Styles-->
+
+  <link rel="apple-touch-icon-precomposed" sizes="57x57"
+    href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-57x57.png' %}" />
+  <link rel="apple-touch-icon-precomposed" sizes="114x114"
+    href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-114x114.png' %}" />
+  <link rel="apple-touch-icon-precomposed" sizes="72x72"
+    href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-72x72.png' %}" />
+  <link rel="apple-touch-icon-precomposed" sizes="144x144"
+    href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-144x144.png' %}" />
+  <link rel="apple-touch-icon-precomposed" sizes="60x60"
+    href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-60x60.png' %}" />
+  <link rel="apple-touch-icon-precomposed" sizes="120x120"
+    href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-120x120.png' %}" />
+  <link rel="apple-touch-icon-precomposed" sizes="76x76"
+    href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-76x76.png' %}" />
+  <link rel="apple-touch-icon-precomposed" sizes="152x152"
+    href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-152x152.png' %}" />
+  <link rel="icon" type="image/png" href="{% static 'simetra_app/general_assets/favicon/favicon-196x196.png' %}"
+    sizes="196x196" />
+  <link rel="icon" type="image/png" href="{% static 'simetra_app/general_assets/favicon/favicon-96x96.png' %}"
+    sizes="96x96" />
+  <link rel="icon" type="image/png" href="{% static 'simetra_app/general_assets/favicon/favicon-32x32.png' %}"
+    sizes="32x32" />
+  <link rel="icon" type="image/png" href="{% static 'simetra_app/general_assets/favicon/favicon-16x16.png' %}"
+    sizes="16x16" />
+  <link rel="icon" type="image/png" href="{% static 'simetra_app/general_assets/favicon/favicon-128.png' %}"
+    sizes="128x128" />
   <meta name="application-name" content="&nbsp;" />
   <meta name="msapplication-TileColor" content="#FFFFFF" />
   <meta name="msapplication-TileImage" content="{% static 'simetra_app/general_assets/favicon/mstile-144x144.png' %}" />
-  <meta name="msapplication-square70x70logo" content="{% static 'simetra_app/general_assets/favicon/mstile-70x70.png' %}" />
-  <meta name="msapplication-square150x150logo" content="{% static 'simetra_app/general_assets/favicon/mstile-150x150.png' %}" />
-  <meta name="msapplication-wide310x150logo" content="{% static 'simetra_app/general_assets/favicon/mstile-310x150.png' %}" />
-  <meta name="msapplication-square310x310logo" content="{% static 'simetra_app/general_assets/favicon/mstile-310x310.png' %}" />
+  <meta name="msapplication-square70x70logo"
+    content="{% static 'simetra_app/general_assets/favicon/mstile-70x70.png' %}" />
+  <meta name="msapplication-square150x150logo"
+    content="{% static 'simetra_app/general_assets/favicon/mstile-150x150.png' %}" />
+  <meta name="msapplication-wide310x150logo"
+    content="{% static 'simetra_app/general_assets/favicon/mstile-310x150.png' %}" />
+  <meta name="msapplication-square310x310logo"
+    content="{% static 'simetra_app/general_assets/favicon/mstile-310x310.png' %}" />
 
   <!-- Include Map -->
   <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
@@ -65,7 +93,7 @@
         </div>
         <div class="home__image _ibg">
           <img src="https://thumb.tildacdn.com/tild6661-3966-4433-b033-656461616564/-/format/webp/1024-576-max.jpg"
-            alt="background photo of Alexa Rise" />
+            alt="Фоновое изображение" title="Изображение дорожного движения"/>
         </div>
       </section>
 
@@ -73,7 +101,7 @@
         <div class="comments__container _container">
           {% for boss in bosses_list %}
           <div class="comments__content">
-            <img class="comments__image" src="{{ boss.image.url }}" />
+            <img class="comments__image" src="{{ boss.image.url }}" alt="Изображение руководителя" title="{{ boss.name }}"/>
             <div class="comments__text-image">
               <h3 class="comments__initials"><b>{{ boss.name }}</b></h3>
               <h4 class="comments__position">{{ boss.position }}</h4>
@@ -114,7 +142,8 @@
               </p>
             </div>
             <img class="about__image"
-              src="https://thumb.tildacdn.com/tild3034-3938-4134-b564-346335383363/-/resize/720x/-/format/webp/Simetra-rating-gorod.jpg" />
+              src="https://thumb.tildacdn.com/tild3034-3938-4134-b564-346335383363/-/resize/720x/-/format/webp/Simetra-rating-gorod.jpg"
+              alt="Изображение" title="Постер"/>
           </div>
           <div class="about__video">
             <div class="about__youtube-video">
@@ -166,12 +195,12 @@
           </div>
           <div class="statistics__image _ibg">
             <img src="https://static.tildacdn.com/tild3435-3661-4335-b464-656538666332/petersburg-2805505-m.jpg"
-              alt="background photo of Alexa Rise" />
+              alt="Фоновое изображение" title="Изображение дорожного движения"/>
           </div>
         </div>
       </section>
 
-      <section  class="page__map map">
+      <section class="page__map map">
         <div class="map__container _container">
           <h2 id="main__map" class="analysis__title _main-title">
             <span class="_highlight">ГЕОГРАФИЯ</span> ИССЛЕДОВАНИЯ В 2021 ГОДУ
@@ -181,7 +210,8 @@
           <!-- The secure way to give a key without any leak -->
           {{ mapbox_access_token|json_script:"mapbox-access-token" }}
           {{ cities_list_json|json_script:"cities-list-json" }}
-          <script src="{% static 'simetra_app/main_page/scripts/map.js' id="mapbox-access-token" type="application/json" %}"></script>
+          <script src="{% static 'simetra_app/main_page/scripts/map.js' id=" mapbox-access-token"
+            type="application/json" %}"></script>
         </div>
       </section>
 
@@ -193,24 +223,28 @@
           </h2>
           <ul class="best__list">
             <li class="best__item city">
-              <img class="city__image" src="https://static.tildacdn.com/tild6438-3565-4339-b765-626465383737/__1.jpg" />
+              <img class="city__image" src="https://static.tildacdn.com/tild6438-3565-4339-b765-626465383737/__1.jpg"
+                alt="Изображение Екатеринбурга" title="Екатеринбург"/>
               <p class="city__place">1 место</p>
               <h3 class="city__title">ЕКАТЕРИНБУРГ</h3>
             </li>
             <li class="best__item city">
-              <img class="city__image" src="https://static.tildacdn.com/tild6333-3835-4634-b332-373966303537/6.jpg" />
+              <img class="city__image" src="https://static.tildacdn.com/tild6333-3835-4634-b332-373966303537/6.jpg"
+                alt="Изображение Перми" title="Пермь"/>
               <p class="city__place">2 место</p>
               <h3 class="city__title">ПЕРМЬ</h3>
             </li>
             <li class="best__item city">
               <img class="city__image"
-                src="https://static.tildacdn.com/tild3034-3038-4365-b166-633266316465/thumb_453797_1800_12.jpg" />
+                src="https://static.tildacdn.com/tild3034-3038-4365-b166-633266316465/thumb_453797_1800_12.jpg"
+                alt="Изображение Казани" title="Казань"/>
               <p class="city__place">3 место</p>
               <h3 class="city__title">КАЗАНЬ</h3>
             </li>
             <li class="best__item city">
               <img class="city__image"
-                src="https://static.tildacdn.com/tild3435-6639-4135-b063-336664653836/DSC03277.jpg" />
+                src="https://static.tildacdn.com/tild3435-6639-4135-b063-336664653836/DSC03277.jpg"
+                alt="Изображение Ижевска" title="Ижевск"/>
               <p class="city__place">4 место</p>
               <h3 class="city__title">ИЖЕВСК</h3>
             </li>
@@ -251,7 +285,7 @@
           </div>
           <div class="statistics__image _ibg">
             <img src="https://static.tildacdn.com/tild6163-3265-4535-a463-633938383564/1024-683-max.jpg"
-              alt="background photo of Alexa Rise" />
+              alt="Фоновое изображение" title="Изображение дорожного движения"/>
           </div>
         </div>
       </section>
@@ -267,7 +301,7 @@
           <ul class="team__list">
             {% for employee in employees_list %}
             <li class="team__item employee">
-              <img class="employee__image" src="{{ employee.image.url }}" />
+              <img class="employee__image" src="{{ employee.image.url }}" alt="Изображение сотрудника" title="{{ employee.name }}"/>
               <p class="employee__initials">{{ employee.name }}</p>
               <h3 class="employee__position">{{ employee.position }}</h3>
             </li>
@@ -281,16 +315,16 @@
       <div class="footer__container _container">
         <ul class="footer__list">
           <li class="footer__item">
-            <a href="https://apluss.ru/" target="_blank">
-              <img class="footer__logo"
-                src="{% static 'simetra_app/main_page/assets/img/simetra_logo_discrip.png' %}" />
+            <a href="{% url 'simetra_app:main' %}">
+              <img class="footer__logo" src="{% static 'simetra_app/main_page/assets/img/simetra_logo_discrip.png' %}"
+                alt="Изображение логоготипа" title="Логотип Simetra"/>
             </a>
           </li>
           <li class="footer__item">
             <ul class="footer__social social">
               <li class="social__item">
-                <a href="https://www.facebook.com/simetragroup/" target="_blank">
-                  <svg style="fill: #ffffff" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                <a title="Наша страница в Facebook" href="https://www.facebook.com/simetragroup/" target="_blank">
+                  <svg  style="fill: #ffffff" version="1.1" xmlns="http://www.w3.org/2000/svg"
                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="30px" height="30px"
                     viewBox="0 0 48 48" enable-background="new 0 0 48 48" xml:space="preserve">
                     <path
@@ -300,7 +334,7 @@
                 </a>
               </li>
               <li class="social__item">
-                <a href="https://vk.com/simetragroup" target="_blank">
+                <a title="Наша страница в ВКонтакте" href="https://vk.com/simetragroup" target="_blank">
                   <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                     x="0px" y="0px" width="30px" height="30px" viewBox="0 0 99 99" enable-background="new 0 0 99 99"
                     xml:space="preserve">
@@ -311,7 +345,7 @@
                 </a>
               </li>
               <li class="social__item">
-                <a href="https://www.youtube.com/c/simetragroup" target="_blank">
+                <a title="Наша страница в YouTube" href="https://www.youtube.com/c/simetragroup" target="_blank">
                   <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                     x="0px" y="0px" width="30px" height="30px" viewBox="-455 257 48 48"
                     enable-background="new -455 257 48 48" xml:space="preserve">
@@ -322,7 +356,7 @@
                 </a>
               </li>
               <li class="social__item">
-                <a href="https://www.instagram.com/accounts/login/?next=/simetragroup/" target="_blank">
+                <a href="https://www.instagram.com/accounts/login/?next=/simetragroup/" target="_blank" title="Наша страница в Instagram">
                   <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                     width="30px" height="30px" viewBox="0 0 30 30" xml:space="preserve">
                     <path style="fill: #ffffff"
@@ -353,6 +387,7 @@
         </ul>
       </div>
     </footer>
+  </div>
   </div>
   <script src="{% static 'simetra_app/main_page/scripts/menu-burger.js' %}"></script>
   <script src="{% static 'simetra_app/main_page/scripts/navbar.js' %}"></script>

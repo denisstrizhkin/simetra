@@ -32,8 +32,9 @@ const citiesAttrVerboseNameUnparsed = JSON.parse(
 );
 const cityAttributeName = JSON.parse(citiesAttrVerboseNameUnparsed[0]);
 
-let unusedProperties = [];
-let nameUnusedProperties = [];
+/*-------------------------------------------------------------*/
+/*-----Generate datas------------------------------------------*/
+/*-------------------------------------------------------------*/
 
 function generateDatas(arrField, start, end) {
   let data = [];
@@ -94,12 +95,9 @@ function createNewPolarArea(groupArr, start, end) {
     // },
     options: {
       responsive: true,
-      // scales: {
-      //   myScale: {
-      //     type: 'logarithmic',
-      //     position: 'right', // `axis` is determined by the position as `'y'`
-      //   }
-      // },
+      scales: {
+        color: "#ffffff",
+      },
       plugins: {
         tooltip: {
           enabled: true,
@@ -111,7 +109,7 @@ function createNewPolarArea(groupArr, start, end) {
         legend: {
           position: "top",
           labels: {
-            // color: '#ffffff',
+            // color: "#ffffff",
             font: {
               size: 20,
             },
@@ -126,7 +124,7 @@ function createNewPolarArea(groupArr, start, end) {
 /*-------------------------------------------------------------*/
 /*-----Pie-----------------------------------------------------*/
 /*-------------------------------------------------------------*/
-function createNewPie(groupArr, start, end) {
+function createNewPie(groupArr, start, end, fontColor = "black") {
   const data = {
     labels: generateLabels(groupArr, start, end),
     datasets: [
@@ -159,6 +157,7 @@ function createNewPie(groupArr, start, end) {
         legend: {
           position: "top",
           labels: {
+            color: fontColor,
             font: {
               size: 20,
             },
@@ -176,7 +175,7 @@ function createNewPie(groupArr, start, end) {
 /*-------------------------------------------------------------*/
 /*-----Doughnut------------------------------------------------*/
 /*-------------------------------------------------------------*/
-function createNewDoughnut(groupArr, start, end) {
+function createNewDoughnut(groupArr, start, end, fontColor = "black") {
   const data = {
     labels: generateLabels(groupArr, start, end),
     datasets: [
@@ -209,6 +208,7 @@ function createNewDoughnut(groupArr, start, end) {
         legend: {
           position: "top",
           labels: {
+            color: fontColor,
             font: {
               size: 20,
             },
@@ -248,7 +248,6 @@ function generateMultiLabels(arrField, start, end) {
   for (let i = start; i < end; i++) {
     const buffName = arrField[i][0];
     if (arrField[i][1] !== 0) {
-      console.log(cityAttributeName[`${buffName}`]);
       data.push(cityAttributeName[`${buffName}`]);
       data.push(`Оставшийся процент`);
     } else {
@@ -363,18 +362,48 @@ function createNewChart(nameGroup, index) {
   groupContainer.appendChild(newChart);
 }
 
-function saveUnusedProperties() {
-  buffUnusedProperties.push(unusedProperties);
-  buffNameUnusedProperties.push(nameUnusedProperties);
+/*-------------------------------------------------------------*/
+/*-----Unused properties and ungrouped properties--------------*/
+/*-------------------------------------------------------------*/
+let unusedProperties = [];
+let nameUnusedProperties = [];
+
+let ungroupedProperties = [];
+let ungroupedPropertiesName = [];
+
+/*-------------------------------------------------------------*/
+/*-----Unused--------------------------------------------------*/
+/*-------------------------------------------------------------*/
+function displayUnusedProperties(containerSelector) {
+  console.log(document.querySelector(containerSelector));
+  let unusedList;
+  for (let i = 0; i < unusedProperties.length; i++) {
+    if (i === 0) {
+      const unusedWrapper = document.createElement("div");
+      unusedWrapper.classList.add("unused__wrapper");
+      document.querySelector(containerSelector).append(unusedWrapper);
+
+      const unusedListTitle = document.createElement("h3");
+      unusedListTitle.textContent = "Неиспользуемые свойства*";
+      unusedWrapper.append(unusedListTitle);
+
+      unusedList = document.createElement("ul");
+      unusedList.classList.add("unused__list");
+      unusedWrapper.append(unusedList);
+    }
+    
+    const unuseElement = document.createElement("li");
+    unuseElement.textContent = `${nameUnusedProperties[i]}`;
+    unusedList.append(unuseElement);
+  }
+
   unusedProperties = [];
   nameUnusedProperties = [];
 }
+
 /*-------------------------------------------------------------*/
 /*-----Quality-------------------------------------------------*/
 /*-------------------------------------------------------------*/
-
-let buffUnusedProperties = [];
-let buffNameUnusedProperties = [];
 
 createNewChart("quality", 1);
 new Chart(
@@ -382,7 +411,6 @@ new Chart(
   createNewPolarArea(qualityGroups, 0, 5)
 );
 
-saveUnusedProperties();
 /*-------------------------------------------------------------*/
 /*-----Spatial-------------------------------------------------*/
 /*-------------------------------------------------------------*/
@@ -390,34 +418,45 @@ saveUnusedProperties();
 createNewChart("spatial", 1);
 new Chart(
   document.getElementById("spatial-1"),
-  createNewPie(spatialCharacteristics, 0, 5)
+  createNewPie(spatialCharacteristics, 0, 5, "white")
 );
+displayUnusedProperties(".spatial__container");
 
 createNewChart("spatial", 2);
 new Chart(
   document.getElementById("spatial-2"),
-  createNewDoughnut(spatialCharacteristics, 5, 10)
+  createNewDoughnut(spatialCharacteristics, 5, 8, "white")
 );
+displayUnusedProperties(".spatial__container");
 
 createNewChart("spatial", 3);
 new Chart(
   document.getElementById("spatial-3"),
-  createNewDoughnut(spatialCharacteristics, 10, 15)
+  createNewDoughnut(spatialCharacteristics, 8, 13, "white")
 );
+displayUnusedProperties(".spatial__container");
 
 createNewChart("spatial", 4);
 new Chart(
   document.getElementById("spatial-4"),
-  createNewDoughnut(spatialCharacteristics, 15, 20)
+  createNewDoughnut(spatialCharacteristics, 13, 18, "white")
 );
+displayUnusedProperties(".spatial__container");
 
 createNewChart("spatial", 5);
 new Chart(
   document.getElementById("spatial-5"),
-  createNewDoughnut(spatialCharacteristics, 25, 30)
+  createNewDoughnut(spatialCharacteristics, 18, 20, "white")
 );
+displayUnusedProperties(".spatial__container");
 
-saveUnusedProperties();
+createNewChart("spatial", 6);
+new Chart(
+  document.getElementById("spatial-6"),
+  createNewDoughnut(spatialCharacteristics, 25, 30, "white")
+);
+displayUnusedProperties(".spatial__container");
+
 /*-------------------------------------------------------------*/
 /*-----Rolling stock-------------------------------------------*/
 /*-------------------------------------------------------------*/
@@ -427,12 +466,15 @@ new Chart(
   document.getElementById("rolling-stock-1"),
   createNewPie(rollinStock, 0, 5)
 );
+displayUnusedProperties(".rolling-stock__container");
+
 
 createNewChart("rolling-stock", 2);
 new Chart(
   document.getElementById("rolling-stock-2"),
   createNewDoughnut(rollinStock, 5, 10)
 );
+displayUnusedProperties(".rolling-stock__container");
 
 /*-----Procent-------------------------------------------*/
 createNewChart("rolling-stock", 3);
@@ -440,10 +482,7 @@ new Chart(
   document.getElementById("rolling-stock-3"),
   createNewMultiSeriesPie(rollinStock, 10, 15)
 );
-console.log(rollinStock);
-for (let i = 10; i < 15; i++) {
-  // console.log(rollinStock[i][1]);
-}
+displayUnusedProperties(".rolling-stock__container");
 
 /*-------------------------------------------------------------*/
 createNewChart("rolling-stock", 4);
@@ -451,118 +490,128 @@ new Chart(
   document.getElementById("rolling-stock-4"),
   createNewDoughnut(rollinStock, 15, 20)
 );
+displayUnusedProperties(".rolling-stock__container");
 
 createNewChart("rolling-stock", 5);
 new Chart(
   document.getElementById("rolling-stock-5"),
   createNewDoughnut(rollinStock, 25, 30)
 );
+displayUnusedProperties(".rolling-stock__container");
 
 createNewChart("rolling-stock", 6);
 new Chart(
   document.getElementById("rolling-stock-6"),
   createNewDoughnut(rollinStock, 30, 35)
 );
+displayUnusedProperties(".rolling-stock__container");
 
 createNewChart("rolling-stock", 7);
 new Chart(
   document.getElementById("rolling-stock-7"),
   createNewDoughnut(rollinStock, 35, 40)
 );
+displayUnusedProperties(".rolling-stock__container");
 
 createNewChart("rolling-stock", 8);
 new Chart(
   document.getElementById("rolling-stock-8"),
   createNewDoughnut(rollinStock, 40, 42)
 );
+displayUnusedProperties(".rolling-stock__container");
 
-//33C2C7
-//60EEC4
-saveUnusedProperties();
 /*-------------------------------------------------------------*/
 /*-----Routes--------------------------------------------------*/
 /*-------------------------------------------------------------*/
 
 createNewChart("routes", 1);
-new Chart(document.getElementById("routes-1"), createNewPie(routes, 0, 5));
+new Chart(
+  document.getElementById("routes-1"),
+  createNewPie(routes, 0, 4, "white")
+);
+displayUnusedProperties(".routes__container");
+
 
 createNewChart("routes", 2);
 new Chart(
   document.getElementById("routes-2"),
-  createNewDoughnut(routes, 5, 10)
+  createNewPie(routes, 4, 7, "white")
 );
+displayUnusedProperties(".routes__container");
+
+
 
 createNewChart("routes", 3);
 new Chart(
   document.getElementById("routes-3"),
-  createNewDoughnut(routes, 10, 15)
+  createNewDoughnut(routes, 7, 10, "white")
 );
+displayUnusedProperties(".routes__container");
+
 
 createNewChart("routes", 4);
 new Chart(
   document.getElementById("routes-4"),
-  createNewDoughnut(routes, 15, 20)
+  createNewDoughnut(routes, 10, 14, "white")
 );
+displayUnusedProperties(".routes__container");
 
+
+// !!! Data
 createNewChart("routes", 5);
 new Chart(
   document.getElementById("routes-5"),
-  createNewDoughnut(routes, 25, 29)
+  createNewDoughnut(routes, 14, 19, "white")
 );
+displayUnusedProperties(".routes__container");
 
-saveUnusedProperties();
+
+createNewChart("routes", 6);
+new Chart(
+  document.getElementById("routes-6"),
+  createNewDoughnut(routes, 19, 21, "white")
+);
+displayUnusedProperties(".routes__container");
+
+
+// !!! Data
+createNewChart("routes", 7);
+new Chart(
+  document.getElementById("routes-7"),
+  createNewDoughnut(routes, 21, 26, "white")
+);
+displayUnusedProperties(".routes__container");
+
+
+// !!! Data
+// ??? 30f
+createNewChart("routes", 8);
+new Chart(
+  document.getElementById("routes-8"),
+  createNewDoughnut(routes, 26, 29, "white")
+);
+displayUnusedProperties(".routes__container");
+
+
 /*-------------------------------------------------------------*/
 /*-----Tariff--------------------------------------------------*/
 /*-------------------------------------------------------------*/
 createNewChart("tariff", 1);
 new Chart(document.getElementById("tariff-1"), createNewPie(routes, 0, 5));
+displayUnusedProperties(".tariff__container");
+
 
 createNewChart("tariff", 2);
 new Chart(
   document.getElementById("tariff-2"),
   createNewDoughnut(tariffSystem, 5, 10)
 );
+displayUnusedProperties(".tariff__container");
+
 
 createNewChart("tariff", 3);
 new Chart(
   document.getElementById("tariff-3"),
-  createNewDoughnut(tariffSystem, 10, 15)
+  createNewDoughnut(tariffSystem, 10, 16)
 );
-
-createNewChart("tariff", 4);
-new Chart(
-  document.getElementById("tariff-4"),
-  createNewDoughnut(tariffSystem, 15, 16)
-);
-
-saveUnusedProperties();
-
-/*-------------------------------------------------------------*/
-/*-----Unused--------------------------------------------------*/
-/*-------------------------------------------------------------*/
-const unusedContainer = document.querySelector(".unused__container");
-
-for (let i = 0; i < buffUnusedProperties.length; i++) {
-  let unusedList;
-
-  if (buffUnusedProperties[i].length !== 0) {
-    const unusedWrapper = document.createElement("div");
-    unusedWrapper.classList.add("unused__wrapper");
-    unusedContainer.append(unusedWrapper);
-
-    const unusedListTitle = document.createElement("h3");
-
-    unusedListTitle.textContent = nameFeatureGroups[i];
-    unusedWrapper.append(unusedListTitle);
-
-    unusedList = document.createElement("ul");
-    unusedList.classList.add("unused__list");
-    unusedWrapper.append(unusedList);
-  }
-
-  for (let j = 0; j < buffUnusedProperties[i].length; j++) {
-    const unuseElement = document.createElement("li");
-    unuseElement.textContent = `${buffNameUnusedProperties[i][j]}`;
-    unusedList.append(unuseElement);
-  }
-}
+displayUnusedProperties(".tariff__container");

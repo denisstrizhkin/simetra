@@ -6,7 +6,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Оценка качества общественного транспорта в российском городе по определенным показателям">
+    <meta name="subject" content="Рейтинг города России по качеству общественного транспорта.">
+    <meta name="abstract" content="Рейтинг города России по качеству общественного транспорта.">
+    <meta name="rating" content="General">
+
     <title>{{ name }}</title>
+
     <!--INCLUDE-->
     <link rel="stylesheet" href="{% static 'simetra_app/city_page/styles/style.css' %}" />
     <!--INCLUDE-->
@@ -63,13 +70,17 @@
         <main class="page">
             <section class="page__home home">
                 <div class="home__container _container">
-                    <h1 class="home__title _title">
-                        {{ name }}
-                    </h1>
-                    <div class="home__coordinates">
-                        <p>Широта: {{ longitude }}</p>
-                        <p>Долгота: {{ latitude }}</p>
+                    <img class="home__image" src="#" alt="City Image" title="Изображение города">
+                    <div class="home__info">
+                        <h1 class="home__title _title">
+                            {{ name }}
+                        </h1>
+                        <div class="home__coordinates">
+                            <p>Широта: {{ longitude }}</p>
+                            <p>Долгота: {{ latitude }}</p>
+                        </div>
                     </div>
+
                 </div>
             </section>
 
@@ -110,10 +121,10 @@
                 </div>
             </section>
 
-            <section class="page__unused unused">
-                <div class="unused__container _container">
-                    <h2 class="unused__title _title">
-                        Неиспользуемые свойства
+            <section class="page__ungroup ungroup">
+                <div class="ungroup__container _container">
+                    <h2 class="ungroup__title _title">
+                        Несгруппированные свойства
                     </h2>
                 </div>
             </section>
@@ -123,9 +134,10 @@
             <div class="footer__container _container">
                 <ul class="footer__list">
                     <li class="footer__item">
-                        <a href="https://apluss.ru/" target="_blank">
+                        <a href="{% url 'simetra_app:main' %}">
                             <img class="footer__logo"
-                                src="{% static 'simetra_app/main_page/assets/img/simetra_logo_discrip.png' %}" />
+                                src="{% static 'simetra_app/main_page/assets/img/simetra_logo_discrip.png' %}"
+                                alt="Изображение логотипа" title="Логотип Simetra" />
                         </a>
                     </li>
                     <li class="footer__item">
