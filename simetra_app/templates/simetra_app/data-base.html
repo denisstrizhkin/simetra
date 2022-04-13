@@ -7,63 +7,150 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Data Base</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"/>
-    <link rel="stylesheet" href="{% static 'simetra_app/data_base_page/styles/style.css' %}" />
-    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-57x57.png' %}" />
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-114x114.png' %}" />
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-72x72.png' %}" />
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-144x144.png' %}" />
-    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-60x60.png' %}" />
-    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-120x120.png' %}" />
-    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-76x76.png' %}" />
-    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-152x152.png' %}" />
-    <link rel="icon" type="image/png" href="{% static 'simetra_app/general_assets/favicon/favicon-196x196.png' %}" sizes="196x196" />
-    <link rel="icon" type="image/png" href="{% static 'simetra_app/general_assets/favicon/favicon-96x96.png' %}" sizes="96x96" />
-    <link rel="icon" type="image/png" href="{% static 'simetra_app/general_assets/favicon/favicon-32x32.png' %}" sizes="32x32" />
-    <link rel="icon" type="image/png" href="{% static 'simetra_app/general_assets/favicon/favicon-16x16.png' %}" sizes="16x16" />
-    <link rel="icon" type="image/png" href="{% static 'simetra_app/general_assets/favicon/favicon-128.png' %}" sizes="128x128" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'simetra_app/data_base_page/styles/style.css' %}"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="57x57"
+      href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-57x57.png' %}"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="114x114"
+      href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-114x114.png' %}"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="72x72"
+      href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-72x72.png' %}"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="144x144"
+      href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-144x144.png' %}"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="60x60"
+      href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-60x60.png' %}"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="120x120"
+      href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-120x120.png' %}"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="76x76"
+      href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-76x76.png' %}"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="152x152"
+      href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-152x152.png' %}"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="{% static 'simetra_app/general_assets/favicon/favicon-196x196.png' %}"
+      sizes="196x196"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="{% static 'simetra_app/general_assets/favicon/favicon-96x96.png' %}"
+      sizes="96x96"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="{% static 'simetra_app/general_assets/favicon/favicon-32x32.png' %}"
+      sizes="32x32"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="{% static 'simetra_app/general_assets/favicon/favicon-16x16.png' %}"
+      sizes="16x16"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="{% static 'simetra_app/general_assets/favicon/favicon-128.png' %}"
+      sizes="128x128"
+    />
     <meta name="application-name" content="&nbsp;" />
     <meta name="msapplication-TileColor" content="#FFFFFF" />
-    <meta name="msapplication-TileImage" content="{% static 'simetra_app/general_assets/favicon/mstile-144x144.png' %}" />
-    <meta name="msapplication-square70x70logo" content="{% static 'simetra_app/general_assets/favicon/mstile-70x70.png' %}" />
-    <meta name="msapplication-square150x150logo" content="{% static 'simetra_app/general_assets/favicon/mstile-150x150.png' %}" />
-    <meta name="msapplication-wide310x150logo" content="{% static 'simetra_app/general_assets/favicon/mstile-310x150.png' %}" />
-    <meta name="msapplication-square310x310logo" content="{% static 'simetra_app/general_assets/favicon/mstile-310x310.png' %}" />
+    <meta
+      name="msapplication-TileImage"
+      content="{% static 'simetra_app/general_assets/favicon/mstile-144x144.png' %}"
+    />
+    <meta
+      name="msapplication-square70x70logo"
+      content="{% static 'simetra_app/general_assets/favicon/mstile-70x70.png' %}"
+    />
+    <meta
+      name="msapplication-square150x150logo"
+      content="{% static 'simetra_app/general_assets/favicon/mstile-150x150.png' %}"
+    />
+    <meta
+      name="msapplication-wide310x150logo"
+      content="{% static 'simetra_app/general_assets/favicon/mstile-310x150.png' %}"
+    />
+    <meta
+      name="msapplication-square310x310logo"
+      content="{% static 'simetra_app/general_assets/favicon/mstile-310x310.png' %}"
+    />
   </head>
 
   <body>
     {{ cities_list_json|json_script:"cities-list-json" }}
     <div class="wrapper">
-      <!-- <header class="header">
+      <header class="header">
         <div class="header__container _container">
           {% include 'simetra_app/navbar.html' %}
         </div>
-      </header> -->
+      </header>
 
       <main class="page">
         <div class="page__container _container">
           <div name="description" class="page__description _center-block">
             <div class="page__description-header">
-              <h2 class="page _customers-blue-color">SIMETRA ТРАНСПОРТНЫЙ РЕЙТИНГ</h2>
-              <h1 class="page">Рейтинг <span class="_customers-blue-color">2022</span></h1>
+              <h2 class="page _customers-blue-color">
+                SIMETRA ТРАНСПОРТНЫЙ РЕЙТИНГ
+              </h2>
+              <h1 class="page">
+                Рейтинг <span class="_customers-blue-color">2022</span>
+              </h1>
             </div>
             <p class="page__description-main">
-              В исследовании покрыто <b>{{ number_of_cities }}</b> 
-              городов Российской Федерации для оценки качества общественного 
-              транспорта. При составлении итогового результата исследования 
-              были задейстованы <b>5</b> ключевых параметров, представленных 
-              в таблице ниже.
-            </p> 
+              В исследовании покрыто <b>{{ number_of_cities }}</b> городов
+              Российской Федерации для оценки качества общественного транспорта.
+              При составлении итогового результата исследования были
+              задейстованы <b>5</b> ключевых параметров, представленных в
+              таблице ниже.
+            </p>
 
-            <a href="{% url 'simetra_app:methodology' %}" class="page__description-link">
+            <a
+              href="{% url 'simetra_app:methodology' %}"
+              class="page__description-link"
+            >
               <p class="page__description-footer">
-                УЗНАТЬ БОЛЬШЕ О МЕТОДОЛОГИИ 
+                УЗНАТЬ БОЛЬШЕ О МЕТОДОЛОГИИ
                 <span class="_customers-blue-color">&#x203A;&#x203A;</span>
               </p>
             </a>
           </div>
         </div>
-        <hr>
+        <hr />
         <div name="rating" class="page__container _container">
           <h1 class="page__rating">Полный рейтинг 2022</h1>
           <div class="page__rating-filter">
@@ -72,74 +159,120 @@
               <div class="page__rating-filter-column">
                 <h1>РАЗМЕР ГОРОДА</h1>
                 <div class="input-checkbox">
-                  <input type="checkbox" id="millionaire" name="population" checked>
+                  <input
+                    type="checkbox"
+                    id="millionaire"
+                    name="population"
+                    checked
+                  />
                   <label for="millionaire">Более 1млн.</label>
                 </div>
                 <div class="input-checkbox">
-                  <input type="checkbox" id="half-millionaire" name="population" checked>
+                  <input
+                    type="checkbox"
+                    id="half-millionaire"
+                    name="population"
+                    checked
+                  />
                   <label for="half-millionaire">0.5-1млн.</label>
                 </div>
                 <div class="input-checkbox">
-                  <input type="checkbox" id="non-half-millionaire" name="population" checked>
+                  <input
+                    type="checkbox"
+                    id="non-half-millionaire"
+                    name="population"
+                    checked
+                  />
                   <label for="nnon-half-millionaire">Менее 0.5млн.</label>
                 </div>
               </div>
               <div class="page__rating-filter-column">
                 <h1>ФЕДЕРАЛЬНЫЙ ОКРУГ</h1>
                 <div class="input-checkbox">
-                  <input type="checkbox" id="CFO" name="CFO" checked>
+                  <input type="checkbox" id="CFO" name="CFO" checked />
                   <label for="CFO">ЦФО</label>
                 </div>
                 <div class="input-checkbox">
-                  <input type="checkbox" id="SZFO" name="SZFO" checked>
+                  <input type="checkbox" id="SZFO" name="SZFO" checked />
                   <label for="SZFO">СЗФО</label>
                 </div>
                 <div class="input-checkbox">
-                  <input type="checkbox" id="YUFO" name="YUFO" checked>
+                  <input type="checkbox" id="YUFO" name="YUFO" checked />
                   <label for="YUFO">ЮФО</label>
                 </div>
                 <div class="input-checkbox">
-                  <input type="checkbox" id="SKFO" name="SKFO" checked>
+                  <input type="checkbox" id="SKFO" name="SKFO" checked />
                   <label for="SKFO">СКФО</label>
                 </div>
                 <div class="input-checkbox">
-                  <input type="checkbox" id="PFO" name="PFO" checked>
+                  <input type="checkbox" id="PFO" name="PFO" checked />
                   <label for="PFO">ПФО</label>
                 </div>
                 <div class="input-checkbox">
-                  <input type="checkbox" id="UFO" name="UFO" checked>
+                  <input type="checkbox" id="UFO" name="UFO" checked />
                   <label for="UFO">УФО</label>
                 </div>
                 <div class="input-checkbox">
-                  <input type="checkbox" id="SFO" name="SFO" checked>
+                  <input type="checkbox" id="SFO" name="SFO" checked />
                   <label for="SFO">СФО</label>
                 </div>
                 <div class="input-checkbox">
-                  <input type="checkbox" id="DFO" name="DFO" checked>
+                  <input type="checkbox" id="DFO" name="DFO" checked />
                   <label for="DFO">ДФО</label>
                 </div>
               </div>
               <div class="page__rating-filter-column">
                 <h1>ПОКАЗАТЕЛИ</h1>
                 <div class="input-checkbox">
-                  <input type="checkbox" id="physical-availability" name="physical-availability" checked>
-                  <label for="physical-availability">Физическая доступность</label>
+                  <input
+                    type="checkbox"
+                    id="physical-availability"
+                    name="physical-availability"
+                    checked
+                  />
+                  <label for="physical-availability"
+                    >Физическая доступность</label
+                  >
                 </div>
                 <div class="input-checkbox">
-                  <input type="checkbox" id="affordability" name="affordability" checked>
+                  <input
+                    type="checkbox"
+                    id="affordability"
+                    name="affordability"
+                    checked
+                  />
                   <label for="affordability">Ценовая доступность</label>
                 </div>
                 <div class="input-checkbox">
-                  <input type="checkbox" id="route-network-efficiency" name="route-network-efficiency" checked>
-                  <label for="route-network-efficiency">Эффективность транспортной сети</label>
+                  <input
+                    type="checkbox"
+                    id="route-network-efficiency"
+                    name="route-network-efficiency"
+                    checked
+                  />
+                  <label for="route-network-efficiency"
+                    >Эффективность транспортной сети</label
+                  >
                 </div>
                 <div class="input-checkbox">
-                  <input type="checkbox" id="comfort-n-convenience" name="comfort-n-convenience" checked>
+                  <input
+                    type="checkbox"
+                    id="comfort-n-convenience"
+                    name="comfort-n-convenience"
+                    checked
+                  />
                   <label for="comfort-n-convenience">Комфорт и удобство</label>
                 </div>
                 <div class="input-checkbox">
-                  <input type="checkbox" id="security-n-development" name="security-n-development" checked>
-                  <label for="security-n-development">Безопасность и устойчивое развитие</label>
+                  <input
+                    type="checkbox"
+                    id="security-n-development"
+                    name="security-n-development"
+                    checked
+                  />
+                  <label for="security-n-development"
+                    >Безопасность и устойчивое развитие</label
+                  >
                 </div>
               </div>
             </div>
@@ -147,29 +280,61 @@
           <table class="table table-hover">
             <thead>
               <tr name="table-row-head">
-                <th scope="col" class="_center-text _center-text-vertically">№</th>
-                <th scope="col" class="_center-text _center-text-vertically">Город</th>
-                <th scope="col" class="_center-text _center-text-vertically">Физическая доступность</th>
-                <th scope="col" class="_center-text _center-text-vertically">Ценовая доступность</th>
-                <th scope="col" class="_center-text _center-text-vertically">Эффективность транспортной сети</th>
-                <th scope="col" class="_center-text _center-text-vertically">Комфорт и удобство</th>
-                <th scope="col" class="_center-text _center-text-vertically">Безопасность и устойчивое развитие</th>
-                <th scope="col" class="_center-text _center-text-vertically">Итого</th>
+                <th scope="col" class="_center-text _center-text-vertically">
+                  №
+                </th>
+                <th scope="col" class="_center-text _center-text-vertically">
+                  Город
+                </th>
+                <th scope="col" class="_center-text _center-text-vertically">
+                  Физическая доступность
+                </th>
+                <th scope="col" class="_center-text _center-text-vertically">
+                  Ценовая доступность
+                </th>
+                <th scope="col" class="_center-text _center-text-vertically">
+                  Эффективность транспортной сети
+                </th>
+                <th scope="col" class="_center-text _center-text-vertically">
+                  Комфорт и удобство
+                </th>
+                <th scope="col" class="_center-text _center-text-vertically">
+                  Безопасность и устойчивое развитие
+                </th>
+                <th scope="col" class="_center-text _center-text-vertically">
+                  Итого
+                </th>
               </tr>
             </thead>
             <tbody>
               {% for city in cities_list %}
-                <tr name="table-row-values">
-                  <th scope="row" name="number" class="_center-text">#</th>
-                  <td class="_center-text _center-text-vertically">{{ city.russian_name }}</td>
-                  <td class="_center-text _center-text-vertically">{{ city.rating_physical_availability|floatformat:2 }}</td>
-                  <td class="_center-text _center-text-vertically">{{ city.rating_affordability|floatformat:2 }}</td>
-                  <td class="_center-text _center-text-vertically">{{ city.rating_route_network_efficiency|floatformat:2 }}</td>
-                  <td class="_center-text _center-text-vertically">{{ city.rating_comfort_n_convenience|floatformat:2 }}</td>
-                  <td class="_center-text _center-text-vertically">{{ city.rating_security_n_development|floatformat:2 }}</td>
-                  <td class="_center-text _center-text-vertically">{{ city.sum_of_rating|floatformat:2 }}</td>
-                  <td id="num-population" class="_hide-element">{{ city.num_population }}</>
-                </tr> 
+              <tr name="table-row-values">
+                <th scope="row" name="number" class="_center-text">#</th>
+                <td class="_center-text _center-text-vertically">
+                  {{ city.russian_name }}
+                </td>
+                <td class="_center-text _center-text-vertically">
+                  {{ city.rating_physical_availability|floatformat:2 }}
+                </td>
+                <td class="_center-text _center-text-vertically">
+                  {{ city.rating_affordability|floatformat:2 }}
+                </td>
+                <td class="_center-text _center-text-vertically">
+                  {{ city.rating_route_network_efficiency|floatformat:2 }}
+                </td>
+                <td class="_center-text _center-text-vertically">
+                  {{ city.rating_comfort_n_convenience|floatformat:2 }}
+                </td>
+                <td class="_center-text _center-text-vertically">
+                  {{ city.rating_security_n_development|floatformat:2 }}
+                </td>
+                <td class="_center-text _center-text-vertically">
+                  {{ city.sum_of_rating|floatformat:2 }}
+                </td>
+                <td id="num-population" class="_hide-element">
+                  {{ city.num_population }}
+                </td>
+              </tr>
               {% endfor %}
             </tbody>
           </table>
