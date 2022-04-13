@@ -153,12 +153,6 @@ body._lock {
   margin-bottom: 60px;
 }
 
-@media (max-width: 600px) {
-  ._main-title {
-    font-size: 32px;
-  }
-}
-
 ._highlight {
   color: #6f80ff;
 }
