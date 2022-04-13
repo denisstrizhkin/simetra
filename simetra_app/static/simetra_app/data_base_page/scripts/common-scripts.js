@@ -26,3 +26,4 @@ function numerateVisibleCities() {
 }
 
 numerateCities();
+
