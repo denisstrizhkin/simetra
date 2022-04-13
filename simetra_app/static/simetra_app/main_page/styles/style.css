@@ -90,258 +90,13 @@ h6 {
 }
 
 /*--------------------------------------------------------*/
-/*--------------------------------------------------------*/
-/*-----FOOTER---------------------------------------------*/
-/*--------------------------------------------------------*/
-.footer {
-  background-color: #000000;
-  color: #ffffff;
-}
-
-.footer__list {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  padding: 30px 0px;
-}
-
-.footer__logo {
-  max-width: 250px;
-  margin-bottom: 30px;
-}
-
-.footer__social {
-  margin-bottom: 40px;
-}
-
-.footer__text {
-  max-width: 700px;
-  text-align: center;
-  margin-bottom: 30px;
-  line-height: 150%;
-}
-
-.footer__text:last-child {
-  margin-bottom: 0px;
-}
-
-.social {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  gap: 20px 20px;
-}
-
-.social .social__item svg {
-  width: 40px;
-  height: 40px;
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
-}
-
-.social .social__item svg:hover {
-  -webkit-transform: scale(1.2);
-          transform: scale(1.2);
-}
-
 /*-------------------------------------------------------------*/
-/*-----Variable declaration------------------------------------*/
+/*-----Burger--------------------------------------------------*/
 /*-------------------------------------------------------------*/
-/*-------------------------------------------------------------*/
-/*-----The Foundation------------------------------------------*/
-/*-------------------------------------------------------------*/
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: "Inter", sans-serif;
-  font-size: 18px;
-}
-
 body._lock {
   overflow: hidden;
 }
 
-.wrapper {
-  min-height: 100%;
-  overflow: hidden;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-}
-
-/*-------------------------------------------------------------*/
-/*-----Technical classes---------------------------------------*/
-/*-------------------------------------------------------------*/
-._container {
-  max-width: 1400px;
-  margin: 0px auto;
-  padding: 0px 10px;
-}
-
-._ibg {
-  position: relative;
-}
-
-._ibg img {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-
-._main-title {
-  font-size: 36px;
-  line-height: 150%;
-  font-weight: 700;
-  margin: 0 auto;
-  text-align: center;
-  margin-bottom: 60px;
-}
-
-@media (max-width: 600px) {
-  ._main-title {
-    font-size: 32px;
-  }
-}
-
-._highlight {
-  color: #6f80ff;
-}
-
-._link {
-  color: #ffffff;
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
-}
-
-._link:hover {
-  color: #6f80ff;
-}
-
-._button {
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
-  max-width: 500px;
-  font-size: 20px;
-  padding: 20px 50px;
-  background-color: #6f80ff;
-  color: #ffffff;
-  font-weight: 600;
-}
-
-._button:hover {
-  background-color: #ffffff;
-  color: #6f80ff;
-}
-
-/*-------------------------------------------------------------*/
-/*-----Scroll Bar----------------------------------------------*/
-/*-------------------------------------------------------------*/
-::-webkit-scrollbar {
-  width: 15px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #6f80ff;
-  border-radius: 10px;
-  border: 3px solid #d4d4d4;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #37407f;
-}
-
-/*-------------------------------------------------------------*/
-/*-----HEADER--------------------------------------------------*/
-/*-------------------------------------------------------------*/
-.header {
-  position: fixed;
-  width: 100%;
-  left: 0;
-  top: 0;
-  z-index: 10;
-  background-color: rgba(0, 0, 0, 0.7);
-}
-
-.header__menu {
-  padding: 10px 0px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-}
-
-.header__color {
-  background-color: rgba(0, 0, 0, 0.9);
-}
-
-.menu {
-  width: 100%;
-}
-
-.menu__list {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  gap: 30px 30px;
-}
-
-.menu__item {
-  font-size: 24px;
-}
-
-.menu__body {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  gap: 0px 40px;
-}
-
-.menu__logo {
-  width: 200px;
-}
-
-/*-------------------------------------------------------------*/
-/*-----Burger--------------------------------------------------*/
-/*-------------------------------------------------------------*/
 .menu__icon {
   display: none;
   margin: 0 0 0 auto;
@@ -450,6 +205,251 @@ body._lock {
   .menu__link {
     font-size: 40px;
   }
+}
+
+/*-------------------------------------------------------------*/
+/*-----HEADER--------------------------------------------------*/
+/*-------------------------------------------------------------*/
+.header {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.header__menu {
+  padding: 10px 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.header__color {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.menu {
+  width: 100%;
+}
+
+.menu__list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  gap: 30px 30px;
+}
+
+.menu__item {
+  font-size: 24px;
+}
+
+.menu__body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0px 40px;
+}
+
+.menu__logo {
+  width: 200px;
+}
+
+/*--------------------------------------------------------*/
+/*-----FOOTER---------------------------------------------*/
+/*--------------------------------------------------------*/
+.footer {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.footer__list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 30px 0px;
+}
+
+.footer__logo {
+  max-width: 250px;
+  margin-bottom: 30px;
+}
+
+.footer__social {
+  margin-bottom: 40px;
+}
+
+.footer__text {
+  max-width: 700px;
+  text-align: center;
+  margin-bottom: 30px;
+  line-height: 150%;
+}
+
+.footer__text:last-child {
+  margin-bottom: 0px;
+}
+
+.social {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 20px 20px;
+}
+
+.social .social__item svg {
+  width: 40px;
+  height: 40px;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.social .social__item svg:hover {
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+}
+
+/*-------------------------------------------------------------*/
+/*-----Variable declaration------------------------------------*/
+/*-------------------------------------------------------------*/
+/*-------------------------------------------------------------*/
+/*-----The Foundation------------------------------------------*/
+/*-------------------------------------------------------------*/
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+}
+
+.wrapper {
+  min-height: 100%;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+/*-------------------------------------------------------------*/
+/*-----Technical classes---------------------------------------*/
+/*-------------------------------------------------------------*/
+._container {
+  max-width: 1400px;
+  margin: 0px auto;
+  padding: 0px 10px;
+}
+
+._ibg {
+  position: relative;
+}
+
+._ibg img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+._main-title {
+  font-size: 36px;
+  line-height: 150%;
+  font-weight: 700;
+  margin: 0 auto;
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+@media (max-width: 600px) {
+  ._main-title {
+    font-size: 32px;
+  }
+}
+
+._highlight {
+  color: #6f80ff;
+}
+
+._link {
+  color: #ffffff;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+._link:hover {
+  color: #6f80ff;
+}
+
+._button {
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  max-width: 500px;
+  font-size: 20px;
+  padding: 20px 50px;
+  background-color: #6f80ff;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+._button:hover {
+  background-color: #ffffff;
+  color: #6f80ff;
+}
+
+/*-------------------------------------------------------------*/
+/*-----Scroll Bar----------------------------------------------*/
+/*-------------------------------------------------------------*/
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #6f80ff;
+  border-radius: 10px;
+  border: 3px solid #d4d4d4;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #37407f;
 }
 
 /*-------------------------------------------------------------*/
