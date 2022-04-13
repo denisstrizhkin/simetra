@@ -199,14 +199,6 @@ body {
   display: none;
 }
 
-._hide-element-by-adaptive {
-  display: none;
-}
-
-._hide-element-by-button {
-  display: none;
-}
-
 ._hide-city-by-region {
   display: none;
 }
@@ -359,6 +351,10 @@ h1.page__rating-filter {
   margin-bottom: 20px;
 }
 
+.page__rating-filter-table-description {
+  margin-bottom: 9px;
+}
+
 .page__rating-filter-element {
   max-width: 280px;
 }
@@ -366,12 +362,6 @@ h1.page__rating-filter {
 h1.page__rating-filter {
   font-size: 24px;
   font-weight: bold;
-}
-
-@media (max-width: 1060px) {
-  .page__rating-filter-column {
-    display: table-row;
-  }
 }
 
 @media (max-width: 770px) {
@@ -421,6 +411,15 @@ h1.page__rating-filter {
   }
 }
 
+@media (max-width: 1080px) {
+  .page__rating-filter-column {
+    display: table-row;
+  }
+
+  h1.page__rating-filter {
+    margin-bottom: 18px;
+  }
+}
 
 /*-------------------------------------------------------------*/
 /*-----FOOTER--------------------------------------------------*/

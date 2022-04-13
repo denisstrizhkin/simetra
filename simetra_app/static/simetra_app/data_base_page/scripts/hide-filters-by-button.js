@@ -50,16 +50,32 @@ function showOrHideFilterButtonByAdaptive() {
     }
 }
 
+function showOrHideTableDescription() {
+    const descriptionName = 'table-description';
+    const description = document.getElementsByName(descriptionName)[0];
+    const isDiscriptionHidden = description.classList.contains('_hide-element');
+
+    if (isAdaptive() && isDiscriptionHidden) {
+        description.classList.remove('_hide-element');
+    } 
+
+    if (!isAdaptive() && !isDiscriptionHidden) {
+        description.classList.add('_hide-element');
+    }
+}
+
 if (window.attachEvent) {
     window.attachEvent('onresize', () => {
         showOrHideFilterButtonByAdaptive();
         showOrHideFilterByApative();
+        showOrHideTableDescription();
     });
 }
 else if (window.addEventListener) {
     window.addEventListener('resize', () => {
         showOrHideFilterButtonByAdaptive();
         showOrHideFilterByApative();
+        showOrHideTableDescription();
     }, true);
 }
 
@@ -71,3 +87,4 @@ filterButton.addEventListener('click', () => {
 
 showOrHideFilterButtonByAdaptive();
 showOrHideFilterByApative();
+showOrHideTableDescription();
