@@ -13,11 +13,6 @@ function isAdaptive() {
     return getWidth() <= border;
 }
 
-function isAdaptiveBorder() {
-    const border = 1080;
-    return getWidth() == border;
-}
-
 function showOrHideFilterByButton() {
     const filter = document.getElementsByName('filters')[0];
     let isFilterHidden = filter.classList.contains('_hide-element');
@@ -33,11 +28,11 @@ function showOrHideFilterByApative() {
     const filter = document.getElementsByName('filters')[0];
     const isFilterHidden = filter.classList.contains('_hide-element');
 
-    if (isAdaptiveBorder() && !isFilterHidden) {
+    if (isAdaptive() && !isFilterHidden) {
         filter.classList.add('_hide-element');
     }
 
-    if (!isAdaptiveBorder() && isFilterHidden) {
+    if (!isAdaptive() && isFilterHidden) {
         filter.classList.remove('_hide-element');
     }
 }
