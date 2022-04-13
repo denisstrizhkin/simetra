@@ -114,11 +114,11 @@
   <body>
     {{ cities_list_json|json_script:"cities-list-json" }}
     <div class="wrapper">
-      <header class="header">
+      <!-- <header class="header">
         <div class="header__container _container">
           {% include 'simetra_app/navbar.html' %}
         </div>
-      </header>
+      </header> -->
 
       <main class="page">
         <div class="page__container _container">
@@ -154,89 +154,84 @@
         <div name="rating" class="page__container _container">
           <h1 class="page__rating">Полный рейтинг 2022</h1>
           <div class="page__rating-filter">
-            <h1 class="page__rating-filter">Отфильтровать по</h1>
-            <div class="page__rating-filter-row">
-              <div class="page__rating-filter-column">
-                <h1>РАЗМЕР ГОРОДА</h1>
-                <div class="input-checkbox">
-                  <input
-                    type="checkbox"
-                    id="millionaire"
-                    name="population"
-                    checked
-                  />
-                  <label for="millionaire">Более 1млн.</label>
+            <button name="filter-button" type="button" class="page__button _button _center-block _hide-element _add-extra-margin-top">
+              ФИЛЬТРЫ
+            </button>
+            <div name="filters">
+              <h1 class="page__rating-filter">Отфильтровать по</h1>
+              <div class="page__rating-filter-row">
+                <div class="page__rating-filter-column">
+                  <h1>РАЗМЕР ГОРОДА</h1>
+                  <div class="input-checkbox">
+                    <input type="checkbox" id="millionaire" name="population" checked />
+                    <label for="millionaire">Более 1млн.</label>
+                  </div>
+                  <div class="input-checkbox">
+                    <input type="checkbox" id="half-millionaire" name="population" checked />
+                    <label for="half-millionaire">0.5-1млн.</label>
+                  </div>
+                  <div class="input-checkbox">
+                    <input type="checkbox" id="non-half-millionaire" name="population" checked />
+                    <label for="non-half-millionaire">Менее 0.5млн.</label>
+                  </div>
                 </div>
-                <div class="input-checkbox">
-                  <input
-                    type="checkbox"
-                    id="half-millionaire"
-                    name="population"
-                    checked
-                  />
-                  <label for="half-millionaire">0.5-1млн.</label>
+                <div class="page__rating-filter-column">
+                  <h1>ФЕДЕРАЛЬНЫЙ ОКРУГ</h1>
+                  <div class="input-checkbox">
+                    <input type="checkbox" id="CFO" name="region" checked>
+                    <label for="CFO">ЦФО</label>
+                  </div>
+                  <div class="input-checkbox">
+                    <input type="checkbox" id="SZFO" name="region" checked>
+                    <label for="SZFO">СЗФО</label>
+                  </div>
+                  <div class="input-checkbox">
+                    <input type="checkbox" id="YUFO" name="region" checked>
+                    <label for="YUFO">ЮФО</label>
+                  </div>
+                  <div class="input-checkbox">
+                    <input type="checkbox" id="SKFO" name="region" checked>
+                    <label for="SKFO">СКФО</label>
+                  </div>
+                  <div class="input-checkbox">
+                    <input type="checkbox" id="PFO" name="region" checked>
+                    <label for="PFO">ПФО</label>
+                  </div>
+                  <div class="input-checkbox">
+                    <input type="checkbox" id="UFO" name="region" checked>
+                    <label for="UFO">УФО</label>
+                  </div>
+                  <div class="input-checkbox">
+                    <input type="checkbox" id="SFO" name="region" checked>
+                    <label for="SFO">СФО</label>
+                  </div>
+                  <div class="input-checkbox">
+                    <input type="checkbox" id="DFO" name="region" checked>
+                    <label for="DFO">ДФО</label>
+                  </div>
                 </div>
-                <div class="input-checkbox">
-                  <input type="checkbox" id="non-half-millionaire" name="population" checked>
-                  <label for="non-half-millionaire">Менее 0.5млн.</label>
-                </div>
-              </div>
-              <div class="page__rating-filter-column">
-                <h1>ФЕДЕРАЛЬНЫЙ ОКРУГ</h1>
-                <div class="input-checkbox">
-                  <input type="checkbox" id="CFO" name="region" checked>
-                  <label for="CFO">ЦФО</label>
-                </div>
-                <div class="input-checkbox">
-                  <input type="checkbox" id="SZFO" name="region" checked>
-                  <label for="SZFO">СЗФО</label>
-                </div>
-                <div class="input-checkbox">
-                  <input type="checkbox" id="YUFO" name="region" checked>
-                  <label for="YUFO">ЮФО</label>
-                </div>
-                <div class="input-checkbox">
-                  <input type="checkbox" id="SKFO" name="region" checked>
-                  <label for="SKFO">СКФО</label>
-                </div>
-                <div class="input-checkbox">
-                  <input type="checkbox" id="PFO" name="region" checked>
-                  <label for="PFO">ПФО</label>
-                </div>
-                <div class="input-checkbox">
-                  <input type="checkbox" id="UFO" name="region" checked>
-                  <label for="UFO">УФО</label>
-                </div>
-                <div class="input-checkbox">
-                  <input type="checkbox" id="SFO" name="region" checked>
-                  <label for="SFO">СФО</label>
-                </div>
-                <div class="input-checkbox">
-                  <input type="checkbox" id="DFO" name="region" checked>
-                  <label for="DFO">ДФО</label>
-                </div>
-              </div>
-              <div class="page__rating-filter-column">
-                <h1>ПОКАЗАТЕЛИ</h1>
-                <div class="input-checkbox">
-                  <input type="checkbox" id="physical-availability" name="indicator" checked>
-                  <label for="physical-availability">Физическая доступность</label>
-                </div>
-                <div class="input-checkbox">
-                  <input type="checkbox" id="affordability" name="indicator" checked>
-                  <label for="affordability">Ценовая доступность</label>
-                </div>
-                <div class="input-checkbox">
-                  <input type="checkbox" id="route-network-efficiency" name="indicator" checked>
-                  <label for="route-network-efficiency">Эффективность транспортной сети</label>
-                </div>
-                <div class="input-checkbox">
-                  <input type="checkbox" id="comfort-n-convenience" name="indicator" checked>
-                  <label for="comfort-n-convenience">Комфорт и удобство</label>
-                </div>
-                <div class="input-checkbox">
-                  <input type="checkbox" id="security-n-development" name="indicator" checked>
-                  <label for="security-n-development">Безопасность и устойчивое развитие</label>
+                <div class="page__rating-filter-column">
+                  <h1>ПОКАЗАТЕЛИ</h1>
+                  <div class="input-checkbox">
+                    <input type="checkbox" id="physical-availability" name="indicator" checked>
+                    <label for="physical-availability">Физическая доступность</label>
+                  </div>
+                  <div class="input-checkbox">
+                    <input type="checkbox" id="affordability" name="indicator" checked>
+                    <label for="affordability">Ценовая доступность</label>
+                  </div>
+                  <div class="input-checkbox">
+                    <input type="checkbox" id="route-network-efficiency" name="indicator" checked>
+                    <label for="route-network-efficiency">Эффективность транспортной сети</label>
+                  </div>
+                  <div class="input-checkbox">
+                    <input type="checkbox" id="comfort-n-convenience" name="indicator" checked>
+                    <label for="comfort-n-convenience">Комфорт и удобство</label>
+                  </div>
+                  <div class="input-checkbox">
+                    <input type="checkbox" id="security-n-development" name="indicator" checked>
+                    <label for="security-n-development">Безопасность и устойчивое развитие</label>
+                  </div>
                 </div>
               </div>
             </div>
@@ -245,30 +240,14 @@
           <table class="table table-hover">
             <thead>
               <tr name="table-row-head">
-                <th scope="col" class="_center-text _center-text-vertically">
-                  №
-                </th>
-                <th scope="col" class="_center-text _center-text-vertically">
-                  Город
-                </th>
-                <th scope="col" class="_center-text _center-text-vertically">
-                  Физическая доступность
-                </th>
-                <th scope="col" class="_center-text _center-text-vertically">
-                  Ценовая доступность
-                </th>
-                <th scope="col" class="_center-text _center-text-vertically">
-                  Эффективность транспортной сети
-                </th>
-                <th scope="col" class="_center-text _center-text-vertically">
-                  Комфорт и удобство
-                </th>
-                <th scope="col" class="_center-text _center-text-vertically">
-                  Безопасность и устойчивое развитие
-                </th>
-                <th scope="col" class="_center-text _center-text-vertically">
-                  Итого
-                </th>
+                <th scope="col" class="_center-text _center-text-vertically">№</th>
+                <th scope="col" class="_center-text _center-text-vertically">Город</th>
+                <th scope="col" class="_center-text _center-text-vertically">Физическая доступность</th>
+                <th scope="col" class="_center-text _center-text-vertically">Ценовая доступность</th>
+                <th scope="col" class="_center-text _center-text-vertically">Эффективность транспортной сети</th>
+                <th scope="col" class="_center-text _center-text-vertically">Комфорт и удобство</th>
+                <th scope="col" class="_center-text _center-text-vertically">Безопасность и устойчивое развитие</th>
+                <th scope="col" class="_center-text _center-text-vertically">Итого</th>
               </tr>
             </thead>
             <tbody id="parent-of-table-values">
@@ -423,5 +402,6 @@
     <script src="{% static 'simetra_app/data_base_page/scripts/filter-population-checkboxes.js' %}"></script>
     <script src="{% static 'simetra_app/data_base_page/scripts/filter-regions-checkboxes.js' %}"></script>
     <script src="{% static 'simetra_app/data_base_page/scripts/filter-indicator-checkboxes.js' %}"></script>
+    <script src="{% static 'simetra_app/data_base_page/scripts/hide-filters-by-button.js' %}"></script>
   </body>
 </html>
