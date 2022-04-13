@@ -227,6 +227,12 @@ body {
   overflow-x: scroll;
 }
 
+._arrow {
+  height: 0.7em;
+  filter: invert(62%) sepia(63%) saturate(4925%) hue-rotate(211deg) brightness(100%) contrast(103%);
+  margin-left: 0.4em;
+}
+
 /*-------------------------------------------------------------*/
 /*-----HEADER--------------------------------------------------*/
 /*-------------------------------------------------------------*/
@@ -300,12 +306,17 @@ h2.page {
 
 .page__description-main {
   font-size: 24px;
+  line-height: normal;
 }
 
 .page__description-footer {
   margin-top: 40px;
   margin-bottom: 80px;
   font-weight: bold;
+}
+
+.page__description-footer:hover {
+  color: #6f80ff;
 }
 
 .page__description-link {
