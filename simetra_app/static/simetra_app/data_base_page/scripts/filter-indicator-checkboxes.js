@@ -63,7 +63,29 @@ function recountSumOfRating(city) {
     });
 
     newSum = Math.round(newSum * 100) / 100;
-    sumOfRaing.textContent = newSum;
+
+    let newSumString = newSum.toString();
+    let newStringInteger = newSumString.split('.')[0];
+    let newStringFraction = newSumString.split('.')[1];
+
+    if (newStringFraction == undefined) {
+        newStringFraction = '00';
+    }
+
+    let dot = '.';
+    
+    let newStringFractionLength = newStringFraction.length;
+
+    while (newStringFractionLength !== 2) {
+        newStringFraction += '0';
+        newStringFractionLength += 1;
+    }
+
+    newSum = newStringInteger + dot + newStringFraction;
+
+    console.log()
+
+    sumOfRaing.textContent = newSumString;
 }
 
 function hideCitiesByIndicator() {
