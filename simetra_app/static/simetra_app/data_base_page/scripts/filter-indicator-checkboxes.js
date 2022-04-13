@@ -43,14 +43,34 @@ function sortTableRows(cities) {
 }
 
 function recountSumOfRating(city) {
+    function getCorrectlySumOfRating(newSum) {
+        let newSumString = newSum.toString();
+        
+        const dot = '.';
+        const amountOfFractionNumber = 2;
+
+        let newStringInteger = newSumString.split(dot)[0];
+        let newStringFraction = newSumString.split(dot)[1];
+
+        if (newStringFraction == undefined) {
+            newStringFraction = '00';
+        }
+
+        while (newStringFraction.length !== amountOfFractionNumber) {
+            newStringFraction += '0';
+        }
+
+        newSumString = newStringInteger + dot + newStringFraction;
+
+        return newSumString;
+    }
+
     const sumOfRaing = city.querySelector('#sum-of-rating');
 
     const hiddenIndicator = '_hide-column-by-indicator';
 
     let newSum = 0;
-
     Array.from(city.children).forEach(function (child) {
-
         const childName = child.getAttribute('name');
         const isChildNameCorrect = childName == 'numeric-data';
         const isRowVisible = !child.classList.contains(hiddenIndicator);
@@ -63,28 +83,7 @@ function recountSumOfRating(city) {
     });
 
     newSum = Math.round(newSum * 100) / 100;
-
-    let newSumString = newSum.toString();
-    let newStringInteger = newSumString.split('.')[0];
-    let newStringFraction = newSumString.split('.')[1];
-
-    if (newStringFraction == undefined) {
-        newStringFraction = '00';
-    }
-
-    let dot = '.';
-    
-    let newStringFractionLength = newStringFraction.length;
-
-    while (newStringFractionLength !== 2) {
-        newStringFraction += '0';
-        newStringFractionLength += 1;
-    }
-
-    newSum = newStringInteger + dot + newStringFraction;
-
-    console.log()
-
+    const newSumString = getCorrectlySumOfRating(newSum);
     sumOfRaing.textContent = newSumString;
 }
 
