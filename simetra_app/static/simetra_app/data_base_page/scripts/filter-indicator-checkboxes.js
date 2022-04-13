@@ -138,10 +138,21 @@ function hideCitiesByIndicator() {
     numerateVisibleCities();
 }
 
-const indicatorCheckboxes = document.getElementsByName('indicator');
+const otherIndicatorCheckboxes = document.getElementsByName('indicator');
 
 document.addEventListener('DOMContentLoaded', function () {
-    indicatorCheckboxes.forEach(function (checkbox) {
+    otherIndicatorCheckboxes.forEach(function (checkbox) {
         checkbox.addEventListener('change', () => { hideCitiesByIndicator() });
+    });
+});
+
+const allIndicatorCheckbox = document.getElementsByName('indicator-all')[0];
+
+document.addEventListener('DOMContentLoaded', function() {
+    allIndicatorCheckbox.addEventListener('change', () => {
+        changeOtherCheckboxesByAllCheckbox(
+            allIndicatorCheckbox,
+            otherIndicatorCheckboxes,
+        )
     });
 });
