@@ -33,10 +33,21 @@ function hideCitiesByRegion() {
     numerateVisibleCities();
 }
 
-const regionCheckboxes = document.getElementsByName('region');
+const otherRegionCheckboxes = document.getElementsByName('region');
 
 document.addEventListener('DOMContentLoaded', function () {
-    regionCheckboxes.forEach(function (checkbox) {
+    otherRegionCheckboxes.forEach(function (checkbox) {
         checkbox.addEventListener('change', () => { hideCitiesByRegion() });
+    });
+});
+
+const allRegionsCheckbox = document.getElementsByName('region-all')[0];
+
+document.addEventListener('DOMContentLoaded', function () {
+    allRegionsCheckbox.addEventListener('change', () => {
+        changeOtherCheckboxesByAllCheckbox(
+            allRegionsCheckbox,
+            otherRegionCheckboxes,
+        )
     });
 });

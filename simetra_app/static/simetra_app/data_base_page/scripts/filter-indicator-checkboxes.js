@@ -43,14 +43,34 @@ function sortTableRows(cities) {
 }
 
 function recountSumOfRating(city) {
+    function getCorrectlySumOfRating(newSum) {
+        let newSumString = newSum.toString();
+        
+        const dot = '.';
+        const amountOfFractionNumber = 2;
+
+        let newStringInteger = newSumString.split(dot)[0];
+        let newStringFraction = newSumString.split(dot)[1];
+
+        if (newStringFraction == undefined) {
+            newStringFraction = '00';
+        }
+
+        while (newStringFraction.length !== amountOfFractionNumber) {
+            newStringFraction += '0';
+        }
+
+        newSumString = newStringInteger + dot + newStringFraction;
+
+        return newSumString;
+    }
+
     const sumOfRaing = city.querySelector('#sum-of-rating');
 
     const hiddenIndicator = '_hide-column-by-indicator';
 
     let newSum = 0;
-
     Array.from(city.children).forEach(function (child) {
-
         const childName = child.getAttribute('name');
         const isChildNameCorrect = childName == 'numeric-data';
         const isRowVisible = !child.classList.contains(hiddenIndicator);
@@ -63,7 +83,8 @@ function recountSumOfRating(city) {
     });
 
     newSum = Math.round(newSum * 100) / 100;
-    sumOfRaing.textContent = newSum;
+    const newSumString = getCorrectlySumOfRating(newSum);
+    sumOfRaing.textContent = newSumString;
 }
 
 function hideCitiesByIndicator() {
@@ -117,10 +138,21 @@ function hideCitiesByIndicator() {
     numerateVisibleCities();
 }
 
-const indicatorCheckboxes = document.getElementsByName('indicator');
+const otherIndicatorCheckboxes = document.getElementsByName('indicator');
 
 document.addEventListener('DOMContentLoaded', function () {
-    indicatorCheckboxes.forEach(function (checkbox) {
+    otherIndicatorCheckboxes.forEach(function (checkbox) {
         checkbox.addEventListener('change', () => { hideCitiesByIndicator() });
+    });
+});
+
+const allIndicatorCheckbox = document.getElementsByName('indicator-all')[0];
+
+document.addEventListener('DOMContentLoaded', function() {
+    allIndicatorCheckbox.addEventListener('change', () => {
+        changeOtherCheckboxesByAllCheckbox(
+            allIndicatorCheckbox,
+            otherIndicatorCheckboxes,
+        )
     });
 });

@@ -1,0 +1,345 @@
+@import "nullstyle";
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Merriweather:wght@400;700&display=swap");
+
+/*-------------------------------------------------------------*/
+/*-----Variable declaration------------------------------------*/
+/*-------------------------------------------------------------*/
+$blue-color: #6f80ff;
+$white-color: #ffffff;
+$black-color: #000000;
+
+/*-------------------------------------------------------------*/
+/*-----The Foundation------------------------------------------*/
+/*-------------------------------------------------------------*/
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+}
+
+.wrapper {
+  min-height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/*-------------------------------------------------------------*/
+/*-----Technical classes---------------------------------------*/
+/*-------------------------------------------------------------*/
+
+._container {
+  max-width: 1400px;
+  margin: 0px auto;
+  padding: 0px 10px;
+}
+
+._ibg {
+  position: relative;
+
+  & img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    object-fit: cover;
+  }
+}
+
+._main-title {
+  font-size: 36px;
+  line-height: 150%;
+  font-weight: 700;
+  margin: 0 auto;
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+._highlight {
+  color: $blue-color;
+}
+
+._link {
+  color: $white-color;
+  transition: 0.3s;
+
+  &:hover {
+    color: $blue-color;
+  }
+}
+
+._button {
+  transition: 0.3s;
+  max-width: 500px;
+  font-size: 20px;
+  padding: 20px 50px;
+  background-color: $blue-color;
+  color: $white-color;
+  font-weight: 600;
+
+  &:hover {
+    background-color: $white-color;
+    color: $blue-color;
+  }
+}
+
+/*-------------------------------------------------------------*/
+/*-----Scroll Bar----------------------------------------------*/
+/*-------------------------------------------------------------*/
+
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+::-webkit-scrollbar-track {
+}
+
+::-webkit-scrollbar-thumb {
+  background: #6f80ff;
+  border-radius: 10px;
+  border: 3px solid #d4d4d4;
+
+  &:hover {
+    background: #37407f;
+  }
+}
+
+
+/*-------------------------------------------------------------*/
+/*-----Burger--------------------------------------------------*/
+/*-------------------------------------------------------------*/
+body._lock {
+  overflow: hidden;
+}
+
+.menu__icon {
+  display: none;
+  margin: 0 0 0 auto;
+}
+
+@media (max-width: 1110px) {
+  .menu__logo {
+    z-index: 5;
+    position: relative;
+  }
+
+  .menu__icon {
+    z-index: 5;
+    display: block;
+    position: relative;
+    width: 42px;
+    height: 25px;
+    cursor: pointer;
+  }
+
+  .menu__icon._active {
+    span {
+      transform: scale(0) translate(0px, -50%);
+    }
+
+    &::before {
+      top: 50%;
+      transform: rotate(-45deg) translate(0px, -50%);
+    }
+
+    &::after {
+      bottom: 50%;
+      transform: rotate(45deg) translate(0px, 50%);
+    }
+  }
+
+  .menu__icon span,
+  .menu__icon::before,
+  .menu__icon::after {
+    left: 0;
+    position: absolute;
+    height: 10%;
+    width: 100%;
+    transition: all 0.3s ease 0s;
+    background-color: #ffffff;
+  }
+
+  .menu__icon::before,
+  .menu__icon::after {
+    content: "";
+  }
+
+  .menu__icon::before {
+    top: 0;
+  }
+
+  .menu__icon::after {
+    bottom: 0;
+  }
+
+  .menu__icon span {
+    top: 50%;
+    transform: scale(1) translate(0px, -50%);
+  }
+
+  .menu__body {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 140px 30px 30px 30px;
+    transition: left 0.3s ease 0s;
+    overflow: auto;
+  }
+
+  .menu__body._active {
+    left: 0;
+  }
+
+  .menu__body._active::before {
+    content: "";
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 80px;
+    background: #000000;
+  }
+
+  .menu__body {
+    text-align: center;
+    flex-direction: column;
+    gap: 50px 0px;
+  }
+  .menu__list {
+    flex-direction: column;
+    gap: 30px 0px;
+    font-size: 35px;
+  }
+
+  .menu__contacts {
+    font-size: 35px;
+  }
+  .menu__item {
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .menu__link {
+    font-size: 40px;
+  }
+}
+
+/*-------------------------------------------------------------*/
+/*-----HEADER--------------------------------------------------*/
+/*-------------------------------------------------------------*/
+
+.header {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, .7);
+  &__menu {
+    padding: 10px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+.header{
+  &__color{
+      background-color: rgba(0, 0, 0, .9);
+  }
+}
+.menu {
+  width: 100%;
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 30px 30px;
+  }
+  &__item {
+    font-size: 24px;
+  }
+
+  &__body {
+    display: flex;
+    align-items: center;
+    gap: 0px 40px;
+  }
+  &__logo {
+    width: 200px;
+  }
+}
+
+/*-------------------------------------------------------------*/
+/*-----MAIN----------------------------------------------------*/
+/*-------------------------------------------------------------*/
+
+.page {
+  flex: 1 1 auto;
+}
+
+.page {
+  &-title {
+    padding-top: 150px;
+    padding-bottom: 120px;
+    z-index: 5;
+    font-size: 36px;
+    text-align: center;
+  }
+}
+
+/*-------------------------------------------------------------*/
+/*-----FOOTER--------------------------------------------------*/
+/*-------------------------------------------------------------*/
+
+.footer {
+  background-color: $black-color;
+  color: $white-color;
+  &__list {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 0px;
+  }
+  &__logo {
+    max-width: 250px;
+    margin-bottom: 30px;
+  }
+
+  &__social {
+    margin-bottom: 40px;
+  }
+  &__text {
+    max-width: 700px;
+    text-align: center;
+    margin-bottom: 30px;
+    line-height: 150%;
+    &:last-child {
+      margin-bottom: 0px;
+    }
+  }
+}
+
+.social {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px 20px;
+
+  .social__item svg {
+    width: 40px;
+    height: 40px;
+    transition: 0.3s;
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+}

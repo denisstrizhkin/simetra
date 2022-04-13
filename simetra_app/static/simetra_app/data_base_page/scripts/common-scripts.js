@@ -25,4 +25,30 @@ function numerateVisibleCities() {
     }
 }
 
+function changeOtherCheckboxesByAllCheckbox(allCheckbox, otherCheckboxes) {
+    if (allCheckbox.checked) {
+        otherCheckboxes.forEach(function (checkbox) {
+            checkbox.checked = true;
+        });
+    } else {
+        otherCheckboxes.forEach(function (checkbox) {
+            checkbox.checked = false;
+        });
+    }
+
+    const allCheckboxName = allCheckbox.getAttribute('name');
+
+    if (allCheckboxName == 'population-all') {
+        hideCitiesByPopulation();
+    }
+
+    if (allCheckboxName == 'region-all') {
+        hideCitiesByRegion();
+    }
+
+    if (allCheckboxName == 'indicator-all') {
+        hideCitiesByIndicator();
+    }
+}
+
 numerateCities();

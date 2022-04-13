@@ -16,12 +16,12 @@ function hideCitiesByPopulation() {
 
     const valueToParsePopulation = 1000000;
     const cities = document.getElementsByName('table-row-values');
-    
-    cities.forEach(function(city) {
+
+    cities.forEach(function (city) {
         let population = city.querySelector('#num-population').textContent;
         population = population * valueToParsePopulation;
 
-        if (population < halfMillionareCity) { 
+        if (population < halfMillionareCity) {
             hideOrShowCityByCheckbox(nonHalfMillionare, city);
         }
 
@@ -37,10 +37,24 @@ function hideCitiesByPopulation() {
     numerateVisibleCities();
 }
 
-const populationCheckboxes = document.getElementsByName('population');
+const otherPopulationCheckboxes = document.getElementsByName('population');
 
-document.addEventListener('DOMContentLoaded', function() {
-    populationCheckboxes.forEach(function(checkbox) {
-        checkbox.addEventListener('change', () => {hideCitiesByPopulation()});
+document.addEventListener('DOMContentLoaded', function () {
+    otherPopulationCheckboxes.forEach(function (checkbox) {
+        checkbox.addEventListener('change', () => {
+            hideCitiesByPopulation();
+        });
+    });
+});
+
+
+const allPopulationCheckbox = document.getElementsByName('population-all')[0];
+
+document.addEventListener('DOMContentLoaded', function () {
+    allPopulationCheckbox.addEventListener('change', () => {
+        changeOtherCheckboxesByAllCheckbox(
+            allPopulationCheckbox,
+            otherPopulationCheckboxes,
+        );
     });
 });
