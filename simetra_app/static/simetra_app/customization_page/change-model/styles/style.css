@@ -129,6 +129,19 @@ body {
   color: #ffb259;
 }
 
+._right-text {
+  float: right;
+}
+
+._center-block {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+._center-text {
+  text-align: center;
+}
+
 /*-------------------------------------------------------------*/
 /*-----HEADER--------------------------------------------------*/
 /*-------------------------------------------------------------*/
@@ -201,7 +214,7 @@ body {
 }
 
 .home__container {
-  padding: 0px 10px 0px 50px;
+  padding: 0px 10px 0px 0px;
   max-width: 680px;
 }
 
@@ -222,6 +235,17 @@ body {
   .home__title {
     font-size: 40px;
   }
+}
+
+.home__navbar {
+  font-size: 22px;
+  line-height: 120%;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 0px 10px 0px black;
+          box-shadow: 0px 0px 10px 0px black;
+  padding: 15px 15px;
+  background-color: #37407f;
 }
 
 .home__add {

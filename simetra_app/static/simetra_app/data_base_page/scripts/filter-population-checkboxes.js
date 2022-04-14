@@ -1,9 +1,14 @@
-function hideCitiesByPopulation() {
+function hideCitiesByPopulation(allCheckbox) {
+    function uncheckAllCheckbox() {
+        allCheckbox.checked = false;
+    }
+
     function hideOrShowCityByCheckbox(checkbox, city) {
         if (checkbox.checked) {
             city.classList.remove('_hide-city-by-population');
         } else {
             city.classList.add('_hide-city-by-population');
+            uncheckAllCheckbox();
         }
     }
 
@@ -38,17 +43,19 @@ function hideCitiesByPopulation() {
 }
 
 const otherPopulationCheckboxes = document.getElementsByName('population');
+const allPopulationCheckbox = document.getElementsByName('population-all')[0];
 
 document.addEventListener('DOMContentLoaded', function () {
     otherPopulationCheckboxes.forEach(function (checkbox) {
         checkbox.addEventListener('change', () => {
-            hideCitiesByPopulation();
+            hideCitiesByPopulation(allPopulationCheckbox);
+            checkAllCheckboxIfAllCheckboxesAreChecked(
+                otherPopulationCheckboxes,
+                allPopulationCheckbox,
+            );
         });
     });
 });
-
-
-const allPopulationCheckbox = document.getElementsByName('population-all')[0];
 
 document.addEventListener('DOMContentLoaded', function () {
     allPopulationCheckbox.addEventListener('change', () => {

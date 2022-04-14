@@ -34,14 +34,19 @@ function hideCitiesByRegion() {
 }
 
 const otherRegionCheckboxes = document.getElementsByName('region');
+const allRegionsCheckbox = document.getElementsByName('region-all')[0];
 
 document.addEventListener('DOMContentLoaded', function () {
     otherRegionCheckboxes.forEach(function (checkbox) {
-        checkbox.addEventListener('change', () => { hideCitiesByRegion() });
+        checkbox.addEventListener('change', () => { 
+            hideCitiesByRegion();
+            checkAllCheckboxIfAllCheckboxesAreChecked(
+                otherRegionCheckboxes,
+                allRegionsCheckbox,
+            ); 
+        });
     });
 });
-
-const allRegionsCheckbox = document.getElementsByName('region-all')[0];
 
 document.addEventListener('DOMContentLoaded', function () {
     allRegionsCheckbox.addEventListener('change', () => {

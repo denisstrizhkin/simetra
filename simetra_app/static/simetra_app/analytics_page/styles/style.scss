@@ -1,7 +1,16 @@
 @import "../../general_styles/_nullstyle";
 @import "../../general_styles/_header";
 @import "../../general_styles/_footer";
+<<<<<<< HEAD
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto&display=swap');
+=======
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Merriweather:wght@400;700&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+>>>>>>> b81e4b35c50399e26a5ea841d3239b6157725f60
 
 
 
@@ -9,14 +18,9 @@
 /*-------------------------------------------------------------*/
 /*-----Variable declaration------------------------------------*/
 /*-------------------------------------------------------------*/
-$blue-color: #6f80ff;
-$white-color: #ffffff;
-$black-color: #000000;
-
 /*-------------------------------------------------------------*/
 /*-----The Foundation------------------------------------------*/
 /*-------------------------------------------------------------*/
-
 html {
   scroll-behavior: smooth;
 }
@@ -29,14 +33,18 @@ body {
 .wrapper {
   min-height: 100%;
   overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 /*-------------------------------------------------------------*/
 /*-----Technical classes---------------------------------------*/
 /*-------------------------------------------------------------*/
-
 ._container {
   max-width: 1400px;
   margin: 0px auto;
@@ -45,15 +53,16 @@ body {
 
 ._ibg {
   position: relative;
+}
 
-  & img {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-    object-fit: cover;
-  }
+._ibg img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 ._title  {
@@ -66,71 +75,67 @@ body {
 }
 
 ._highlight {
-  color: $blue-color;
+  color: #6f80ff;
 }
 
 ._link {
-  color: $white-color;
+  color: #ffffff;
+  -webkit-transition: 0.3s;
   transition: 0.3s;
+}
 
-  &:hover {
-    color: $blue-color;
-  }
+._link:hover {
+  color: #6f80ff;
 }
 
 ._button {
+  -webkit-transition: 0.3s;
   transition: 0.3s;
   max-width: 500px;
   font-size: 20px;
   padding: 20px 50px;
-  background-color: $blue-color;
-  color: $white-color;
+  background-color: #6f80ff;
+  color: #ffffff;
   font-weight: 600;
+}
 
-  &:hover {
-    background-color: $white-color;
-    color: $blue-color;
-  }
+._button:hover {
+  background-color: #ffffff;
+  color: #6f80ff;
 }
 
 /*-------------------------------------------------------------*/
 /*-----Scroll Bar----------------------------------------------*/
 /*-------------------------------------------------------------*/
-
 ::-webkit-scrollbar {
   width: 15px;
-}
-
-::-webkit-scrollbar-track {
 }
 
 ::-webkit-scrollbar-thumb {
   background: #6f80ff;
   border-radius: 10px;
   border: 3px solid #d4d4d4;
-
-  &:hover {
-    background: #37407f;
-  }
 }
 
+::-webkit-scrollbar-thumb:hover {
+  background: #37407f;
+}
 
 /*-------------------------------------------------------------*/
 /*-----MAIN----------------------------------------------------*/
 /*-------------------------------------------------------------*/
-
 .page {
-  flex: 1 1 auto;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
 }
 
-.page {
-  &-title {
-    padding-top: 150px;
-    padding-bottom: 120px;
-    z-index: 5;
-    font-size: 36px;
-    text-align: center;
-  }
+.page-title {
+  padding-top: 150px;
+  padding-bottom: 120px;
+  z-index: 5;
+  font-size: 36px;
+  text-align: center;
 }
 
 canvas{

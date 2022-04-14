@@ -139,10 +139,26 @@ function hideCitiesByIndicator() {
 }
 
 const otherIndicatorCheckboxes = document.getElementsByName('indicator');
+const allIndicatorCheckbox = document.getElementsByName('indicator-all')[0];
 
 document.addEventListener('DOMContentLoaded', function () {
     otherIndicatorCheckboxes.forEach(function (checkbox) {
-        checkbox.addEventListener('change', () => { hideCitiesByIndicator() });
+        checkbox.addEventListener('change', () => { 
+            hideCitiesByIndicator();
+            checkAllCheckboxIfAllCheckboxesAreChecked(
+                otherIndicatorCheckboxes,
+                allIndicatorCheckbox,
+            );  
+        });
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    allIndicatorCheckbox.addEventListener('change', () => {
+        changeOtherCheckboxesByAllCheckbox(
+            allIndicatorCheckbox,
+            otherIndicatorCheckboxes,
+        )
     });
 });
 

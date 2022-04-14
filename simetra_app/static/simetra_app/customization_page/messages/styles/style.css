@@ -9,6 +9,13 @@
   color: black;
 }
 
+._customized-bootstrap-message {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  padding: 14px !important; 
+}
+
 .message {
   max-width: 90%;
   border-radius: 10px;

@@ -200,7 +200,7 @@ body {
 }
 
 .home__container {
-  padding: 100px 10px 0px 50px;
+  padding: 100px 10px 0px 0px;
   max-width: 850px;
 }
 
@@ -215,6 +215,17 @@ body {
   font-size: 50px;
   line-height: 130%;
   margin-bottom: 30px;
+}
+
+.home__navbar {
+  font-size: 22px;
+  line-height: 120%;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 0px 10px 0px black;
+          box-shadow: 0px 0px 10px 0px black;
+  padding: 15px 15px;
+  background-color: #37407f;
 }
 
 .home__block {
@@ -246,6 +257,16 @@ body {
   display: inline-block;
   min-width: 170px;
   margin-bottom: 15px;
+}
+
+.home__descr-image-form-field {
+  float: left;
+  min-width: 170px;
+}
+
+.home__image-form-field {
+  position: flex;
+  margin-left: 170px;
 }
 
 .home__submit {

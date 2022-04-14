@@ -51,4 +51,21 @@ function changeOtherCheckboxesByAllCheckbox(allCheckbox, otherCheckboxes) {
     }
 }
 
+function checkAllCheckboxIfAllCheckboxesAreChecked(otherCheckboxes, allCheckbox) {
+    const allCheckboxesAmount = otherCheckboxes.length;
+    let checkedCheckboxesAmount = 0;
+
+    otherCheckboxes.forEach(function (checkbox) {
+        if (checkbox.checked) {
+            checkedCheckboxesAmount += 1;
+        }
+    });
+
+    if (allCheckboxesAmount == checkedCheckboxesAmount) {
+        allCheckbox.checked = true;
+    } else {
+        allCheckbox.checked = false;
+    }
+}
+
 numerateCities();
