@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*Обнуление*/
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Merriweather:wght@400;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto&display=swap');
 * {
   padding: 0;
   margin: 0;
@@ -351,7 +351,7 @@ html {
 }
 
 body {
-  font-family: "Inter", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 18px;
 }
 
@@ -390,7 +390,7 @@ body {
      object-fit: cover;
 }
 
-._main-title {
+._title  {
   font-size: 36px;
   line-height: 150%;
   font-weight: 700;

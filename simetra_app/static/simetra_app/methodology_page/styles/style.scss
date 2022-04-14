@@ -1,7 +1,7 @@
 @import "../../general_styles/_nullstyle";
 @import "../../general_styles/_header";
 @import "../../general_styles/_footer";
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto&display=swap');
 /*-------------------------------------------------------------*/
 /*-----Variable declaration------------------------------------*/
 /*-------------------------------------------------------------*/
@@ -43,6 +43,7 @@ body {
 }
 
 ._title {
+  font-family: "Montserrat", sans-serif;
   margin: 0 auto;
   text-align: center;
   font-weight: 700;
