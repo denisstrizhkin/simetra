@@ -91,6 +91,78 @@ h6 {
 
 /*--------------------------------------------------------*/
 /*-------------------------------------------------------------*/
+/*-----HEADER--------------------------------------------------*/
+/*-------------------------------------------------------------*/
+.header {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.header__menu {
+  padding: 10px 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.header__color {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.menu {
+  width: 100%;
+}
+
+.menu__body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0px 40px;
+}
+
+.menu__list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  gap: 30px 30px;
+}
+
+.menu a:focus {
+  -webkit-box-shadow: 0 0 5px 5px #6f80ff;
+          box-shadow: 0 0 5px 5px #6f80ff;
+}
+
+.menu__logo {
+  width: 200px;
+}
+
+.menu__item {
+  font-size: 24px;
+}
+
+.menu__item a {
+  padding: 5px;
+}
+
+/*-------------------------------------------------------------*/
 /*-----Burger--------------------------------------------------*/
 /*-------------------------------------------------------------*/
 body._lock {
@@ -102,7 +174,7 @@ body._lock {
   margin: 0 0 0 auto;
 }
 
-@media (max-width: 1110px) {
+@media (max-width: 1150px) {
   .menu__logo {
     z-index: 5;
     position: relative;
@@ -207,69 +279,6 @@ body._lock {
   }
 }
 
-/*-------------------------------------------------------------*/
-/*-----HEADER--------------------------------------------------*/
-/*-------------------------------------------------------------*/
-.header {
-  position: fixed;
-  width: 100%;
-  left: 0;
-  top: 0;
-  z-index: 10;
-  background-color: rgba(0, 0, 0, 0.7);
-}
-
-.header__menu {
-  padding: 10px 0px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-}
-
-.header__color {
-  background-color: rgba(0, 0, 0, 0.9);
-}
-
-.menu {
-  width: 100%;
-}
-
-.menu__list {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  gap: 30px 30px;
-}
-
-.menu__item {
-  font-size: 24px;
-}
-
-.menu__body {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  gap: 0px 40px;
-}
-
-.menu__logo {
-  width: 200px;
-}
-
 /*--------------------------------------------------------*/
 /*-----FOOTER---------------------------------------------*/
 /*--------------------------------------------------------*/
@@ -295,9 +304,18 @@ body._lock {
   padding: 30px 0px;
 }
 
+.footer__item a {
+  display: block;
+  margin-bottom: 30px;
+}
+
+.footer__item a:focus {
+  -webkit-box-shadow: 0 0 5px 5px #6F81FF;
+          box-shadow: 0 0 5px 5px #6F81FF;
+}
+
 .footer__logo {
   max-width: 250px;
-  margin-bottom: 30px;
 }
 
 .footer__social {
@@ -328,16 +346,26 @@ body._lock {
   gap: 20px 20px;
 }
 
-.social .social__item svg {
+.social__item svg {
   width: 40px;
   height: 40px;
   -webkit-transition: 0.3s;
   transition: 0.3s;
 }
 
-.social .social__item svg:hover {
+.social__item svg:hover {
   -webkit-transform: scale(1.2);
           transform: scale(1.2);
+}
+
+.social__item a {
+  border-radius: 50%;
+  display: block;
+}
+
+.social__item a:focus {
+  -webkit-box-shadow: 0 0 5px 7px #6F81FF;
+          box-shadow: 0 0 5px 7px #6F81FF;
 }
 
 /*-------------------------------------------------------------*/

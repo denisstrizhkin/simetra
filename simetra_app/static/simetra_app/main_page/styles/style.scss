@@ -1,7 +1,7 @@
 @import "../../general_styles/_nullstyle";
 @import "../../general_styles/_header";
 @import "../../general_styles/_footer";
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto&display=swap");
 
 /*-------------------------------------------------------------*/
 /*-----Variable declaration------------------------------------*/
@@ -52,7 +52,7 @@ body {
   object-fit: cover;
 }
 
-._title  {
+._title {
   font-family: "Montserrat", sans-serif;
   font-size: 36px;
   line-height: 150%;
@@ -78,6 +78,7 @@ body {
 
 ._button {
   transition: 0.3s;
+  border-radius: 5px;
   max-width: 500px;
   font-size: 20px;
   padding: 20px 50px;
@@ -87,6 +88,10 @@ body {
   &:hover {
     background-color: $white-color;
     color: $blue-color;
+  }
+
+  &:focus {
+    box-shadow: 0 0 5px 5px #8BCCFF;
   }
 }
 
