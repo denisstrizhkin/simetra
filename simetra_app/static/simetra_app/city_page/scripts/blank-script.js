@@ -72,11 +72,11 @@ function createNewPolarArea(groupArr, start, end) {
         label: "Dataset 1",
         data: generateDatas(groupArr, start, end),
         backgroundColor: [
-          "rgba(255, 99, 132,1)",
-          "rgba(54, 162, 235,1)",
-          "rgba(255, 206, 86,1)",
-          "rgba(75, 192, 192,1)",
-          "rgba(153, 102, 255,1)",
+          "#E08A8E",
+          "#6F80FF",
+          "#DFE08B",
+          "#85DEB1",
+          "#B18AE0",
         ],
       },
     ],
@@ -131,11 +131,11 @@ function createNewPie(groupArr, start, end, fontColor = "black") {
       {
         data: generateDatas(groupArr, start, end),
         backgroundColor: [
-          "rgba(255, 99, 132,1)",
-          "rgba(54, 162, 235,1)",
-          "rgba(255, 206, 86,1)",
-          "rgba(75, 192, 192,1)",
-          "rgba(153, 102, 255,1)",
+          "#E08A8E",
+          "#6F80FF",
+          "#DFE08B",
+          "#85DEB1",
+          "#B18AE0",
         ],
       },
     ],
@@ -182,11 +182,11 @@ function createNewDoughnut(groupArr, start, end, fontColor = "black") {
       {
         data: generateDatas(groupArr, start, end),
         backgroundColor: [
-          "rgba(255, 99, 132,1)",
-          "rgba(54, 162, 235,1)",
-          "rgba(255, 206, 86,1)",
-          "rgba(75, 192, 192,1)",
-          "rgba(153, 102, 255,1)",
+          "#E08A8E",
+          "#6F80FF",
+          "#DFE08B",
+          "#85DEB1",
+          "#B18AE0",
         ],
       },
     ],
@@ -375,7 +375,6 @@ let ungroupedPropertiesName = [];
 /*-----Unused--------------------------------------------------*/
 /*-------------------------------------------------------------*/
 function displayUnusedProperties(containerSelector) {
-  console.log(document.querySelector(containerSelector));
   let unusedList;
   for (let i = 0; i < unusedProperties.length; i++) {
     if (i === 0) {
@@ -391,7 +390,7 @@ function displayUnusedProperties(containerSelector) {
       unusedList.classList.add("unused__list");
       unusedWrapper.append(unusedList);
     }
-    
+
     const unuseElement = document.createElement("li");
     unuseElement.textContent = `${nameUnusedProperties[i]}`;
     unusedList.append(unuseElement);
@@ -415,47 +414,32 @@ new Chart(
 /*-----Spatial-------------------------------------------------*/
 /*-------------------------------------------------------------*/
 
-createNewChart("spatial", 1);
-new Chart(
-  document.getElementById("spatial-1"),
-  createNewPie(spatialCharacteristics, 0, 5, "white")
-);
-displayUnusedProperties(".spatial__container");
+let spatialCounter = 0;
+for (let i = 8; i < 13; i++) {
+  if (spatialCharacteristics[i][1] !== 0) {
+    spatialCounter++;
+    createNewChart("spatial", spatialCounter);
+    new Chart(
+      document.getElementById(`spatial-${spatialCounter}`),
+      createNewDoughnut(spatialCharacteristics, i, i + 1, "white")
+    );
+  } else {
+    unusedProperties.push(spatialCharacteristics[i][1]);
+  }
+}
 
-createNewChart("spatial", 2);
-new Chart(
-  document.getElementById("spatial-2"),
-  createNewDoughnut(spatialCharacteristics, 5, 8, "white")
-);
-displayUnusedProperties(".spatial__container");
-
-createNewChart("spatial", 3);
-new Chart(
-  document.getElementById("spatial-3"),
-  createNewDoughnut(spatialCharacteristics, 8, 13, "white")
-);
-displayUnusedProperties(".spatial__container");
-
-createNewChart("spatial", 4);
-new Chart(
-  document.getElementById("spatial-4"),
-  createNewDoughnut(spatialCharacteristics, 13, 18, "white")
-);
-displayUnusedProperties(".spatial__container");
-
-createNewChart("spatial", 5);
-new Chart(
-  document.getElementById("spatial-5"),
-  createNewDoughnut(spatialCharacteristics, 18, 20, "white")
-);
-displayUnusedProperties(".spatial__container");
-
-createNewChart("spatial", 6);
-new Chart(
-  document.getElementById("spatial-6"),
-  createNewDoughnut(spatialCharacteristics, 25, 30, "white")
-);
-displayUnusedProperties(".spatial__container");
+for (let i = 15; i < 19; i++) {
+  if (spatialCharacteristics[i][1] !== 0) {
+    spatialCounter++;
+    createNewChart("spatial", spatialCounter);
+    new Chart(
+      document.getElementById(`spatial-${spatialCounter}`),
+      createNewDoughnut(spatialCharacteristics, i, i + 1, "white")
+    );
+  } else {
+    unusedProperties.push(spatialCharacteristics[i][1]);
+  }
+}
 
 /*-------------------------------------------------------------*/
 /*-----Rolling stock-------------------------------------------*/
@@ -466,15 +450,12 @@ new Chart(
   document.getElementById("rolling-stock-1"),
   createNewPie(rollinStock, 0, 5)
 );
-displayUnusedProperties(".rolling-stock__container");
-
 
 createNewChart("rolling-stock", 2);
 new Chart(
   document.getElementById("rolling-stock-2"),
   createNewDoughnut(rollinStock, 5, 10)
 );
-displayUnusedProperties(".rolling-stock__container");
 
 /*-----Procent-------------------------------------------*/
 createNewChart("rolling-stock", 3);
@@ -482,7 +463,6 @@ new Chart(
   document.getElementById("rolling-stock-3"),
   createNewMultiSeriesPie(rollinStock, 10, 15)
 );
-displayUnusedProperties(".rolling-stock__container");
 
 /*-------------------------------------------------------------*/
 createNewChart("rolling-stock", 4);
@@ -490,28 +470,24 @@ new Chart(
   document.getElementById("rolling-stock-4"),
   createNewDoughnut(rollinStock, 15, 20)
 );
-displayUnusedProperties(".rolling-stock__container");
 
 createNewChart("rolling-stock", 5);
 new Chart(
   document.getElementById("rolling-stock-5"),
   createNewDoughnut(rollinStock, 25, 30)
 );
-displayUnusedProperties(".rolling-stock__container");
 
 createNewChart("rolling-stock", 6);
 new Chart(
   document.getElementById("rolling-stock-6"),
   createNewDoughnut(rollinStock, 30, 35)
 );
-displayUnusedProperties(".rolling-stock__container");
 
 createNewChart("rolling-stock", 7);
 new Chart(
   document.getElementById("rolling-stock-7"),
   createNewDoughnut(rollinStock, 35, 40)
 );
-displayUnusedProperties(".rolling-stock__container");
 
 createNewChart("rolling-stock", 8);
 new Chart(
@@ -529,33 +505,24 @@ new Chart(
   document.getElementById("routes-1"),
   createNewPie(routes, 0, 4, "white")
 );
-displayUnusedProperties(".routes__container");
-
 
 createNewChart("routes", 2);
 new Chart(
   document.getElementById("routes-2"),
   createNewPie(routes, 4, 7, "white")
 );
-displayUnusedProperties(".routes__container");
-
-
 
 createNewChart("routes", 3);
 new Chart(
   document.getElementById("routes-3"),
   createNewDoughnut(routes, 7, 10, "white")
 );
-displayUnusedProperties(".routes__container");
-
 
 createNewChart("routes", 4);
 new Chart(
   document.getElementById("routes-4"),
   createNewDoughnut(routes, 10, 14, "white")
 );
-displayUnusedProperties(".routes__container");
-
 
 // !!! Data
 createNewChart("routes", 5);
@@ -563,16 +530,12 @@ new Chart(
   document.getElementById("routes-5"),
   createNewDoughnut(routes, 14, 19, "white")
 );
-displayUnusedProperties(".routes__container");
-
 
 createNewChart("routes", 6);
 new Chart(
   document.getElementById("routes-6"),
   createNewDoughnut(routes, 19, 21, "white")
 );
-displayUnusedProperties(".routes__container");
-
 
 // !!! Data
 createNewChart("routes", 7);
@@ -580,8 +543,6 @@ new Chart(
   document.getElementById("routes-7"),
   createNewDoughnut(routes, 21, 26, "white")
 );
-displayUnusedProperties(".routes__container");
-
 
 // !!! Data
 // ??? 30f
@@ -592,22 +553,17 @@ new Chart(
 );
 displayUnusedProperties(".routes__container");
 
-
 /*-------------------------------------------------------------*/
 /*-----Tariff--------------------------------------------------*/
 /*-------------------------------------------------------------*/
 createNewChart("tariff", 1);
 new Chart(document.getElementById("tariff-1"), createNewPie(routes, 0, 5));
-displayUnusedProperties(".tariff__container");
-
 
 createNewChart("tariff", 2);
 new Chart(
   document.getElementById("tariff-2"),
   createNewDoughnut(tariffSystem, 5, 10)
 );
-displayUnusedProperties(".tariff__container");
-
 
 createNewChart("tariff", 3);
 new Chart(
