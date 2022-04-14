@@ -422,8 +422,7 @@ body {
      object-fit: cover;
 }
 
-._title {
-  font-family: "Montserrat", sans-serif;
+._main-title {
   font-size: 36px;
   line-height: 150%;
   font-weight: 700;

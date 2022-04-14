@@ -404,6 +404,16 @@ body {
   padding: 0px 10px;
 }
 
+._styled-marker {
+  background-size: cover;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 5px black;
+  cursor: pointer;
+  background-image: url("../assets/img/circle.svg");
+}
+
 ._ibg {
   position: relative;
 }
