@@ -1,6 +1,8 @@
 import json
 import urllib
 
+from pyexcel import exceptions as pyex_excpts
+
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth import authenticate, login, logout
@@ -417,11 +419,18 @@ def update_city(request, city_id):
 
 @login_required(login_url='simetra_app:staff-login')
 def upload_cities_excel(request):
-    def write_field(city: City, sheet, field_name: str, i: int) -> None:
+    def write_field(city, sheet, field_name, i):
         field_type = type(getattr(city, field_name))
-        val = sheet[City._meta.get_field(field_name).verbose_name, i]
-        cname = getattr(city, 'name')
         vname = City._meta.get_field(field_name).verbose_name
+
+        try:
+            val = sheet[vname, i]
+        except ValueError:
+            err_msg = "Таблица не содержит поля [{}].".format(vname)
+            messages.error(request, err_msg)
+            return
+
+        cname = getattr(city, 'name')
         fmt = "Город: {}, Значение: [{}] должно быть {}"
         err_msg = ''
 
@@ -446,12 +455,23 @@ def upload_cities_excel(request):
             setattr(city, field_name, val)
 
     form = UploadFileForm()
-
+    context = {
+            "form": form,
+            "error_message": '',
+        }
     if request.method == "POST":
         form = UploadFileForm(request.POST, request.FILES)
 
         if form.is_valid():
-            excel_book = request.FILES["file"].get_book()
+            #excel_book = request.FILES["file"].get_book()
+            try:
+                excel_book = request.FILES["file"].get_book()
+            except pyex_excpts.FileTypeNotSupported:
+                err_msg = "Данный формат файла не поддерживается"
+                messages.error(request, err_msg)
+                context = update_context_for_customization_pages_navbar(request, context)
+                return render(request, "simetra_app/upload-cities-excel.html", context)
+
 
             sheet_names = get_city_attrs_by_groups_dict()
 
@@ -464,13 +484,16 @@ def upload_cities_excel(request):
 
             error_message = ''
             for sheet_name in sheet_names:
+                print(sheet_name)
                 if not check_sheet_existance(excel_book, sheet_name):
                     error_message = 'Документ не содержит следующего листа: \
-                        "{}"'.format(sheet_name)
+"{}", Ошибка при загрузке!'.format(sheet_name)
 
             if error_message != '':
-                message_text = error_message
-                messages.error(request, message_text)
+                messages.error(request, error_message)
+                context = update_context_for_customization_pages_navbar(request, context)
+                return render(request, "simetra_app/upload-cities-excel.html", context)
+
 
             loc_read = {}
             def write_sheet(sheet_name) -> None:
@@ -480,7 +503,15 @@ def upload_cities_excel(request):
 
                 sheet.name_rows_by_column(0)
                 for i in range(0, sheet.number_of_columns()):
-                    name = sheet['Город', i]
+                    try:
+                        name = sheet['Город', i]
+                    except ValueError:
+                        err_msg = "Лист: [{}] не содержит поля [Город]".format(sheet_name)
+                        messages.error(request, err_msg)
+                        break
+
+                    if(name == ''):
+                        continue
                     if not name in loc_read:
                         loc_read[name] = False
 
@@ -514,13 +545,7 @@ def upload_cities_excel(request):
             message_text = 'Неверный формат файла!'
             messages.error(request, message_text)
 
-    context = {
-        "form": form,
-        "error_message": '',
-    }
-
     context = update_context_for_customization_pages_navbar(request, context)
-
     return render(request, "simetra_app/upload-cities-excel.html", context)
 
 
