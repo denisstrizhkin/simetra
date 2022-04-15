@@ -7,13 +7,6 @@
   text-align: center;
 }
 
-.home__avatar_img {
-  max-width: 200px;
-  margin-top: 10px; 
-  margin-bottom: 5px;
-  border-radius: 5px;
-}
-
 @media (max-width: 485px) {
   .home__image-form-field {
     margin-top: 5px;

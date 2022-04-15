@@ -60,6 +60,7 @@
 <body>
     {{ city_attr_verbose_names_list_json|json_script:"city_attr_verbose_names_list_json" }}
     {{ cities_attrs_by_groups_list_json|json_script:"cities_attrs_by_groups_list_json" }}
+    {{ cities_list_json|json_script:"cities-list-json" }}
     <div class="wrapper">
         <header class="header">
             <div class="header__container _container">
@@ -70,14 +71,14 @@
         <main class="page">
             <section class="page__home home">
                 <div class="home__container _container">
-                    <img class="home__image" src="#" alt="City Image" title="Изображение города">
+                    <img class="home__image" src="{{ city.avatar.url }}" alt="City Image" title="Изображение города">
                     <div class="home__info">
                         <h1 class="home__title _title">
-                            {{ name }}
+                            {{ city.name }}
                         </h1>
                         <div class="home__coordinates">
-                            <p>Широта: {{ longitude }}</p>
-                            <p>Долгота: {{ latitude }}</p>
+                            <p>Широта: {{ city.longitude }}</p>
+                            <p>Долгота: {{ city.latitude }}</p>
                         </div>
                     </div>
 
@@ -134,6 +135,7 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1"></script>
     <script src="{% static 'simetra_app/city_page/scripts/blank-script.js' %}"></script>
+    <script src="{% static 'simetra_app/city_page/scripts/test-script.js' %}"></script>
 </body>
 
 </html>

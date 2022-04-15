@@ -80,7 +80,7 @@
               </span>
               {{ city_form.russian_name }}
             </p>
-			<p class="home__input-block _space-between">
+			      <p class="home__input-block _space-between">
               <span class="home__align-vertically-text">
                 Округ
               </span>
@@ -98,6 +98,28 @@
               </span> 
               {{ city_form.latitude }}
             </div>
+            <div class="home__input-block">
+              <div class="home__descr-image-form-field">Аватар</div>
+              <div class="home__image-form-field">
+                {% if not is_create_page %}
+                  <span class="home__image-discription">Текущее изображение</span>
+                  <p><img src="{{ city_image_path }}" alt="Аватар" class="home__city-avatar-img"/></p>
+                  <span name="image-field">{{ city_form.avatar }}</span>
+                {% else %}
+                  <span class="_padding-left-off" name="image-field">{{ city_form.avatar }}</span>
+                {% endif %}
+              </div>
+            </div>
+            <!-- <p class="home__input-block _space-between">
+              {% if not is_create_page %}
+                <span class="home__image-discription">Текущее изображение</span>
+                <p><img src="{{ city_image_path }}" alt="Аватар" class="home__avatar_img"/></p>
+              {% endif %}
+              <span class="home__align-vertically-text">
+                Изображение города
+              </span>
+              <span name="image-field">{{ city_form.avatar }}</span>
+            </p> -->
             <div class="home__fill">Заполнить поля автоматически</div>
             <div class="home__fill">
               <input type="button" class="home__submit" name="sumbit-new-city" value="Заполнить">
@@ -254,8 +276,10 @@
       </div>
     </main>
   </div>
+  <p hidden name="is-create-page">{{ is_create_page }}</p>
   <script src="{% static 'simetra_app/customization_page/create-or-update-city/scripts/translate-location-field.js' %}"></script>
   <script src="{% static 'simetra_app/customization_page/create-or-update-city/scripts/fill-name-field.js' %}"></script>
+  <script src="{% static 'simetra_app/customization_page/common-static/scripts/change-image-field-standard-form.js' %}"></script>
 </body>
 
 </html>
