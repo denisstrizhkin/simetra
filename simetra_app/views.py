@@ -304,7 +304,6 @@ def update_boss(request, boss_id):
 
             message_text = 'Модель руководителя была успешно изменена!'
             messages.success(request, message_text)
-            return HttpResponseRedirect('')
         else:
             message_text = 'Не удалось изменить модель руководителя!'
             messages.success(request, message_text)
@@ -487,12 +486,12 @@ def upload_cities_excel(request):
 
                         city.longitude = longitude
                         city.latitude = latitude
-                        city = get_city_sum_of_rating(city)
 
                     if loc_read[name]:
                         for field_name in field_names:
                             write_field(city, sheet, field_name, i)
 
+                        city = get_city_sum_of_rating(city)
                         city.save()
 
             for key in sheet_names:
