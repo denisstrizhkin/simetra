@@ -47,7 +47,8 @@ def main_page(request):
     form = LocationOfCityForm()
 
     required_fields = ['name', 'russian_name', 'longitude', 'latitude']
-    cities_list_json = get_JSON_city_list(required_fields)
+    city_attrs_json = CityAttributesJSON()
+    cities_list_json = city_attrs_json.get_JSON_city_list(required_fields)
 
     context = {
         'bosses_list': Boss.objects.all(),
@@ -67,7 +68,8 @@ def methodology_page(request):
 
 def analytics_page(request):
     required_fields = ['name']
-    cities_list_json = get_JSON_city_list(required_fields)
+    city_attrs_json = CityAttributesJSON()
+    cities_list_json = city_attrs_json.get_JSON_city_list(required_fields)
     context = {'cities_list_json': cities_list_json}
     return render(request, 'simetra_app/analytics.html', context)
 
@@ -76,7 +78,8 @@ def data_base_page(request):
     cities_list = City.objects.all().order_by('-sum_of_rating')
 
     required_fields = ['name', 'longitude']
-    cities_list_json = get_JSON_city_list(required_fields)
+    city_attrs_json = CityAttributesJSON()
+    cities_list_json = city_attrs_json.get_JSON_city_list(required_fields)
 
     context = {
         'cities_list_json': cities_list_json,
@@ -226,13 +229,17 @@ def city_page(request, city_name):
         'ТАРИФНАЯ СИСТЕМА'
     ]
 
-    cities_list_json = get_JSON_one_city_attrs(city, required_fields)
+    city_attrs_json = CityAttributesJSON(city)
+    # cities_list_json = get_JSON_one_city_attrs(city, required_fields)
+    cities_list_json = city_attrs_json.get_JSON_city_list(required_fields)
 
-    cities_attrs_by_groups_list_json = get_JSON_city_list_by_many_groups(
-        required_groups, city_name)
+    # cities_attrs_by_groups_list_json = get_JSON_city_list_by_many_groups(
+    #     required_groups, city_name)
+    cities_attrs_by_groups_list_json = city_attrs_json.get_JSON_city_list_by_many_groups(required_groups)
 
-    city_attr_verbose_names_json = get_JSON_city_attr_verbose_names_by_groups(
-        required_groups)
+    # city_attr_verbose_names_json = get_JSON_city_attr_verbose_names_by_groups(
+    #     required_groups)
+    city_attr_verbose_names_json = city_attrs_json.get_JSON_city_attr_verbose_names_by_groups(required_groups)
 
     context = {
         'city': city,
@@ -706,88 +713,76 @@ def update_context_for_customization_pages_navbar(request, context):
     return context
 
 
-def get_JSON_city_list(city_attr_list, city_name=None):
-    def get_JSON_city_attr_and_value_list(city_object):
-        city_dictionary = {}
+class CityAttributesJSON():
+    def __init__(self, city_name=None):
+        self.city_name = city_name
 
-        for attr in city_attr_list:
-            value = getattr(city_object, attr)
-            city_dictionary[attr] = value
+    def get_JSON_city_list(self, city_attrs):
+        def __get_JSON_city_attr_and_value_list(city_object):
+            city_dictionary = {}
 
-        city_dictionary_json = json.dumps(
-            city_dictionary, cls=DjangoJSONEncoder)
+            for attr in city_attrs:
+                value = getattr(city_object, attr)
+                city_dictionary[attr] = value
 
-        return city_dictionary_json
+            city_dictionary_json = json.dumps(
+city_dictionary, cls=DjangoJSONEncoder)
 
-    if city_name is None:
-        cities_list_json = []
-        for city in City.objects.all():
-            city_dictionary_json = get_JSON_city_attr_and_value_list(city)
-            cities_list_json.append(city_dictionary_json)
-    else:
-        city = get_object_or_404(City, name=city_name)
-        city_dictionary_json = get_JSON_city_attr_and_value_list(city)
-        cities_list_json = [city_dictionary_json]
+            return city_dictionary_json
 
-    return cities_list_json
+        if self.city_name is None:
+            cities_list_json = []
+            for city in City.objects.all():
+                city_dictionary_json = __get_JSON_city_attr_and_value_list(city)
+                cities_list_json.append(city_dictionary_json)
+        else:
+            city = get_object_or_404(City, name=self.city_name)
+            city_dictionary_json = __get_JSON_city_attr_and_value_list(city)
+            cities_list_json = [city_dictionary_json]
 
-
-def get_JSON_city_attr_verbose_names(city_attr_list):
-    verbose_names_list_json = []
-    verbose_names_dictionary = {}
-
-    for attribute_name in city_attr_list:
-        verbose_name = City._meta.get_field(attribute_name).verbose_name
-        verbose_names_dictionary[attribute_name] = verbose_name
-
-    verbose_names_dictionary_json = json.dumps(
-        verbose_names_dictionary, cls=DjangoJSONEncoder)
-    verbose_names_list_json.append(verbose_names_dictionary_json)
-
-    return verbose_names_list_json
-
-
-def get_JSON_one_city_attrs(city_object, attrs_list):
-    city_attrs = {}
-
-    for attr in attrs_list:
-        attr_value = getattr(city_object, attr)
-        city_attrs[attr] = attr_value
+        return cities_list_json
     
-    city_attrs_dict_json = json.dumps(city_attrs, cls=DjangoJSONEncoder)
-    city_attrs_list_json = [city_attrs_dict_json]
+    def get_JSON_city_attr_verbose_names(self, city_attrs):
+        verbose_names_list_json = []
+        verbose_names_dictionary = {}
 
-    return city_attrs_list_json
+        for attr_name in city_attrs:
+            verbose_name = City._meta.get_field(attr_name).verbose_name
+            verbose_names_dictionary[attr_name] = verbose_name
 
+        verbose_names_dictionary_json = json.dumps(
+            verbose_names_dictionary, cls=DjangoJSONEncoder)
+        verbose_names_list_json.append(verbose_names_dictionary_json)
 
-def get_JSON_city_list_by_many_groups(group_list, city_name=None):
-    def get_JSON_city_list_by_one_group(group_name, city_name=None):
+        return verbose_names_list_json
+
+    def get_JSON_city_list_by_many_groups(self, group_list):
+        def __get_JSON_city_list_by_one_group(group_name):
+            attrs_by_groups = get_city_attrs_by_groups_dict()
+            current_group_attrs = attrs_by_groups[group_name]
+            return self.get_JSON_city_list(current_group_attrs)
+
+        cities_attrs_by_groups_dict = {}
+
+        for group in group_list:
+            cities_attrs_by_groups_dict[group] = \
+                __get_JSON_city_list_by_one_group(group)
+
+        cities_attrs_by_groups_dict_json = json.dumps(
+            cities_attrs_by_groups_dict, cls=DjangoJSONEncoder)
+        cities_attrs_by_groups_list_json = [cities_attrs_by_groups_dict_json]
+
+        return cities_attrs_by_groups_list_json
+
+    def get_JSON_city_attr_verbose_names_by_groups(self, group_list):
+        required_attrs = []
+
         attrs_by_groups = get_city_attrs_by_groups_dict()
-        current_group_attrs = attrs_by_groups[group_name]
-        return get_JSON_city_list(current_group_attrs, city_name)
 
-    cities_attrs_by_groups_dict = {}
+        for group in group_list:
+            required_attrs += attrs_by_groups[group]
 
-    for group in group_list:
-        cities_attrs_by_groups_dict[group] = get_JSON_city_list_by_one_group(
-            group, city_name)
-
-    cities_attrs_by_groups_dict_json = json.dumps(
-        cities_attrs_by_groups_dict, cls=DjangoJSONEncoder)
-    cities_attrs_by_groups_list_json = [cities_attrs_by_groups_dict_json]
-
-    return cities_attrs_by_groups_list_json
-
-
-def get_JSON_city_attr_verbose_names_by_groups(group_list):
-    required_attrs = []
-
-    attrs_by_groups = get_city_attrs_by_groups_dict()
-
-    for group in group_list:
-        required_attrs += attrs_by_groups[group]
-
-    return get_JSON_city_attr_verbose_names(required_attrs)
+        return self.get_JSON_city_attr_verbose_names(required_attrs)
 
 
 def get_city_attrs_by_groups_dict():
