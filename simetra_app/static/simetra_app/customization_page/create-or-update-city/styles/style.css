@@ -202,6 +202,10 @@ button[name="sumbit-new-city"]:hover {
   margin: 0 !important;
 }
 
+._padding-left-off > input {
+  padding-left: 0 !important;
+}
+
 @media (max-width: 370px) {
   ._subtitle {
     font-size: 24px;
@@ -322,6 +326,13 @@ button[name="sumbit-new-city"]:hover {
 .home__input-block,
 .home__input-block-for-checkbox {
   margin-bottom: 20px;
+}
+
+.home__city-avatar-img {
+  max-width: 100%;
+  margin-top: 10px; 
+  margin-bottom: 5px;
+  border-radius: 5px;
 }
 
 .home__input-block input {

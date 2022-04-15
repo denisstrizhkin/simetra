@@ -235,9 +235,7 @@ def city_page(request, city_name):
         required_groups)
 
     context = {
-        'name': city.name,
-        'longitude': city.longitude,
-        'latitude': city.latitude,
+        'city': city,
         'cities_list_json': cities_list_json,
         'cities_attrs_by_groups_list_json': cities_attrs_by_groups_list_json,
         'city_attr_verbose_names_list_json': city_attr_verbose_names_json,
@@ -349,6 +347,7 @@ def create_city(request):
         'city_form': city_form,
         'location_of_city_form': location_of_city_form,
         'title': 'Добавить Новый Город',
+        'is_create_page': True,
     }
 
     context = update_context_for_customization_pages_navbar(request, context)
@@ -386,6 +385,8 @@ def update_city(request, city_id):
         'city_form': city_form,
         'location_of_city_form': location_of_city_form,
         'title': 'Изменить Существующий Город',
+        'city_image_path': city.avatar.url,
+        'is_create_page': False,
     }
 
     context = update_context_for_customization_pages_navbar(request, context)
