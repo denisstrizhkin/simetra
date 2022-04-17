@@ -53,6 +53,9 @@ class City(models.Model):
     def __str__(self):
         return self.name
 
+    def get_upload_path(self, filename):
+        return Path('city_page', get_uuid4_filename(filename))
+
     # In Mapbox longtitude always goes first and latitude goes second
     # (by the time of 13.03.22)
     # To find coorinates, open 'Response' -> 'features' -> '0' -> 'center'
@@ -67,6 +70,10 @@ class City(models.Model):
         max_digits=15,
         decimal_places=12,
         default=0,
+    )
+    avatar = models.ImageField(
+        default='city_page/european-city.jpg',
+        upload_to=get_upload_path,
     )
 
     """ ГОРОДА """

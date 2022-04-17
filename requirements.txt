@@ -1,3 +1,4 @@
+## The following requirements were added by pip freeze:
 asgiref==3.5.0
 autopep8==1.6.0
 certifi==2021.10.8
@@ -7,6 +8,7 @@ Django==4.0.3
 django-cleanup==6.0.0
 django-excel==0.0.10
 django-mapbox-location-field==2.0.0
+et-xmlfile==1.1.0
 h11==0.9.0
 h2==3.2.0
 hpack==3.0.0
@@ -18,6 +20,7 @@ idna==2.10
 lml==0.1.0
 lxml==4.8.0
 odfpy==1.4.1
+openpyxl==3.0.9
 Pillow==9.0.1
 pycodestyle==2.8.0
 pyexcel==0.7.0
@@ -27,6 +30,7 @@ pyexcel-ods==0.6.0
 pyexcel-ods3==0.6.1
 pyexcel-odsr==0.6.0
 pyexcel-webio==0.1.4
+pyexcel-xlsx==0.6.0
 rfc3986==1.5.0
 sniffio==1.2.0
 sqlparse==0.4.2

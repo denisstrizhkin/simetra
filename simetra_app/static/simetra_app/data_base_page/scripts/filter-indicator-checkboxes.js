@@ -162,8 +162,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-const allIndicatorCheckbox = document.getElementsByName('indicator-all')[0];
-
 document.addEventListener('DOMContentLoaded', function() {
     allIndicatorCheckbox.addEventListener('change', () => {
         changeOtherCheckboxesByAllCheckbox(
