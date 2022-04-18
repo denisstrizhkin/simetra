@@ -55,6 +55,7 @@
         content="{% static 'simetra_app/general_assets/favicon/mstile-310x150.png' %}" />
     <meta name="msapplication-square310x310logo"
         content="{% static 'simetra_app/general_assets/favicon/mstile-310x310.png' %}" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet" />
 </head>
 
 <body>
@@ -67,6 +68,15 @@
                 {% include 'simetra_app/navbar.html' %}
             </div>
         </header>
+
+        <div class="overlay">
+            <div class="modal">
+                <h3 class="modal__content">Рекомендуем смотреть рейтинг с устройства, ширина которого не менее 700
+                    пикселей    </h3>
+                <button class="modal__close"> <span class="material-icons-outlined">
+                        close </span></button>
+            </div>
+        </div>
 
         <main class="page">
             <section class="page__home home">
@@ -128,7 +138,7 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1"></script>
     <script src="{% static 'simetra_app/city_page/scripts/blank-script.js' %}"></script>
-    <script src="{% static 'simetra_app/city_page/scripts/test-script.js' %}"></script>
+    <script src="{% static 'simetra_app/city_page/scripts/modal-window.js' %}"></script>
 </body>
 
 </html>

@@ -33,7 +33,6 @@ const allPropertiesCity = JSON.parse(
   JSON.parse(document.getElementById("cities-list-json").textContent)[0]
 );
 
-console.log(cityAttributeName);
 
 /*-------------------------------------------------------------*/
 /*-----Generate datas------------------------------------------*/
@@ -801,7 +800,6 @@ ungroupedProperties.push([
   allPropertiesCity.num_routes_with_transfer_pass,
 ]);
 
-console.log(ungroupedProperties);
 displayUngroupedProperties(".tariff__container");
 
 displayUnusedProperties(".tariff__container");
