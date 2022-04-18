@@ -1,7 +1,7 @@
 @import "../../general_styles/_nullstyle";
 @import "../../general_styles/_header";
 @import "../../general_styles/_footer";
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto&display=swap");
 
 /*-------------------------------------------------------------*/
 /*-----Variable declaration------------------------------------*/
@@ -61,6 +61,17 @@ body {
   }
 }
 
+._ibg {
+  position: relative;
+}
+._ibg img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  object-fit: cover;
+}
 /*-------------------------------------------------------------*/
 /*-----Scroll Bar----------------------------------------------*/
 /*-------------------------------------------------------------*/
@@ -78,7 +89,7 @@ body {
   border: 3px solid #d4d4d4;
 
   &:hover {
-    background: #1C1C1C;
+    background: #1c1c1c;
   }
 }
 
@@ -89,38 +100,52 @@ body {
 .page {
   flex: 1 1 auto;
 }
+.page__home {
+  margin: 0px 0px 850px 0px;
+}
 .home__container {
-  padding: 150px 0px 150px 0px;
-  display: flex;
-  flex-wrap: wrap;
-
-  justify-content: space-between;
-  gap: 50px 100px;
 }
 
 .home {
   &__image {
-    flex: 1 1 40%;
-    height: 400px;
-    border: 1px solid black;
-    box-shadow: 0 0 10px 1px black;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    // @media (max-width: 545px) {
+    //   img {
+    //     object-position: 60% 30%;
+    //   }
+    // }
   }
 
   &__info {
-    flex: 1 1 40%;
+    display: inline-block;
+    position: relative;
+
+    z-index: 1;
+    bottom: 10px;
+    left: 0px;
+    padding: 20px 40px;
+    border-radius: 3px;
+    background-color: #6F81FF;
+    color: white;
+    // background-color: black;
+    // color: #6F81FF;
+
   }
 
   &__title {
-    margin: 0 auto;
     font-size: 50px;
     margin-bottom: 30px;
   }
 
-  &__coordinates {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px 40px;
+  &__coordinates p {
+    font-size: 20px;
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
   }
 }
 
@@ -155,7 +180,7 @@ canvas {
 /*-------------------------------------------------------------*/
 
 .spatial {
-  background-color: #1C1C1C;
+  background-color: #1c1c1c;
   color: white;
 
   &__container {
@@ -186,7 +211,7 @@ canvas {
 /*-------------------------------------------------------------*/
 
 .routes {
-  background-color: #1C1C1C;
+  background-color: #1c1c1c;
   color: white;
 
   &__container {

@@ -4,9 +4,9 @@ const citiesUnparsed = JSON.parse(
   document.getElementById("cities_attrs_by_groups_list_json").textContent
 );
 
-const featureGroups = JSON.parse(citiesUnparsed[0]);
+const subgroups = JSON.parse(citiesUnparsed[0]);
 
-const nameFeatureGroups = [
+const namesubgroups = [
   "Качественные группы",
   "Пространственные характеристики",
   "Подвижной состав",
@@ -14,24 +14,27 @@ const nameFeatureGroups = [
   "Тарифная система",
 ];
 const qualityGroups = Object.entries(
-    JSON.parse(featureGroups["КАЧЕСТВЕННЫЕ ГРУППЫ"][0])
+    JSON.parse(subgroups["КАЧЕСТВЕННЫЕ ГРУППЫ"][0])
   ),
   spatial = Object.entries(
-    JSON.parse(featureGroups["ПРОСТРАНСТВЕННЫЕ_ХАРАКТЕРИСТИКИ"][0])
+    JSON.parse(subgroups["ПРОСТРАНСТВЕННЫЕ_ХАРАКТЕРИСТИКИ"][0])
   ),
-  rollinStock = Object.entries(
-    JSON.parse(featureGroups["ПОДВИЖНОЙ СОСТАВ"][0])
-  ),
-  routes = Object.entries(JSON.parse(featureGroups["МАРШРУТЫ"][0])),
-  tariffSystem = Object.entries(
-    JSON.parse(featureGroups["ТАРИФНАЯ СИСТЕМА"][0])
-  );
+  rollinStock = Object.entries(JSON.parse(subgroups["ПОДВИЖНОЙ СОСТАВ"][0])),
+  routes = Object.entries(JSON.parse(subgroups["МАРШРУТЫ"][0])),
+  tariffSystem = Object.entries(JSON.parse(subgroups["ТАРИФНАЯ СИСТЕМА"][0]));
 
-const citiesAttrVerboseNameUnparsed = JSON.parse(
-  document.getElementById("city_attr_verbose_names_list_json").textContent
+const cityAttributeName = JSON.parse(
+  JSON.parse(
+    document.getElementById("city_attr_verbose_names_list_json").textContent
+  )[0]
 );
-const cityAttributeName = JSON.parse(citiesAttrVerboseNameUnparsed[0]);
+
+const allPropertiesCity = JSON.parse(
+  JSON.parse(document.getElementById("cities-list-json").textContent)[0]
+);
+
 console.log(cityAttributeName);
+
 /*-------------------------------------------------------------*/
 /*-----Generate datas------------------------------------------*/
 /*-------------------------------------------------------------*/
@@ -380,15 +383,21 @@ function createHorizontalBar(groupArr, start, end, label, fontColor = "black") {
     datasets: [
       {
         label: dataSets[0],
-        data: dataValue[0],
+        data: [dataValue[0]],
         backgroundColor: "#93ABE8",
         borderColor: "#456DD0",
       },
       {
         label: dataSets[1],
-        data: dataValue[1],
+        data: [dataValue[1]],
         backgroundColor: "#FF9840",
-        borderColor: "#FFB270",
+        borderColor: "#F43270",
+      },
+      {
+        label: dataSets[2],
+        data: [dataValue[2]],
+        backgroundColor: "#CVF1240",
+        borderColor: "#F4570",
       },
     ],
   };
@@ -436,12 +445,9 @@ function createNewChart(nameGroup, index) {
 }
 
 /*-------------------------------------------------------------*/
-/*-----Unused properties and ungrouped properties--------------*/
+/*-----Unused properties---------------------------------------*/
 /*-------------------------------------------------------------*/
 let nameUnusedProperties = [];
-
-let ungroupedProperties = [];
-let ungroupedPropertiesName = [];
 
 /*-------------------------------------------------------------*/
 /*-----Unused--------------------------------------------------*/
@@ -470,6 +476,7 @@ function displayUnusedProperties(containerSelector) {
 
   nameUnusedProperties = [];
 }
+
 
 /*-------------------------------------------------------------*/
 /*-----Quality-------------------------------------------------*/
@@ -512,7 +519,6 @@ for (let i = 19; i < 23; i++) {
   }
 }
 
-
 spatialCounter++;
 createNewChart("spatial", spatialCounter);
 new Chart(
@@ -527,7 +533,6 @@ displayUnusedProperties(".spatial__container");
 /*-------------------------------------------------------------*/
 let rollinStockCounter = 0;
 
-console.log(rollinStock)
 rollinStockCounter++;
 createNewChart("rolling-stock", rollinStockCounter);
 new Chart(
@@ -679,3 +684,141 @@ new Chart(
   createDoughnut(tariffSystem, 10, 16)
 );
 displayUnusedProperties(".tariff__container");
+
+
+/*-------------------------------------------------------------*/
+/*-----Ungrouped properties------------------------------------*/
+/*-------------------------------------------------------------*/
+
+function displayUngroupedProperties(containerSelector) {
+  let unusedList;
+  for (let i = 0; i < ungroupedProperties.length; i++) {
+    if (i === 0) {
+      const unusedWrapper = document.createElement("div");
+      unusedWrapper.classList.add("unused__wrapper");
+      document.querySelector(containerSelector).append(unusedWrapper);
+
+      const unusedListTitle = document.createElement("h3");
+      unusedListTitle.textContent = "Несгруппированные свойства";
+      unusedWrapper.append(unusedListTitle);
+
+      unusedList = document.createElement("ul");
+      unusedList.classList.add("unused__list");
+      unusedWrapper.append(unusedList);
+    }
+
+    const unuseElement = document.createElement("li");
+    unuseElement.textContent = `${ungroupedProperties[i][0]}:     ${ungroupedProperties[i][1]}`;
+    unusedList.append(unuseElement);
+  }
+
+  ungroupedProperties = [];
+}
+
+/*-------------------------------------------------------------*/
+/*-------------------------------------------------------------*/
+/*-------------------------------------------------------------*/
+
+let ungroupedProperties = [];
+
+ungroupedProperties.push([
+  cityAttributeName.num_population,
+  allPropertiesCity.num_population,
+]);
+ungroupedProperties.push([
+  cityAttributeName.length_UDS,
+  allPropertiesCity.length_UDS,
+]);
+ungroupedProperties.push([
+  cityAttributeName.area_active_city_zone,
+  allPropertiesCity.area_active_city_zone,
+]);
+ungroupedProperties.push([
+  cityAttributeName.traffic_ground_transport,
+  allPropertiesCity.traffic_ground_transport,
+]);
+ungroupedProperties.push([
+  cityAttributeName.traffic_metro,
+  allPropertiesCity.traffic_metro,
+]);
+ungroupedProperties.push([
+  cityAttributeName.num_working_stops_overall,
+  allPropertiesCity.num_working_stops_overall,
+]);
+ungroupedProperties.push([
+  cityAttributeName.num_working_stops_active_city_zone,
+  allPropertiesCity.num_working_stops_active_city_zone,
+]);
+ungroupedProperties.push([
+  cityAttributeName.num_of_apartments,
+  allPropertiesCity.num_of_apartments,
+]);
+ungroupedProperties.push([
+  cityAttributeName.area_metro_coverage,
+  allPropertiesCity.area_metro_coverage,
+]);
+ungroupedProperties.push([
+  cityAttributeName.density_stops_active_zone,
+  allPropertiesCity.density_stops_active_zone,
+]);
+ungroupedProperties.push([
+  cityAttributeName.avrg_length_between_stops,
+  allPropertiesCity.avrg_length_between_stops,
+]);
+displayUngroupedProperties(".spatial__container");
+
+/*-------------------------------------------------------------*/
+/*-------------------------------------------------------------*/
+/*-------------------------------------------------------------*/
+ungroupedProperties.push([
+  cityAttributeName.num_new_GET,
+  allPropertiesCity.num_new_GET,
+]);
+ungroupedProperties.push([
+  cityAttributeName.num_new_buses,
+  allPropertiesCity.num_new_buses,
+]);
+displayUngroupedProperties(".rolling-stock__container");
+
+/*-------------------------------------------------------------*/
+/*-------------------------------------------------------------*/
+/*-------------------------------------------------------------*/
+ungroupedProperties.push([
+  cityAttributeName.length_overall_nonrailed_transport_path,
+  allPropertiesCity.length_overall_nonrailed_transport_path,
+]);
+
+displayUngroupedProperties(".routes__container");
+
+/*-------------------------------------------------------------*/
+/*-------------------------------------------------------------*/
+/*-------------------------------------------------------------*/
+
+ungroupedProperties.push([
+  cityAttributeName.avrg_region_salary,
+  allPropertiesCity.avrg_region_salary,
+]);
+ungroupedProperties.push([
+  cityAttributeName.avrg_region_income,
+  allPropertiesCity.avrg_region_income,
+]);
+ungroupedProperties.push([
+  cityAttributeName.price_monthly_transport_pass,
+  allPropertiesCity.price_monthly_transport_pass,
+]);
+ungroupedProperties.push([
+  cityAttributeName.ratio_pass_cost_to_income,
+  allPropertiesCity.ratio_pass_cost_to_income,
+]);
+ungroupedProperties.push([
+  cityAttributeName.num_routes_with_pass,
+  allPropertiesCity.num_routes_with_pass,
+]);
+ungroupedProperties.push([
+  cityAttributeName.num_routes_with_transfer_pass,
+  allPropertiesCity.num_routes_with_transfer_pass,
+]);
+
+console.log(ungroupedProperties);
+displayUngroupedProperties(".tariff__container");
+
