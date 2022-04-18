@@ -445,12 +445,13 @@ function createNewChart(nameGroup, index) {
 }
 
 /*-------------------------------------------------------------*/
-/*-----Unused properties---------------------------------------*/
+/*-----Unused and ungrouped properties-------------------------*/
 /*-------------------------------------------------------------*/
 let nameUnusedProperties = [];
+let ungroupedProperties = [];
 
 /*-------------------------------------------------------------*/
-/*-----Unused--------------------------------------------------*/
+/*-----Unused properties---------------------------------------*/
 /*-------------------------------------------------------------*/
 function displayUnusedProperties(containerSelector) {
   let unusedList;
@@ -477,7 +478,34 @@ function displayUnusedProperties(containerSelector) {
   nameUnusedProperties = [];
 }
 
+/*-------------------------------------------------------------*/
+/*-----Ungrouped properties------------------------------------*/
+/*-------------------------------------------------------------*/
 
+function displayUngroupedProperties(containerSelector) {
+  let unusedList;
+  for (let i = 0; i < ungroupedProperties.length; i++) {
+    if (i === 0) {
+      const unusedWrapper = document.createElement("div");
+      unusedWrapper.classList.add("unused__wrapper");
+      document.querySelector(containerSelector).append(unusedWrapper);
+
+      const unusedListTitle = document.createElement("h3");
+      unusedListTitle.textContent = "Несгруппированные свойства";
+      unusedWrapper.append(unusedListTitle);
+
+      unusedList = document.createElement("ul");
+      unusedList.classList.add("unused__list");
+      unusedWrapper.append(unusedList);
+    }
+
+    const unuseElement = document.createElement("li");
+    unuseElement.textContent = `${ungroupedProperties[i][0]}: ${ungroupedProperties[i][1]}`;
+    unusedList.append(unuseElement);
+  }
+
+  ungroupedProperties = [];
+}
 /*-------------------------------------------------------------*/
 /*-----Quality-------------------------------------------------*/
 /*-------------------------------------------------------------*/
@@ -525,6 +553,53 @@ new Chart(
   document.getElementById(`spatial-${spatialCounter}`),
   createDoughnut(spatial, 24, 30, "white")
 );
+
+
+ungroupedProperties.push([
+  cityAttributeName.num_population,
+  allPropertiesCity.num_population,
+]);
+ungroupedProperties.push([
+  cityAttributeName.length_UDS,
+  allPropertiesCity.length_UDS,
+]);
+ungroupedProperties.push([
+  cityAttributeName.area_active_city_zone,
+  allPropertiesCity.area_active_city_zone,
+]);
+ungroupedProperties.push([
+  cityAttributeName.traffic_ground_transport,
+  allPropertiesCity.traffic_ground_transport,
+]);
+ungroupedProperties.push([
+  cityAttributeName.traffic_metro,
+  allPropertiesCity.traffic_metro,
+]);
+ungroupedProperties.push([
+  cityAttributeName.num_working_stops_overall,
+  allPropertiesCity.num_working_stops_overall,
+]);
+ungroupedProperties.push([
+  cityAttributeName.num_working_stops_active_city_zone,
+  allPropertiesCity.num_working_stops_active_city_zone,
+]);
+ungroupedProperties.push([
+  cityAttributeName.num_of_apartments,
+  allPropertiesCity.num_of_apartments,
+]);
+ungroupedProperties.push([
+  cityAttributeName.area_metro_coverage,
+  allPropertiesCity.area_metro_coverage,
+]);
+ungroupedProperties.push([
+  cityAttributeName.density_stops_active_zone,
+  allPropertiesCity.density_stops_active_zone,
+]);
+ungroupedProperties.push([
+  cityAttributeName.avrg_length_between_stops,
+  allPropertiesCity.avrg_length_between_stops,
+]);
+displayUngroupedProperties(".spatial__container");
 
 displayUnusedProperties(".spatial__container");
 
@@ -602,6 +677,16 @@ for (let i = 37; i < 41; i++) {
   }
 }
 
+ungroupedProperties.push([
+  cityAttributeName.num_new_GET,
+  allPropertiesCity.num_new_GET,
+]);
+ungroupedProperties.push([
+  cityAttributeName.num_new_buses,
+  allPropertiesCity.num_new_buses,
+]);
+displayUngroupedProperties(".rolling-stock__container");
+
 displayUnusedProperties(".rolling-stock__container");
 
 /*-------------------------------------------------------------*/
@@ -663,6 +748,13 @@ new Chart(
   createHorizontalBar(routes, 20, 22, ["Маршрут"], "white")
 );
 
+ungroupedProperties.push([
+  cityAttributeName.length_overall_nonrailed_transport_path,
+  allPropertiesCity.length_overall_nonrailed_transport_path,
+]);
+
+displayUngroupedProperties(".routes__container");
+
 displayUnusedProperties(".routes__container");
 
 /*-------------------------------------------------------------*/
@@ -683,116 +775,6 @@ new Chart(
   document.getElementById(`tariff-${tariffCounter}`),
   createDoughnut(tariffSystem, 10, 16)
 );
-displayUnusedProperties(".tariff__container");
-
-
-/*-------------------------------------------------------------*/
-/*-----Ungrouped properties------------------------------------*/
-/*-------------------------------------------------------------*/
-
-function displayUngroupedProperties(containerSelector) {
-  let unusedList;
-  for (let i = 0; i < ungroupedProperties.length; i++) {
-    if (i === 0) {
-      const unusedWrapper = document.createElement("div");
-      unusedWrapper.classList.add("unused__wrapper");
-      document.querySelector(containerSelector).append(unusedWrapper);
-
-      const unusedListTitle = document.createElement("h3");
-      unusedListTitle.textContent = "Несгруппированные свойства";
-      unusedWrapper.append(unusedListTitle);
-
-      unusedList = document.createElement("ul");
-      unusedList.classList.add("unused__list");
-      unusedWrapper.append(unusedList);
-    }
-
-    const unuseElement = document.createElement("li");
-    unuseElement.textContent = `${ungroupedProperties[i][0]}:     ${ungroupedProperties[i][1]}`;
-    unusedList.append(unuseElement);
-  }
-
-  ungroupedProperties = [];
-}
-
-/*-------------------------------------------------------------*/
-/*-------------------------------------------------------------*/
-/*-------------------------------------------------------------*/
-
-let ungroupedProperties = [];
-
-ungroupedProperties.push([
-  cityAttributeName.num_population,
-  allPropertiesCity.num_population,
-]);
-ungroupedProperties.push([
-  cityAttributeName.length_UDS,
-  allPropertiesCity.length_UDS,
-]);
-ungroupedProperties.push([
-  cityAttributeName.area_active_city_zone,
-  allPropertiesCity.area_active_city_zone,
-]);
-ungroupedProperties.push([
-  cityAttributeName.traffic_ground_transport,
-  allPropertiesCity.traffic_ground_transport,
-]);
-ungroupedProperties.push([
-  cityAttributeName.traffic_metro,
-  allPropertiesCity.traffic_metro,
-]);
-ungroupedProperties.push([
-  cityAttributeName.num_working_stops_overall,
-  allPropertiesCity.num_working_stops_overall,
-]);
-ungroupedProperties.push([
-  cityAttributeName.num_working_stops_active_city_zone,
-  allPropertiesCity.num_working_stops_active_city_zone,
-]);
-ungroupedProperties.push([
-  cityAttributeName.num_of_apartments,
-  allPropertiesCity.num_of_apartments,
-]);
-ungroupedProperties.push([
-  cityAttributeName.area_metro_coverage,
-  allPropertiesCity.area_metro_coverage,
-]);
-ungroupedProperties.push([
-  cityAttributeName.density_stops_active_zone,
-  allPropertiesCity.density_stops_active_zone,
-]);
-ungroupedProperties.push([
-  cityAttributeName.avrg_length_between_stops,
-  allPropertiesCity.avrg_length_between_stops,
-]);
-displayUngroupedProperties(".spatial__container");
-
-/*-------------------------------------------------------------*/
-/*-------------------------------------------------------------*/
-/*-------------------------------------------------------------*/
-ungroupedProperties.push([
-  cityAttributeName.num_new_GET,
-  allPropertiesCity.num_new_GET,
-]);
-ungroupedProperties.push([
-  cityAttributeName.num_new_buses,
-  allPropertiesCity.num_new_buses,
-]);
-displayUngroupedProperties(".rolling-stock__container");
-
-/*-------------------------------------------------------------*/
-/*-------------------------------------------------------------*/
-/*-------------------------------------------------------------*/
-ungroupedProperties.push([
-  cityAttributeName.length_overall_nonrailed_transport_path,
-  allPropertiesCity.length_overall_nonrailed_transport_path,
-]);
-
-displayUngroupedProperties(".routes__container");
-
-/*-------------------------------------------------------------*/
-/*-------------------------------------------------------------*/
-/*-------------------------------------------------------------*/
 
 ungroupedProperties.push([
   cityAttributeName.avrg_region_salary,
@@ -822,3 +804,4 @@ ungroupedProperties.push([
 console.log(ungroupedProperties);
 displayUngroupedProperties(".tariff__container");
 
+displayUnusedProperties(".tariff__container");
