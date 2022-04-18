@@ -69,10 +69,22 @@ def methodology_page(request):
 
 
 def analytics_page(request):
-    required_fields = ['name']
+    required_fields = [
+        'name',
+        'russian_name',
+        'region',
+        'rating_security_n_development',
+        'rating_comfort_n_convenience',
+        'rating_route_network_efficiency',
+        'rating_affordability',
+        'rating_physical_availability',
+        'sum_of_rating',
+    ]
+
     city_attrs_json = CityAttributesJSON()
     cities_list_json = city_attrs_json.get_JSON_city_list(required_fields)
     context = {'cities_list_json': cities_list_json}
+
     return render(request, 'simetra_app/analytics.html', context)
 
 
@@ -237,11 +249,13 @@ def city_page(request, city_name):
 
     # cities_attrs_by_groups_list_json = get_JSON_city_list_by_many_groups(
     #     required_groups, city_name)
-    cities_attrs_by_groups_list_json = city_attrs_json.get_JSON_city_list_by_many_groups(required_groups)
+    cities_attrs_by_groups_list_json = city_attrs_json.get_JSON_city_list_by_many_groups(
+        required_groups)
 
     # city_attr_verbose_names_json = get_JSON_city_attr_verbose_names_by_groups(
     #     required_groups)
-    city_attr_verbose_names_json = city_attrs_json.get_JSON_city_attr_verbose_names_by_groups(required_groups)
+    city_attr_verbose_names_json = city_attrs_json.get_JSON_city_attr_verbose_names_by_groups(
+        required_groups)
 
     context = {
         'city': city,
@@ -402,7 +416,7 @@ def update_city(request, city_id):
 
     if request.method == 'POST':
         city_form = CityForm(request.POST, instance=city)
-        
+
         if city_form.is_valid():
             new_city = city_form.save(commit=False)
             new_city = get_city_sum_of_rating(new_city)
@@ -456,9 +470,9 @@ def upload_cities_excel(request):
 
     form = UploadFileForm()
     context = {
-            "form": form,
-            "error_message": '',
-        }
+        "form": form,
+        "error_message": '',
+    }
     if request.method == "POST":
         form = UploadFileForm(request.POST, request.FILES)
 
@@ -469,9 +483,9 @@ def upload_cities_excel(request):
             except pyex_excpts.FileTypeNotSupported:
                 err_msg = "Данный формат файла не поддерживается"
                 messages.error(request, err_msg)
-                context = update_context_for_customization_pages_navbar(request, context)
+                context = update_context_for_customization_pages_navbar(
+                    request, context)
                 return render(request, "simetra_app/upload-cities-excel.html", context)
-
 
             sheet_names = get_city_attrs_by_groups_dict()
 
@@ -491,11 +505,12 @@ def upload_cities_excel(request):
 
             if error_message != '':
                 messages.error(request, error_message)
-                context = update_context_for_customization_pages_navbar(request, context)
+                context = update_context_for_customization_pages_navbar(
+                    request, context)
                 return render(request, "simetra_app/upload-cities-excel.html", context)
 
-
             loc_read = {}
+
             def write_sheet(sheet_name) -> None:
                 #global loc_read, count
                 sheet = excel_book[sheet_name]
@@ -506,7 +521,8 @@ def upload_cities_excel(request):
                     try:
                         name = sheet['Город', i]
                     except ValueError:
-                        err_msg = "Лист: [{}] не содержит поля [Город]".format(sheet_name)
+                        err_msg = "Лист: [{}] не содержит поля [Город]".format(
+                            sheet_name)
                         messages.error(request, err_msg)
                         break
 
@@ -650,6 +666,7 @@ def delete_all_employees(request):
 
     return redirect('simetra_app:change-employee')
 
+
 class CityCoordinates():
     def __init__(self, city_english_name):
         self.city = city_english_name
@@ -751,14 +768,15 @@ class CityAttributesJSON():
                 city_dictionary[attr] = value
 
             city_dictionary_json = json.dumps(
-city_dictionary, cls=DjangoJSONEncoder)
+                city_dictionary, cls=DjangoJSONEncoder)
 
             return city_dictionary_json
 
         if self.city_name is None:
             cities_list_json = []
             for city in City.objects.all():
-                city_dictionary_json = __get_JSON_city_attr_and_value_list(city)
+                city_dictionary_json = __get_JSON_city_attr_and_value_list(
+                    city)
                 cities_list_json.append(city_dictionary_json)
         else:
             city = get_object_or_404(City, name=self.city_name)
@@ -766,7 +784,7 @@ city_dictionary, cls=DjangoJSONEncoder)
             cities_list_json = [city_dictionary_json]
 
         return cities_list_json
-    
+
     def get_JSON_city_attr_verbose_names(self, city_attrs):
         verbose_names_list_json = []
         verbose_names_dictionary = {}
