@@ -6,7 +6,7 @@ const arrCitites = [];
 for (let i = 0; i < citiesUnparsed.length; i++) {
   arrCitites.push(JSON.parse(citiesUnparsed[i]));
 }
-
+console.log(arrCitites);
 let filteredList;
 /*-------------------------------------------------------------*/
 /*-----Generate datas------------------------------------------*/
@@ -14,7 +14,6 @@ let filteredList;
 
 function generateDatas(start, end, property) {
   let data = [];
-  // const specificProperty = property;
   for (let i = start; i < end; i++) {
     data.push(filteredList[i][property]);
   }
@@ -24,7 +23,7 @@ function generateDatas(start, end, property) {
 function generateLabels(start, end) {
   let labels = [];
   for (let i = start; i < end; i++) {
-    labels.push(filteredList[i].name);
+    labels.push(filteredList[i].russian_name);
   }
   return labels;
 }
