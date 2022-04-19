@@ -28,7 +28,7 @@ function generateLabels(start, end) {
   return labels;
 }
 
-function createNewChart(start, end, regionName) {
+function addChartToPage(start, end, regionName) {
   const labels = generateLabels(start, end);
   const data = {
     labels: labels,
@@ -113,6 +113,6 @@ for (let i = 0; i < countyNames.length; i++) {
 
   new Chart(
     document.getElementById(`county-${i + 1}`),
-    createNewChart(0, filteredList.length, countyNames[i])
+    addChartToPage(0, filteredList.length, countyNames[i])
   );
 }
