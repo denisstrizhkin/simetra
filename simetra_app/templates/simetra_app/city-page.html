@@ -72,7 +72,7 @@
         <div class="overlay">
             <div class="modal">
                 <h3 class="modal__content">Рекомендуем смотреть рейтинг с устройства, ширина которого не менее 700
-                    пикселей    </h3>
+                    пикселей </h3>
                 <button class="modal__close"> <span class="material-icons-outlined">
                         close </span></button>
             </div>
@@ -81,19 +81,19 @@
         <main class="page">
             <section class="page__home home">
                 <div class="home__container _container">
-                    <!-- <div class="home__info">
+                    <div class="home__info">
                         <h1 class="home__title">
-                            {{ city.name }}
+                            {{ city.russian_name }}
                         </h1>
                         <div class="home__coordinates">
                             <p>Широта: {{ city.longitude }}</p>
                             <p>Долгота: {{ city.latitude }}</p>
                         </div>
-                    </div> -->
+                    </div>
                 </div>
-                <!-- <div class="home__image _ibg">
+                <div class="home__image _ibg">
                     <img src="{{ city.avatar.url }}" alt="City Image" title="Изображение города">
-                </div> -->
+                </div>
             </section>
 
             <section class="page__quality quality">
@@ -134,9 +134,12 @@
             </section>
         </main>
 
+
+
         {% include 'simetra_app/footer.html' %}
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1"></script>
+    <script src="{% static 'simetra_app/city_page/scripts/menu-burger.js' %}"></script>
     <script src="{% static 'simetra_app/city_page/scripts/blank-script.js' %}"></script>
     <script src="{% static 'simetra_app/city_page/scripts/modal-window.js' %}"></script>
 </body>

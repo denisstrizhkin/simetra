@@ -1,20 +1,21 @@
 const citiesUnparsed = JSON.parse(
   document.getElementById("cities-list-json").textContent
 );
-console.log(citiesUnparsed);
+
 const arrCitites = [];
 for (let i = 0; i < citiesUnparsed.length; i++) {
   arrCitites.push(JSON.parse(citiesUnparsed[i]));
 }
-
+console.log(arrCitites);
+let filteredList;
 /*-------------------------------------------------------------*/
 /*-----Generate datas------------------------------------------*/
 /*-------------------------------------------------------------*/
 
-function generateDatas(start, end) {
+function generateDatas(start, end, property) {
   let data = [];
   for (let i = start; i < end; i++) {
-    data.push(i + 1);
+    data.push(filteredList[i][property]);
   }
   return data;
 }
@@ -22,40 +23,50 @@ function generateDatas(start, end) {
 function generateLabels(start, end) {
   let labels = [];
   for (let i = start; i < end; i++) {
-    labels.push(arrCitites[i].name);
+    labels.push(filteredList[i].russian_name);
   }
   return labels;
 }
 
-function createNewChart(start, end) {
+function addChartToPage(start, end, regionName) {
   const labels = generateLabels(start, end);
   const data = {
     labels: labels,
     datasets: [
       {
         label: "Безопасность и устойчивое развитие",
-        data: generateDatas(start, end),
-        backgroundColor: "#864AFF",
+        data: generateDatas(start, end, "rating_security_n_development"),
+        backgroundColor: "#CCB2FF",
+        borderColor: "#B18AE0",
+        borderWidth: 2,
       },
       {
         label: "Комфорт и удобство",
-        data: generateDatas(start, end),
-        backgroundColor: "#FF6384",
+        data: generateDatas(start, end, "rating_comfort_n_convenience"),
+        backgroundColor: "#FFB1C1",
+        borderColor: "#FF6384",
+        borderWidth: 2,
       },
       {
         label: "Эффективность маршрутной сети",
-        data: generateDatas(start, end),
-        backgroundColor: "#36A2EB",
+        data: generateDatas(start, end, "rating_route_network_efficiency"),
+        backgroundColor: "#9AD0F5",
+        borderColor: "#36A2EB",
+        borderWidth: 2,
       },
       {
         label: "Ценовая доступность",
-        data: generateDatas(start, end),
-        backgroundColor: "#FFCE56",
+        data: generateDatas(start, end, "rating_affordability"),
+        backgroundColor: "#FFE6AA",
+        borderColor: "#FFCE56",
+        borderWidth: 2,
       },
       {
         label: "Физическая доступность",
-        data: generateDatas(start, end),
-        backgroundColor: "#4BC0C0",
+        data: generateDatas(start, end, "rating_physical_availability"),
+        backgroundColor: "#A5DFDF",
+        borderColor: "#4BC0C0",
+        borderWidth: 2,
       },
     ],
   };
@@ -74,7 +85,7 @@ function createNewChart(start, end) {
         },
         title: {
           display: true,
-          text: "Рейтинг городов по основным показателям",
+          text: regionName,
           font: {
             size: 30,
           },
@@ -94,8 +105,14 @@ function createNewChart(start, end) {
   return config;
 }
 
-console.log(document.getElementById("example"));
-new Chart(document.getElementById("group-1"), createNewChart(0, 20));
-new Chart(document.getElementById("group-2"), createNewChart(20, 40));
-new Chart(document.getElementById("group-3"), createNewChart(40, 60));
-new Chart(document.getElementById("group-4"), createNewChart(60, 76));
+// console.log(arrCitites[0].region);
+
+const countyNames = ["ЦФО", "СЗФО", "ЮФО", "СКФО", "ПФО", "УФО", "СФО", "ДФО"];
+for (let i = 0; i < countyNames.length; i++) {
+  filteredList = arrCitites.filter((city) => city.region === countyNames[i]);
+
+  new Chart(
+    document.getElementById(`county-${i + 1}`),
+    addChartToPage(0, filteredList.length, countyNames[i])
+  );
+}

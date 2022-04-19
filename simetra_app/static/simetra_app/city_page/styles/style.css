@@ -1,6 +1,7 @@
 @charset "UTF-8";
 /*Обнуление*/
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto&display=swap");
+@import url("{% load static %}");
 * {
   padding: 0;
   margin: 0;
@@ -399,9 +400,15 @@ body {
 /*-----Technical classes---------------------------------------*/
 /*-------------------------------------------------------------*/
 ._container {
-  max-width: 1400px;
+  max-width: 1280px;
   margin: 0px auto;
-  padding: 0px 10px;
+  padding: 0px 40px;
+}
+
+@media (max-width: 767px) {
+  ._container {
+    padding: 0px 20px;
+  }
 }
 
 ._title {
@@ -472,13 +479,13 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 1;
+  z-index: 5;
   background-color: rgba(0, 0, 0, 0.5);
 }
 
 .modal {
   position: absolute;
-  z-index: 2;
+  z-index: 5;
   top: 100px;
   left: 10px;
   right: 10px;
@@ -523,7 +530,12 @@ body {
 }
 
 .page__home {
-  margin: 0px 0px 850px 0px;
+  margin-bottom: 50px;
+}
+
+.home__container {
+  height: 100vh;
+  position: relative;
 }
 
 .home__image {
@@ -536,19 +548,35 @@ body {
 
 .home__info {
   display: inline-block;
-  position: relative;
+  position: absolute;
   z-index: 1;
   bottom: 10px;
-  left: 0px;
+  left: 40px;
+  margin: auto 0 20px 0;
   padding: 20px 40px;
   border-radius: 3px;
-  background-color: #6F81FF;
   color: white;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+@media (max-width: 767px) {
+  .home__info {
+    left: 20px;
+    padding: 20px 20px;
+  }
 }
 
 .home__title {
   font-size: 50px;
+  font-weight: 700;
+  text-transform: uppercase;
   margin-bottom: 30px;
+}
+
+@media (max-width: 767px) {
+  .home__title {
+    font-size: 40px;
+  }
 }
 
 .home__coordinates p {
@@ -628,7 +656,7 @@ canvas {
 }
 
 /*-------------------------------------------------------------*/
-/*-----Tariff-------------------------------------------------*/
+/*-----Tariff--------------------------------------------------*/
 /*-------------------------------------------------------------*/
 .tariff__container {
   padding: 100px 0px;
@@ -678,3 +706,62 @@ canvas {
     font-size: 20px;
   }
 }
+
+/*-------------------------------------------------------------*/
+/*-----Ungroup properties--------------------------------------*/
+/*-------------------------------------------------------------*/
+.ungrouped__wrapper {
+  padding: 50px 30px;
+  border-radius: 10px;
+  color: white;
+  margin-bottom: 50px;
+  background-color: white;
+}
+
+.ungrouped__table {
+  width: 100%;
+  margin-bottom: 20px;
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+.ungrouped__table th {
+  font-weight: bold;
+  padding: 5px;
+  background: #efefef;
+  border: 1px solid #dddddd;
+  color: black;
+  font-size: 28px;
+}
+
+.ungrouped__table td {
+  border: 1px solid #dddddd;
+  padding: 10px;
+  font-size: 22px;
+}
+
+.ungrouped__table tr:nth-child(odd) {
+  background: #dddddd;
+  color: black;
+}
+
+.ungrouped__table tr:nth-child(even) {
+  background: #6f81ff;
+}
+
+.ungrouped__table caption {
+  color: black;
+  margin-bottom: 30px;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+@media (max-width: 360px) {
+  .ungrouped__table caption {
+    font-size: 26px;
+  }
+}
+
+/*-------------------------------------------------------------*/
+/*-----Table---------------------------------------------------*/
+/*-------------------------------------------------------------*/
