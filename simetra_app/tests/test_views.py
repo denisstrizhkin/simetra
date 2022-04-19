@@ -7,9 +7,12 @@ class TestView(TestCase):
     # TODO: add change models tests
 
     def SetUp(self):
-        client = Client()
+        self.client = Client()
 
     def test_create_boss(self):
+        self.client.login()
+        self.client.get('customization/change-boss/create-boss/')
+
         # TODO: test_create_boss
         pass
 
