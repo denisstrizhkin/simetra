@@ -580,14 +580,6 @@ body._lock {
   max-width: 640px;
 }
 
-.best__list {
-  //display: flex;
-  //justify-content: center;
-  //align-items: center;
-  //flex-wrap: wrap;
-  //gap: 40px 40px;
-}
-
 .best__item {
   display: flex;
 }
@@ -638,8 +630,105 @@ body._lock {
   font-weight: 600;
 }
 
-.city__line {}
+.city__line--400,
+.city__line--300 {
+  display: none;
+}
 
+@media (max-width: 1150px) {
+  .best__item:nth-child(4) {
+    top: 495px;
+  }
+  .city__image {
+    width: 229px;
+    height: 300px;
+    margin-bottom: 28px;
+  }
+  .city__subtitle {
+    padding-top: 60px;
+  
+    &--even {
+      padding-top: 202px;
+    }
+  }
+  .city__line--564 {
+    display: none;
+  }
+  .city__line--400{
+    display: inline-block;
+  }
+  .city__title {
+    font-size: 24px;
+  }
+}
+@media (max-width: 935px) {
+  .best__item:nth-child(4) {
+    top: 475px;
+  }
+  .city__image {
+    width: 214px;
+    height: 280px;
+    margin-bottom: 26px;
+  }
+  .city__subtitle {
+    padding-top: 50px;
+  
+    &--even {
+      padding-top: 173px;
+    }
+  }
+  .city__line--400 {
+    display: none;
+  }
+  .city__line--300 {
+    display: inline-block;
+  }
+  .city__title {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .best__item:nth-child(even) {
+    position: static;
+  }
+  .best__item,
+  .best__item:nth-child(even) {
+    display: block;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  .city__subtitle {
+    position: static;
+    display: block;
+    padding-top: 10px;
+    &--even {
+      padding-top: 10px;
+    }
+  }
+
+  .city__image {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    height: 280px;
+    margin-bottom: 0;
+  }
+
+  .city__title {
+    font-size: 20px;
+  }
+}
+@media (max-width: 768px) {
+  .best__item,
+  .best__item:nth-child(even) {
+    width: 95%;
+    margin: 0 auto 30px auto;
+  }
+}
 /*-------------------------------------------------------------*/
 /*-----Download------------------------------------------------*/
 /*-------------------------------------------------------------*/
@@ -672,6 +761,9 @@ body._lock {
   &__button {
     display: block;
     margin: 0 auto;
+    font-size: 22px;
+    padding: 25px 50px;
+    border-radius: 60px;
   }
 
   &__image {
