@@ -39,21 +39,13 @@ function createNewChart(start, end, regionName) {
         backgroundColor: "#CCB2FF",
         borderColor: "#B18AE0",
         borderWidth: 2,
-
-
       },
       {
         label: "Комфорт и удобство",
         data: generateDatas(start, end, "rating_comfort_n_convenience"),
-        // backgroundColor: "#FF6384",
-        // borderColor: "rgb(255,177,193",
-
         backgroundColor: "#FFB1C1",
         borderColor: "#FF6384",
-
         borderWidth: 2,
-        // rgb(255,177,193)
-
       },
       {
         label: "Эффективность маршрутной сети",

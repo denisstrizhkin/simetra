@@ -24,7 +24,7 @@ document.addEventListener("keydown", (event) => {
 // window.addEventListener(`resize`, () => {
 //   console.log(window.innerWidth);
 // }, false);
-console.log(window.innerWidth);
+
 if (window.innerWidth < 700) {
   overlay.style.display = "block";
 }

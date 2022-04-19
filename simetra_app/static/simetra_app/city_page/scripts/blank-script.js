@@ -33,7 +33,6 @@ const allPropertiesCity = JSON.parse(
   JSON.parse(document.getElementById("cities-list-json").textContent)[0]
 );
 
-
 /*-------------------------------------------------------------*/
 /*-----Generate datas------------------------------------------*/
 /*-------------------------------------------------------------*/
@@ -68,15 +67,16 @@ function createPolarArea(groupArr, start, end) {
     labels: generateLabels(groupArr, start, end),
     datasets: [
       {
-        label: "Dataset 1",
         data: generateDatas(groupArr, start, end),
         backgroundColor: [
-          "#E08A8E",
-          "#6F80FF",
-          "#DFE08B",
-          "#85DEB1",
-          "#B18AE0",
+          "#FFB1C1",
+          "#9AD0F5",
+          "#FFE6AA",
+          "#A5DFDF",
+          "#CCB2FF",
         ],
+        borderColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#B18AE0"],
+        borderWidth: 3,
       },
     ],
   };
@@ -130,12 +130,14 @@ function createPie(groupArr, start, end, fontColor = "black") {
       {
         data: generateDatas(groupArr, start, end),
         backgroundColor: [
-          "#E08A8E",
-          "#6F80FF",
-          "#DFE08B",
-          "#85DEB1",
-          "#B18AE0",
+          "#FFB1C1",
+          "#9AD0F5",
+          "#FFE6AA",
+          "#A5DFDF",
+          "#CCB2FF",
         ],
+        borderColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#B18AE0"],
+        borderWidth: 3,
       },
     ],
   };
@@ -181,19 +183,14 @@ function createDoughnut(groupArr, start, end, fontColor = "black") {
       {
         data: generateDatas(groupArr, start, end),
         backgroundColor: [
-          "#E08A8E",
-          "#6F80FF",
-          "#DFE08B",
-          "#85DEB1",
-          "#B18AE0",
+          "#FFB1C1",
+          "#9AD0F5",
+          "#FFE6AA",
+          "#A5DFDF",
+          "#CCB2FF",
         ],
-        borderColor: [
-          "rgba(255, 99, 132,1)",
-          "rgba(54, 162, 235,1)",
-          "rgba(255, 206, 86,1)",
-          "rgba(75, 192, 192,1)",
-          "rgba(153, 102, 255,1)",
-        ],
+        borderColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#B18AE0"],
+        borderWidth: 3,
       },
     ],
   };
@@ -230,71 +227,49 @@ function createDoughnut(groupArr, start, end, fontColor = "black") {
 }
 
 /*-------------------------------------------------------------*/
-/*-----Multi Series Pie----------------------------------------*/
+/*-----Generate datas------------------------------------------*/
 /*-------------------------------------------------------------*/
 
-// function generateMultiDatas(arrField, start, end) {
-//   let data = [];
-//   for (let i = start; i < end; i++) {
-//     if (arrField[i][1] !== 0) {
-//       const dataBuff = []
-//       dataBuff.push(arrField[i][1]);
-//       dataBuff.push(100 - arrField[i][1]);
-
-//       data.push(dataBuff);
-//     } else {
-//       unusedProperties.push(arrField[i][1]);
-//     }
-//   }
-//   return data;
-// }
-
-function generateMultiLabels(arrField, start, end) {
+function generateDatasProcent(arrField, start, end) {
   let data = [];
   for (let i = start; i < end; i++) {
-    const buffName = arrField[i][0];
-    if (arrField[i][1] !== 0) {
-      data.push(cityAttributeName[`${buffName}`]);
-      data.push(`Оставшийся процент`);
-    } else {
-      data.push(`Нет данных`);
-      data.push(`Нет данных`);
-      // data.push(`Оставшийся процент`);
-      nameUnusedProperties.push(cityAttributeName[`${buffName}`]);
-    }
+    data.push(arrField[i][1], 100 - arrField[i][1]);
   }
   return data;
 }
 
-function createNewMultiSeriesPie(groupArr, start, end) {
+function generateLabelsProcent(arrField, start, end) {
+  let data = [];
+  for (let i = start; i < end; i++) {
+    data.push(cityAttributeName[arrField[i][0]], "Оставшийся процент");
+  }
+  return data;
+}
+
+/*-------------------------------------------------------------*/
+/*-----Doughnut procent----------------------------------------*/
+/*-------------------------------------------------------------*/
+function createDoughnutProcent(groupArr, start, end, fontColor = "black") {
   const data = {
-    labels: generateMultiLabels(groupArr, start, end),
+    labels: generateLabelsProcent(groupArr, start, end),
     datasets: [
       {
-        backgroundColor: ["#33C2C7", "#60EEC4"],
-        data: [groupArr[start][1], 100 - groupArr[start][1]],
-      },
-      {
-        backgroundColor: ["#FF9840", "#FFB270"],
-        data: [groupArr[start + 1][1], 100 - groupArr[start + 1][1]],
-      },
-      {
-        backgroundColor: ["#456DD0", "#93ABE8"],
-        data: [groupArr[start + 2][1], 100 - groupArr[start + 2][1]],
-      },
-      {
-        backgroundColor: ["#39E143", "#163788"],
-        data: [groupArr[start + 3][1], 100 - groupArr[start + 3][1]],
-      },
-      {
-        backgroundColor: ["#33C2C7", "#60EEC4"],
-        data: [groupArr[start + 4][1], 100 - groupArr[start + 4][1]],
+        data: generateDatasProcent (groupArr, start, end),
+        backgroundColor: [
+          "#FFB1C1",
+          "#9AD0F5",
+          "#FFE6AA",
+          "#A5DFDF",
+          "#CCB2FF",
+        ],
+        borderColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#B18AE0"],
+        borderWidth: 3,
       },
     ],
   };
 
   const config = {
-    type: "pie",
+    type: "doughnut",
     data: data,
     options: {
       responsive: true,
@@ -307,54 +282,32 @@ function createNewMultiSeriesPie(groupArr, start, end) {
           },
         },
         legend: {
+          position: "top",
           labels: {
+            color: fontColor,
             font: {
               size: 20,
             },
-            generateLabels: function (chart) {
-              const original =
-                Chart.overrides.pie.plugins.legend.labels.generateLabels;
-              const labelsOriginal = original.call(this, chart);
-
-              var datasetColors = chart.data.datasets.map(function (e) {
-                return e.backgroundColor;
-              });
-              datasetColors = datasetColors.flat();
-
-              labelsOriginal.forEach((label) => {
-                label.datasetIndex = (label.index - (label.index % 2)) / 2;
-
-                label.hidden = !chart.isDatasetVisible(label.datasetIndex);
-
-                label.fillStyle = datasetColors[label.index];
-              });
-
-              return labelsOriginal;
-            },
-          },
-          onClick: function (mouseEvent, legendItem, legend) {
-            legend.chart.getDatasetMeta(legendItem.datasetIndex).hidden =
-              legend.chart.isDatasetVisible(legendItem.datasetIndex);
-            legend.chart.update();
           },
         },
-        tooltip: {
-          callbacks: {
-            label: function (context) {
-              const labelIndex = context.datasetIndex * 2 + context.dataIndex;
-              return (
-                context.chart.data.labels[labelIndex] +
-                ": " +
-                context.formattedValue
-              );
-            },
-          },
+        title: {
+          display: true,
         },
       },
     },
   };
   return config;
 }
+
+// backgroundColor: [
+//   "#FFB1C1",
+//   "#9AD0F5",
+//   "#FFE6AA",
+//   "#A5DFDF",
+//   "#CCB2FF",
+// ],
+// borderColor: ["#FF6384", "#36A2EB", "#FFCE56",'#4BC0C0','#B18AE0'],
+// borderWidth: 3,
 
 /*-------------------------------------------------------------*/
 /*-----Horizontal bar------------------------------------------*/
@@ -526,7 +479,7 @@ for (let i = 8; i < 17; i++) {
     createNewChart("spatial", spatialCounter);
     new Chart(
       document.getElementById(`spatial-${spatialCounter}`),
-      createDoughnut(spatial, i, i + 1, "white")
+      createPie(spatial, i, i + 1, "white")
     );
   } else {
     nameUnusedProperties.push(cityAttributeName[spatial[i][0]]);
@@ -552,7 +505,6 @@ new Chart(
   document.getElementById(`spatial-${spatialCounter}`),
   createDoughnut(spatial, 24, 30, "white")
 );
-
 
 ungroupedProperties.push([
   cityAttributeName.num_population,
@@ -621,25 +573,38 @@ new Chart(
   createDoughnut(rollinStock, 5, 10)
 );
 
+for (let i = 10; i < 15; i++) {
+  if (rollinStock[i][1] !== 0) {
+    rollinStockCounter++;
+    createNewChart("rolling-stock", rollinStockCounter);
+    new Chart(
+      document.getElementById(`rolling-stock-${rollinStockCounter}`),
+      createDoughnutProcent(rollinStock, i, i + 1)
+    );
+  } else {
+    nameUnusedProperties.push(cityAttributeName[rollinStock[i][0]]);
+  }
+}
+
+// rollinStockCounter++;
+// createNewChart("rolling-stock", rollinStockCounter);
+// new Chart(
+//   document.getElementById(`rolling-stock-${rollinStockCounter}`),
+//   createPie(rollinStock, 10, 15)
+// );
+
 rollinStockCounter++;
 createNewChart("rolling-stock", rollinStockCounter);
 new Chart(
   document.getElementById(`rolling-stock-${rollinStockCounter}`),
-  createNewMultiSeriesPie(rollinStock, 10, 15)
+  createPie(rollinStock, 15, 20)
 );
 
 rollinStockCounter++;
 createNewChart("rolling-stock", rollinStockCounter);
 new Chart(
   document.getElementById(`rolling-stock-${rollinStockCounter}`),
-  createDoughnut(rollinStock, 15, 20)
-);
-
-rollinStockCounter++;
-createNewChart("rolling-stock", rollinStockCounter);
-new Chart(
-  document.getElementById(`rolling-stock-${rollinStockCounter}`),
-  createDoughnut(rollinStock, 20, 23)
+  createPie(rollinStock, 20, 23)
 );
 
 rollinStockCounter++;
@@ -660,7 +625,7 @@ rollinStockCounter++;
 createNewChart("rolling-stock", rollinStockCounter);
 new Chart(
   document.getElementById(`rolling-stock-${rollinStockCounter}`),
-  createDoughnut(rollinStock, 31, 35)
+  createPie(rollinStock, 31, 35)
 );
 
 for (let i = 37; i < 41; i++) {
