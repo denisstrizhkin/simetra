@@ -542,7 +542,7 @@ body {
   left: 0px;
   padding: 20px 40px;
   border-radius: 3px;
-  background-color: #6F81FF;
+  background-color: #6f81ff;
   color: white;
 }
 
@@ -678,3 +678,62 @@ canvas {
     font-size: 20px;
   }
 }
+
+/*-------------------------------------------------------------*/
+/*-----Ungroup properties--------------------------------------*/
+/*-------------------------------------------------------------*/
+.ungrouped__wrapper {
+  padding: 50px 30px;
+  border-radius: 10px;
+  color: white;
+  margin-bottom: 50px;
+  background-color: white;
+}
+
+.ungrouped__table {
+  width: 100%;
+  margin-bottom: 20px;
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+.ungrouped__table th {
+  font-weight: bold;
+  padding: 5px;
+  background: #efefef;
+  border: 1px solid #dddddd;
+  color: black;
+  font-size: 28px;
+}
+
+.ungrouped__table td {
+  border: 1px solid #dddddd;
+  padding: 10px;
+  font-size: 22px;
+}
+
+.ungrouped__table tr:nth-child(odd) {
+  background: #dddddd;
+  color: black;
+}
+
+.ungrouped__table tr:nth-child(even) {
+  background: #6f81ff;
+}
+
+.ungrouped__table caption {
+  color: black;
+  margin-bottom: 30px;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+@media (max-width: 360px) {
+  .ungrouped__table caption {
+    font-size: 26px;
+  }
+}
+
+/*-------------------------------------------------------------*/
+/*-----Table---------------------------------------------------*/
+/*-------------------------------------------------------------*/

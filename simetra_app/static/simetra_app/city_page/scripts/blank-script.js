@@ -456,25 +456,46 @@ function displayUnusedProperties(containerSelector) {
 /*-------------------------------------------------------------*/
 
 function displayUngroupedProperties(containerSelector) {
-  let unusedList;
+  let table;
   for (let i = 0; i < ungroupedProperties.length; i++) {
     if (i === 0) {
       const unusedWrapper = document.createElement("div");
-      unusedWrapper.classList.add("unused__wrapper");
+      unusedWrapper.classList.add("ungrouped__wrapper");
       document.querySelector(containerSelector).append(unusedWrapper);
 
-      const unusedListTitle = document.createElement("h3");
-      unusedListTitle.textContent = "Несгруппированные свойства";
-      unusedWrapper.append(unusedListTitle);
 
-      unusedList = document.createElement("ul");
-      unusedList.classList.add("unused__list");
-      unusedWrapper.append(unusedList);
+      table = document.createElement("table");
+      table.classList.add("ungrouped__table");
+      unusedWrapper.append(table);
+
+
+      const caption = document.createElement("caption");
+      caption.textContent = "Несгруппированные свойства";
+      table.append(caption);
+
+
+
+      const mainLine = document.createElement("tr");
+      const mainPropertyName = document.createElement("th");
+      const mainPropertyValue = document.createElement("th");
+      mainPropertyName.textContent = 'Название свойства';
+      mainPropertyValue.textContent = 'Значение свойства';
+  
+      mainLine.append(mainPropertyName);
+      mainLine.append(mainPropertyValue);
+      table.append(mainLine);
     }
 
-    const unuseElement = document.createElement("li");
-    unuseElement.textContent = `${ungroupedProperties[i][0]}: ${ungroupedProperties[i][1]}`;
-    unusedList.append(unuseElement);
+    const line = document.createElement("tr");
+
+    const propertyName = document.createElement("td");
+    const propertyValue = document.createElement("td");
+    propertyName.textContent = ungroupedProperties[i][0];
+    propertyValue.textContent = ungroupedProperties[i][1];
+
+    line.append(propertyName);
+    line.append(propertyValue);
+    table.append(line);
   }
 
   ungroupedProperties = [];
@@ -628,7 +649,6 @@ new Chart(
 //   document.getElementById(`rolling-stock-${rollingStockCounter}`),
 //   createDoughnut(rollingStock, 23, 26)
 // );
-
 
 ///
 rollingStockCounter++;
