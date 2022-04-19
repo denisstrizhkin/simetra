@@ -11,7 +11,7 @@ app_name = 'simetra_app'
 urlpatterns = [
     # Main Pages
     path('', views.main_page, name='main'),
-    path('methodogoly/', views.methodology_page, name='methodology'),
+    path('methodology/', views.methodology_page, name='methodology'),
     path('analytics/', views.analytics_page, name='analytics'),
     path('data-base/', views.data_base_page, name='data-base'),
     path('cities/<str:city_name>/', views.city_page, name='city-page'),
