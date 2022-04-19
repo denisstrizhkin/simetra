@@ -353,14 +353,16 @@ canvas {
   border: 1px solid black;
   border-collapse: collapse;
 }
+
 .ungrouped__table th {
   font-weight: bold;
   padding: 5px;
   background: #efefef;
   border: 1px solid #dddddd;
   color: black;
-  font-size: 28px;
+  font-size: 22px;
 }
+
 .ungrouped__table td {
   border: 1px solid #dddddd;
   padding: 10px;
@@ -372,9 +374,7 @@ canvas {
   color: black;
 }
 .ungrouped__table tr:nth-child(even) {
-  // &:not(:first-child) {
   background: #6f81ff;
-  // }
 }
 
 .ungrouped__table caption {

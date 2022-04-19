@@ -1,10 +1,16 @@
 "use strict";
 
-const citiesUnparsed = JSON.parse(
-  document.getElementById("cities_attrs_by_groups_list_json").textContent
-);
+const longitude = document.querySelector(".home__longitude");
+const latitude = document.querySelector(".home__latitude");
 
-const subgroups = JSON.parse(citiesUnparsed[0]);
+longitude.textContent = longitude.textContent.slice(0, 13);
+latitude.textContent = latitude.textContent.slice(0, 14);
+
+const subgroups = JSON.parse(
+  JSON.parse(
+    document.getElementById("cities_attrs_by_groups_list_json").textContent
+  )[0]
+);
 
 const namesubgroups = [
   "Качественные группы",
@@ -22,6 +28,22 @@ const qualityGroups = Object.entries(
   rollingStock = Object.entries(JSON.parse(subgroups["ПОДВИЖНОЙ СОСТАВ"][0])),
   routes = Object.entries(JSON.parse(subgroups["МАРШРУТЫ"][0])),
   tariffSystem = Object.entries(JSON.parse(subgroups["ТАРИФНАЯ СИСТЕМА"][0]));
+
+function roundingValues(arrField) {
+  for (let i = 0; i < arrField.length; i++) {
+    if (arrField[i][1] % 1 !== 0) {
+      arrField[i][1] = +arrField[i][1].toFixed(2);
+      console.log(arrField[i][1]);
+    }
+  }
+}
+
+roundingValues(qualityGroups);
+roundingValues(spatial);
+roundingValues(rollingStock);
+roundingValues(routes);
+roundingValues(tariffSystem);
+
 
 const cityAttributeName = JSON.parse(
   JSON.parse(
@@ -240,7 +262,10 @@ function generateDatasProcent(arrField, start, end) {
 function generateLabelsProcent(arrField, start, end) {
   let data = [];
   for (let i = start; i < end; i++) {
-    data.push(cityAttributeName[arrField[i][0]], "Оставшийся процент");
+    let re = /исправных/gi;
+    let newLabel = cityAttributeName[arrField[i][0]].replace(re, "неисправных");
+
+    data.push(cityAttributeName[arrField[i][0]], newLabel);
   }
   return data;
 }
@@ -463,24 +488,20 @@ function displayUngroupedProperties(containerSelector) {
       unusedWrapper.classList.add("ungrouped__wrapper");
       document.querySelector(containerSelector).append(unusedWrapper);
 
-
       table = document.createElement("table");
       table.classList.add("ungrouped__table");
       unusedWrapper.append(table);
-
 
       const caption = document.createElement("caption");
       caption.textContent = "Несгруппированные свойства";
       table.append(caption);
 
-
-
       const mainLine = document.createElement("tr");
       const mainPropertyName = document.createElement("th");
       const mainPropertyValue = document.createElement("th");
-      mainPropertyName.textContent = 'Название свойства';
-      mainPropertyValue.textContent = 'Значение свойства';
-  
+      mainPropertyName.textContent = "Название свойства";
+      mainPropertyValue.textContent = "Значение свойства";
+
       mainLine.append(mainPropertyName);
       mainLine.append(mainPropertyValue);
       table.append(mainLine);
