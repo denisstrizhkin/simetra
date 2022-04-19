@@ -29,22 +29,6 @@ const qualityGroups = Object.entries(
   routes = Object.entries(JSON.parse(subgroups["МАРШРУТЫ"][0])),
   tariffSystem = Object.entries(JSON.parse(subgroups["ТАРИФНАЯ СИСТЕМА"][0]));
 
-function roundingValues(arrField) {
-  for (let i = 0; i < arrField.length; i++) {
-    if (arrField[i][1] % 1 !== 0) {
-      arrField[i][1] = +arrField[i][1].toFixed(2);
-      console.log(arrField[i][1]);
-    }
-  }
-}
-
-roundingValues(qualityGroups);
-roundingValues(spatial);
-roundingValues(rollingStock);
-roundingValues(routes);
-roundingValues(tariffSystem);
-
-
 const cityAttributeName = JSON.parse(
   JSON.parse(
     document.getElementById("city_attr_verbose_names_list_json").textContent
@@ -54,6 +38,33 @@ const cityAttributeName = JSON.parse(
 const allPropertiesCity = JSON.parse(
   JSON.parse(document.getElementById("cities-list-json").textContent)[0]
 );
+
+function roundingGroupValues(arrField) {
+  for (let i = 0; i < arrField.length; i++) {
+    if (arrField[i][1] % 1 !== 0) {
+      arrField[i][1] = +arrField[i][1].toFixed(2);
+    }
+  }
+}
+
+roundingGroupValues(qualityGroups);
+roundingGroupValues(spatial);
+roundingGroupValues(rollingStock);
+roundingGroupValues(routes);
+roundingGroupValues(tariffSystem);
+
+function roundingAllValues(arrField) {
+  for (let key in arrField) {
+    if (arrField[key] % 1 !== 0 && typeof arrField[key] === "number") {
+      arrField[key] = +arrField[key].toFixed(2);
+      console.log(arrField[key]);
+    }
+  }
+}
+
+roundingAllValues(allPropertiesCity);
+
+// console.log(allPropertiesCity);
 
 /*-------------------------------------------------------------*/
 /*-----Generate datas------------------------------------------*/
