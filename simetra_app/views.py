@@ -538,7 +538,7 @@ def upload_cities_excel(request):
                         city = City(name=name)
 
                     if not loc_read[name] and is_city_name_correct_to_find_coordinates(city.name):
-                        longitude, latitude = CityCoordinates(city.name). \
+                        longitude, latitude = CityCoordinates(city.name).\
                             get_longitude_and_latitude_by_city_name()
                         loc_read[name] = True
 
