@@ -145,9 +145,17 @@ h6 {
   gap: 30px 30px;
 }
 
-.menu a:focus {
-  -webkit-box-shadow: 0 0 5px 5px #6f80ff;
-  box-shadow: 0 0 5px 5px #6f80ff;
+.menu {
+  & a:focus {
+    border-bottom: 4px solid #6f80ff;
+  }
+
+  & > a{
+    &:focus{
+      border-bottom: none;
+      box-shadow: 0 0 10px 3px #6f80ff;
+    }
+    }
 }
 
 .menu__logo {
@@ -330,6 +338,7 @@ section {
 /*-----FOOTER---------------------------------------------*/
 /*--------------------------------------------------------*/
 .footer {
+  margin-top: 80px;
   background-color: #000000;
   color: #ffffff;
 }

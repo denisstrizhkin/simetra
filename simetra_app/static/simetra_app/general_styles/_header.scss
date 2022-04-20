@@ -35,8 +35,13 @@
     justify-content: space-between;
     gap: 30px 30px;
   }
+
   & a:focus {
     border-bottom: 4px solid #6f80ff;
+  }
+
+  & a:hover {
+    color: #6f80ff;
   }
 
   & > a{

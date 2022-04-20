@@ -150,6 +150,10 @@ h6 {
   border-bottom: 4px solid #6f80ff;
 }
 
+.menu a:hover {
+  color: #6f80ff;
+}
+
 .menu > a:focus {
   border-bottom: none;
   -webkit-box-shadow: 0 0 10px 3px #6f80ff;
