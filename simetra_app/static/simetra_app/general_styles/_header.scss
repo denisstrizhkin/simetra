@@ -36,7 +36,14 @@
     gap: 30px 30px;
   }
   & a:focus {
-    box-shadow: 0 0 5px 5px #6f80ff;
+    border-bottom: 4px solid #6f80ff;
+  }
+
+  & > a{
+    &:focus{
+      border-bottom: none;
+      box-shadow: 0 0 10px 3px #6f80ff;
+    }
   }
 
   &__logo {
