@@ -1,10 +1,16 @@
 "use strict";
 
-const citiesUnparsed = JSON.parse(
-  document.getElementById("cities_attrs_by_groups_list_json").textContent
-);
+const longitude = document.querySelector(".home__longitude");
+const latitude = document.querySelector(".home__latitude");
 
-const subgroups = JSON.parse(citiesUnparsed[0]);
+longitude.textContent = longitude.textContent.slice(0, 13);
+latitude.textContent = latitude.textContent.slice(0, 14);
+
+const subgroups = JSON.parse(
+  JSON.parse(
+    document.getElementById("cities_attrs_by_groups_list_json").textContent
+  )[0]
+);
 
 const namesubgroups = [
   "Качественные группы",
@@ -32,6 +38,33 @@ const cityAttributeName = JSON.parse(
 const allPropertiesCity = JSON.parse(
   JSON.parse(document.getElementById("cities-list-json").textContent)[0]
 );
+
+function roundingGroupValues(arrField) {
+  for (let i = 0; i < arrField.length; i++) {
+    if (arrField[i][1] % 1 !== 0) {
+      arrField[i][1] = +arrField[i][1].toFixed(2);
+    }
+  }
+}
+
+roundingGroupValues(qualityGroups);
+roundingGroupValues(spatial);
+roundingGroupValues(rollingStock);
+roundingGroupValues(routes);
+roundingGroupValues(tariffSystem);
+
+function roundingAllValues(arrField) {
+  for (let key in arrField) {
+    if (arrField[key] % 1 !== 0 && typeof arrField[key] === "number") {
+      arrField[key] = +arrField[key].toFixed(2);
+      console.log(arrField[key]);
+    }
+  }
+}
+
+roundingAllValues(allPropertiesCity);
+
+// console.log(allPropertiesCity);
 
 /*-------------------------------------------------------------*/
 /*-----Generate datas------------------------------------------*/
@@ -240,7 +273,10 @@ function generateDatasProcent(arrField, start, end) {
 function generateLabelsProcent(arrField, start, end) {
   let data = [];
   for (let i = start; i < end; i++) {
-    data.push(cityAttributeName[arrField[i][0]], "Оставшийся процент");
+    let re = /исправных/gi;
+    let newLabel = cityAttributeName[arrField[i][0]].replace(re, "неисправных");
+
+    data.push(cityAttributeName[arrField[i][0]], newLabel);
   }
   return data;
 }
@@ -463,24 +499,20 @@ function displayUngroupedProperties(containerSelector) {
       unusedWrapper.classList.add("ungrouped__wrapper");
       document.querySelector(containerSelector).append(unusedWrapper);
 
-
       table = document.createElement("table");
       table.classList.add("ungrouped__table");
       unusedWrapper.append(table);
-
 
       const caption = document.createElement("caption");
       caption.textContent = "Несгруппированные свойства";
       table.append(caption);
 
-
-
       const mainLine = document.createElement("tr");
       const mainPropertyName = document.createElement("th");
       const mainPropertyValue = document.createElement("th");
-      mainPropertyName.textContent = 'Название свойства';
-      mainPropertyValue.textContent = 'Значение свойства';
-  
+      mainPropertyName.textContent = "Название свойства";
+      mainPropertyValue.textContent = "Значение свойства";
+
       mainLine.append(mainPropertyName);
       mainLine.append(mainPropertyValue);
       table.append(mainLine);

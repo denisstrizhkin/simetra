@@ -146,8 +146,17 @@ h6 {
 }
 
 .menu a:focus {
-  -webkit-box-shadow: 0 0 5px 5px #6f80ff;
-          box-shadow: 0 0 5px 5px #6f80ff;
+  border-bottom: 4px solid #6f80ff;
+}
+
+.menu a:hover {
+  color: #6f80ff;
+}
+
+.menu > a:focus {
+  border-bottom: none;
+  -webkit-box-shadow: 0 0 10px 3px #6f80ff;
+          box-shadow: 0 0 10px 3px #6f80ff;
 }
 
 .menu__logo {
@@ -405,7 +414,7 @@ body {
 /*-----Technical classes---------------------------------------*/
 /*-------------------------------------------------------------*/
 ._container {
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0px auto;
   padding: 0px 10px;
 }
@@ -463,10 +472,6 @@ body {
   color: #ffffff;
   -webkit-transition: 0.2s;
   transition: 0.2s;
-}
-
-._link:hover {
-  border-bottom: 4px solid #93a0ff;
 }
 
 /*-------------------------------------------------------------*/

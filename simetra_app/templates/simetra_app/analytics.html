@@ -83,15 +83,99 @@
 
     <main class="page">
       <div class="page__container _container">
+        <section name="description" class="page__description _center-block">
+          <div class="page__description-header">
+            <h2 class="page _customers-blue-color">
+              SIMETRA ТРАНСПОРТНЫЙ РЕЙТИНГ
+            </h2>
+            <h1 class="page">
+              Рейтинг <span class="_customers-blue-color">2022</span>
+            </h1>
+          </div>
+          <p class="page__description-main">
+            В исследовании покрыто <b>{{ number_of_cities }}</b> городов
+            Российской Федерации для оценки качества общественного транспорта.
+            При составлении итогового результата исследования были
+            задейстованы <b>5</b> ключевых параметров, представленных в
+            таблице ниже.
+          </p>
+
+          <a
+            href="{% url 'simetra_app:methodology' %}"
+            class="page__description-link"
+          >
+            <p class="page__description-footer _center-text-vertically-flexbox">
+              УЗНАТЬ БОЛЬШЕ О МЕТОДОЛОГИИ
+              <img class="_arrow" src="{% static 'simetra_app/data_base_page/assets/img/chevron-right.svg' %}" alt="Arrow">
+            </p>
+          </a>
+        </section>
+
         <h1 class="page-title">Аналитика</h1>
-        <canvas id="county-1"></canvas>
-        <canvas id="county-2"></canvas>
-        <canvas id="county-3"></canvas>
-        <canvas id="county-4"></canvas>
-        <canvas id="county-5"></canvas>
-        <canvas id="county-6"></canvas>
-        <canvas id="county-7"></canvas>
-        <canvas id="county-8"></canvas>
+
+        <section>
+          <canvas id="top-10"></canvas>
+        </section>
+
+        <section data-spollers class="block">
+          <div class="block__item">
+            <button tabindex='-1' type='button' data-spoller class="block__title">Центральный федеральный округ</button>
+            <div class="block__text"><canvas id="county-1"></canvas>
+            </div>
+          </div>
+        </section>
+        <section data-spollers class="block">
+          <div class="block__item">
+            <button tabindex='-1' type='button' data-spoller class="block__title">Северо-Западный федеральный
+              округ</button>
+            <div class="block__text"><canvas id="county-2"></canvas>
+            </div>
+          </div>
+        </section>
+        <section data-spollers class="block">
+          <div class="block__item">
+            <button tabindex='-1' type='button' data-spoller class="block__title">Южный федеральный округ</button>
+            <div class="block__text"><canvas id="county-3"></canvas>
+            </div>
+          </div>
+        </section>
+        <section data-spollers class="block">
+          <div class="block__item">
+            <button tabindex='-1' type='button' data-spoller class="block__title">Северо-Кавказский федеральный
+              округ</button>
+            <div class="block__text"><canvas id="county-4"></canvas>
+            </div>
+          </div>
+        </section>
+        <section data-spollers class="block">
+          <div class="block__item">
+            <button tabindex='-1' type='button' data-spoller class="block__title">Приволжский федеральный округ</button>
+            <div class="block__text"><canvas id="county-5"></canvas>
+            </div>
+          </div>
+        </section>
+        <section data-spollers class="block">
+          <div class="block__item">
+            <button tabindex='-1' type='button' data-spoller class="block__title">Уральский федеральный округ</button>
+            <div class="block__text"> <canvas id="county-6"></canvas>
+            </div>
+          </div>
+        </section>
+        <section data-spollers class="block">
+          <div class="block__item">
+            <button tabindex='-1' type='button' data-spoller class="block__title">Сибирский федеральный округ</button>
+            <div class="block__text"><canvas id="county-7"></canvas>
+            </div>
+          </div>
+        </section>
+        <section data-spollers class="block">
+          <div class="block__item">
+            <button tabindex='-1' type='button' data-spoller class="block__title">Дальневосточный федеральный
+              округ</button>
+            <div class="block__text"> <canvas id="county-8"></canvas>
+            </div>
+          </div>
+        </section>
       </div>
     </main>
 
