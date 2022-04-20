@@ -4,9 +4,9 @@ const citiesUnparsed = JSON.parse(
   document.getElementById("cities_attrs_by_groups_list_json").textContent
 );
 
-const featureGroups = JSON.parse(citiesUnparsed[0]);
+const subgroups = JSON.parse(citiesUnparsed[0]);
 
-const nameFeatureGroups = [
+const namesubgroups = [
   "Качественные группы",
   "Пространственные характеристики",
   "Подвижной состав",
@@ -14,34 +14,34 @@ const nameFeatureGroups = [
   "Тарифная система",
 ];
 const qualityGroups = Object.entries(
-    JSON.parse(featureGroups["КАЧЕСТВЕННЫЕ ГРУППЫ"][0])
+    JSON.parse(subgroups["КАЧЕСТВЕННЫЕ ГРУППЫ"][0])
   ),
-  spatialCharacteristics = Object.entries(
-    JSON.parse(featureGroups["ПРОСТРАНСТВЕННЫЕ_ХАРАКТЕРИСТИКИ"][0])
+  spatial = Object.entries(
+    JSON.parse(subgroups["ПРОСТРАНСТВЕННЫЕ_ХАРАКТЕРИСТИКИ"][0])
   ),
-  rollinStock = Object.entries(
-    JSON.parse(featureGroups["ПОДВИЖНОЙ СОСТАВ"][0])
-  ),
-  routes = Object.entries(JSON.parse(featureGroups["МАРШРУТЫ"][0])),
-  tariffSystem = Object.entries(
-    JSON.parse(featureGroups["ТАРИФНАЯ СИСТЕМА"][0])
-  );
+  rollingStock = Object.entries(JSON.parse(subgroups["ПОДВИЖНОЙ СОСТАВ"][0])),
+  routes = Object.entries(JSON.parse(subgroups["МАРШРУТЫ"][0])),
+  tariffSystem = Object.entries(JSON.parse(subgroups["ТАРИФНАЯ СИСТЕМА"][0]));
 
-const citiesAttrVerboseNameUnparsed = JSON.parse(
-  document.getElementById("city_attr_verbose_names_list_json").textContent
+const cityAttributeName = JSON.parse(
+  JSON.parse(
+    document.getElementById("city_attr_verbose_names_list_json").textContent
+  )[0]
 );
-const cityAttributeName = JSON.parse(citiesAttrVerboseNameUnparsed[0]);
 
-let unusedProperties = [];
-let nameUnusedProperties = [];
+const allPropertiesCity = JSON.parse(
+  JSON.parse(document.getElementById("cities-list-json").textContent)[0]
+);
+
+/*-------------------------------------------------------------*/
+/*-----Generate datas------------------------------------------*/
+/*-------------------------------------------------------------*/
 
 function generateDatas(arrField, start, end) {
   let data = [];
   for (let i = start; i < end; i++) {
     if (arrField[i][1] !== 0) {
       data.push(arrField[i][1]);
-    } else {
-      unusedProperties.push(arrField[i][1]);
     }
   }
   return data;
@@ -50,11 +50,10 @@ function generateDatas(arrField, start, end) {
 function generateLabels(arrField, start, end) {
   let data = [];
   for (let i = start; i < end; i++) {
-    const buffName = arrField[i][0];
     if (arrField[i][1] !== 0) {
-      data.push(cityAttributeName[`${buffName}`]);
+      data.push(cityAttributeName[arrField[i][0]]);
     } else {
-      nameUnusedProperties.push(cityAttributeName[`${buffName}`]);
+      nameUnusedProperties.push(cityAttributeName[arrField[i][0]]);
     }
   }
   return data;
@@ -63,20 +62,21 @@ function generateLabels(arrField, start, end) {
 /*-------------------------------------------------------------*/
 /*-----Polar Area----------------------------------------------*/
 /*-------------------------------------------------------------*/
-function createNewPolarArea(groupArr, start, end) {
+function createPolarArea(groupArr, start, end) {
   const data = {
     labels: generateLabels(groupArr, start, end),
     datasets: [
       {
-        label: "Dataset 1",
         data: generateDatas(groupArr, start, end),
         backgroundColor: [
-          "rgba(255, 99, 132,1)",
-          "rgba(54, 162, 235,1)",
-          "rgba(255, 206, 86,1)",
-          "rgba(75, 192, 192,1)",
-          "rgba(153, 102, 255,1)",
+          "#FFB1C1",
+          "#9AD0F5",
+          "#FFE6AA",
+          "#A5DFDF",
+          "#CCB2FF",
         ],
+        borderColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#B18AE0"],
+        borderWidth: 3,
       },
     ],
   };
@@ -94,12 +94,9 @@ function createNewPolarArea(groupArr, start, end) {
     // },
     options: {
       responsive: true,
-      // scales: {
-      //   myScale: {
-      //     type: 'logarithmic',
-      //     position: 'right', // `axis` is determined by the position as `'y'`
-      //   }
-      // },
+      scales: {
+        color: "#ffffff",
+      },
       plugins: {
         tooltip: {
           enabled: true,
@@ -111,7 +108,6 @@ function createNewPolarArea(groupArr, start, end) {
         legend: {
           position: "top",
           labels: {
-            // color: '#ffffff',
             font: {
               size: 20,
             },
@@ -126,19 +122,21 @@ function createNewPolarArea(groupArr, start, end) {
 /*-------------------------------------------------------------*/
 /*-----Pie-----------------------------------------------------*/
 /*-------------------------------------------------------------*/
-function createNewPie(groupArr, start, end) {
+function createPie(groupArr, start, end, fontColor = "black") {
   const data = {
     labels: generateLabels(groupArr, start, end),
     datasets: [
       {
         data: generateDatas(groupArr, start, end),
         backgroundColor: [
-          "rgba(255, 99, 132,1)",
-          "rgba(54, 162, 235,1)",
-          "rgba(255, 206, 86,1)",
-          "rgba(75, 192, 192,1)",
-          "rgba(153, 102, 255,1)",
+          "#FFB1C1",
+          "#9AD0F5",
+          "#FFE6AA",
+          "#A5DFDF",
+          "#CCB2FF",
         ],
+        borderColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#B18AE0"],
+        borderWidth: 3,
       },
     ],
   };
@@ -159,6 +157,7 @@ function createNewPie(groupArr, start, end) {
         legend: {
           position: "top",
           labels: {
+            color: fontColor,
             font: {
               size: 20,
             },
@@ -176,19 +175,21 @@ function createNewPie(groupArr, start, end) {
 /*-------------------------------------------------------------*/
 /*-----Doughnut------------------------------------------------*/
 /*-------------------------------------------------------------*/
-function createNewDoughnut(groupArr, start, end) {
+function createDoughnut(groupArr, start, end, fontColor = "black") {
   const data = {
     labels: generateLabels(groupArr, start, end),
     datasets: [
       {
         data: generateDatas(groupArr, start, end),
         backgroundColor: [
-          "rgba(255, 99, 132,1)",
-          "rgba(54, 162, 235,1)",
-          "rgba(255, 206, 86,1)",
-          "rgba(75, 192, 192,1)",
-          "rgba(153, 102, 255,1)",
+          "#FFB1C1",
+          "#9AD0F5",
+          "#FFE6AA",
+          "#A5DFDF",
+          "#CCB2FF",
         ],
+        borderColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#B18AE0"],
+        borderWidth: 3,
       },
     ],
   };
@@ -209,6 +210,7 @@ function createNewDoughnut(groupArr, start, end) {
         legend: {
           position: "top",
           labels: {
+            color: fontColor,
             font: {
               size: 20,
             },
@@ -224,72 +226,49 @@ function createNewDoughnut(groupArr, start, end) {
 }
 
 /*-------------------------------------------------------------*/
-/*-----Multi Series Pie----------------------------------------*/
+/*-----Generate datas------------------------------------------*/
 /*-------------------------------------------------------------*/
 
-// function generateMultiDatas(arrField, start, end) {
-//   let data = [];
-//   for (let i = start; i < end; i++) {
-//     if (arrField[i][1] !== 0) {
-//       const dataBuff = []
-//       dataBuff.push(arrField[i][1]);
-//       dataBuff.push(100 - arrField[i][1]);
-
-//       data.push(dataBuff);
-//     } else {
-//       unusedProperties.push(arrField[i][1]);
-//     }
-//   }
-//   return data;
-// }
-
-function generateMultiLabels(arrField, start, end) {
+function generateDatasProcent(arrField, start, end) {
   let data = [];
   for (let i = start; i < end; i++) {
-    const buffName = arrField[i][0];
-    if (arrField[i][1] !== 0) {
-      console.log(cityAttributeName[`${buffName}`]);
-      data.push(cityAttributeName[`${buffName}`]);
-      data.push(`Оставшийся процент`);
-    } else {
-      data.push(`Нет данных`);
-      data.push(`Нет данных`);
-      // data.push(`Оставшийся процент`);
-      nameUnusedProperties.push(cityAttributeName[`${buffName}`]);
-    }
+    data.push(arrField[i][1], 100 - arrField[i][1]);
   }
   return data;
 }
 
-function createNewMultiSeriesPie(groupArr, start, end) {
+function generateLabelsProcent(arrField, start, end) {
+  let data = [];
+  for (let i = start; i < end; i++) {
+    data.push(cityAttributeName[arrField[i][0]], "Оставшийся процент");
+  }
+  return data;
+}
+
+/*-------------------------------------------------------------*/
+/*-----Doughnut procent----------------------------------------*/
+/*-------------------------------------------------------------*/
+function createDoughnutProcent(groupArr, start, end, fontColor = "black") {
   const data = {
-    labels: generateMultiLabels(groupArr, start, end),
+    labels: generateLabelsProcent(groupArr, start, end),
     datasets: [
       {
-        backgroundColor: ["#33C2C7", "#60EEC4"],
-        data: [groupArr[start][1], 100 - groupArr[start][1]],
-      },
-      {
-        backgroundColor: ["#FF9840", "#FFB270"],
-        data: [groupArr[start + 1][1], 100 - groupArr[start + 1][1]],
-      },
-      {
-        backgroundColor: ["#456DD0", "#93ABE8"],
-        data: [groupArr[start + 2][1], 100 - groupArr[start + 2][1]],
-      },
-      {
-        backgroundColor: ["#39E143", "#163788"],
-        data: [groupArr[start + 3][1], 100 - groupArr[start + 3][1]],
-      },
-      {
-        backgroundColor: ["#33C2C7", "#60EEC4"],
-        data: [groupArr[start + 4][1], 100 - groupArr[start + 4][1]],
+        data: generateDatasProcent(groupArr, start, end),
+        backgroundColor: [
+          "#FFB1C1",
+          "#9AD0F5",
+          "#FFE6AA",
+          "#A5DFDF",
+          "#CCB2FF",
+        ],
+        borderColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#B18AE0"],
+        borderWidth: 3,
       },
     ],
   };
 
   const config = {
-    type: "pie",
+    type: "doughnut",
     data: data,
     options: {
       responsive: true,
@@ -302,48 +281,16 @@ function createNewMultiSeriesPie(groupArr, start, end) {
           },
         },
         legend: {
+          position: "top",
           labels: {
+            color: fontColor,
             font: {
               size: 20,
             },
-            generateLabels: function (chart) {
-              const original =
-                Chart.overrides.pie.plugins.legend.labels.generateLabels;
-              const labelsOriginal = original.call(this, chart);
-
-              var datasetColors = chart.data.datasets.map(function (e) {
-                return e.backgroundColor;
-              });
-              datasetColors = datasetColors.flat();
-
-              labelsOriginal.forEach((label) => {
-                label.datasetIndex = (label.index - (label.index % 2)) / 2;
-
-                label.hidden = !chart.isDatasetVisible(label.datasetIndex);
-
-                label.fillStyle = datasetColors[label.index];
-              });
-
-              return labelsOriginal;
-            },
-          },
-          onClick: function (mouseEvent, legendItem, legend) {
-            legend.chart.getDatasetMeta(legendItem.datasetIndex).hidden =
-              legend.chart.isDatasetVisible(legendItem.datasetIndex);
-            legend.chart.update();
           },
         },
-        tooltip: {
-          callbacks: {
-            label: function (context) {
-              const labelIndex = context.datasetIndex * 2 + context.dataIndex;
-              return (
-                context.chart.data.labels[labelIndex] +
-                ": " +
-                context.formattedValue
-              );
-            },
-          },
+        title: {
+          display: true,
         },
       },
     },
@@ -351,218 +298,511 @@ function createNewMultiSeriesPie(groupArr, start, end) {
   return config;
 }
 
+// backgroundColor: [
+//   "#FFB1C1",
+//   "#9AD0F5",
+//   "#FFE6AA",
+//   "#A5DFDF",
+//   "#CCB2FF",
+// ],
+// borderColor: ["#FF6384", "#36A2EB", "#FFCE56",'#4BC0C0','#B18AE0'],
+// borderWidth: 3,
+
+/*-------------------------------------------------------------*/
+/*-----Horizontal bar------------------------------------------*/
+/*-------------------------------------------------------------*/
+
+function generateLabels(arrField, start, end) {
+  let data = [];
+  for (let i = start; i < end; i++) {
+    const buffName = arrField[i][0];
+    if (arrField[i][1] !== 0) {
+      data.push(cityAttributeName[`${buffName}`]);
+    } else {
+      nameUnusedProperties.push(cityAttributeName[`${buffName}`]);
+    }
+  }
+  return data;
+}
+
+function createHorizontalBar(groupArr, start, end, label, fontColor = "black") {
+  const labels = label;
+  const dataSets = generateLabels(groupArr, start, end);
+  const dataValue = generateDatas(groupArr, start, end);
+  const data = {
+    labels: labels,
+    datasets: [
+      {
+        label: dataSets[0],
+        data: [dataValue[0]],
+        backgroundColor: "#93ABE8",
+        borderColor: "#456DD0",
+      },
+      {
+        label: dataSets[1],
+        data: [dataValue[1]],
+        backgroundColor: "#FF9840",
+        borderColor: "#F43270",
+      },
+      {
+        label: dataSets[2],
+        data: [dataValue[2]],
+        backgroundColor: "#CVF1240",
+        borderColor: "#F4570",
+      },
+    ],
+  };
+
+  const config = {
+    type: "bar",
+    data: data,
+    options: {
+      indexAxis: "y",
+      elements: {
+        bar: {
+          borderWidth: 2,
+        },
+      },
+      responsive: true,
+      plugins: {
+        legend: {
+          position: "top",
+          labels: {
+            color: fontColor,
+            font: {
+              size: 20,
+            },
+          },
+        },
+        title: {
+          display: true,
+        },
+      },
+    },
+  };
+  return config;
+}
+
+function checkDataGroupForNull(arrField, start, end) {
+  let counter = 0;
+
+  for (let i = start; i < end; i++) {
+    if (arrField[i][0] !== 0) {
+      counter++;
+    }
+  }
+
+  if (counter === end - start) {
+    for (let i = 18; i < 20; i++) {
+      nameUnusedProperties.push(cityAttributeName[arrField[i][0]]);
+    }
+  } else {
+    addChartToPage(`${arrField}`, routesCounter);
+    new Chart(
+      document.getElementById(`${chartName}-${routesCounter}`),
+      createDoughnut(routes, 18, 20, "white")
+    );
+  }
+}
+
 /*-------------------------------------------------------------*/
 /*-------------------------------------------------------------*/
-/*-----Creating charts-----------------------------------------*/
+/*-----Add chart to page---------------------------------------*/
 /*-------------------------------------------------------------*/
 /*-------------------------------------------------------------*/
-function createNewChart(nameGroup, index) {
+function addChartToPage(nameGroup, index) {
   const newChart = document.createElement("canvas");
   const groupContainer = document.querySelector(`.${nameGroup}__container`);
   newChart.id = `${nameGroup}-${index}`;
   groupContainer.appendChild(newChart);
 }
 
-function saveUnusedProperties() {
-  buffUnusedProperties.push(unusedProperties);
-  buffNameUnusedProperties.push(nameUnusedProperties);
-  unusedProperties = [];
+/*-------------------------------------------------------------*/
+/*-----Unused and ungrouped properties-------------------------*/
+/*-------------------------------------------------------------*/
+let nameUnusedProperties = [];
+let ungroupedProperties = [];
+
+/*-------------------------------------------------------------*/
+/*-----Unused properties---------------------------------------*/
+/*-------------------------------------------------------------*/
+function displayUnusedProperties(containerSelector) {
+  let unusedList;
+  for (let i = 0; i < nameUnusedProperties.length; i++) {
+    if (i === 0) {
+      const unusedWrapper = document.createElement("div");
+      unusedWrapper.classList.add("unused__wrapper");
+      document.querySelector(containerSelector).append(unusedWrapper);
+
+      const unusedListTitle = document.createElement("h3");
+      unusedListTitle.textContent = "Неиспользуемые свойства*";
+      unusedWrapper.append(unusedListTitle);
+
+      unusedList = document.createElement("ul");
+      unusedList.classList.add("unused__list");
+      unusedWrapper.append(unusedList);
+    }
+
+    const unuseElement = document.createElement("li");
+    unuseElement.textContent = nameUnusedProperties[i];
+    unusedList.append(unuseElement);
+  }
+
   nameUnusedProperties = [];
+}
+
+/*-------------------------------------------------------------*/
+/*-----Ungrouped properties------------------------------------*/
+/*-------------------------------------------------------------*/
+
+function displayUngroupedProperties(containerSelector) {
+  let table;
+  for (let i = 0; i < ungroupedProperties.length; i++) {
+    if (i === 0) {
+      const unusedWrapper = document.createElement("div");
+      unusedWrapper.classList.add("ungrouped__wrapper");
+      document.querySelector(containerSelector).append(unusedWrapper);
+
+
+      table = document.createElement("table");
+      table.classList.add("ungrouped__table");
+      unusedWrapper.append(table);
+
+
+      const caption = document.createElement("caption");
+      caption.textContent = "Несгруппированные свойства";
+      table.append(caption);
+
+
+
+      const mainLine = document.createElement("tr");
+      const mainPropertyName = document.createElement("th");
+      const mainPropertyValue = document.createElement("th");
+      mainPropertyName.textContent = 'Название свойства';
+      mainPropertyValue.textContent = 'Значение свойства';
+  
+      mainLine.append(mainPropertyName);
+      mainLine.append(mainPropertyValue);
+      table.append(mainLine);
+    }
+
+    const line = document.createElement("tr");
+
+    const propertyName = document.createElement("td");
+    const propertyValue = document.createElement("td");
+    propertyName.textContent = ungroupedProperties[i][0];
+    propertyValue.textContent = ungroupedProperties[i][1];
+
+    line.append(propertyName);
+    line.append(propertyValue);
+    table.append(line);
+  }
+
+  ungroupedProperties = [];
 }
 /*-------------------------------------------------------------*/
 /*-----Quality-------------------------------------------------*/
 /*-------------------------------------------------------------*/
 
-let buffUnusedProperties = [];
-let buffNameUnusedProperties = [];
-
-createNewChart("quality", 1);
+addChartToPage("quality", 1);
 new Chart(
   document.getElementById("quality-1"),
-  createNewPolarArea(qualityGroups, 0, 5)
+  createPolarArea(qualityGroups, 0, 5)
 );
 
-saveUnusedProperties();
 /*-------------------------------------------------------------*/
 /*-----Spatial-------------------------------------------------*/
 /*-------------------------------------------------------------*/
 
-createNewChart("spatial", 1);
+let spatialCounter = 0;
+for (let i = 8; i < 17; i++) {
+  if (spatial[i][1] !== 0) {
+    spatialCounter++;
+    addChartToPage("spatial", spatialCounter);
+    new Chart(
+      document.getElementById(`spatial-${spatialCounter}`),
+      createPie(spatial, i, i + 1, "white")
+    );
+  } else {
+    nameUnusedProperties.push(cityAttributeName[spatial[i][0]]);
+  }
+}
+
+for (let i = 19; i < 23; i++) {
+  if (spatial[i][1] !== 0) {
+    spatialCounter++;
+    addChartToPage("spatial", spatialCounter);
+    new Chart(
+      document.getElementById(`spatial-${spatialCounter}`),
+      createDoughnut(spatial, i, i + 1, "white")
+    );
+  } else {
+    nameUnusedProperties.push(cityAttributeName[spatial[i][0]]);
+  }
+}
+
+spatialCounter++;
+addChartToPage("spatial", spatialCounter);
 new Chart(
-  document.getElementById("spatial-1"),
-  createNewPie(spatialCharacteristics, 0, 5)
+  document.getElementById(`spatial-${spatialCounter}`),
+  createDoughnut(spatial, 24, 30, "white")
 );
 
-createNewChart("spatial", 2);
-new Chart(
-  document.getElementById("spatial-2"),
-  createNewDoughnut(spatialCharacteristics, 5, 10)
-);
+ungroupedProperties.push([
+  cityAttributeName.num_population,
+  allPropertiesCity.num_population,
+]);
+ungroupedProperties.push([
+  cityAttributeName.length_UDS,
+  allPropertiesCity.length_UDS,
+]);
+ungroupedProperties.push([
+  cityAttributeName.area_active_city_zone,
+  allPropertiesCity.area_active_city_zone,
+]);
+ungroupedProperties.push([
+  cityAttributeName.traffic_ground_transport,
+  allPropertiesCity.traffic_ground_transport,
+]);
+ungroupedProperties.push([
+  cityAttributeName.traffic_metro,
+  allPropertiesCity.traffic_metro,
+]);
+ungroupedProperties.push([
+  cityAttributeName.num_working_stops_overall,
+  allPropertiesCity.num_working_stops_overall,
+]);
+ungroupedProperties.push([
+  cityAttributeName.num_working_stops_active_city_zone,
+  allPropertiesCity.num_working_stops_active_city_zone,
+]);
+ungroupedProperties.push([
+  cityAttributeName.num_of_apartments,
+  allPropertiesCity.num_of_apartments,
+]);
+ungroupedProperties.push([
+  cityAttributeName.area_metro_coverage,
+  allPropertiesCity.area_metro_coverage,
+]);
+ungroupedProperties.push([
+  cityAttributeName.density_stops_active_zone,
+  allPropertiesCity.density_stops_active_zone,
+]);
+ungroupedProperties.push([
+  cityAttributeName.avrg_length_between_stops,
+  allPropertiesCity.avrg_length_between_stops,
+]);
+displayUngroupedProperties(".spatial__container");
 
-createNewChart("spatial", 3);
-new Chart(
-  document.getElementById("spatial-3"),
-  createNewDoughnut(spatialCharacteristics, 10, 15)
-);
+displayUnusedProperties(".spatial__container");
 
-createNewChart("spatial", 4);
-new Chart(
-  document.getElementById("spatial-4"),
-  createNewDoughnut(spatialCharacteristics, 15, 20)
-);
-
-createNewChart("spatial", 5);
-new Chart(
-  document.getElementById("spatial-5"),
-  createNewDoughnut(spatialCharacteristics, 25, 30)
-);
-
-saveUnusedProperties();
 /*-------------------------------------------------------------*/
 /*-----Rolling stock-------------------------------------------*/
 /*-------------------------------------------------------------*/
+let rollingStockCounter = 0;
 
-createNewChart("rolling-stock", 1);
+rollingStockCounter++;
+addChartToPage("rolling-stock", rollingStockCounter);
 new Chart(
-  document.getElementById("rolling-stock-1"),
-  createNewPie(rollinStock, 0, 5)
+  document.getElementById(`rolling-stock-${rollingStockCounter}`),
+  createPie(rollingStock, 0, 5)
 );
 
-createNewChart("rolling-stock", 2);
+rollingStockCounter++;
+addChartToPage("rolling-stock", rollingStockCounter);
 new Chart(
-  document.getElementById("rolling-stock-2"),
-  createNewDoughnut(rollinStock, 5, 10)
+  document.getElementById(`rolling-stock-${rollingStockCounter}`),
+  createDoughnut(rollingStock, 5, 10)
 );
 
-/*-----Procent-------------------------------------------*/
-createNewChart("rolling-stock", 3);
-new Chart(
-  document.getElementById("rolling-stock-3"),
-  createNewMultiSeriesPie(rollinStock, 10, 15)
-);
-console.log(rollinStock);
 for (let i = 10; i < 15; i++) {
-  // console.log(rollinStock[i][1]);
+  if (rollingStock[i][1] !== 0) {
+    rollingStockCounter++;
+    addChartToPage("rolling-stock", rollingStockCounter);
+    new Chart(
+      document.getElementById(`rolling-stock-${rollingStockCounter}`),
+      createDoughnutProcent(rollingStock, i, i + 1)
+    );
+  } else {
+    nameUnusedProperties.push(cityAttributeName[rollingStock[i][0]]);
+  }
 }
 
-/*-------------------------------------------------------------*/
-createNewChart("rolling-stock", 4);
+rollingStockCounter++;
+addChartToPage("rolling-stock", rollingStockCounter);
 new Chart(
-  document.getElementById("rolling-stock-4"),
-  createNewDoughnut(rollinStock, 15, 20)
+  document.getElementById(`rolling-stock-${rollingStockCounter}`),
+  createPie(rollingStock, 15, 20)
 );
 
-createNewChart("rolling-stock", 5);
+rollingStockCounter++;
+addChartToPage("rolling-stock", rollingStockCounter);
 new Chart(
-  document.getElementById("rolling-stock-5"),
-  createNewDoughnut(rollinStock, 25, 30)
+  document.getElementById(`rolling-stock-${rollingStockCounter}`),
+  createPie(rollingStock, 20, 23)
 );
 
-createNewChart("rolling-stock", 6);
+///
+// rollingStockCounter++;
+// addChartToPage("rolling-stock", rollingStockCounter);
+// new Chart(
+//   document.getElementById(`rolling-stock-${rollingStockCounter}`),
+//   createDoughnut(rollingStock, 23, 26)
+// );
+
+///
+rollingStockCounter++;
+checkDataGroupForNull(rollingStock, 23, 26);
+// checkDataGroupForNull(rollingStock, 23, 26, 'rolling-stock');
+///
+
+rollingStockCounter++;
+addChartToPage("rolling-stock", rollingStockCounter);
 new Chart(
-  document.getElementById("rolling-stock-6"),
-  createNewDoughnut(rollinStock, 30, 35)
+  document.getElementById(`rolling-stock-${rollingStockCounter}`),
+  createDoughnut(rollingStock, 26, 31)
 );
 
-createNewChart("rolling-stock", 7);
+rollingStockCounter++;
+addChartToPage("rolling-stock", rollingStockCounter);
 new Chart(
-  document.getElementById("rolling-stock-7"),
-  createNewDoughnut(rollinStock, 35, 40)
+  document.getElementById(`rolling-stock-${rollingStockCounter}`),
+  createPie(rollingStock, 31, 35)
 );
 
-createNewChart("rolling-stock", 8);
-new Chart(
-  document.getElementById("rolling-stock-8"),
-  createNewDoughnut(rollinStock, 40, 42)
-);
+for (let i = 37; i < 41; i++) {
+  if (rollingStock[i][1] !== 0) {
+    rollingStockCounter++;
+    addChartToPage("rolling-stock", rollingStockCounter);
+    new Chart(
+      document.getElementById(`rolling-stock-${rollingStockCounter}`),
+      createDoughnut(rollingStock, i, i + 1)
+    );
+  } else {
+    nameUnusedProperties.push(cityAttributeName[rollingStock[i][0]]);
+  }
+}
 
-//33C2C7
-//60EEC4
-saveUnusedProperties();
+ungroupedProperties.push([
+  cityAttributeName.num_new_GET,
+  allPropertiesCity.num_new_GET,
+]);
+ungroupedProperties.push([
+  cityAttributeName.num_new_buses,
+  allPropertiesCity.num_new_buses,
+]);
+displayUngroupedProperties(".rolling-stock__container");
+
+displayUnusedProperties(".rolling-stock__container");
+
 /*-------------------------------------------------------------*/
 /*-----Routes--------------------------------------------------*/
 /*-------------------------------------------------------------*/
 
-createNewChart("routes", 1);
-new Chart(document.getElementById("routes-1"), createNewPie(routes, 0, 5));
+let routesCounter = 0;
 
-createNewChart("routes", 2);
+routesCounter++;
+addChartToPage("routes", routesCounter);
 new Chart(
-  document.getElementById("routes-2"),
-  createNewDoughnut(routes, 5, 10)
+  document.getElementById(`routes-${routesCounter}`),
+  createPie(routes, 0, 4, "white")
 );
 
-createNewChart("routes", 3);
+routesCounter++;
+addChartToPage("routes", routesCounter);
 new Chart(
-  document.getElementById("routes-3"),
-  createNewDoughnut(routes, 10, 15)
+  document.getElementById(`routes-${routesCounter}`),
+  createPie(routes, 4, 7, "white")
 );
 
-createNewChart("routes", 4);
+routesCounter++;
+addChartToPage("routes", routesCounter);
 new Chart(
-  document.getElementById("routes-4"),
-  createNewDoughnut(routes, 15, 20)
+  document.getElementById(`routes-${routesCounter}`),
+  createDoughnut(routes, 7, 10, "white")
 );
 
-createNewChart("routes", 5);
+routesCounter++;
+addChartToPage("routes", routesCounter);
 new Chart(
-  document.getElementById("routes-5"),
-  createNewDoughnut(routes, 25, 29)
+  document.getElementById(`routes-${routesCounter}`),
+  createDoughnut(routes, 10, 14, "white")
 );
 
-saveUnusedProperties();
+if (routes[15][1] !== 0) {
+  routesCounter++;
+  addChartToPage("routes", routesCounter);
+  new Chart(
+    document.getElementById(`routes-${routesCounter}`),
+    createDoughnut(routes, 15, 16, "white")
+  );
+} else {
+  nameUnusedProperties.push(cityAttributeName[routes[i][0]]);
+}
+
+routesCounter++;
+checkDataGroupForNull(routes, 18, 20);
+
+routesCounter++;
+addChartToPage("routes", routesCounter);
+new Chart(
+  document.getElementById(`routes-${routesCounter}`),
+  createHorizontalBar(routes, 20, 22, ["Маршрут"], "white")
+);
+
+ungroupedProperties.push([
+  cityAttributeName.length_overall_nonrailed_transport_path,
+  allPropertiesCity.length_overall_nonrailed_transport_path,
+]);
+
+displayUngroupedProperties(".routes__container");
+
+displayUnusedProperties(".routes__container");
+
 /*-------------------------------------------------------------*/
 /*-----Tariff--------------------------------------------------*/
 /*-------------------------------------------------------------*/
-createNewChart("tariff", 1);
-new Chart(document.getElementById("tariff-1"), createNewPie(routes, 0, 5));
+let tariffCounter = 0;
 
-createNewChart("tariff", 2);
+tariffCounter++;
+addChartToPage("tariff", tariffCounter);
 new Chart(
-  document.getElementById("tariff-2"),
-  createNewDoughnut(tariffSystem, 5, 10)
+  document.getElementById(`tariff-${tariffCounter}`),
+  createHorizontalBar(tariffSystem, 7, 10, ["Стоимость"], "black")
 );
 
-createNewChart("tariff", 3);
+tariffCounter++;
+addChartToPage("tariff", tariffCounter);
 new Chart(
-  document.getElementById("tariff-3"),
-  createNewDoughnut(tariffSystem, 10, 15)
+  document.getElementById(`tariff-${tariffCounter}`),
+  createDoughnut(tariffSystem, 10, 16)
 );
 
-createNewChart("tariff", 4);
-new Chart(
-  document.getElementById("tariff-4"),
-  createNewDoughnut(tariffSystem, 15, 16)
-);
+ungroupedProperties.push([
+  cityAttributeName.avrg_region_salary,
+  allPropertiesCity.avrg_region_salary,
+]);
+ungroupedProperties.push([
+  cityAttributeName.avrg_region_income,
+  allPropertiesCity.avrg_region_income,
+]);
+ungroupedProperties.push([
+  cityAttributeName.price_monthly_transport_pass,
+  allPropertiesCity.price_monthly_transport_pass,
+]);
+ungroupedProperties.push([
+  cityAttributeName.ratio_pass_cost_to_income,
+  allPropertiesCity.ratio_pass_cost_to_income,
+]);
+ungroupedProperties.push([
+  cityAttributeName.num_routes_with_pass,
+  allPropertiesCity.num_routes_with_pass,
+]);
+ungroupedProperties.push([
+  cityAttributeName.num_routes_with_transfer_pass,
+  allPropertiesCity.num_routes_with_transfer_pass,
+]);
 
-saveUnusedProperties();
+displayUngroupedProperties(".tariff__container");
 
-/*-------------------------------------------------------------*/
-/*-----Unused--------------------------------------------------*/
-/*-------------------------------------------------------------*/
-const unusedContainer = document.querySelector(".unused__container");
-
-for (let i = 0; i < buffUnusedProperties.length; i++) {
-  let unusedList;
-
-  if (buffUnusedProperties[i].length !== 0) {
-    const unusedWrapper = document.createElement("div");
-    unusedWrapper.classList.add("unused__wrapper");
-    unusedContainer.append(unusedWrapper);
-
-    const unusedListTitle = document.createElement("h3");
-
-    unusedListTitle.textContent = nameFeatureGroups[i];
-    unusedWrapper.append(unusedListTitle);
-
-    unusedList = document.createElement("ul");
-    unusedList.classList.add("unused__list");
-    unusedWrapper.append(unusedList);
-  }
-
-  for (let j = 0; j < buffUnusedProperties[i].length; j++) {
-    const unuseElement = document.createElement("li");
-    unuseElement.textContent = `${buffNameUnusedProperties[i][j]}`;
-    unusedList.append(unuseElement);
-  }
-}
+displayUnusedProperties(".tariff__container");

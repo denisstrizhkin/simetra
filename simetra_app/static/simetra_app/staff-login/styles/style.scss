@@ -1,5 +1,5 @@
-@import "_nullstyle";
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Merriweather:wght@400;700&display=swap");
+@import "../../general_styles/_nullstyle";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto&display=swap');
 
 /*-------------------------------------------------------------*/
 /*-----Variable declaration------------------------------------*/
@@ -21,7 +21,7 @@ $maxWidth: 1400;
 /*-------------------------------------------------------------*/
 
 body {
-  font-family: "Inter", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 18px;
   background-color: $blue-color;
 }

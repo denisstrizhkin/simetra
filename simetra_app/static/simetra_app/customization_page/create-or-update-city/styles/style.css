@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*Обнуление*/
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Merriweather:wght@400;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto&display=swap');
 * {
   padding: 0;
   margin: 0;
@@ -101,7 +101,7 @@ h6 {
 /*-----The Foundation------------------------------------------*/
 /*-------------------------------------------------------------*/
 body {
-  font-family: "Inter", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 25px;
   background-color: #6f80ff;
   color: #ffffff;
@@ -200,6 +200,10 @@ button[name="sumbit-new-city"]:hover {
 
 ._margin-off {
   margin: 0 !important;
+}
+
+._padding-left-off > input {
+  padding-left: 0 !important;
 }
 
 @media (max-width: 370px) {
@@ -322,6 +326,13 @@ button[name="sumbit-new-city"]:hover {
 .home__input-block,
 .home__input-block-for-checkbox {
   margin-bottom: 20px;
+}
+
+.home__city-avatar-img {
+  max-width: 100%;
+  margin-top: 10px; 
+  margin-bottom: 5px;
+  border-radius: 5px;
 }
 
 .home__input-block input {
