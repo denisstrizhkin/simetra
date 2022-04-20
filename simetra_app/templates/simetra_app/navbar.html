@@ -1,24 +1,42 @@
 {% load static %}
 <div class="header__menu menu">
-  <a href="{% url 'simetra_app:main' %}" title="Переход на главную страницу">
-    <img class="menu__logo" style ='width: 200px;' src="{% static 'simetra_app/general_assets/img/simetra_logo.png' %}" title="Логотип Simetra" alt="Изображение логотипа"/>
+  <a href="{% url 'simetra_app:main' %}#main__map">
+    <img
+      class="menu__logo"
+      style="width: 160px"
+      src="{% static 'simetra_app/main_page/assets/img/simetra_logo_discrip.png' %}"
+    />
   </a>
   <nav class="menu__body">
     <ul class="menu__list">
       <li class="menu__item">
-        <a href="{% url 'simetra_app:main' %}#main__map" class="menu__link _link" title="Переход к географии">География</a>
+        <a
+          href="{% url 'simetra_app:main' %}#main__map"
+          class="menu__link _link"
+          >География</a
+        >
       </li>
       <li class="menu__item">
-        <a href="{% url 'simetra_app:data-base' %}" class="menu__link _link" title="Переход к базам данных">База данных</a>
+        <a href="{% url 'simetra_app:data-base' %}" class="menu__link _link"
+          >База данных</a
+        >
       </li>
       <li class="menu__item">
-        <a href="{% url 'simetra_app:analytics' %}" class="menu__link _link" title="Переход к аналитике">Аналитика</a>
+        <a href="{% url 'simetra_app:analytics' %}" class="menu__link _link"
+          >Аналитика</a
+        >
       </li>
       <li class="menu__item">
-        <a href="{% url 'simetra_app:methodology' %}" class="menu__link _link" title="Переход к методологии">Методология</a>
+        <a href="{% url 'simetra_app:methodology' %}" class="menu__link _link"
+          >Методология</a
+        >
       </li>
       <li class="menu__item">
-        <a href="{% url 'simetra_app:main' %}#main__team" class="menu__link _link" title="О проекте">О проекте</a>
+        <a
+          href="{% url 'simetra_app:main' %}#main__team"
+          class="menu__link _link"
+          >О проекте</a
+        >
       </li>
     </ul>
   </nav>
