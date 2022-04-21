@@ -345,43 +345,29 @@ function createDoughnutProcent(groupArr, start, end, fontColor = "black") {
 /*-----Horizontal bar------------------------------------------*/
 /*-------------------------------------------------------------*/
 
-function generateLabels(arrField, start, end) {
-  let data = [];
-  for (let i = start; i < end; i++) {
-    const buffName = arrField[i][0];
-    if (arrField[i][1] !== 0) {
-      data.push(cityAttributeName[`${buffName}`]);
-    } else {
-      nameUnusedProperties.push(cityAttributeName[`${buffName}`]);
-    }
-  }
-  return data;
-}
+// function generateLabels(arrField, start, end) {
+//   let labels = [];
+//   for (let i = start; i < end; i++) {
+//     const buffName = arrField[i][0];
+//     labels.push(cityAttributeName[`${buffName}`]);
+//     if (arrField[i][1] !== 0) {
+//       labels.push(cityAttributeName[`${buffName}`]);
+//     } else {
+//       nameUnusedProperties.push(cityAttributeName[`${buffName}`]);
+//     }
+//   }
+//   return labels;
+// }
 
-function createHorizontalBar(groupArr, start, end, label, fontColor = "black") {
-  const labels = label;
-  const dataSets = generateLabels(groupArr, start, end);
-  const dataValue = generateDatas(groupArr, start, end);
+function createHorizontalBar(groupArr, start, end, mainLabel, fontColor = "black") {
   const data = {
-    labels: labels,
+    labels: mainLabel,
     datasets: [
       {
-        label: dataSets[0],
-        data: [dataValue[0]],
-        backgroundColor: "#93ABE8",
-        borderColor: "#456DD0",
-      },
-      {
-        label: dataSets[1],
-        data: [dataValue[1]],
-        backgroundColor: "#FF9840",
-        borderColor: "#F43270",
-      },
-      {
-        label: dataSets[2],
-        data: [dataValue[2]],
-        backgroundColor: "#CVF1240",
-        borderColor: "#F4570",
+        label: generateLabels(groupArr, start, end),
+        data: generateDatas(groupArr, start, end),
+        backgroundColor: ["#93ABE8", "#FF9840", "#CVF1240"],
+        borderColor: ["#456DD0", "#F43270", "#F4570"],
       },
     ],
   };
@@ -721,12 +707,10 @@ ungroupedProperties.push([
   allPropertiesCity.num_new_buses,
 ]);
 
-console.log(rollingStock[41]);
-console.log(allPropertiesCity[rollingStock[41][0]]);
 if (allPropertiesCity[rollingStock[41][0]] > 0) {
-  ungroupedProperties.push([cityAttributeName[rollingStock[41][0]], '+']);
+  ungroupedProperties.push([cityAttributeName[rollingStock[41][0]], "+"]);
 } else {
-  ungroupedProperties.push([cityAttributeName[rollingStock[41][0]], '-']);
+  ungroupedProperties.push([cityAttributeName[rollingStock[41][0]], "-"]);
 }
 
 displayUngroupedProperties(".rolling-stock__container");
