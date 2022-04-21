@@ -39,7 +39,7 @@ function changeOtherCheckboxesByAllCheckbox(allCheckbox, otherCheckboxes) {
     const allCheckboxName = allCheckbox.getAttribute('name');
 
     if (allCheckboxName == 'population-all') {
-        hideCitiesByPopulation();
+        hideCitiesByPopulation(allPopulationCheckbox);
     }
 
     if (allCheckboxName == 'region-all') {
