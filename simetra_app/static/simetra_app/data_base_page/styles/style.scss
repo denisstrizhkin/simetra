@@ -30,6 +30,14 @@ body {
   flex-direction: column;
 }
 
+.header {
+  position: static;
+}
+
+
+.menu__list{
+  margin: 0px;
+}
 /*-------------------------------------------------------------*/
 /*-----Technical classes---------------------------------------*/
 /*-------------------------------------------------------------*/
@@ -37,7 +45,10 @@ body {
 ._container {
   max-width: 1200px;
   margin: 0px auto;
-  padding: 0px 10px;
+  padding: 0px 40px;
+  @media (max-width: 767px) {
+    padding: 0px 20px;
+  }
 }
 
 ._ibg {

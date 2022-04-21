@@ -32,14 +32,21 @@ body {
 .page {
   flex: 1 1 auto;
 }
+
+.header {
+  position: static;
+}
 /*-------------------------------------------------------------*/
 /*-----Technical classes---------------------------------------*/
 /*-------------------------------------------------------------*/
 
 ._container {
-  max-width: 1200px; //940
+  max-width: 1200px;
   margin: 0px auto;
-  padding: 0px 10px;
+  padding: 0px 40px;
+  @media (max-width: 767px) {
+    padding: 0px 20px;
+  }
 }
 
 ._title {
@@ -84,7 +91,6 @@ body {
 ._link {
   color: $white-color;
   transition: 0.2s;
-  
 }
 
 /*-------------------------------------------------------------*/
@@ -113,7 +119,7 @@ body {
 /*-------------------------------------------------------------*/
 
 .approaches {
-  padding: 200px 0px 100px 0px;
+  padding: 110px 0px 100px 0px;
   text-align: center;
   max-width: 770px;
   margin: 0 auto;

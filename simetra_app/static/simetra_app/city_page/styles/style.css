@@ -147,11 +147,20 @@ h6 {
 }
 
 .menu a:focus {
-  border-bottom: 4px solid #6f80ff;
+  color: #6f80ff;
+  border-bottom: none;
 }
 
 .menu a:hover {
-  color: #6f80ff;
+  color: white;
+  border-bottom: 4px solid #6f80ff;
+}
+
+.menu > a:hover {
+  color: white;
+  border-bottom: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 
 .menu > a:focus {

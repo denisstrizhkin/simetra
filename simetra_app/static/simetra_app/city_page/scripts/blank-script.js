@@ -41,7 +41,7 @@ const allPropertiesCity = JSON.parse(
 
 function roundingGroupValues(arrField) {
   for (let i = 0; i < arrField.length; i++) {
-    if (arrField[i][1] % 1 !== 0) {
+    if (typeof arrField[i][1] === "number") {
       arrField[i][1] = +arrField[i][1].toFixed(2);
     }
   }
@@ -55,16 +55,13 @@ roundingGroupValues(tariffSystem);
 
 function roundingAllValues(arrField) {
   for (let key in arrField) {
-    if (arrField[key] % 1 !== 0 && typeof arrField[key] === "number") {
-      arrField[key] = +arrField[key].toFixed(2);
-      console.log(arrField[key]);
+    if (typeof arrField[key] === "number") {
+      arrField[key] = arrField[key].toFixed(2);
     }
   }
 }
 
 roundingAllValues(allPropertiesCity);
-
-// console.log(allPropertiesCity);
 
 /*-------------------------------------------------------------*/
 /*-----Generate datas------------------------------------------*/
@@ -803,17 +800,6 @@ new Chart(
   createHorizontalBar(tariffSystem, 7, 10, ["Стоимость"], "black")
 );
 
-tariffCounter++;
-addChartToPage("tariff", tariffCounter);
-new Chart(
-  document.getElementById(`tariff-${tariffCounter}`),
-  createDoughnut(tariffSystem, 10, 16)
-);
-
-ungroupedProperties.push([
-  cityAttributeName.avrg_region_salary,
-  allPropertiesCity.avrg_region_salary,
-]);
 ungroupedProperties.push([
   cityAttributeName.avrg_region_income,
   allPropertiesCity.avrg_region_income,
@@ -834,6 +820,22 @@ ungroupedProperties.push([
   cityAttributeName.num_routes_with_transfer_pass,
   allPropertiesCity.num_routes_with_transfer_pass,
 ]);
+
+for (let i = 10; i < 16; i++) {
+  if (typeof allPropertiesCity[tariffSystem[i][0]] === "boolean") {
+    const boolValue = allPropertiesCity[tariffSystem[i][0]] ? "Есть" : "Нет";
+
+    ungroupedProperties.push([
+      cityAttributeName[tariffSystem[i][0]],
+      boolValue,
+    ]);
+  } else {
+    ungroupedProperties.push([
+      cityAttributeName[tariffSystem[i][0]],
+      allPropertiesCity[tariffSystem[i][0]],
+    ]);
+  }
+}
 
 displayUngroupedProperties(".tariff__container");
 
