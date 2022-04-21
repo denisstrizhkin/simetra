@@ -485,6 +485,7 @@ body {
 
 ._highlight {
   font-weight: 500;
+  color: #6f81ff;
 }
 
 ._link {
@@ -536,7 +537,6 @@ body {
   margin: 80px auto 0 auto;
   max-width: 250px;
   text-align: center;
-  font-size: 20px;
   padding: 20px 30px;
   -webkit-transition: 0.3s;
   transition: 0.3s;
@@ -573,7 +573,7 @@ body {
 
 .choice__text {
   max-width: 580px;
-  line-height: 130%;
+  line-height: 140%;
 }
 
 .choice__paragraph {
@@ -604,11 +604,6 @@ body {
   padding: 50px 0px;
 }
 
-.payment__info {
-  font-size: 20px;
-  margin-bottom: 45px;
-}
-
 .payment__body {
   margin: 0 auto;
   display: -webkit-box;
@@ -626,21 +621,60 @@ body {
   max-width: 960px;
 }
 
-.payment__list {
-  list-style-type: decimal;
-  padding-left: 30px;
+.payment__info {
+  font-size: 26px;
+  margin-bottom: 45px;
+  line-height: 140%;
 }
 
 .payment__item {
+  list-style-type: none;
   margin-bottom: 30px;
+  line-height: 140%;
 }
 
 .payment__item:last-child {
   margin-bottom: 0px;
 }
 
+.payment__item h3 {
+  margin-bottom: 15px;
+  font-weight: 500;
+  font-size: 24px;
+}
+
+.payment__item h3::before {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.payment__item:first-child h3::before {
+  background-color: #FFCE56;
+}
+
+.payment__item:nth-child(2) h3::before {
+  background-color: #4BC0C0;
+}
+
+.payment__item:nth-child(3) h3::before {
+  background-color: #B18AE0;
+}
+
+.payment__item:nth-child(4) h3::before {
+  background-color: #36A2EB;
+}
+
+.payment__item:nth-child(5) h3::before {
+  background-color: #FF6384;
+}
+
 .payment__paragraph {
-  font-size: 20px;
+  padding-left: 30px;
+  text-indent: 20px;
   line-height: 130%;
 }
 
@@ -652,8 +686,9 @@ body {
 }
 
 .sources__info {
-  font-size: 20px;
+  font-size: 26px;
   margin-bottom: 45px;
+  line-height: 130%;
 }
 
 .sources__body {
@@ -674,12 +709,12 @@ body {
 }
 
 .sources__list {
-  list-style-type: decimal;
   padding-left: 30px;
 }
 
 .sources__item {
   margin-bottom: 30px;
+  list-style-type: none;
 }
 
 .sources__item:last-child {
@@ -687,8 +722,14 @@ body {
 }
 
 .sources__paragraph {
-  font-size: 20px;
-  line-height: 130%;
+  line-height: 140%;
+}
+
+.sources__paragraph::before {
+  content: "";
+  background: url(../assets/img/free-icon-magnifying-glass-5220195.png) no-repeat center/contain;
+  padding: 20px;
+  margin-right: 10px;
 }
 
 /*-------------------------------------------------------------*/
@@ -701,7 +742,6 @@ body {
 }
 
 .system__paragraph {
-  font-size: 20px;
   line-height: 130%;
   margin-bottom: 40px;
 }
@@ -715,7 +755,6 @@ body {
   margin: 80px auto 0 auto;
   max-width: 250px;
   text-align: center;
-  font-size: 20px;
   padding: 20px 30px;
   -webkit-transition: 0.3s;
   transition: 0.3s;
