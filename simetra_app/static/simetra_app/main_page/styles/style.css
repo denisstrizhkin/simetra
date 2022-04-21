@@ -413,6 +413,23 @@ body {
           flex-direction: column;
 }
 
+._styled-marker {
+  background-size: cover;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 5px black;
+  cursor: pointer;
+  background-image: url("../assets/img/circle.svg");
+}
+
+._styled-popup .mapboxgl-popup-content {
+  opacity: 0.7;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  background-color: #ffffff;
+}
+
 /*-------------------------------------------------------------*/
 /*-----Technical classes---------------------------------------*/
 /*-------------------------------------------------------------*/
