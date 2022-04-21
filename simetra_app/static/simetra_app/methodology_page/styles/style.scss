@@ -47,6 +47,9 @@ body {
   @media (max-width: 767px) {
     padding: 0px 20px;
   }
+  @media (max-width: 425px) {
+    padding: 0px 10px;
+  }
 }
 
 ._title {
@@ -73,7 +76,7 @@ body {
     font-size: 48px;
   }
   @media (max-width: 376px) {
-    font-size: 38px;
+    font-size: 33px;
   }
 }
 
@@ -257,8 +260,7 @@ body {
   }
 
   &__paragraph {
-    padding-left: 30px;
-    text-indent: 20px;
+    text-indent: 30px;
     line-height: 130%;
   }
 }
@@ -284,9 +286,7 @@ body {
     flex-direction: column;
   }
 
-  &__list {
-    padding-left: 30px;
-  }
+ 
 
   &__item {
     margin-bottom: 30px;
