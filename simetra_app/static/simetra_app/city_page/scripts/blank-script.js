@@ -41,7 +41,7 @@ const allPropertiesCity = JSON.parse(
 
 function roundingGroupValues(arrField) {
   for (let i = 0; i < arrField.length; i++) {
-    if (arrField[i][1] % 1 !== 0) {
+    if (typeof arrField[i][1] === "number") {
       arrField[i][1] = +arrField[i][1].toFixed(2);
     }
   }
@@ -55,16 +55,13 @@ roundingGroupValues(tariffSystem);
 
 function roundingAllValues(arrField) {
   for (let key in arrField) {
-    if (arrField[key] % 1 !== 0 && typeof arrField[key] === "number") {
-      arrField[key] = +arrField[key].toFixed(2);
-      console.log(arrField[key]);
+    if (typeof arrField[key] === "number") {
+      arrField[key] = arrField[key].toFixed(2);
     }
   }
 }
 
 roundingAllValues(allPropertiesCity);
-
-// console.log(allPropertiesCity);
 
 /*-------------------------------------------------------------*/
 /*-----Generate datas------------------------------------------*/
@@ -348,43 +345,29 @@ function createDoughnutProcent(groupArr, start, end, fontColor = "black") {
 /*-----Horizontal bar------------------------------------------*/
 /*-------------------------------------------------------------*/
 
-function generateLabels(arrField, start, end) {
-  let data = [];
-  for (let i = start; i < end; i++) {
-    const buffName = arrField[i][0];
-    if (arrField[i][1] !== 0) {
-      data.push(cityAttributeName[`${buffName}`]);
-    } else {
-      nameUnusedProperties.push(cityAttributeName[`${buffName}`]);
-    }
-  }
-  return data;
-}
+// function generateLabels(arrField, start, end) {
+//   let labels = [];
+//   for (let i = start; i < end; i++) {
+//     const buffName = arrField[i][0];
+//     labels.push(cityAttributeName[`${buffName}`]);
+//     if (arrField[i][1] !== 0) {
+//       labels.push(cityAttributeName[`${buffName}`]);
+//     } else {
+//       nameUnusedProperties.push(cityAttributeName[`${buffName}`]);
+//     }
+//   }
+//   return labels;
+// }
 
-function createHorizontalBar(groupArr, start, end, label, fontColor = "black") {
-  const labels = label;
-  const dataSets = generateLabels(groupArr, start, end);
-  const dataValue = generateDatas(groupArr, start, end);
+function createHorizontalBar(groupArr, start, end, mainLabel, fontColor = "black") {
   const data = {
-    labels: labels,
+    labels: mainLabel,
     datasets: [
       {
-        label: dataSets[0],
-        data: [dataValue[0]],
-        backgroundColor: "#93ABE8",
-        borderColor: "#456DD0",
-      },
-      {
-        label: dataSets[1],
-        data: [dataValue[1]],
-        backgroundColor: "#FF9840",
-        borderColor: "#F43270",
-      },
-      {
-        label: dataSets[2],
-        data: [dataValue[2]],
-        backgroundColor: "#CVF1240",
-        borderColor: "#F4570",
+        label: generateLabels(groupArr, start, end),
+        data: generateDatas(groupArr, start, end),
+        backgroundColor: ["#93ABE8", "#FF9840", "#CVF1240"],
+        borderColor: ["#456DD0", "#F43270", "#F4570"],
       },
     ],
   };
@@ -723,6 +706,13 @@ ungroupedProperties.push([
   cityAttributeName.num_new_buses,
   allPropertiesCity.num_new_buses,
 ]);
+
+if (allPropertiesCity[rollingStock[41][0]] > 0) {
+  ungroupedProperties.push([cityAttributeName[rollingStock[41][0]], "+"]);
+} else {
+  ungroupedProperties.push([cityAttributeName[rollingStock[41][0]], "-"]);
+}
+
 displayUngroupedProperties(".rolling-stock__container");
 
 displayUnusedProperties(".rolling-stock__container");
@@ -787,6 +777,18 @@ ungroupedProperties.push([
   allPropertiesCity.length_overall_nonrailed_transport_path,
 ]);
 
+for (let i = 22; i < 29; i++) {
+  if (typeof allPropertiesCity[routes[i][0]] === "boolean") {
+    const boolValue = allPropertiesCity[routes[i][0]] ? "Есть" : "Нет";
+    ungroupedProperties.push([cityAttributeName[routes[i][0]], boolValue]);
+  } else {
+    ungroupedProperties.push([
+      cityAttributeName[routes[i][0]],
+      allPropertiesCity[routes[i][0]],
+    ]);
+  }
+}
+
 displayUngroupedProperties(".routes__container");
 
 displayUnusedProperties(".routes__container");
@@ -803,37 +805,61 @@ new Chart(
   createHorizontalBar(tariffSystem, 7, 10, ["Стоимость"], "black")
 );
 
-tariffCounter++;
-addChartToPage("tariff", tariffCounter);
-new Chart(
-  document.getElementById(`tariff-${tariffCounter}`),
-  createDoughnut(tariffSystem, 10, 16)
-);
+// ungroupedProperties.push([
+//   cityAttributeName.avrg_region_income,
+//   allPropertiesCity.avrg_region_income,
+// ]);
+// ungroupedProperties.push([
+//   cityAttributeName.price_monthly_transport_pass,
+//   allPropertiesCity.price_monthly_transport_pass,
+// ]);
+// ungroupedProperties.push([
+//   cityAttributeName.ratio_pass_cost_to_income,
+//   allPropertiesCity.ratio_pass_cost_to_income,
+// ]);
+// ungroupedProperties.push([
+//   cityAttributeName.num_routes_with_pass,
+//   allPropertiesCity.num_routes_with_pass,
+// ]);
+// ungroupedProperties.push([
+//   cityAttributeName.num_routes_with_transfer_pass,
+//   allPropertiesCity.num_routes_with_transfer_pass,
+// ]);
 
-ungroupedProperties.push([
-  cityAttributeName.avrg_region_salary,
-  allPropertiesCity.avrg_region_salary,
-]);
-ungroupedProperties.push([
-  cityAttributeName.avrg_region_income,
-  allPropertiesCity.avrg_region_income,
-]);
-ungroupedProperties.push([
-  cityAttributeName.price_monthly_transport_pass,
-  allPropertiesCity.price_monthly_transport_pass,
-]);
-ungroupedProperties.push([
-  cityAttributeName.ratio_pass_cost_to_income,
-  allPropertiesCity.ratio_pass_cost_to_income,
-]);
-ungroupedProperties.push([
-  cityAttributeName.num_routes_with_pass,
-  allPropertiesCity.num_routes_with_pass,
-]);
-ungroupedProperties.push([
-  cityAttributeName.num_routes_with_transfer_pass,
-  allPropertiesCity.num_routes_with_transfer_pass,
-]);
+// ungroupedProperties.push([
+//   cityAttributeName.price_SOT,
+//   allPropertiesCity.price_SOT,
+// ]);
+
+for (let i = 0; i < 7; i++) {
+  if (typeof allPropertiesCity[tariffSystem[i][0]] === "boolean") {
+    const boolValue = allPropertiesCity[tariffSystem[i][0]] ? "Есть" : "Нет";
+    ungroupedProperties.push([
+      cityAttributeName[tariffSystem[i][0]],
+      boolValue,
+    ]);
+  } else {
+    ungroupedProperties.push([
+      cityAttributeName[tariffSystem[i][0]],
+      allPropertiesCity[tariffSystem[i][0]],
+    ]);
+  }
+}
+
+for (let i = 10; i < 16; i++) {
+  if (typeof allPropertiesCity[tariffSystem[i][0]] === "boolean") {
+    const boolValue = allPropertiesCity[tariffSystem[i][0]] ? "Есть" : "Нет";
+    ungroupedProperties.push([
+      cityAttributeName[tariffSystem[i][0]],
+      boolValue,
+    ]);
+  } else {
+    ungroupedProperties.push([
+      cityAttributeName[tariffSystem[i][0]],
+      allPropertiesCity[tariffSystem[i][0]],
+    ]);
+  }
+}
 
 displayUngroupedProperties(".tariff__container");
 
