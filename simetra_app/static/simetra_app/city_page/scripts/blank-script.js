@@ -721,17 +721,13 @@ ungroupedProperties.push([
   allPropertiesCity.num_new_buses,
 ]);
 
-// console.log(rollingStock[41]);
-// console.log(allPropertiesCity[rollingStock[41][0]]);
-// if (typeof allPropertiesCity[rollingStock[41][0]] === "boolean") {
-//   const boolValue = allPropertiesCity[rollingStock[41][0]] ? "Есть" : "Нет";
-//   ungroupedProperties.push([cityAttributeName[rollingStock[41][0]], boolValue]);
-// } else {
-//   ungroupedProperties.push([
-//     cityAttributeName[rollingStock[41][0]],
-//     allPropertiesCity[rollingStock[41][0]],
-//   ]);
-// }
+console.log(rollingStock[41]);
+console.log(allPropertiesCity[rollingStock[41][0]]);
+if (allPropertiesCity[rollingStock[41][0]] > 0) {
+  ungroupedProperties.push([cityAttributeName[rollingStock[41][0]], '+']);
+} else {
+  ungroupedProperties.push([cityAttributeName[rollingStock[41][0]], '-']);
+}
 
 displayUngroupedProperties(".rolling-stock__container");
 
