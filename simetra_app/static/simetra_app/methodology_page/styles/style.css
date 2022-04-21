@@ -659,23 +659,23 @@ body {
 }
 
 .payment__item:first-child h3::before {
-  background-color: #FFCE56;
+  background-color: #ffce56;
 }
 
 .payment__item:nth-child(2) h3::before {
-  background-color: #4BC0C0;
+  background-color: #4bc0c0;
 }
 
 .payment__item:nth-child(3) h3::before {
-  background-color: #B18AE0;
+  background-color: #b18ae0;
 }
 
 .payment__item:nth-child(4) h3::before {
-  background-color: #36A2EB;
+  background-color: #36a2eb;
 }
 
 .payment__item:nth-child(5) h3::before {
-  background-color: #FF6384;
+  background-color: #ff6384;
 }
 
 .payment__paragraph {
@@ -734,16 +734,21 @@ body {
 }
 
 /*-------------------------------------------------------------*/
-/*-----Approaches----------------------------------------------*/
+/*-----System--------------------------------------------------*/
 /*-------------------------------------------------------------*/
 .system {
   padding: 50px 0px 80px 0px;
-  max-width: 770px;
-  margin: 0 auto;
+}
+
+.system__container > * {
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .system__paragraph {
   line-height: 130%;
+  text-indent: 20px;
   margin-bottom: 40px;
 }
 

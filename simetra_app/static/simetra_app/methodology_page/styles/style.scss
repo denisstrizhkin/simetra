@@ -216,7 +216,6 @@ body {
     line-height: 140%;
   }
 
-
   &__item {
     list-style-type: none;
     margin-bottom: 30px;
@@ -239,23 +238,23 @@ body {
       }
     }
     &:first-child h3::before {
-      background-color: #FFCE56;
+      background-color: #ffce56;
     }
 
     &:nth-child(2) h3::before {
-      background-color: #4BC0C0;
+      background-color: #4bc0c0;
     }
 
     &:nth-child(3) h3::before {
-      background-color: #B18AE0;
+      background-color: #b18ae0;
     }
 
     &:nth-child(4) h3::before {
-      background-color: #36A2EB;
+      background-color: #36a2eb;
     }
 
     &:nth-child(5) h3::before {
-      background-color: #FF6384;
+      background-color: #ff6384;
     }
   }
 
@@ -286,8 +285,6 @@ body {
     flex-direction: column;
   }
 
- 
-
   &__item {
     margin-bottom: 30px;
     list-style-type: none;
@@ -309,16 +306,21 @@ body {
 }
 
 /*-------------------------------------------------------------*/
-/*-----Approaches----------------------------------------------*/
+/*-----System--------------------------------------------------*/
 /*-------------------------------------------------------------*/
 
 .system {
   padding: 50px 0px 80px 0px;
-  max-width: 770px;
-  margin: 0 auto;
+
+  &__container > * {
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
   &__paragraph {
     line-height: 130%;
+    text-indent: 20px;
     margin-bottom: 40px;
     &:last-child {
       margin-bottom: 0px;
