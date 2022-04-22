@@ -1,4 +1,8 @@
 from django.test import TestCase, Client
+from django.urls import reverse
+from django.contrib import messages
+from django.contrib.auth import get_user_model
+from simetra_app.models import Boss, Employee, City
 
 
 class TestView(TestCase):
@@ -6,10 +10,67 @@ class TestView(TestCase):
     # TODO: add page tests
     # TODO: add change models tests
 
-    def SetUp(self):
-        client = Client()
+    def setUp(self):
+        self.client = Client()
+        user_model = get_user_model()
+        self.test_admin = user_model.objects.create_user('test_admin', 'test_admin@gmail.com', 'test_admin')
+
+        self.main_page_url = reverse("simetra_app:main")
+
+        self.staff_login_page_url = reverse("simetra_app:staff-login")
+        self.staff_logout_page_url = reverse("simetra_app:staff-logout")
+        self.customization_page_url = reverse("simetra_app:customization")
+
+    def test_main_page_GET(self):
+        response = self.client.get(self.main_page_url)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'simetra_app/main.html')
+
+    def test_staff_login_page_GET(self):
+        response = self.client.get((self.staff_login_page_url))
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "simetra_app/staff-login.html")
+
+    def test_staff_login_page_redirect(self):
+        self.client.force_login(user=self.test_admin)
+        response = self.client.get(self.staff_login_page_url)
+
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, self.customization_page_url)
+        self.client.logout()
+
+    def test_staff_login_page_POST_not_admin_auth(self):
+        response = self.client.post(self.staff_login_page_url, data={
+            'username':'no_admin',
+            'password':'no_admin'
+        })
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'simetra_app/staff-login.html')
+
+    def test_staff_login_page_POST_admin_auth(self):
+        response = self.client.post(self.staff_login_page_url, data={
+            'username': 'test_admin',
+            'password': 'test_admin'
+        })
+
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, self.customization_page_url)
+
+    def test_staff_logout_page_GET(self):
+        response = self.client.get(self.staff_logout_page_url)
+
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, self.staff_login_page_url)
 
     def test_create_boss(self):
+        #self.client.login()
+        #response = self.client.get(reverse("simetra_app:customization"))
+
+        #self.assertEqual(response.status_code, 200)
+
         # TODO: test_create_boss
         pass
 
