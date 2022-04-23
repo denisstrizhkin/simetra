@@ -1,3 +1,4 @@
+import django.http
 from django.test import TestCase, Client
 from django.urls import reverse
 from django.contrib.auth import get_user_model
@@ -9,7 +10,6 @@ from json import loads
 
 class TestView(TestCase):
 
-    # TODO: add page tests
     # TODO: add change models tests
 
     def setUp(self):
@@ -25,6 +25,18 @@ class TestView(TestCase):
         self.staff_login_page_url = reverse("simetra_app:staff-login")
         self.staff_logout_page_url = reverse("simetra_app:staff-logout")
         self.customization_page_url = reverse("simetra_app:customization")
+
+        self.change_boss_url = reverse('simetra_app:change-boss')
+        self.create_boss_url = reverse('simetra_app:create-boss')
+        self.delete_all_bosses_url = reverse('simetra_app:delete-all-instances-of-boss')
+
+        self.change_employee_url = reverse('simetra_app:change-employee')
+        self.create_employee_url = reverse('simetra_app:create-employee')
+        self.delete_all_employees_url = reverse('simetra_app:delete-all-instances-of-employee')
+
+        self.change_city_url = reverse('simetra_app:change-city')
+        self.create_city_url = reverse('simetra_app:create-city')
+        self.delete_all_city_url = reverse('simetra_app:delete-all-instances-of-city')
 
     def test_main_page_GET(self):
         Boss.objects.create(
@@ -297,63 +309,242 @@ class TestView(TestCase):
             "%s?next=%s" % (self.staff_login_page_url, self.customization_page_url)
         )
 
+    def test_change_boss_model_GET(self):
+        self.client.force_login(user=self.test_admin)
+
+        response = self.client.get(self.change_boss_url)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed('simetra_app/change-model.html')
+        self.assertEqual(response.context['heading'], 'Руководители')
+        self.assertEqual(response.context['object_name'], 'boss')
+
     def test_create_boss(self):
-        # self.client.login()
-        # response = self.client.get(reverse("simetra_app:customization"))
+        self.client.force_login(user=self.test_admin)
+        response = self.client.post(self.create_boss_url, data={
+            'name': 'Luke Skywalker',
+            'position': 'Jedi',
+            'quote': "If there's a bright center of the universe, you're on the planet that it's farthest from."
+        })
 
-        # self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'simetra_app/create-or-update-boss.html')
 
-        # TODO: test_create_boss
-        pass
+        boss = Boss.objects.first()
+        self.assertTrue(boss, msg='Boss element does not exist in DB')
+        self.assertEqual(boss.name, 'Luke Skywalker')
+        self.assertEqual(boss.position, 'Jedi')
+        self.assertEqual(boss.quote, "If there's a bright center of the universe, you're on the planet that it's "
+                                     "farthest from.")
 
     def test_update_boss(self):
-        # TODO: test_update_boss
-        pass
+        self.client.force_login(user=self.test_admin)
+        old_boss = Boss.objects.create(
+            name='Old_boss'
+        )
+
+        response = self.client.post(
+            reverse('simetra_app:update-boss', kwargs={'boss_id': old_boss.id}),
+            data={
+                'name': 'New_boss',
+                'position': 'Boss',
+                'quote': 'I have been changed'
+            }
+        )
+
+        boss = Boss.objects.first()
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'simetra_app/create-or-update-boss.html')
+        self.assertEqual(boss.name, 'New_boss')
+        self.assertEqual(boss.position, 'Boss')
+        self.assertEqual(boss.quote, 'I have been changed')
 
     def test_delete_boss(self):
-        # TODO: test_delete_boss
-        pass
+        self.client.force_login(user=self.test_admin)
+        old_boss = Boss.objects.create(
+            name='Test_boss'
+        )
+
+        response = self.client.post(
+            reverse('simetra_app:delete-boss', kwargs={'boss_id': old_boss.id}),
+        )
+
+        number_of_bosses = Boss.objects.count()
+
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, self.change_boss_url)
+        self.assertEqual(number_of_bosses, 0)
 
     def test_delete_all_bosses(self):
-        # TODO: test_delete_all_bosses
-        pass
+        self.client.force_login(user=self.test_admin)
+        for x in range(11):
+            Boss.objects.create(name=f'Boss_{x}')
+
+        response = self.client.post(self.delete_all_bosses_url)
+
+        number_of_bosses = Boss.objects.count()
+
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, self.change_boss_url)
+        self.assertEqual(number_of_bosses, 0)
+
+    def test_change_city_model_GET(self):
+        self.client.force_login(user=self.test_admin)
+
+        response = self.client.get(self.change_city_url)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed('simetra_app/change-model.html')
+        self.assertEqual(response.context['heading'], 'Города')
+        self.assertEqual(response.context['object_name'], 'city')
 
     def test_create_city(self):
-        # TODO: test_create_city
-        pass
+        self.client.force_login(user=self.test_admin)
+        response = self.client.post(self.create_city_url, data={
+            'name': 'Rapture',
+            'russian_name': 'Восторг',
+            'sum_of_rating': 10.0
+        })
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'simetra_app/create-or-update-city.html')
+
+        city = City.objects.first()
+        self.assertTrue(city, msg='City element does not exist in DB')
+        self.assertEqual(city.name, 'Rapture')
+        self.assertEqual(city.russian_name, 'Восторг')
+        self.assertEqual(city.sum_of_rating, 10.0)
+
+    def test_does_city_already_exist(self):
+        self.client.force_login(user=self.test_admin)
+        City.objects.create(
+            name='City'
+        )
+
+        response = self.client.post(self.create_city_url, data={
+            'name': 'City'
+        })
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.content, "Такой город уже существует! Создайте новый город или \
+                обновите существующий.".encode('utf-8'))
 
     def test_update_city(self):
-        # TODO: test_update_city
-        pass
+        self.client.force_login(user=self.test_admin)
+        old_city = City.objects.create(
+            name='Old_city'
+        )
+
+        response = self.client.post(
+            reverse('simetra_app:update-city', kwargs={'city_id': old_city.id}),
+            data={
+                'name': 'New_city',
+                'russian_name': 'Новый город'
+            }
+        )
+
+        city = City.objects.first()
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'simetra_app/create-or-update-city.html')
+        self.assertEqual(city.name, 'New_city')
+        self.assertEqual(city.russian_name, 'Новый')
 
     def test_update_city_excel(self):
         # TODO: test_update_city_excel
         pass
 
     def test_deleting_city(self):
-        # TODO: test_deleting_city
-        pass
+        self.client.force_login(user=self.test_admin)
+        old_city = City.objects.create(
+            name='Test_city'
+        )
+
+        response = self.client.post(
+            reverse('simetra_app:delete-city', kwargs={'city_id': old_city.id}),
+        )
+
+        number_of_cities = City.objects.count()
+
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, self.change_city_url)
+        self.assertEqual(number_of_cities, 0)
 
     def test_deleting_all_cities(self):
-        # TODO: test_deleting_all_cities
-        pass
+        self.client.force_login(user=self.test_admin)
+        for x in range(11):
+            City.objects.create(name=f'City_{x}')
+
+        response = self.client.post(self.delete_all_city_url)
+
+        number_of_cities = City.objects.count()
+
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, self.change_city_url)
+        self.assertEqual(number_of_cities, 0)
 
     def test_create_employee(self):
-        # TODO: test_create_employee
-        pass
+        self.client.force_login(user=self.test_admin)
+        response = self.client.post(self.create_employee_url, data={
+            'name': 'Luke Skywalker',
+            'position': 'Padawan'
+        })
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'simetra_app/create-or-update-employee.html')
+
+        employee = Employee.objects.first()
+        self.assertTrue(employee, msg='Employee element does not exist in DB')
+        self.assertEqual(employee.name, 'Luke Skywalker')
+        self.assertEqual(employee.position, 'Padawan')
 
     def test_update_employee(self):
-        # TODO: test_update_employee
-        pass
+        self.client.force_login(user=self.test_admin)
+        old_employee = Employee.objects.create(
+            name='Old_employee'
+        )
+
+        response = self.client.post(
+            reverse('simetra_app:update-employee', kwargs={'employee_id': old_employee.id}),
+            data={
+                'name': 'New_employee',
+                'position': 'Newcomer'
+            }
+        )
+
+        employee = Employee.objects.first()
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'simetra_app/create-or-update-employee.html')
+        self.assertEqual(employee.name, 'New_employee')
+        self.assertEqual(employee.position, 'Newcomer')
 
     def test_delete_employee(self):
-        # TODO: test_deleting_employee
-        pass
+        self.client.force_login(user=self.test_admin)
+        old_employee = Employee.objects.create(
+            name='Test_employee'
+        )
+
+        response = self.client.post(
+            reverse('simetra_app:delete-employee', kwargs={'employee_id': old_employee.id}),
+        )
+
+        number_of_employees = Employee.objects.count()
+
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, self.change_employee_url)
+        self.assertEqual(number_of_employees, 0)
 
     def test_delete_all_employees(self):
-        # TODO: test_deleting_all_employees
-        pass
+        self.client.force_login(user=self.test_admin)
+        for x in range(11):
+            Employee.objects.create(name=f'Employee_{x}')
 
-    def test_does_city_already_exist(self):
-        # TODO: test_does_city_already_exist
-        pass
+        response = self.client.post(self.delete_all_employees_url)
+
+        number_of_employees = Employee.objects.count()
+
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, self.change_employee_url)
+        self.assertEqual(number_of_employees, 0)
+
+
