@@ -4,6 +4,7 @@ from django.contrib.auth import get_user_model
 from simetra_app.views import CityAttributesJSON
 from simetra_app.models import Boss, Employee, City
 from ast import literal_eval
+from json import loads
 
 
 class TestView(TestCase):
@@ -139,8 +140,162 @@ class TestView(TestCase):
         self.assertEqual(response.context['number_of_cities'], 3)
 
     def test_city_page_GET(self):
-        # TODO: test_city_page_GET
-        pass
+        test_city = City.objects.create(
+            name='Test_city'
+        )
+
+        required_fields = [
+            'name',
+            'longitude',
+            'latitude',
+            'rating_security_n_development',
+            'rating_comfort_n_convenience',
+            'rating_route_network_efficiency',
+            'rating_affordability',
+            'rating_physical_availability',
+            'num_population',
+            'length_UDS',
+            'area_active_city_zone',
+            'traffic_ground_transport',
+            'traffic_metro',
+            'num_working_stops_overall',
+            'num_working_stops_active_city_zone',
+            'num_of_apartments',
+            'proportion_apartments_in_coverage_zone',
+            'proportion_people_in_coverage_zone',
+            'area_stops_active_zone_coverage_500',
+            'area_stops_active_zone_coverage_700',
+            'area_stops_active_zone_coverage_1000',
+            'proportion_apartments_in_metro_coverage_zone',
+            'proportion_people_in_metro_coverage_zone',
+            'area_metro_coverage',
+            'density_stops_active_zone',
+            'percent_transport_covered_area',
+            'percent_metro_covered_area',
+            'num_people_with_metro_access',
+            'proportion_people_with_metro_access',
+            'num_people_with_transport_access',
+            'proportion_people_with_transport_access',
+            'avrg_length_between_stops',
+            'num_death_toll',
+            'num_wounded',
+            'num_accidents',
+            'num_accidents_per_transport_unit',
+            'num_wounded_n_dead_per_accident',
+            'num_wounded_n_dead_per_people',
+            'num_tramway_cars',
+            'num_trolleybuses',
+            'num_electrobuses',
+            'num_buses',
+            'num_metro_cars',
+            'num_working_tramway_cars',
+            'num_working_trolleybuses',
+            'num_working_electrobuses',
+            'num_working_buses',
+            'num_working_metro_cars',
+            'percent_working_tramway_cars',
+            'percent_working_trolleybuses',
+            'percent_working_electrobuses',
+            'percent_working_buses',
+            'percent_working_metro_cars',
+            'num_all_buses_registry',
+            'num_very_big_buses_registry',
+            'num_big_buses_registry',
+            'num_medium_buses_registry',
+            'num_small_buses_registry',
+            'num_all_trolleybuses_registry',
+            'num_big_trolleybuses_registry',
+            'num_very_big_trolleybuses_registry',
+            'num_tramway_cars_registry',
+            'num_big_tramway_cars_registry',
+            'num_very_big_tramway_cars_registry',
+            'avrg_age_tramway_car',
+            'avrg_age_trolleybus',
+            'avrg_age_bus',
+            'avrg_age_electrobus',
+            'avrg_age_metro_car',
+            'num_low_profile_tramway_cars',
+            'num_low_profile_trolleybuses',
+            'num_low_profile_buses',
+            'num_low_profile_electrobuses',
+            'num_new_GET',
+            'num_new_buses',
+            'proportion_low_profile_transport',
+            'proportion_big_capacity_transport',
+            'proportion_electro_transport',
+            'proportion_working_transport',
+            'percent_renew_program',
+            'num_routes_in_use_tramway',
+            'num_routes_in_use_trolleybus',
+            'num_routes_in_use_bus',
+            'num_routes_in_use_overall',
+            'num_routes_regulated_tariff',
+            'num_routes_unregulated_tariff',
+            'proportion_routes_unregulated_tariff',
+            'length_avrg_tramway_route',
+            'length_avrg_trolleybus_route',
+            'length_avrg_bus_route',
+            'length_existing_tramway_routes',
+            'length_in_use_tramway_routes',
+            'length_existing_trolleybus_routes',
+            'length_in_use_trolleybus_routes',
+            'length_overall_nonrailed_transport_path',
+            'percent_isolated_tramway_routes',
+            'coeff_tramway_net_use',
+            'coeff_trolleybus_net_use',
+            'num_segments_avrg_load',
+            'num_segments_high_load',
+            'time_avrg_waiting_any_transport',
+            'time_avrg_waiting_specific_transport',
+            'coeff_route',
+            'coeff_non_straight_route',
+            'bool_transport_app',
+            'bool_rt_internet_movement_info',
+            'bool_transport_schedule_website',
+            'bool_transport_route_net_map',
+            'bool_unique_transporte_style',
+            'avrg_region_salary',
+            'avrg_region_income',
+            'price_monthly_transport_pass',
+            'ratio_pass_cost_to_income',
+            'num_routes_with_pass',
+            'num_routes_with_transfer_pass',
+            'price_SOT',
+            'price_one_time_ticket',
+            'price_one_time_ticket_discount',
+            'price_transfer_pass',
+            'bool_universal_transport_card',
+            'bool_online_payment',
+            'bool_nfc_payment',
+            'bool_transfer_pass',
+            'bool_day_pass',
+            'bool_long_period_pass'
+        ]
+
+        self.city_page_url = reverse('simetra_app:city-page', kwargs={'city_name': 'Test_city'})
+        response = self.client.get(self.city_page_url)
+        data = loads(response.context['cities_list_json'][0])
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'simetra_app/city-page.html')
+        self.assertEqual(response.context['city'], test_city)
+        self.assertEqual(list(data.keys()), required_fields)
+
+    def test_customization_page_GET_with_login(self):
+        self.client.force_login(user=self.test_admin)
+        response = self.client.get(self.customization_page_url)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'simetra_app/customization.html')
+
+    def test_customization_page_GET_without_login(self):
+        response = self.client.get(self.customization_page_url)
+
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(
+            response,
+            "%s?next=%s" % (self.staff_login_page_url, self.customization_page_url)
+        )
 
     def test_create_boss(self):
         # self.client.login()
