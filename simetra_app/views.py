@@ -640,8 +640,6 @@ def update_employee(request, employee_id):
 
             message_text = 'Модель сотрудника была успешно создана!'
             messages.success(request, message_text)
-
-            return HttpResponseRedirect('')
         else:
             message_text = 'Не удалось создать модель сотрудника!'
             messages.error(request, message_text)
