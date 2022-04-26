@@ -42,7 +42,7 @@ def staff_logout(request):
     logout(request)
     return redirect('simetra_app:staff-login')
 
-
+@login_required(login_url='simetra_app:staff-login')
 def main_page(request):
     mapbox_access_token = MAPBOX_KEY
 
@@ -63,11 +63,11 @@ def main_page(request):
 
     return render(request, 'simetra_app/main.html', context)
 
-
+@login_required(login_url='simetra_app:staff-login')
 def methodology_page(request):
     return render(request, 'simetra_app/methodology.html')
 
-
+@login_required(login_url='simetra_app:staff-login')
 def analytics_page(request):
     required_fields = [
         'name',
@@ -87,7 +87,7 @@ def analytics_page(request):
 
     return render(request, 'simetra_app/analytics.html', context)
 
-
+@login_required(login_url='simetra_app:staff-login')
 def data_base_page(request):
     cities_list = City.objects.all().order_by('-sum_of_rating')
 
@@ -103,7 +103,7 @@ def data_base_page(request):
 
     return render(request, 'simetra_app/data-base.html', context)
 
-
+@login_required(login_url='simetra_app:staff-login')
 def city_page(request, city_name):
     city = get_object_or_404(City, name=city_name)
 
