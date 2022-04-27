@@ -30,6 +30,7 @@ pyexcel-ods3==0.6.1
 pyexcel-odsr==0.6.0
 pyexcel-webio==0.1.4
 pyexcel-xlsx==0.6.0
+python-decouple==3.6
 rfc3986==1.5.0
 sniffio==1.2.0
 sqlparse==0.4.2
