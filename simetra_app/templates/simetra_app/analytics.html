@@ -83,7 +83,7 @@
 
     <main class="page">
       <div class="page__container _container">
-        <section name="description" class="page__description _center-block">
+        <section name="description" class="page__description _center-block hide">
           <div class="page__description-header">
             <h2 class="page _customers-blue-color">
               SIMETRA ТРАНСПОРТНЫЙ РЕЙТИНГ
@@ -118,14 +118,14 @@
           <canvas id="top-10"></canvas>
         </section>
 
-        <section data-spollers class="block">
+        <section data-spollers class="block block--1 hide">
           <div class="block__item">
             <button tabindex='-1' type='button' data-spoller class="block__title">Центральный федеральный округ</button>
             <div class="block__text"><canvas id="county-1"></canvas>
             </div>
           </div>
         </section>
-        <section data-spollers class="block">
+        <section data-spollers class="block block--2 hide">
           <div class="block__item">
             <button tabindex='-1' type='button' data-spoller class="block__title">Северо-Западный федеральный
               округ</button>
@@ -133,14 +133,14 @@
             </div>
           </div>
         </section>
-        <section data-spollers class="block">
+        <section data-spollers class="block block--3 hide">
           <div class="block__item">
             <button tabindex='-1' type='button' data-spoller class="block__title">Южный федеральный округ</button>
             <div class="block__text"><canvas id="county-3"></canvas>
             </div>
           </div>
         </section>
-        <section data-spollers class="block">
+        <section data-spollers class="block block--4 hide">
           <div class="block__item">
             <button tabindex='-1' type='button' data-spoller class="block__title">Северо-Кавказский федеральный
               округ</button>
@@ -148,28 +148,28 @@
             </div>
           </div>
         </section>
-        <section data-spollers class="block">
+        <section data-spollers class="block block--5 hide">
           <div class="block__item">
             <button tabindex='-1' type='button' data-spoller class="block__title">Приволжский федеральный округ</button>
             <div class="block__text"><canvas id="county-5"></canvas>
             </div>
           </div>
         </section>
-        <section data-spollers class="block">
+        <section data-spollers class="block block--6 hide">
           <div class="block__item">
             <button tabindex='-1' type='button' data-spoller class="block__title">Уральский федеральный округ</button>
             <div class="block__text"> <canvas id="county-6"></canvas>
             </div>
           </div>
         </section>
-        <section data-spollers class="block">
+        <section data-spollers class="block block--7 hide">
           <div class="block__item">
             <button tabindex='-1' type='button' data-spoller class="block__title">Сибирский федеральный округ</button>
             <div class="block__text"><canvas id="county-7"></canvas>
             </div>
           </div>
         </section>
-        <section data-spollers class="block">
+        <section data-spollers class="block block--8 hide">
           <div class="block__item">
             <button tabindex='-1' type='button' data-spoller class="block__title">Дальневосточный федеральный
               округ</button>
@@ -187,6 +187,8 @@
   <script src="{% static 'simetra_app/analytics_page/scripts/navbar.js' %}"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1"></script>
   <script src="{% static 'simetra_app/analytics_page/scripts/blank-script.js' %}"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script src="{% static 'simetra_app/analytics_page/scripts/hide-visible-sections.js' %}"></script>  
 </body>
 
 </html>

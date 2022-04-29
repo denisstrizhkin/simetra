@@ -104,6 +104,7 @@ ul {
 /*-----HEADER--------------------------------------------------*/
 /*-------------------------------------------------------------*/
 .header {
+  position: fixed;
   width: 100%;
   left: 0;
   top: 0;
@@ -430,6 +431,14 @@ body {
   margin: 0px;
 }
 
+.header {
+  position: static;
+}
+
+.menu__list {
+  margin: 0px;
+}
+
 /*-------------------------------------------------------------*/
 /*-----Technical classes---------------------------------------*/
 /*-------------------------------------------------------------*/
@@ -453,7 +462,8 @@ body {
   object-fit: cover;
 }
 
-._main-title {
+._title {
+  font-family: "Montserrat", sans-serif;
   font-size: 36px;
   line-height: 150%;
   font-weight: 700;
@@ -542,6 +552,16 @@ body {
   filter: invert(62%) sepia(63%) saturate(4925%) hue-rotate(211deg)
     brightness(100%) contrast(103%);
   margin-left: 0.4em;
+}
+
+.hide {
+  opacity: 0;
+  -webkit-transition: .9s opacity ease-in-out;
+  transition: .9s opacity ease-in-out;
+}
+
+.visible {
+  opacity: 1;
 }
 
 /*-------------------------------------------------------------*/

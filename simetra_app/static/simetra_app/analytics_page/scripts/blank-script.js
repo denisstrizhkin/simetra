@@ -6,7 +6,6 @@ const arrCitites = [];
 for (let i = 0; i < citiesUnparsed.length; i++) {
   arrCitites.push(JSON.parse(citiesUnparsed[i]));
 }
-
 let filteredList;
 /*-------------------------------------------------------------*/
 /*-----Generate datas------------------------------------------*/
