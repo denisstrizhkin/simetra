@@ -184,14 +184,16 @@
           <h2 id="main__map" class="analysis__title _main-title">
             <span class="_highlight">ГЕОГРАФИЯ</span> ИССЛЕДОВАНИЯ В 2021 ГОДУ
           </h2>
-
-          <div id='map' style='height: 80vh;'></div>
-          <!-- The secure way to give a key without any leak -->
-          {{ mapbox_access_token|json_script:"mapbox-access-token" }}
-          {{ cities_list_json|json_script:"cities-list-json" }}
-          <script src="{% static 'simetra_app/main_page/scripts/map.js' id="mapbox-access-token" type="application/json" %}"></script>
         </div>
+
+        <div id='map' style='height: 80vh;'></div>
+        <!-- The secure way to give a key without any leak -->
+        {{ mapbox_access_token|json_script:"mapbox-access-token" }}
+        {{ cities_list_json|json_script:"cities-list-json" }}
+        <script src="{% static 'simetra_app/main_page/scripts/map.js' id="mapbox-access-token" type="application/json" %}"></script>
       </section>
+
+          
 
       <section class="page__best best">
         <div class="best__container _container">
