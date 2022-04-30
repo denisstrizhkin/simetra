@@ -5,8 +5,8 @@ function come(elem, dif) {
 }
 
 $(document).scroll(function (e) {
-  if (come('.page__description', 100)) {
-    $('.page__description').addClass('visible');
+  if (come('.top-10', 100)) {
+    $('.top-10').addClass('visible');
   }
   if (come('.block--1', 100)) {
     $('.block--1').addClass('visible');
