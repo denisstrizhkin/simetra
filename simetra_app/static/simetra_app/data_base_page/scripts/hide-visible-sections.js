@@ -5,11 +5,8 @@ function come(elem, dif) {
 }
 
 $(document).scroll(function (e) {
-  if (come('.page__description', 100)) {
-    $('.page__description').addClass('visible');
-  }
-  if (come('._container', 100)) {
-    $('._container').addClass('visible');
+  if (come('.rating', 100)) {
+    $('.rating').addClass('visible');
   }
 
 }); 
