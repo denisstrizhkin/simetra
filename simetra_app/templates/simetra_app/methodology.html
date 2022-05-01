@@ -86,7 +86,7 @@
         </div>
       </section>
 
-      <section class="page__choice choice">
+      <section class="page__choice choice hide">
         <div class="choice__container _container">
           <h2 id="choice" class="choice__title _title">
             Выбор показателей и сбор исходных данных
@@ -101,7 +101,7 @@
             вынужденно отказываться от рассмотрения тех или иных факторов.
           </p>
 
-          <div class="choice__content">
+          <div class="choice__content first hide">
             <div class="choice__text">
               <p class="choice__paragraph">
                 Особое внимание хочется обратить на первую группу показателей.
@@ -128,7 +128,7 @@
               alt="Изображение фуникулера" title="Фуникулер" />
           </div>
 
-          <div class="choice__content">
+          <div class="choice__content second hide">
             <img class="choice__image image__order"
               src="https://thumb.tildacdn.com/tild6638-6565-4161-b430-323366353838/-/resize/720x/-/format/webp/_21.png"
               alt="Изображение трамвая" title="Трамвай" />
@@ -153,7 +153,7 @@
         </div>
       </section>
 
-      <section class="page__payment payment">
+      <section class="page__payment payment hide">
         <div class="payment__container _container">
           <div class="payment__body">
             <h2 id="payment" class="payment__title _title">
@@ -240,7 +240,7 @@
         </div>
       </section>
 
-      <section class="page__sources sources">
+      <section class="page__sources sources hide">
         <div class="sources__container _container">
           <div class="sources__body">
             <h2 id="sources" class="sources__title _title">
@@ -296,7 +296,7 @@
         </div>
       </section>
 
-      <section class="page__system system">
+      <section class="page__system system hide">
         <div class="system__container _container">
           <h2 id="system" class="system__title _title">Система оценки</h2>
           <p class="system__paragraph">
@@ -363,6 +363,8 @@
     {% include 'simetra_app/footer.html' %}
   </div>
   <script src="{% static 'simetra_app/main_page/scripts/menu-burger.js' %}"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script src="{% static 'simetra_app/methodology_page/js/hide-visible-sections.js' %}"></script>
 </body>
 
 </html>

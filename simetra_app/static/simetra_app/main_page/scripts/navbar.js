@@ -1,3 +1,12 @@
 $(document).scroll(function (e) {
-    ($(window).scrollTop() > 950 && $(window).scrollTop() < 3500 || $(window).scrollTop() > 3880 && $(window).scrollTop() < 5550) ? $('.header').addClass('header__color') : $('.header').removeClass('header__color');
+    var commentsTop = $('.comments').offset().top,
+        statisticsTop = $('.statistics').offset().top,
+        statisticsBottom = statisticsTop + $('.statistics').outerHeight(),
+        downloadTop = $('.download').offset().top;
+
+    if ($(window).scrollTop() > commentsTop && $(window).scrollTop() < statisticsTop || $(window).scrollTop() > statisticsBottom && $(window).scrollTop() < downloadTop) {
+        $('.header').addClass('header__color');
+    } else {
+        $('.header').removeClass('header__color');
+    }
 });

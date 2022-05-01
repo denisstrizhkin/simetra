@@ -57,10 +57,6 @@
       <section class="page__home home">
         <div class="home__container _container">          
           <div class="home__body">
-            <div class="circle circle--item1"></div>
-            <div class="circle circle--item2"></div>
-            <div class="circle circle--item3"></div>
-            <div class="circle circle--item4"></div>
             <h1 class="home__title">
               Рейтинг городов России <span class="_highlight">по&nbsp;качеству общественного транспорта 2021</span>
             </h1>
@@ -176,6 +172,17 @@
               </li>
             </ul>
           </div>
+        </div>
+      </section>
+
+      <section class="page__methodology methodology hide">
+        <div class="methodology__container _container">
+          <p class="methodology__text">Подробное описание методики, включенные в&nbsp;расчеты параметры и&nbsp;ключевые показатели опубликованы здесь</p>
+          <a href="{% url 'simetra_app:methodology' %}" class="">
+            <button class="methodology__button _button" type="button">
+              Посмотреть
+            </button>
+        </a>
         </div>
       </section>
 
