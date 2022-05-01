@@ -446,6 +446,8 @@ body {
   max-width: 1200px;
   margin: 0px auto;
   padding: 0px 40px;
+  padding-left: 24px;
+  padding-right: 24px;
 }
 
 ._ibg {
