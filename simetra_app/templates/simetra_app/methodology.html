@@ -79,9 +79,9 @@
             совершенствования методик, продолжения поиска и налаживания
             контактов на местах его охват, безусловно, будет расширяться.
           </p>
-          <a class="approaches__link" target="_blank" href="https://cloud.simetragroup.ru/s/qHNs8Y7jWWz33Ak"
+          <a class="_button" target="_blank" href="https://cloud.simetragroup.ru/s/qHNs8Y7jWWz33Ak"
             title="Посмотреть рейтинг 2020 г.">
-            Рейтинг 2020 г.
+            Рейтинг 2020
           </a>
         </div>
       </section>
@@ -353,9 +353,11 @@
             При подготовке рейтинга использовались данные за 2019 год, при
             наличии – на декабрь или IV квартал 2019 года.
           </p>
-          <a class="system__link" href="{% url 'simetra_app:main' %}" title="Перейти на главную">
-            На главную
-          </a>
+          <div class="system__link">
+            <a class="_button" href="{% url 'simetra_app:main' %}" title="Перейти на главную">
+              На главную
+            </a>
+          </div>
         </div>
       </section>
     </main>
@@ -364,7 +366,7 @@
   </div>
   <script src="{% static 'simetra_app/main_page/scripts/menu-burger.js' %}"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-  <script src="{% static 'simetra_app/methodology_page/js/hide-visible-sections.js' %}"></script>
+  <script src="{% static 'simetra_app/methodology_page/scripts/hide-visible-sections.js' %}"></script>
 </body>
 
 </html>
