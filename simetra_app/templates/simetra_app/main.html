@@ -258,11 +258,11 @@
           <h3 class="team__subtitle">Авторы</h3>
           <ul class="team__list">
             {% for employee in employees_list %}
-            <li class="team__item employee">
-              <img class="employee__image hide" src="{{ employee.image.url }}" />
-              <p class="employee__initials">{{ employee.name }}</p>
-              <h3 class="employee__position">{{ employee.position }}</h3>
-            </li>
+              <li class="team__item employee">
+                <img class="employee__image" src="{{ employee.image.url }}" />
+                <p class="employee__initials">{{ employee.name }}</p>
+                <h3 class="employee__position">{{ employee.position }}</h3>
+              </li>
             {% endfor %}
           </ul>
         </div>
