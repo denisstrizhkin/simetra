@@ -448,10 +448,17 @@ def upload_cities_excel(request):
         cname = getattr(city, 'name')
         fmt = "Город: {}, Значение: [{}] должно быть {}"
         err_msg = ''
-
+        
         if field_type == type(False):
             try:
-                val = bool(val)
+                val = float(val)
+
+                if val == 0.0:
+                    val = False
+                elif val == 1.0:
+                    val = True
+                else:
+                    raise ValueError()
             except ValueError:
                 err_msg = fmt.format(cname, vname, 'Булевой переменной')
         elif field_type == type("str"):
@@ -497,15 +504,15 @@ def upload_cities_excel(request):
                 except BaseException:
                     return False
 
-            error_message = ''
+            b_err = False
             for sheet_name in sheet_names:
-                print(sheet_name)
                 if not check_sheet_existance(excel_book, sheet_name):
-                    error_message = 'Документ не содержит следующего листа: \
+                    err_msg = 'Документ не содержит следующего листа: \
 "{}", Ошибка при загрузке!'.format(sheet_name)
+                    b_err = True
+                    messages.error(request, err_msg)
 
-            if error_message != '':
-                messages.error(request, error_message)
+            if b_err:
                 context = update_context_for_customization_pages_navbar(
                     request, context)
                 return render(request, "simetra_app/upload-cities-excel.html", context)
