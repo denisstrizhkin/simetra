@@ -55,7 +55,8 @@ def main_page(request):
     context = {
         'bosses_list': Boss.objects.all(),
         'employees_list': Employee.objects.all(),
-        'number_of_cities': City.objects.all().count(),
+        'cities_list': City.objects.all(),
+        'cities_rating': City.objects.all().order_by('-sum_of_rating')[0:4],
         'mapbox_access_token': mapbox_access_token,
         'cities_list_json': cities_list_json,
         'form': form,
