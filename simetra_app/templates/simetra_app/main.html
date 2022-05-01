@@ -11,9 +11,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rating</title>
-  <!--INCLUDE-->
   <link rel="stylesheet" href="{% static 'simetra_app/main_page/styles/style.css' %}" />
-  <!--INCLUDE-->
   <link rel="apple-touch-icon-precomposed" sizes="57x57" href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-57x57.png' %}" />
   <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-114x114.png' %}" />
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-72x72.png' %}" />
@@ -44,7 +42,7 @@
   <div class="wrapper">
 
     <div id = "toTop" >
-      <img class="arrow" src="../../static/simetra_app/main_page/assets/img/arrow-up.svg" alt="Наверх">
+      <img class="arrow" src="{% static 'simetra_app/main_page/assets/img/arrow-up.svg' %}" alt="Наверх">
     </div>
 
     <header id="top" class="header">
@@ -71,7 +69,7 @@
           </div>
         </div>
         <div class="home__image _ibg">
-          <img src="https://thumb.tildacdn.com/tild6661-3966-4433-b033-656461616564/-/format/webp/1024-576-max.jpg"
+          <img src="{% static 'simetra_app/main_page/assets/img/traffic.webp' %}"
             alt="Фоновое изображение" title="Изображение дорожного движения"/>
         </div>        
       </section>
@@ -122,7 +120,7 @@
               </p>
             </div>
             <img class="about__image"
-              src="https://thumb.tildacdn.com/tild3034-3938-4134-b564-346335383363/-/resize/720x/-/format/webp/Simetra-rating-gorod.jpg" />
+              src="{% static 'simetra_app/main_page/assets/img/rating-simetra.webp' %}" />
           </div>
           <div class="about__video">
             <div class="about__youtube-video hide">
@@ -144,7 +142,7 @@
         </div>
       </section>
 
-      <section class="page__statistics statistics parallax-window" data-parallax="scroll" data-image-src="https://static.tildacdn.com/tild3435-3661-4335-b464-656538666332/petersburg-2805505-m.jpg">
+      <section class="page__statistics statistics parallax-window" data-parallax="scroll" data-image-src="{% static 'simetra_app/main_page/assets/img/road-simetra.jpg' %}">
         <div class="statistics__container _container">
           <div class="statistics__body">
             <h2 class="statistics__title _main-title">
@@ -213,9 +211,9 @@
                   <img class="city__image" src="{{ city.avatar.url }}" />
                   <div class="city__subtitle">
                     <h3 class="city__title">{{ city.russian_name|upper }}</h3>
-                    <img class="city__line--564" src="../../static/simetra_app/main_page/assets/img/line_in_best_right--564.svg">
-                    <img class="city__line--400" src="../../static/simetra_app/main_page/assets/img/line_in_best_right--400.svg">
-                    <img class="city__line--300" src="../../static/simetra_app/main_page/assets/img/line_in_best_right--300.svg">
+                    <img class="city__line--564" src="{% static 'simetra_app/main_page/assets/img/line_in_best_right--564.svg' %}">
+                    <img class="city__line--400" src="{% static 'simetra_app/main_page/assets/img/line_in_best_right--400.svg' %}">
+                    <img class="city__line--300" src="{% static 'simetra_app/main_page/assets/img/line_in_best_right--300.svg' %}">
                   </div>
                 </li>
               {% else %}
@@ -223,9 +221,9 @@
                 <img class="city__image" src="{{ city.avatar.url }}" />
                 <div class="city__subtitle--even">
                   <h3 class="city__title">{{ city.russian_name|upper }}</h3>
-                  <img class="city__line--564" src="../../static/simetra_app/main_page/assets/img/line_in_best_left--564.svg">
-                  <img class="city__line--400" src="../../static/simetra_app/main_page/assets/img/line_in_best_left--400.svg">
-                  <img class="city__line--300" src="../../static/simetra_app/main_page/assets/img/line_in_best_left--300.svg">
+                  <img class="city__line--564" src="{% static 'simetra_app/main_page/assets/img/line_in_best_left--564.svg' %}">
+                  <img class="city__line--400" src="{% static 'simetra_app/main_page/assets/img/line_in_best_left--400.svg' %}">
+                  <img class="city__line--300" src="{% static 'simetra_app/main_page/assets/img/line_in_best_left--300.svg' %}">
                 </div>              
               </li>
               {% endif %}
@@ -234,7 +232,7 @@
         </div>
       </section>
 
-      <section class="page__download download parallax-window" data-parallax="scroll" data-image-src="https://static.tildacdn.com/tild6163-3265-4535-a463-633938383564/1024-683-max.jpg">
+      <section class="page__download download parallax-window" data-parallax="scroll" data-image-src="{% static 'simetra_app/main_page/assets/img/tram-simetra.jpg' %}">
         <div class="download__container _container">
           <div class="download__body">
             <h2 class="download__title _main-title">
