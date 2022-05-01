@@ -150,7 +150,7 @@ body._lock {
   font-size: 36px;
   line-height: 150%;
   font-weight: 700;
-  margin: 20px auto 50px;
+  margin: 40px auto 40px;
   text-align: center;
 }
 
@@ -784,6 +784,7 @@ body._lock {
           align-items: center;
   gap: 60px;
   width: 90%;
+  margin-top: 40px;
 }
 
 @media (max-width: 730px) {
@@ -796,7 +797,7 @@ body._lock {
 }
 
 .methodology__text {
-  font-size: 20px;
+  font-size: 28px;
 }
 
 @media (max-width: 730px) {
