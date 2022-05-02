@@ -134,6 +134,14 @@ h6 {
   background-color: rgba(0, 0, 0, 0.9);
 }
 
+.top-10 {
+  margin-top: 80px;
+}
+
+.block--8 {
+  margin-bottom: 40px;
+}
+
 .menu {
   width: 100%;
 }
@@ -728,6 +736,11 @@ body {
 /*-------------------------------------------------------------*/
 /*-----Technical classes---------------------------------------*/
 /*-------------------------------------------------------------*/
+hr {
+  height: 1px;
+  background-color: #C8C9CA;
+}
+
 ._container {
   max-width: 1200px;
   margin: 0px auto;
