@@ -84,7 +84,10 @@ def analytics_page(request):
 
     city_attrs_json = CityAttributesJSON()
     cities_list_json = city_attrs_json.get_JSON_city_list(required_fields)
-    context = {'cities_list_json': cities_list_json}
+    context = {
+        'cities_list_json': cities_list_json,
+        'cities_list': City.objects.all(),
+    }
 
     return render(request, 'simetra_app/analytics.html', context)
 
@@ -99,7 +102,6 @@ def data_base_page(request):
     context = {
         'cities_list_json': cities_list_json,
         'cities_list': cities_list,
-        'number_of_cities': len(cities_list),
     }
 
     return render(request, 'simetra_app/data-base.html', context)
