@@ -372,7 +372,6 @@ def create_city(request):
     context = {
         'city_form': city_form,
         'location_of_city_form': location_of_city_form,
-        'title': 'Добавить Новый Город',
         'is_create_page': True,
     }
 
@@ -410,7 +409,6 @@ def update_city(request, city_id):
     context = {
         'city_form': city_form,
         'location_of_city_form': location_of_city_form,
-        'title': 'Изменить Существующий Город',
         'city_image_path': city.avatar.url,
         'is_create_page': False,
     }

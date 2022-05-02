@@ -57,7 +57,11 @@
 
     <main class="page">
       <div class="page__container _center-block">
-        <h1 class="home__title _center-text">{{ title }}</h1>
+        {% if is_create_page %}
+          <h1 class="home__title _center-text">Добавить Новый Город</h1>
+        {% else %}
+          <h1 class="home__title _center-text">Изменить Существующий Город</h1>
+        {% endif %}
         <form method="POST">
           <div class="home__navbar _center-text">
             {% include 'simetra_app/customization-navbar.html' %}
