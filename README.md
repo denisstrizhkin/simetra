@@ -1,4 +1,4 @@
-# SIMETRA. Rating of Russian cities by quality of public transport
+# SIMETRA. Rating of Russian cities by quality of a public transport
 
 The projects has been done for free by the group of students of Peter the Great St.Petersburg Polytechnic University.
 
