@@ -495,6 +495,7 @@ hr {
 }
 
 ._button {
+  border-radius: 5px;
   -webkit-transition: 0.3s;
   transition: 0.3s;
   min-width: 100%;
