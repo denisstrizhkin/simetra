@@ -875,6 +875,7 @@ h2.page {
 h1.page__rating {
   font-size: 36px;
   margin-top: 80px;
+  margin-bottom: 20px;
   font-weight: bold;
 }
 
