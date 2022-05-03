@@ -21,6 +21,7 @@ The project has two sections: open and closed. The first one is used for represe
 
 ## 3. Technologies
 * Django Web Framework 4.0.3
+* Mapbox
 * Chart.js 3.7.1
 * pyexcel 0.7.0
 * jQuery 1.11.0
