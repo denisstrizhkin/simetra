@@ -90,21 +90,12 @@ h6 {
   font-weight: 400;
 }
 
-.hide {
-  opacity: 0;
-  transition: .9s opacity ease-in-out;
-}
-
-.visible {
-  opacity: 1;
-}
-
 /*--------------------------------------------------------*/
 /*-------------------------------------------------------------*/
 /*-----HEADER--------------------------------------------------*/
 /*-------------------------------------------------------------*/
 .header {
-  position: fixed;
+  position: static;
   width: 100%;
   left: 0;
   top: 0;
@@ -123,10 +114,6 @@ h6 {
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
-}
-
-.header__color {
-  background-color: rgba(0, 0, 0, 0.9);
 }
 
 .menu {
@@ -153,15 +140,6 @@ h6 {
   -ms-flex-pack: justify;
   justify-content: space-between;
   gap: 30px 30px;
-}
-
-.menu a:focus {
-  -webkit-box-shadow: 0 0 5px 5px #6f80ff;
-  box-shadow: 0 0 5px 5px #6f80ff;
-}
-
-.menu__logo {
-  width: 200px;
 }
 
 .menu__item {
@@ -306,6 +284,31 @@ body._lock {
   }
 }
 
+/*-------------------------------------------------------------*/
+/*-----MAIN----------------------------------------------------*/
+/*-------------------------------------------------------------*/
+.page {
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+}
+
+.page__container{
+  margin-bottom: 100px;
+}
+
+.page-title {
+  padding-top: 150px;
+  padding-bottom: 120px;
+  z-index: 5;
+  font-size: 36px;
+  text-align: center;
+}
+
+canvas {
+  margin-bottom: 100px;
+}
+
 /*--------------------------------------------------------*/
 /*-----FOOTER---------------------------------------------*/
 /*--------------------------------------------------------*/
@@ -422,13 +425,18 @@ body {
   flex-direction: column;
 }
 
-.header {
-  position: static;
-}
-
 /*-------------------------------------------------------------*/
 /*-----Technical classes---------------------------------------*/
 /*-------------------------------------------------------------*/
+.hide {
+  opacity: 0;
+  transition: .9s opacity ease-in-out;
+}
+
+.visible {
+  opacity: 1;
+}
+
 ._container {
   max-width: 1200px;
   margin: 0px auto;
@@ -507,29 +515,4 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #37407f;
-}
-
-/*-------------------------------------------------------------*/
-/*-----MAIN----------------------------------------------------*/
-/*-------------------------------------------------------------*/
-.page {
-  -webkit-box-flex: 1;
-  -ms-flex: 1 1 auto;
-  flex: 1 1 auto;
-}
-
-.page__container{
-  margin-bottom: 100px;
-}
-
-.page-title {
-  padding-top: 150px;
-  padding-bottom: 120px;
-  z-index: 5;
-  font-size: 36px;
-  text-align: center;
-}
-
-canvas {
-  margin-bottom: 100px;
 }
