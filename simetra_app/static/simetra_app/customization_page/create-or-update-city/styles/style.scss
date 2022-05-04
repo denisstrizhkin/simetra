@@ -11,7 +11,6 @@ $black-color: #000000;
 /*-------------------------------------------------------------*/
 /*-----The Foundation------------------------------------------*/
 /*-------------------------------------------------------------*/
-
 body {
   font-family: "Roboto", sans-serif;
   font-size: 25px;
@@ -27,12 +26,14 @@ section {
   margin-bottom: 30px;
   background-color: #37407F;
 }
+
 .wrapper {
   min-height: 100%;
   overflow: hidden;
   display: flex;
   flex-direction: column;
 }
+
 .mapboxgl-map {
   border-radius: 8px;
   margin: 20px 0px;
@@ -67,7 +68,7 @@ button[name="sumbit-new-city"] {
     color: #ffb259;
   }
 }
-//ffb259
+
 /*-------------------------------------------------------------*/
 /*-----Technical classes---------------------------------------*/
 /*-------------------------------------------------------------*/
