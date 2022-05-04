@@ -247,16 +247,12 @@ def city_page(request, city_name):
     ]
 
     city_attrs_json = CityAttributesJSON(city)
-    # cities_list_json = get_JSON_one_city_attrs(city, required_fields)
+
     cities_list_json = city_attrs_json.get_JSON_city_list(required_fields)
 
-    # cities_attrs_by_groups_list_json = get_JSON_city_list_by_many_groups(
-    #     required_groups, city_name)
     cities_attrs_by_groups_list_json = city_attrs_json.get_JSON_city_list_by_many_groups(
         required_groups)
 
-    # city_attr_verbose_names_json = get_JSON_city_attr_verbose_names_by_groups(
-    #     required_groups)
     city_attr_verbose_names_json = city_attrs_json.get_JSON_city_attr_verbose_names_by_groups(
         required_groups)
 
@@ -384,7 +380,7 @@ def create_city(request):
                 обновите существующий.'
             )
 
-        city_form = CityForm(request.POST)
+        city_form = CityForm(request.POST, request.FILES)
 
         if city_form.is_valid():
             new_city = city_form.save(commit=False)
@@ -416,7 +412,7 @@ def update_city(request, city_id):
     context = update_context_for_customization_pages_navbar(request, context)
 
     if request.method == 'POST':
-        city_form = CityForm(request.POST, instance=city)
+        city_form = CityForm(request.POST, request.FILES, instance=city)
 
         if city_form.is_valid():
             new_city = city_form.save(commit=False)
