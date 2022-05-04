@@ -24,6 +24,10 @@ body {
   font-size: 18px;
 }
 
+body._lock {
+  overflow: hidden;
+}
+
 .wrapper {
   min-height: 100%;
   overflow: hidden;
@@ -84,9 +88,6 @@ body {
   width: 15px;
 }
 
-::-webkit-scrollbar-track {
-}
-
 ::-webkit-scrollbar-thumb {
   background: #6f80ff;
   border-radius: 10px;
@@ -124,9 +125,9 @@ body {
   box-shadow: 0 0 15px 1px black;
   border-radius: 20px;
 
-    @media (max-width: 400px) {
-      padding: 40px 10px;
-    }
+  @media (max-width: 400px) {
+    padding: 40px 10px;
+  }
 
   &__content {
     font-size: 40px;
@@ -134,12 +135,15 @@ body {
     text-align: center;
   }
 
-  &__close span {
+  &__close {
     position: absolute;
     top: 5px;
     right: 5px;
     background-color: transparent;
-    font-size: 30px;
+    & img {
+      width: 40px;
+      height: 40px;
+    }
   }
 }
 
@@ -156,9 +160,6 @@ body {
 }
 .page__home {
   margin-bottom: 50px;
-  // @media (max-width: 1280px) {
-  //   margin-bottom: calc(300px + (600 - 300) * ((100vw - 320px) / (1280 - 320)));
-  // }
 }
 
 .home {
@@ -212,18 +213,22 @@ body {
 }
 
 /*-------------------------------------------------------------*/
-/*-----Canvas--------------------------------------------------*/
+/*-----Charts--------------------------------------------------*/
 /*-------------------------------------------------------------*/
-canvas {
-  max-width: 700px;
-  width: 100%;
+._chart-wrapper {
+  max-width: 950px;
+  max-height: 950px;
   margin: 0 auto;
   margin-bottom: 100px;
 }
 
-.labels {
-  color: white;
+canvas {
+  width: 100%;
+  height: 100%;
+  @media (max-width: 420px) {
+  }
 }
+
 /*-------------------------------------------------------------*/
 /*-----Quality-------------------------------------------------*/
 /*-------------------------------------------------------------*/
@@ -290,16 +295,16 @@ canvas {
 /*-------------------------------------------------------------*/
 
 .tariff {
-  &__container {
-    padding: 100px 0px;
+  &__title {
+    margin-bottom: 20px;
+  }
+
+  .ungrouped__wrapper {
+    padding: 0px;
   }
 
   &__container {
     padding: 100px 0px;
-  }
-
-  & canvas:last-child {
-    margin-bottom: 0px;
   }
 }
 
@@ -317,7 +322,7 @@ canvas {
 
 .unused__wrapper h3 {
   text-align: center;
-  font-size: 35px;
+  font-size: 30px;
   font-weight: bold;
   margin-bottom: 30px;
   @media (max-width: 360px) {
@@ -380,7 +385,7 @@ canvas {
 .ungrouped__table caption {
   color: black;
   margin-bottom: 30px;
-  font-size: 35px;
+  font-size: 30px;
   font-weight: bold;
   @media (max-width: 360px) {
     font-size: 26px;

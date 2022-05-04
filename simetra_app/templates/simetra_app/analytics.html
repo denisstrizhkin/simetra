@@ -7,31 +7,14 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Аналитика оценки качества общественного транспорта в России</title>
-
   <meta name="description"
     content="Аналитика оценки качества общественного транспорта в российских городах и рейтинга городов России по качеству общественного транспорта.">
   <meta name="subject" content="Аналитика оценки качества общественного транспорта в России.">
   <meta name="abstract" content="Аналитика оценки качества общественного транспорта в России.">
   <meta name="rating" content="General">
+  <title>Аналитика оценки качества общественного транспорта в России</title>
 
-  <!------------------------------------------------------------->
-  <!--FB--------------------------------------------------------->
-  <!------------------------------------------------------------->
-  <!-- <meta property="fb:app_id" content="123456789"> -->
-  <!-- <meta property="og:url" content="https://example.com/page.html"> -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Аналитика оценки качества общественного транспорта в России">
-  <meta property="og:image" content="{% static 'simetra_app/main_page/assets/img/simetra_logo_discrip.png' %}">
-  <meta property="og:description"
-    content="Аналитика оценки качества общественного транспорта в российских городах и рейтинга городов России по качеству общественного транспорта.">
-  <meta property="og:site_name" content="Аналитика оценки качества общественного транспорта в России">
-  <meta property="og:locale" content="ru_RU">
-  <meta property="article:author" content="Simetra">
-
-  <!--Styles-->
   <link rel="stylesheet" href="{% static 'simetra_app/analytics_page/styles/style.css' %}" />
-  <!--Styles-->
 
   <link rel="apple-touch-icon-precomposed" sizes="57x57"
     href="{% static 'simetra_app/general_assets/favicon/apple-touch-icon-57x57.png' %}" />
@@ -189,12 +172,11 @@
     {% include 'simetra_app/footer.html' %}
   </div>
 
-  <script src="{% static 'simetra_app/analytics_page/scripts/menu-burger.js' %}"></script>
-  <script src="{% static 'simetra_app/analytics_page/scripts/navbar.js' %}"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1"></script>
   <script src="{% static 'simetra_app/analytics_page/scripts/blank-script.js' %}"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
   <script src="{% static 'simetra_app/analytics_page/scripts/hide-visible-sections.js' %}"></script>  
+  <script type='module' src="{% static 'simetra_app/analytics_page/scripts/script.js' %}"></script>
 </body>
 
 </html>

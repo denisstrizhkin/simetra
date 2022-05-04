@@ -982,6 +982,10 @@ h1.page__rating-filter {
   flex: 1 1 auto;
 }
 
+.page__container {
+  margin-bottom: 100px;
+}
+
 .page-title {
   z-index: 5;
   font-size: 36px;

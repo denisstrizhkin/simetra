@@ -402,6 +402,10 @@ body {
   font-size: 18px;
 }
 
+body._lock {
+  overflow: hidden;
+}
+
 .wrapper {
   min-height: 100%;
   overflow: hidden;
@@ -526,12 +530,16 @@ body {
   text-align: center;
 }
 
-.modal__close span {
+.modal__close {
   position: absolute;
   top: 5px;
   right: 5px;
   background-color: transparent;
-  font-size: 30px;
+}
+
+.modal__close img {
+  width: 40px;
+  height: 40px;
 }
 
 .material-icons-outlined {
@@ -606,17 +614,18 @@ body {
 }
 
 /*-------------------------------------------------------------*/
-/*-----Canvas--------------------------------------------------*/
+/*-----Charts--------------------------------------------------*/
 /*-------------------------------------------------------------*/
-canvas {
-  max-width: 700px;
-  width: 100%;
+._chart-wrapper {
+  max-width: 950px;
+  max-height: 950px;
   margin: 0 auto;
   margin-bottom: 100px;
 }
 
-.labels {
-  color: white;
+canvas {
+  width: 100%;
+  height: 100%;
 }
 
 /*-------------------------------------------------------------*/
@@ -676,16 +685,16 @@ canvas {
 /*-------------------------------------------------------------*/
 /*-----Tariff--------------------------------------------------*/
 /*-------------------------------------------------------------*/
-.tariff__container {
-  padding: 100px 0px;
+.tariff__title {
+  margin-bottom: 20px;
+}
+
+.tariff .ungrouped__wrapper {
+  padding: 0px;
 }
 
 .tariff__container {
   padding: 100px 0px;
-}
-
-.tariff canvas:last-child {
-  margin-bottom: 0px;
 }
 
 /*-------------------------------------------------------------*/
@@ -701,7 +710,7 @@ canvas {
 
 .unused__wrapper h3 {
   text-align: center;
-  font-size: 35px;
+  font-size: 30px;
   font-weight: bold;
   margin-bottom: 30px;
 }
@@ -770,7 +779,7 @@ canvas {
 .ungrouped__table caption {
   color: black;
   margin-bottom: 30px;
-  font-size: 35px;
+  font-size: 30px;
   font-weight: bold;
 }
 
