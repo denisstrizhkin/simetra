@@ -571,127 +571,218 @@ function dataVisualization() {
   /*-------------------------------------------------------------*/
   /*-----Spatial-------------------------------------------------*/
   /*-------------------------------------------------------------*/
+  // ! By AnoMorCH BEGINNING
+  function canBufferBeShown() {
+    const buffer500 = allPropertiesCity.area_stops_active_zone_coverage_500;
+    const buffer700 = allPropertiesCity.area_stops_active_zone_coverage_700;
+    const buffer1000 = allPropertiesCity.area_stops_active_zone_coverage_1000;
+
+    if (
+      buffer500 == 0 && buffer700 == 0
+      || buffer500 == 0 && buffer1000 == 0
+      || buffer700 == 0 && buffer1000 == 0
+    ) {
+      return false;
+    }
+
+    return true;
+  }
 
   let spatialCounter = 0;
-  for (let i = 8; i < 10; i++) {
-    if (spatial[i][1] !== 0) {
-      spatialCounter++;
-      addChartToPage("spatial", spatialCounter);
-      new Chart(
-        document.getElementById(`spatial-${spatialCounter}`),
-        createPie(spatial, i, i + 1, "white")
-      );
-    } else {
-      nameUnusedProperties.push(cityAttributeName[spatial[i][0]]);
-    }
-  }
 
-  /////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////
-
-  let flagBuff = 0;
-  for (let i = 10; i < 13; i++) {
-    if (spatial[i][1] !== 0) {
-      flagBuff++;
-    }
-  }
-
-  if (flagBuff > 1) {
+  if (canBufferBeShown()) {
     spatialCounter++;
     addChartToPage("spatial", spatialCounter);
     new Chart(
       document.getElementById(`spatial-${spatialCounter}`),
-      createDoughnut(spatial, 10, 13, "white")
+      createPie(spatial, 10, 13, "white")
     );
-  } else {
-    ungroupedProperties.push([
-      cityAttributeName[spatial[10][0]],
-      allPropertiesCity[spatial[10][0]],
-    ]);
-    ungroupedProperties.push([
-      cityAttributeName[spatial[11][0]],
-      allPropertiesCity[spatial[11][0]],
-    ]);
-    ungroupedProperties.push([
-      cityAttributeName[spatial[12][0]],
-      allPropertiesCity[spatial[12][0]],
-    ]);
-  }
-
-  /////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////
-
-  for (let i = 13; i < 16; i++) {
-    ungroupedProperties.push([
-      cityAttributeName[spatial[i][0]],
-      allPropertiesCity[spatial[i][0]],
-    ]);
-  }
-
-  if (spatial[19][1] !== 0) {
-    spatialCounter++;
-    addChartToPage("spatial", spatialCounter);
-    new Chart(
-      document.getElementById(`spatial-${spatialCounter}`),
-      createDoughnut(spatial, 19, 20, "white")
-    );
-  } else {
-    nameUnusedProperties.push(cityAttributeName[spatial[19][0]]);
-  }
-
-  if (spatial[20][1] !== 0) {
-    spatialCounter++;
-    addChartToPage("spatial", spatialCounter);
-    new Chart(
-      document.getElementById(`spatial-${spatialCounter}`),
-      createPieShare(
-        spatial,
-        20,
-        21,
-        "white",
-        "Доля населения без доступа к метрополитену"
-      )
-    );
-  } else {
-    nameUnusedProperties.push(cityAttributeName[spatial[20][0]]);
-  }
-
-  if (spatial[21][1] !== 0) {
-    spatialCounter++;
-    addChartToPage("spatial", spatialCounter);
-    new Chart(
-      document.getElementById(`spatial-${spatialCounter}`),
-      createDoughnut(spatial, 21, 22, "white")
-    );
-  } else {
-    nameUnusedProperties.push(cityAttributeName[spatial[21][0]]);
-  }
-
-  if (spatial[22][1] !== 0) {
-    spatialCounter++;
-    addChartToPage("spatial", spatialCounter);
-    new Chart(
-      document.getElementById(`spatial-${spatialCounter}`),
-      createPieShare(
-        spatial,
-        22,
-        23,
-        "white",
-        "Доля населения без доступа к общественному транспорту"
-      )
-    );
-  } else {
-    nameUnusedProperties.push(cityAttributeName[spatial[22][0]]);
   }
 
   spatialCounter++;
   addChartToPage("spatial", spatialCounter);
   new Chart(
     document.getElementById(`spatial-${spatialCounter}`),
-    createDoughnut(spatial, 24, 30, "white")
+    createPieShare(spatial, 8, 9, "white", "Доля домов ВНЕ зоны покрытия")
   );
+
+  spatialCounter++;
+  addChartToPage("spatial", spatialCounter);
+  new Chart(
+    document.getElementById(`spatial-${spatialCounter}`),
+    createPieShare(spatial, 9, 10, "white", "Доля населения ВНЕ зоны покрытия")
+  );
+
+  spatialCounter++;
+  addChartToPage("spatial", spatialCounter);
+  new Chart(
+    document.getElementById(`spatial-${spatialCounter}`),
+    createPieShare(spatial, 13, 14, "white", "Доля домов ВНЕ зоны покрытия метрополитеном")
+  );
+
+  spatialCounter++;
+  addChartToPage("spatial", spatialCounter);
+  new Chart(
+    document.getElementById(`spatial-${spatialCounter}`),
+    createPieShare(spatial, 14, 15, "white", "Доля населения ВНЕ зоны покрытия метрополитеном")
+  );
+
+  spatialCounter++;
+  addChartToPage("spatial", spatialCounter);
+  new Chart(
+    document.getElementById(`spatial-${spatialCounter}`),
+    createPieShare(spatial, 17, 18, "white", "Процент НЕпокрытой территории")
+  );
+
+  spatialCounter++;
+  addChartToPage("spatial", spatialCounter);
+  new Chart(
+    document.getElementById(`spatial-${spatialCounter}`),
+    createPieShare(spatial, 18, 19, "white", "Процент НЕпокрытой территории от станций метрополитена")
+  );
+
+  spatialCounter++;
+  addChartToPage("spatial", spatialCounter);
+  new Chart(
+    document.getElementById(`spatial-${spatialCounter}`),
+    createPieShare(spatial, 18, 19, "white", "Процент НЕпокрытой территории от станций метрополитена")
+  );
+
+  spatialCounter++;
+  addChartToPage("spatial", spatialCounter);
+  new Chart(
+    document.getElementById(`spatial-${spatialCounter}`),
+    createPieShare(spatial, 20, 21, "white", "Доля населения БЕЗ доступа к метрополитену")
+  );
+
+  spatialCounter++;
+  addChartToPage("spatial", spatialCounter);
+  new Chart(
+    document.getElementById(`spatial-${spatialCounter}`),
+    createPieShare(spatial, 22, 23, "white", "Доля населения БЕЗ доступа к общественному транспорту")
+  );
+  // ! By AnoMorCH ENDING
+
+  // let spatialCounter = 0;
+  // for (let i = 8; i < 10; i++) {
+  //   if (spatial[i][1] !== 0) {
+  //     spatialCounter++;
+  //     addChartToPage("spatial", spatialCounter);
+  //     new Chart(
+  //       document.getElementById(`spatial-${spatialCounter}`),
+  //       createPie(spatial, i, i + 1, "white")
+  //     );
+  //   } else {
+  //     nameUnusedProperties.push(cityAttributeName[spatial[i][0]]);
+  //   }
+  // }
+
+  // /////////////////////////////////////////////////////////////
+  // /////////////////////////////////////////////////////////////
+  // /////////////////////////////////////////////////////////////
+
+  // let flagBuff = 0;
+  // for (let i = 10; i < 13; i++) {
+  //   if (spatial[i][1] !== 0) {
+  //     flagBuff++;
+  //   }
+  // }
+
+  // if (flagBuff > 1) {
+  //   spatialCounter++;
+  //   addChartToPage("spatial", spatialCounter);
+  //   new Chart(
+  //     document.getElementById(`spatial-${spatialCounter}`),
+  //     createDoughnut(spatial, 10, 13, "white")
+  //   );
+  // } else {
+  //   ungroupedProperties.push([
+  //     cityAttributeName[spatial[10][0]],
+  //     allPropertiesCity[spatial[10][0]],
+  //   ]);
+  //   ungroupedProperties.push([
+  //     cityAttributeName[spatial[11][0]],
+  //     allPropertiesCity[spatial[11][0]],
+  //   ]);
+  //   ungroupedProperties.push([
+  //     cityAttributeName[spatial[12][0]],
+  //     allPropertiesCity[spatial[12][0]],
+  //   ]);
+  // }
+
+  // /////////////////////////////////////////////////////////////
+  // /////////////////////////////////////////////////////////////
+  // /////////////////////////////////////////////////////////////
+
+  // for (let i = 13; i < 16; i++) {
+  //   ungroupedProperties.push([
+  //     cityAttributeName[spatial[i][0]],
+  //     allPropertiesCity[spatial[i][0]],
+  //   ]);
+  // }
+
+  // if (spatial[19][1] !== 0) {
+  //   spatialCounter++;
+  //   addChartToPage("spatial", spatialCounter);
+  //   new Chart(
+  //     document.getElementById(`spatial-${spatialCounter}`),
+  //     createDoughnut(spatial, 19, 20, "white")
+  //   );
+  // } else {
+  //   nameUnusedProperties.push(cityAttributeName[spatial[19][0]]);
+  // }
+
+  // if (spatial[20][1] !== 0) {
+  //   spatialCounter++;
+  //   addChartToPage("spatial", spatialCounter);
+  //   new Chart(
+  //     document.getElementById(`spatial-${spatialCounter}`),
+  //     createPieShare(
+  //       spatial,
+  //       20,
+  //       21,
+  //       "white",
+  //       "Доля населения без доступа к метрополитену"
+  //     )
+  //   );
+  // } else {
+  //   nameUnusedProperties.push(cityAttributeName[spatial[20][0]]);
+  // }
+
+  // if (spatial[21][1] !== 0) {
+  //   spatialCounter++;
+  //   addChartToPage("spatial", spatialCounter);
+  //   new Chart(
+  //     document.getElementById(`spatial-${spatialCounter}`),
+  //     createDoughnut(spatial, 21, 22, "white")
+  //   );
+  // } else {
+  //   nameUnusedProperties.push(cityAttributeName[spatial[21][0]]);
+  // }
+
+  // if (spatial[22][1] !== 0) {
+  //   spatialCounter++;
+  //   addChartToPage("spatial", spatialCounter);
+  //   new Chart(
+  //     document.getElementById(`spatial-${spatialCounter}`),
+  //     createPieShare(
+  //       spatial,
+  //       22,
+  //       23,
+  //       "white",
+  //       "Доля населения без доступа к общественному транспорту"
+  //     )
+  //   );
+  // } else {
+  //   nameUnusedProperties.push(cityAttributeName[spatial[22][0]]);
+  // }
+
+  // spatialCounter++;
+  // addChartToPage("spatial", spatialCounter);
+  // new Chart(
+  //   document.getElementById(`spatial-${spatialCounter}`),
+  //   createDoughnut(spatial, 24, 30, "white")
+  // );
 
   ungroupedProperties.push([
     cityAttributeName.num_population,
