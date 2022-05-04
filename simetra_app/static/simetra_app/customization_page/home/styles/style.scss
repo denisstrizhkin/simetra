@@ -1,6 +1,6 @@
 @import "../../general_styles/_nullstyle";
 @import "../../general_styles/_footer";
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto&display=swap");
 
 /*-------------------------------------------------------------*/
 /*-----Variable declaration------------------------------------*/
@@ -20,7 +20,6 @@ $maxWidth: 1400;
 /*-------------------------------------------------------------*/
 /*-----The Foundation------------------------------------------*/
 /*-------------------------------------------------------------*/
-
 body {
   font-family: "Roboto", sans-serif;
   font-size: 18px;
@@ -37,7 +36,6 @@ body {
 /*-------------------------------------------------------------*/
 /*-----Technical classes---------------------------------------*/
 /*-------------------------------------------------------------*/
-
 ._container {
   max-width: 1200px;
   margin: 0px auto;
@@ -47,7 +45,6 @@ body {
 /*-------------------------------------------------------------*/
 /*-----HEADER--------------------------------------------------*/
 /*-------------------------------------------------------------*/
-
 .header {
   position: absolute;
   border-bottom: 4px solid white;
@@ -66,6 +63,7 @@ body {
 //37407F
 .menu {
   width: 100%;
+
   &__list {
     display: flex;
     flex-wrap: wrap;
@@ -73,6 +71,7 @@ body {
     padding: 0px 20px;
     gap: 20px 30px;
   }
+
   &__link {
     font-size: 25px;
     color: #2433a6;
@@ -95,6 +94,7 @@ body {
   color: $white-color;
   padding: 150px 0px 300px 0px;
   text-align: center;
+
   &__title {
     font-weight: bold;
     line-height: 130%;
@@ -113,6 +113,7 @@ body {
   @include adaptiv-font(40, 24);
   color: inherit;
   transition: 0.3s;
+
   &:hover {
     transform: scale(1.2);
   }
@@ -125,9 +126,11 @@ body {
     background-size: contain;
     margin-right: 5px;
     padding: 0px 30px;
+
     @media (max-width: 1000px) {
       padding: 0px 20px;
     }
+
     &:hover {
       transform: scale(1.2);
     }
@@ -141,9 +144,11 @@ body {
     background-size: contain;
     margin-right: 5px;
     padding: 0px 30px;
+
     @media (max-width: 1000px) {
       padding: 0px 20px;
     }
+
     &:hover {
       transform: scale(1.2);
     }
@@ -156,9 +161,11 @@ body {
     background-size: contain;
     margin-right: 5px;
     padding: 0px 30px;
+
     @media (max-width: 1000px) {
       padding: 0px 20px;
     }
+
     &:hover {
       transform: scale(1.2);
     }
