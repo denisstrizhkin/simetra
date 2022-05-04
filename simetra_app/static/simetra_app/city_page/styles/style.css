@@ -94,12 +94,12 @@ h6 {
 /*-----HEADER--------------------------------------------------*/
 /*-------------------------------------------------------------*/
 .header {
-  position: fixed;
+  position: absolute;
   width: 100%;
   left: 0;
   top: 0;
   z-index: 10;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.9);
 }
 
 .header__menu {
@@ -425,7 +425,7 @@ body._lock {
 }
 
 ._container {
-  max-width: 1280px;
+  max-width: 1200px;
   margin: 0px auto;
   padding: 0px 40px;
 }

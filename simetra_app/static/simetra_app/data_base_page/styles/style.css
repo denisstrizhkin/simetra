@@ -105,12 +105,12 @@ ul {
 /*-----HEADER--------------------------------------------------*/
 /*-------------------------------------------------------------*/
 .header {
-  position: fixed;
+  position: static;
   width: 100%;
   left: 0;
   top: 0;
   z-index: 10;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.9);
 }
 
 .header__menu {
@@ -424,18 +424,6 @@ body {
   flex-direction: column;
 }
 
-.header {
-  position: static;
-}
-
-.menu__list {
-  margin: 0px;
-}
-
-.header {
-  position: static;
-}
-
 .menu__list {
   margin: 0px;
 }
@@ -452,8 +440,6 @@ hr {
   max-width: 1200px;
   margin: 0px auto;
   padding: 0px 40px;
-  padding-left: 24px;
-  padding-right: 24px;
 }
 
 ._ibg {
