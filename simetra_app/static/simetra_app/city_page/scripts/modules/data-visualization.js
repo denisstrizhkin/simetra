@@ -844,8 +844,7 @@ function dataVisualization() {
     allPropertiesCity.avrg_length_between_stops,
   ]);
   displayUngroupedProperties(".spatial__container");
-
-  displayUnusedProperties(".spatial__container");
+  // displayUnusedProperties(".spatial__container");
 
   /*-------------------------------------------------------------*/
   /*-----Rolling stock-------------------------------------------*/
@@ -981,8 +980,7 @@ function dataVisualization() {
   }
 
   displayUngroupedProperties(".rolling-stock__container");
-
-  displayUnusedProperties(".rolling-stock__container");
+  // displayUnusedProperties(".rolling-stock__container");
 
   /*-------------------------------------------------------------*/
   /*-----Routes--------------------------------------------------*/
@@ -1062,7 +1060,7 @@ function dataVisualization() {
   }
 
   displayUngroupedProperties(".routes__container");
-  displayUnusedProperties(".routes__container");
+  // displayUnusedProperties(".routes__container");
 
   /*-------------------------------------------------------------*/
   /*-----Tariff--------------------------------------------------*/
@@ -1099,7 +1097,7 @@ function dataVisualization() {
   }
 
   displayUngroupedProperties(".tariff__container");
-  displayUnusedProperties(".tariff__container");
+  // displayUnusedProperties(".tariff__container");
 }
 
 export default dataVisualization;
