@@ -433,7 +433,8 @@ body {
 /*-------------------------------------------------------------*/
 hr {
   height: 1px;
-  background-color: #C8C9CA;
+  background-color: #C8C9CA
+  z-index: 1000;
 }
 
 ._container {
