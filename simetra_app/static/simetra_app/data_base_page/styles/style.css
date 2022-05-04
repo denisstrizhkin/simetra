@@ -169,12 +169,6 @@ ul {
   box-shadow: none;
 }
 
-.menu > a:focus {
-  border-bottom: none;
-  -webkit-box-shadow: 0 0 10px 3px #6f80ff;
-  box-shadow: 0 0 10px 3px #6f80ff;
-}
-
 .menu__logo {
   width: 200px;
 }
