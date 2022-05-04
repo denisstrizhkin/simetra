@@ -597,6 +597,21 @@ function dataVisualization() {
       document.getElementById(`spatial-${spatialCounter}`),
       createPie(spatial, 10, 13, "white")
     );
+  } else {
+    ungroupedProperties.push([
+      cityAttributeName.area_stops_active_zone_coverage_500,
+      allPropertiesCity.area_stops_active_zone_coverage_500,
+    ]);
+
+    ungroupedProperties.push([
+      cityAttributeName.area_stops_active_zone_coverage_700,
+      allPropertiesCity.area_stops_active_zone_coverage_700,
+    ]);
+
+    ungroupedProperties.push([
+      cityAttributeName.area_stops_active_zone_coverage_1000,
+      allPropertiesCity.area_stops_active_zone_coverage_1000,
+    ]);
   }
 
   spatialCounter++;
