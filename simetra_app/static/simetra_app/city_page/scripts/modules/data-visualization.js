@@ -4,9 +4,6 @@ function dataVisualization() {
   const longitude = document.querySelector(".home__longitude");
   const latitude = document.querySelector(".home__latitude");
 
-  longitude.textContent = longitude.textContent.slice(0, 13);
-  latitude.textContent = latitude.textContent.slice(0, 14);
-
   const subgroups = JSON.parse(
     JSON.parse(
       document.getElementById("cities_attrs_by_groups_list_json").textContent
