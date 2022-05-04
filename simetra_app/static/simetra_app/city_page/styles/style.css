@@ -438,7 +438,7 @@ body._lock {
 /*-----Technical classes---------------------------------------*/
 /*-------------------------------------------------------------*/
 ._container {
-  max-width: 1280px;
+  max-width: 1200px;
   margin: 0px auto;
   padding: 0px 40px;
 }
@@ -621,11 +621,12 @@ body._lock {
   }
 }
 
-.home__coordinates p {
+.home__description p {
   font-size: 20px;
+  line-height: normal;
 }
 
-.home__coordinates p:not(:last-child) {
+.home__description p:not(:last-child) {
   margin-bottom: 20px;
 }
 
