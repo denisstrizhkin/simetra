@@ -75,6 +75,7 @@ class City(models.Model):
         default='city_page/european-city.jpg',
         upload_to=get_upload_path,
     )
+    description = models.TextField(default='')
 
     """ ГОРОДА """
     russian_name = models.CharField(

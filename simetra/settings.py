@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django_cleanup.apps.CleanupConfig',
 
     'mapbox_location_field',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [

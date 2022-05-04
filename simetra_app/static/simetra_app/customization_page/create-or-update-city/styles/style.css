@@ -295,6 +295,22 @@ button[name="sumbit-new-city"]:hover {
   }
 }
 
+.home__quote-block {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 30px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 20px 0px;
+}
+
+.home__quote-block textarea {
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 16px;
+}
+
 .home__navbar {
   font-size: 22px;
   line-height: 120%;

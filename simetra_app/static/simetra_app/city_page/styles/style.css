@@ -421,6 +421,10 @@ body._lock {
 /*-------------------------------------------------------------*/
 /*-----Technical classes---------------------------------------*/
 /*-------------------------------------------------------------*/
+._rounded-textarea {
+  border-radius: 15px;
+}
+
 ._container {
   max-width: 1280px;
   margin: 0px auto;
@@ -607,6 +611,7 @@ body._lock {
 
 .home__coordinates p {
   font-size: 20px;
+  line-height: normal;
 }
 
 .home__coordinates p:not(:last-child) {

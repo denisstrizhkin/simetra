@@ -1,6 +1,7 @@
 {% load static %}
 {% load mapbox_location_field_tags %}
 {% load verbose_names %}
+{% load widget_tweaks %}
 
 {% location_field_includes %}
 {% include_jquery %}
@@ -100,7 +101,11 @@
               <span class="home__align-vertically-text">
                 Долгота (Latitude)
               </span> 
-              {{ city_form.latitude }}
+              <span class="_rounded-textarea">{{ city_form.latitude }}</span>
+            </div>
+            <div class="home__input-block _space-between home__quote-block">
+              Описание города
+              {{ city_form.description }}
             </div>
             <div class="home__input-block">
               <div class="home__descr-image-form-field">Аватар</div>
