@@ -94,7 +94,7 @@ h6 {
 /*-----HEADER--------------------------------------------------*/
 /*-------------------------------------------------------------*/
 .header {
-  position: static;
+  position: absolute;
   width: 100%;
   left: 0;
   top: 0;
@@ -595,10 +595,6 @@ body._lock {
   border-radius: 3px;
   color: white;
   background-color: rgba(0, 0, 0, 0.7);
-}
-
-.home__info div {
-  margin: 0 auto;
 }
 
 @media (max-width: 1380px) {

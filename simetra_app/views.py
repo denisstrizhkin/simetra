@@ -642,10 +642,10 @@ def update_employee(request, employee_id):
         if employee_form.is_valid():
             employee_form.save()
 
-            message_text = 'Модель сотрудника была успешно создана!'
+            message_text = 'Модель сотрудника была успешно обновлена!'
             messages.success(request, message_text)
         else:
-            message_text = 'Не удалось создать модель сотрудника!'
+            message_text = 'Не удалось обновить модель сотрудника!'
             messages.error(request, message_text)
 
     return render(
