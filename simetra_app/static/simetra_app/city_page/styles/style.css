@@ -94,7 +94,7 @@ h6 {
 /*-----HEADER--------------------------------------------------*/
 /*-------------------------------------------------------------*/
 .header {
-  position: fixed;
+  position: static;
   width: 100%;
   left: 0;
   top: 0;
@@ -166,11 +166,11 @@ h6 {
           box-shadow: none;
 }
 
-.menu > a:focus {
+/* .menu > a:focus {
   border-bottom: none;
   -webkit-box-shadow: 0 0 10px 3px #6f80ff;
           box-shadow: 0 0 10px 3px #6f80ff;
-}
+} */
 
 .menu__logo {
   width: 200px;

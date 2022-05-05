@@ -823,6 +823,12 @@ body {
   text-align: center;
 }
 
+@media (max-width: 390px) {
+  .statistics__list {
+    margin-bottom: 20px;
+  }
+}
+
 .statistics__item {
   -webkit-box-flex: 1;
       -ms-flex: 1 1 30%;

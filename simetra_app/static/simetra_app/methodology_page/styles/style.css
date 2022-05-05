@@ -377,12 +377,6 @@ body {
   }
 }
 
-@media (max-width: 425px) {
-  ._container {
-    padding: 0px 10px;
-  }
-}
-
 ._title {
   font-family: "Montserrat", sans-serif;
   margin: 0 auto;
