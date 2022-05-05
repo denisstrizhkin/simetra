@@ -39,14 +39,14 @@
       <section class="page__home home">
         <div class="home__container">
           <h1 class="home__title">Введите данные для авторизации</h2>
-            <form method="POST">
+            <form method="POST" autocomplete="off">
               {% csrf_token %}
               <div class="home__box-input">
-                <input type="password" name="username" required>
+                <input type="password" name="username" autocomplete="off" required>
                 <label>Секретный логин</label>
               </div>
               <div class="home__box-input">
-                <input type="password" name="password" required>
+                <input type="password" name="password" autocomplete="off" required>
                 <label>Секретный пароль</label>
               </div>
 

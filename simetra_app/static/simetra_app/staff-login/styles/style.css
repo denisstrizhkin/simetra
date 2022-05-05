@@ -89,7 +89,7 @@ h6 {
   font-weight: 400;
 }
 
-/*--------------------------------------------------------*/
+/*-------------------------------------------------------------*/
 /*-------------------------------------------------------------*/
 /*-----Variable declaration------------------------------------*/
 /*-------------------------------------------------------------*/
@@ -110,8 +110,8 @@ body {
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
 }
 
 /*-------------------------------------------------------------*/
@@ -119,8 +119,8 @@ body {
 /*-------------------------------------------------------------*/
 .page {
   -webkit-box-flex: 1;
-      -ms-flex: 1 1 auto;
-          flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
 }
 
 .home {
@@ -140,7 +140,7 @@ body {
   padding: 100px 30px 30px 30px;
   background: rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
-          box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
   border-radius: 10px;
   margin-bottom: 30px;
 }
@@ -209,10 +209,31 @@ body {
   transition: 0.5s;
 }
 
-.home__box-input input:focus ~ label,
+/* This doesn't work on Chrome. Before uncomment it find a better solution */
+/* .home__box-input input:focus ~ label,
 .home__box-input input:valid ~ label {
   top: -20px;
   left: 0;
   color: #03e9f4;
   font-size: 14px;
+} */
+
+.home__box-input input ~ label,
+.home__box-input input ~ label {
+  top: -20px;
+  left: 0;
+  color: #03e9f4;
+  font-size: 14px;
+}
+
+/* Solve the problem with a background color of the login input field */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #37407F inset !important;
+}
+
+input:-webkit-autofill{
+  -webkit-text-fill-color: white !important;
 }
