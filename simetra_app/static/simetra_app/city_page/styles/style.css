@@ -102,6 +102,10 @@ h6 {
   background-color: rgba(0, 0, 0, 0.7);
 }
 
+.header__container {
+  padding: 0px 40px;
+}
+
 .header__menu {
   padding: 10px 0px;
   display: -webkit-box;
@@ -440,13 +444,6 @@ body._lock {
 ._container {
   max-width: 1200px;
   margin: 0px auto;
-  padding: 0px 40px;
-}
-
-@media (max-width: 767px) {
-  ._container {
-    padding: 0px 20px;
-  }
 }
 
 ._title {
@@ -593,7 +590,6 @@ body._lock {
   position: absolute;
   z-index: 1;
   bottom: 10px;
-  left: 40px;
   margin: auto 0 20px 0;
   padding: 20px 40px;
   border-radius: 3px;
@@ -601,9 +597,14 @@ body._lock {
   background-color: rgba(0, 0, 0, 0.7);
 }
 
-@media (max-width: 767px) {
+.home__info div {
+  margin: 0 auto;
+}
+
+@media (max-width: 1380px) {
   .home__info {
-    left: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
     padding: 20px 20px;
   }
 }
@@ -618,6 +619,22 @@ body._lock {
 @media (max-width: 767px) {
   .home__title {
     font-size: 40px;
+    margin-bottom: 0px;
+  }
+
+  .home__info {
+    width: calc(100% - 40px);
+    text-align: center;
+  }
+
+  .home__description {
+    display: none;
+  }
+}
+
+@media (max-width: 350px) {
+  .home__title {
+    font-size: 30px;
   }
 }
 

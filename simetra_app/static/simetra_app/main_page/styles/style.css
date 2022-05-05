@@ -592,9 +592,19 @@ body {
   line-height: 130%;
 }
 
+.home__text {
+  font-size: 26px;
+  line-height: 130%;
+  margin-bottom: 60px;
+}
+
 @media (max-width: 1024px) {
   .home__title {
     font-size: 42px;
+  }
+  
+  .home__text {
+    font-size: 22px;
   }
 }
 
@@ -602,11 +612,19 @@ body {
   .home__title {
     font-size: 36px;
   }
+
+  .home__text {
+    font-size: 18px;
+  }
 }
 
 @media (max-width: 767px) {
   .home__title {
     font-size: 30px;
+  }
+
+  .home__text {
+    font-size: 16px;
   }
 }
 
@@ -614,12 +632,10 @@ body {
   .home__title {
     font-size: 25px;
   }
-}
 
-.home__text {
-  font-size: 26px;
-  line-height: 130%;
-  margin-bottom: 60px;
+  .home__text {
+    font-size: 14px;
+  }
 }
 
 .home__image {
