@@ -36,6 +36,8 @@ The project has two sections: open and closed. The first one is used for represe
 * testing of backend
 #### [Andrey Antonov](https://github.com/klekwedge) - frontend
 * visualization of the city model
+* visualization on analytics page
+* layout and adaptive for the initial version of the main page
 * frontend skeleton of the whole project
 * analytics, methodology and customization pages
 * a lot of little frontend adjustments
