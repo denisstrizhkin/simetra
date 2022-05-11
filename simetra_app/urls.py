@@ -25,81 +25,81 @@ urlpatterns = [
 
     # Boss Pages
     path(
-        '{}/change-boss'.format(path_customization),
+        '{}/change-boss/'.format(path_customization),
         views.change_boss_model,
         name='change-boss'
     ),
     path(
-        '{}/change-boss/create-boss'.format(path_customization),
+        '{}/change-boss/create-boss/'.format(path_customization),
         views.create_boss,
         name='create-boss'
     ),
     path(
-        '{}/change-boss/update-boss/<str:boss_id>'.format(path_customization),
+        '{}/change-boss/update-boss/<str:boss_id>/'.format(path_customization),
         views.update_boss,
         name='update-boss'
     ),
     path(
-        '{}/change-boss/delete-boss/<str:boss_id>'.format(path_customization),
+        '{}/change-boss/delete-boss/<str:boss_id>/'.format(path_customization),
         views.delete_boss,
         name='delete-boss'
     ),
     path(
-        '{}/change-boss/delete-all-instances-of-boss'.format(path_customization),
+        '{}/change-boss/delete-all-instances-of-boss/'.format(path_customization),
         views.delete_all_bosses,
         name='delete-all-instances-of-boss'
     ),
 
     # Employee Pages
     path(
-        '{}/change-employee'.format(path_customization),
+        '{}/change-employee/'.format(path_customization),
         views.change_employee_model,
         name='change-employee'
     ),
     path(
-        '{}/change-employee/create-employee'.format(path_customization),
+        '{}/change-employee/create-employee/'.format(path_customization),
         views.create_employee,
         name='create-employee'
     ),
     path(
-        '{}/change-employee/update-employee/<str:employee_id>'.format(path_customization),
+        '{}/change-employee/update-employee/<str:employee_id>/'.format(path_customization),
         views.update_employee,
         name='update-employee'
     ),
     path(
-        '{}/change-employee/delete-employee/<str:employee_id>'.format(path_customization),
+        '{}/change-employee/delete-employee/<str:employee_id>/'.format(path_customization),
         views.delete_employee,
         name='delete-employee'
     ),
     path(
-        '{}/change-employee/delete-all-instances-of-employee'.format(path_customization),
+        '{}/change-employee/delete-all-instances-of-employee/'.format(path_customization),
         views.delete_all_employees,
         name='delete-all-instances-of-employee'
     ),
 
     # City Pages
     path(
-        '{}/change-city'.format(path_customization),
+        '{}/change-city/'.format(path_customization),
         views.change_city_model,
         name='change-city'
     ),
     path(
-        '{}/change-city/create-city'.format(path_customization),
+        '{}/change-city/create-city/'.format(path_customization),
         views.create_city,
         name='create-city'
     ),
     path(
-        '{}/change-city/update-city/<str:city_id>'.format(path_customization),
+        '{}/change-city/update-city/<str:city_id>/'.format(path_customization),
         views.update_city,
         name='update-city'
     ),
     path(
-        '{}/change-city/delete-city/<str:city_id>'.format(path_customization),
+        '{}/change-city/delete-city/<str:city_id>/'.format(path_customization),
         views.delete_city,
         name='delete-city'
     ),
     path(
-        '{}/change-city/delete-all-instances-of-city'.format(path_customization),
+        '{}/change-city/delete-all-instances-of-city/'.format(path_customization),
         views.delete_all_cities,
         name='delete-all-instances-of-city',
     ),
@@ -109,7 +109,7 @@ urlpatterns = [
         name='city-page'
     ),
     path(
-        '{}/change-city/upload-cities-excel'.format(path_customization),
+        '{}/change-city/upload-cities-excel/'.format(path_customization),
         views.upload_cities_excel,
         name='upload-cities-excel'
     ),
