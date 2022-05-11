@@ -12,7 +12,7 @@ from django.core.serializers.json import DjangoJSONEncoder
 from django.http import HttpResponse, HttpResponseBadRequest, \
     HttpResponseRedirect
 
-from simetra.settings import MAPBOX_KEY
+from simetra.settings.base import MAPBOX_KEY
 from .models import Boss, Employee, City
 from .forms import BossForm, EmployeeForm, LocationOfCityForm, CityForm, \
     UploadFileForm

@@ -6,3 +6,4 @@ django-widget-tweaks==1.4.12
 Pillow==9.1.0
 pyexcel-ods3==0.6.1
 pyexcel-xlsx==0.6.0
+python-decouple==3.6
