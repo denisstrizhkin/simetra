@@ -743,6 +743,7 @@ def update_context_for_customization_pages_navbar(request, context):
         return url_ancestors_name_list[-2][:7] == 'update-'
 
     url_ancestors_name_list = request.path.split('/')[1:-1]
+    url_ancestors_name_list[0] = 'customization'
 
     if is_it_update_page(url_ancestors_name_list):
         context['update_model'] = url_ancestors_name_list[-2]
